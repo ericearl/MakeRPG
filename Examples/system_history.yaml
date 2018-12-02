@@ -1,0 +1,166 @@
+# "YAML Ain't Markup Language" (YAML) files have a few basic formatting rules.
+#     1. Every character within the file is treated as a character, so quotatons
+#        and punctutation are not necessary, but they are allowed.
+#     2. "Octothorpes" or "pound signs" or "hashtags" (#) are always ignored by
+#        programs that are reading/parsing YAML files.
+#     3. "Keys" or "Keywords" are always the first thing followed by a colon (:)
+#        followed by a space ( ) and then a "Value".
+#     4. You can either have:
+#            a) Single values.
+#            b) Indented and hyphenated/bulleted lists of values.
+#            c) Indented and further expanded keys and values.
+#     5. Indents are made up of 2 or 4 spaces and must be consistent throughout,
+#        I prefer 4 spaces for easier readability.
+#
+# In this example History YAML for use with the MakeRPG system's
+# CharacterCreator application, I will demonstrate the rules to follow to build
+# a valid history rolling system specifically for this software.
+#
+# There are more comments throughout, so please read from top to bottom
+
+### vvv IMPORTANT vvv ###
+# A "START" key: value and an "NPC" key: - list are required for
+# CharacterCreator where values are all "history event names", a.k.a. "events"
+### ^^^ IMPORTANT ^^^ ###
+
+# The START key's value MUST match a history event name below
+START: Personal Style # here's a basic key: value usage
+# empty lines are okay throughout between keys and values, but not necessary
+
+# The NPC key's hyphenated list MUST match a history event name below for each
+# bulleted point
+NPC:
+    - Personal Style
+    - What do you think of people?
+
+# A "history event" is a single event which you would roll to choose in
+# character creation during a regular game.  The order that history events
+# appear does not matter as long as every named event has a matching definition.
+# History events MUST have at least a "dice" and a "roll" key.
+#
+# The dice definition can be any dice definition of
+# the form <QUANTITY>d<SIDES> <OPTIONAL + or -> <OPTIONAL OFFSET>, where
+# <QUANTITY> MUST be an integer/whole number value of dice to throw, <SIDES>
+# MUST be an integer/whole number greater than 1 representing the number of
+# sides or possibilities of the dice, <OPTIONAL + or -> is an optional addition
+# or subtraction to be used with <OPTIONAL OFFSET> which MUST also be an
+# integer/whole number.  Examples:
+#     a) 1d2
+#     b) 5d17
+#     c) 1d8 + 4
+#     d) 3d6 - 2
+#
+# The roll key's values must themselves be key: values where all the possible
+# dice rolls are represented in the keys.  For example, the following history
+# event is a 1d10 dice event, meaning all values between 1 and 10 must have some
+# sort of "outcome" value.  In this case the outcomes are a character's
+# preferred personal style.
+Personal Style: # keys can have multiple words and even punctutation
+    dice: 1d10 # see the dice rule above
+    roll:
+        1: Leather # one word or multiple words are fine
+        2: Pant-suits # hyphenated words are fine
+        3: Suit & tie # special characters and symbols are fine excluding #
+        4: EXERCISE wear # a mix of upper-case and lower-case is fine
+        5: No real pants. Never real pants. # punctutation and spaces are fine
+        6: Trendy/fashionable
+        7: Militaristic, official or casual
+        8: Street clothes
+        9: Nudist
+        10: always Mismatched
+    next: What do you think of people? # the "next" key indicates what's next
+What do you think of people?: # even punctuation is allowed in event names
+    dice: 1d6 # not all dice need to be the same
+    roll:
+        1-3: Love 'em # you can use hyphens like this to represent a roll span
+        4-6: Hate 'em # remember to cover all possible rolls
+    next: Age
+
+# This example shows the special "re-roll" capability with the "<ROLL X>" tag.
+# For every <ROLL X> tag there has to be a reroll key down the line
+Age:
+    dice: 1d6 + 16
+    roll:
+        17: # the roll numbers have to correspond to the dice roll totals
+            next: Life # note how no tag means no re-roll, or just 1 roll
+        18:
+            next: <ROLL X2> Life # roll two times total
+        19:
+            next: <ROLL X3> Life # roll three times
+        20:
+            next: <ROLL X4> Life # you get the idea...
+        21:
+            next: <ROLL X5> Life
+        22:
+            next: <ROLL X6> Life
+    next: Siblings # you can have a next key after the re-rolls if you like
+
+# This example shows how you can mix next keys with outcomes in rolls.
+# Pay special attention to the reroll at the end.
+Life:
+    dice: 1d10
+    roll:
+        1-3:
+            next: The good and bad
+        4-6:
+            next: Friends or enemies?
+        7-8:
+            next: Romance!
+        9-10: Nothing eventful
+    reroll: Life # "reroll" is really "return to the last <ROLL X> tag"
+
+# In this example we will define a few rolls which lead to a reroll as well as
+# demonstrate the EVEN and ODD roll keywords and the "<NPC type>" tag.  Each
+# <NPC type> tag triggers an NPC history events list roll through the NPC: -list
+# defined above and their character name is prepended with the NPC type info.
+#
+# Here we have 7 possible <NPC sibling> rolls and 3 possible only child rolls.
+Siblings:
+    dice: 1d10
+    roll:
+        1:
+            next: <NPC sibling> Sibling binary gender
+        2:
+            next: <ROLL X2> <NPC sibling> Sibling binary gender
+        3:
+            next: <ROLL X3> <NPC sibling> Sibling binary gender
+        4:
+            next: <ROLL X4> <NPC sibling> Sibling binary gender
+        5:
+            next: <ROLL X5> <NPC sibling> Sibling binary gender
+        6:
+            next: <ROLL X6> <NPC sibling> Sibling binary gender
+        7:
+            next: <ROLL X7> <NPC sibling> Sibling binary gender
+        8-10: Only child
+    next: Love affairs # when all the re-rolls are over, next is "Love affairs"
+
+# Here, regardless of the dice, an odd roll of the dice means a "female" outcome
+# and an even roll means a "male" outcome.
+Sibling binary gender:
+    dice: 1d12
+    roll:
+        ODD: Female
+        EVEN: Male
+    next: Sibling relative age
+Sibling relative age:
+    dice: 1d10
+    roll:
+        1-5: Older
+        6-9: Younger
+        10: Twin
+    reroll: Sibling binary gender
+
+# And lastly, you can combine all these things as necessary.  This Example
+# triggers four possible different NPC types and two of those are simple
+# outcomes while two of them link off to two more history events (not defined in
+# this file).  Since this has no top-level next keyword, the history ends here!
+Love affairs:
+    dice: 1d10
+    roll:
+        1-4: <NPC happy love> Happiness
+        5:
+            next: <NPC tragic love> Tragedy
+        6-7:
+            next: <NPC problematic love> Problems
+        8-10: <NPC date> Dating
