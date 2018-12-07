@@ -17,29 +17,41 @@ MakeRPG runs using Django 2.1 and Python 3.  You can install those however you l
 
 # Getting Set Up
 
-Getting set up can be easy too.  It involves starting the MakeRPG Django server, configuring your server admin, and starting your server.
+Getting set up can be easy too.  It involves configuring your admin and starting the server.
 
-## Steps
+## Configuring your admin
 
 1. Clone this repository
-1. Open your Anaconda prompt by clicking the "Play" button next to your "base (root)" environment where you installed Django in the Anaconda Navigator
-1. Select the "Open Terminal" option
-1. Change directory with `cd` on the terminal into the path on your computer where you cloned this repository
-1. Type the following:
+2. Open your Anaconda prompt by clicking the "Play" button next to your "base (root)" environment where you installed Django in the Anaconda Navigator
+3. Select the "Open Terminal" option
+4. Change directory with `cd` on the terminal into the path on your computer where you cloned this repository
+5. Type the following:
+
 ```
 python manage.py createsuperuser
 ```
-1. You will be prompted for your Django server admin username, email address, and password
-1. Type the following three lines in sequence (type the line and then hit Enter):
+
+6. You will be prompted for your Django server admin username, email address, and password
+
+## Starting the server
+
+Type the following three lines in sequence (type the line and then hit Enter):
+
 ```
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
 
-# Making Characters
+# Using CharacterCreator
 
 Now you are ready for the extra cool part, automatic character generation.  It is currently achieved with a Python script called `setup.py`.  You'll need to edit a few numbers in the `setup.py` script and then you'll be ready to start.
+
+Make sure you already started your server.  If you just did your setup you are fine, but if you have restarted your computer or shut down your server you will need to run the following command.  In a terminal navigated to the same folder from the "Getting Set Up" section above, type:
+
+```
+python manage.py runserver
+```
 
 ## The first run of `setup.py`
 
@@ -55,7 +67,7 @@ It will print out a few messages about setting things up in your database.
 
 ## From then on
 
-You need to open up the `setup.py` and comment out the two lines to only run once.  You can choose to create any number of character by editing the `character_count` variable.  Now every other time you will run `setup.py` the same way:
+You need to open up the `setup.py` and comment out the two lines that are only supposed to run once.  You can choose to create any number of characters by editing the `character_count` variable.  Now you can run `setup.py` the same way every time you want more characters:
 
 ```
 python setup.py
