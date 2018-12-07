@@ -1,0 +1,5 @@
+db.sqlite3
+*.pyc
+.vscode/
+CharacterCreator/migrations/*.py
+

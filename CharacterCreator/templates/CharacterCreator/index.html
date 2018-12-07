@@ -1,0 +1,23 @@
+{% if character_list %}
+    <ul>
+    {% for c in character_list %}
+        <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
+        {% if npc_list %}
+            <ul>
+            {% for npc in npc_list %}
+                {% for h in npc_history %}
+                    {% if h.npc == npc and h.character == c %}
+                        {% ifchanged npc %}
+                            <li><a href="{% url 'npc' npc.id %}">{{ npc }}</a></li>
+                        {% endifchanged %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No characters are available.</p>
+{% endif %}
+
