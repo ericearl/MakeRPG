@@ -71,34 +71,34 @@ Siblings:
 
 # Required Keywords
 
-### `START`
+`START`
 
 
 
-### `NPC`
+`NPC`
 
 
 
-### `dice`
+`dice`
 
 
 
-### `roll`
+`roll`
 
 
 
-### `next`
+`next`
 
 
 
 # Optional Keywords
 
-### `<ROLL X#>`
+`<ROLL X#>`
 
 
 
-### `reroll`
+`reroll`
 
 
 
-### `<NPC type>`
+`<NPC type>`

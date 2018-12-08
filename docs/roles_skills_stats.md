@@ -35,30 +35,30 @@ stats:
 
 # Required Keywords
 
-## `roles`
+`roles`
 
 The `roles` indented keyword list is made of roles or what some systems call classes or types.  Each role listed after the roles key is the name of that role and each role has two necessary keywords, `special` and `common`.
 
 The role distributes `role` skill points among these two categories.  Any other skills require a separate set of `other` skill points.
 
-### `special`
+`special`
 
 The `special` keyword list is a list of skills that only that `role` has available.
 
-### `common`
+`common`
 
 The `common` keyword bulleted list is skills pulled from the broader pool of skills.
 
-## `stats`
+`stats`
 
 The `stats` indented keyword list is an indented list of character statistics in the gaming system you're defining.  Indented under `stats` are the stat names as you want them to appear in character sheets.  Under each stat are the keywords `stat` and `skills`.
 
 In skill and stat ranges, a minimum value greater than `0` means that minimum number of points will always be spent on that stat or skill from the stat or skill points.
 
-### `stat`
+`stat`
 
 The minimum to maximum range of possible values of that stat.
 
-### `skills`
+`skills`
 
 An indented list of keys and values where the key is the skill name and the value is the minimum to maximum range of possible values of that skill.
