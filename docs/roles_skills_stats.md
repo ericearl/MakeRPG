@@ -6,7 +6,7 @@ For a fully documented YAML file example, see the `system_stats_skills.yaml` in 
 
 # Reference Examples
 
-## `roles` keyword
+`roles` keyword
 
 ```
 roles:
@@ -19,7 +19,7 @@ roles:
             - Hand-to-hand
 ```
 
-## `stats` keyword
+`stats` keyword
 
 ```
 stats:

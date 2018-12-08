@@ -6,7 +6,7 @@ For a fully documented YAML file example, see the `system_history.yaml` in the r
 
 # Reference Examples
 
-## Basic History Event
+Basic History Event
 
 ```
 Usual Clothing:
@@ -19,7 +19,7 @@ Usual Clothing:
     next: What do you think of people?
 ```
 
-## Hyphenated rolls
+Hyphenated rolls
 
 ```
 What do you think of people?:
@@ -30,7 +30,7 @@ What do you think of people?:
     next: Age
 ```
 
-## Dice with an offset AND the `<ROLL X#>` with `reroll` keyword
+Dice with an offset AND the `<ROLL X#>` with `reroll` keyword
 
 ```
 Age:
@@ -55,7 +55,7 @@ Life:
     reroll: Life
 ```
 
-## The `<NPC type>` and `<ROLL X#>` keywords
+The `<NPC type>` and `<ROLL X#>` keywords
 
 ```
 Siblings:
@@ -71,34 +71,34 @@ Siblings:
 
 # Required Keywords
 
-## `START`
+### `START`
 
 
 
-## `NPC`
+### `NPC`
 
 
 
-## `dice`
+### `dice`
 
 
 
-## `roll`
+### `roll`
 
 
 
-## `next`
+### `next`
 
 
 
 # Optional Keywords
 
-## `<ROLL X#>`
+### `<ROLL X#>`
 
 
 
-## `reroll`
+### `reroll`
 
 
 
-## `<NPC type>`
+### `<NPC type>`
