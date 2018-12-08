@@ -1,4 +1,6 @@
 site_name: MakeRPG
 theme: readthedocs
 pages:
-- 'What is MakeRPG?': index.md
+- What is MakeRPG?: index.md
+- Roles, Skills, and Stats: roles_skills_stats.md
+- Character History: history.md

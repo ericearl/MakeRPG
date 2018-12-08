@@ -55,7 +55,7 @@ NPC:
 # event is a 1d10 dice event, meaning all values between 1 and 10 must have some
 # sort of "outcome" value.  In this case the outcomes are a character's
 # preferred personal style.
-Personal Style: # keys can have multiple words and even punctutation
+Personal Style: # keys can have multiple words and even punctuation
     dice: 1d10 # see the dice rule above
     roll:
         1: Leather # one word or multiple words are fine
