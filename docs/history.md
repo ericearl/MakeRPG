@@ -94,7 +94,7 @@ Replace `[History event name]` here with your history event's name.  It is a sin
 
 `dice`
 
-Any dice definition of the form <QUANTITY>d<SIDES> <OPTIONAL + or -> <OPTIONAL OFFSET>, where <QUANTITY> MUST be an integer/whole number value of dice to throw, <SIDES> MUST be an integer/whole number greater than 1 representing the number of sides or possibilities of the dice, <OPTIONAL + or -> is an optional addition or subtraction to be used with <OPTIONAL OFFSET> which MUST be an integer/whole number.  Examples:
+Any dice definition of the form `<QUANTITY>d<SIDES> <OPTIONAL + or -> <OPTIONAL OFFSET>`, where `<QUANTITY>` MUST be an integer/whole number value of dice to throw, `<SIDES>` MUST be an integer/whole number greater than 1 representing the number of sides or possibilities of the dice, `<OPTIONAL + or ->` is an optional addition or subtraction to be used with `<OPTIONAL OFFSET>` which MUST be an integer/whole number.  Examples:
 
 - `1d2`
 - `5d17`
