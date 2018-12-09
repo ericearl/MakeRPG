@@ -82,11 +82,11 @@ Siblings:
 
 `START`
 
-The START key's value MUST match a history event name.
+The START key's value MUST match a `[History event name]`.
 
 `NPC`
 
-The NPC key's hyphenated list MUST match a history event name for each bulleted point.
+The NPC key's hyphenated list MUST match a `[History event name]` for each bulleted point.
 
 `[History event name]`
 
