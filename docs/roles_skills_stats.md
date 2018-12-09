@@ -8,7 +8,7 @@ For a fully documented YAML file example, see the `system_stats_skills.yaml` in 
 
 `roles` keyword
 
-```
+```yaml
 roles:
     Warrior:
         special:
@@ -21,7 +21,7 @@ roles:
 
 `stats` keyword
 
-```
+```yaml
 stats:
     THINK:
         stat: 1-18
@@ -33,7 +33,7 @@ stats:
             Tell bad jokes: 0-8
 ```
 
-# Required Keywords
+# Required
 
 `roles`
 
