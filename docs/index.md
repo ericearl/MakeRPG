@@ -4,7 +4,7 @@ MakeRPG is intended to be a system that allows anyone who can edit plain text YA
 
 To see example outputs download the Character Index, Character Sheet, and NPC Sheet from the code repository's `Examples/cyberpunk_2020/` folder on GitHub.
 
-# [The Code Repository is on GitHub](https://github.com/ericearlpdx/MakeRPG)
+# [The Code is on GitHub](https://github.com/ericearlpdx/MakeRPG)
 
 The actual code is open-sourced on GitHub.  It is written by `ericearlpdx` in Python 3.7 using Django 2.1.  The CharacterCreator app's random name generator list of names was built using U.S. Census data.  Please file bugs and feature requests using the [MakeRPG GitHub issues page](https://github.com/ericearlpdx/MakeRPG/issues).
 
