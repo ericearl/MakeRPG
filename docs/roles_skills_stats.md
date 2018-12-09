@@ -2,7 +2,7 @@
 
 To build a valid stats and skills system specifically for this software, use the following rules.
 
-For a fully documented YAML file example, see the `system_stats_skills.yaml` in the repository's `Examples` folder.
+For a fully documented YAML file example, see the `system_stats_skills.yaml` in the code repository's `Examples` folder.
 
 # Reference Examples
 

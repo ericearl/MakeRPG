@@ -2,7 +2,7 @@
 
 To build a valid character history system specifically for this software, use the following rules.
 
-For a fully documented YAML file example, see the `system_history.yaml` in the repository's `Examples` folder.
+For a fully documented YAML file example, see the `system_history.yaml` in the code repository's `Examples` folder.
 
 # Reference Examples
 
@@ -82,11 +82,11 @@ Siblings:
 
 `START`
 
-The `START` key's value MUST match a `[History event name]`.
+The `START` key's value MUST match a `[History event name]`.  This is the history event that all player characters begin rolling from.
 
 `NPC`
 
-The `NPC` key's hyphenated list MUST match a `[History event name]` for each bulleted point.  This list is the order which will be used to create every NPC history.  This list order should also not trigger more NPC creations and ignores the `next` keyword in each `[History event name]` in the list.
+The `NPC` key's hyphenated list MUST match a `[History event name]` for each bulleted point.  This list is the order which will be used to create every NPC history.  This list order should not trigger more NPC creations and ignores the `next` keyword in each `[History event name]` in the list.
 
 `[History event name]`
 
@@ -94,7 +94,7 @@ Replace `[History event name]` here with your history event's name.  It is a sin
 
 `dice`
 
-Any dice definition of the form `<QUANTITY>d<SIDES> <OPTIONAL + or -> <OPTIONAL OFFSET>`, where `<QUANTITY>` MUST be an integer/whole number value of dice to throw, `<SIDES>` MUST be an integer/whole number greater than 1 representing the number of sides or possibilities of the dice, `<OPTIONAL + or ->` is an optional addition or subtraction to be used with `<OPTIONAL OFFSET>` which MUST be an integer/whole number.  Examples:
+Any dice definition of the form `[QUANTITY]d[SIDES] [OPTIONAL + or -] [OPTIONAL OFFSET]`, where `[QUANTITY]` MUST be an integer/whole number value of dice to throw, `[SIDES]` MUST be an integer/whole number greater than 1 representing the number of sides or possibilities of the dice, `[OPTIONAL + or -]` is an optional addition or subtraction to be used with `[OPTIONAL OFFSET]` which MUST be an integer/whole number.  Examples:
 
 - `1d2`
 - `5d17`
