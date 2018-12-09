@@ -2,6 +2,8 @@
 
 MakeRPG is intended to be a system that allows anyone who can edit YAML files to make automatic characters from game systems.
 
+To see example outputs of a Character Index, Character Sheet, and NPC Sheet look in the `Examples/cyberpunk_2020/` folder.
+
 # Dependencies
 
 MakeRPG runs using Python 3.7 and Django 2.1.  You can install those however you like, but here is an easy way.
