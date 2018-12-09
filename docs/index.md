@@ -8,7 +8,7 @@ The actual code is open-sourced on GitHub.  It is written by `ericearlpdx` in Py
 
 # YAML Files
 
-You can find the rules for creating the two necessary YAML files in the left menu of this readthedocs website.
+You can find the rules for creating the two necessary YAML files in the left menu of this readthedocs website.  The code repository includes one generic pair of system example YAML's and one real example of a pair of YAML's from my personal favorite, R. Talsorian's Cyberpunk 2020 (R) written by Mike Pondsmith, et al.
 
 "YAML Ain't Markup Language" (YAML) files have a few basic formatting rules.
 

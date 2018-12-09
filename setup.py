@@ -322,17 +322,19 @@ if __name__ == '__main__':
     center_stat_points = 50
     center_role_points = 40
     center_other_points = 10
-    # skillstats_yaml = 'C:/Users/Eric/Documents/Hobby/CharGen/cyberpunk_2020_stats_skills.yml'
-    # history_yaml = 'C:/Users/Eric/Documents/Hobby/CharGen/cyberpunk_2020_history.yml'
-    skillstats_yaml = 'C:/Users/erice/Google Drive/Hobby/CharGen/cyberpunk_2020_stats_skills.yml'
-    history_yaml = 'C:/Users/erice/Google Drive/Hobby/CharGen/cyberpunk_2020_history.yml'
+    skillstats_yaml = 'Examples/cyberpunk_2020/cyberpunk_2020_stats_skills.yaml'
+    history_yaml = 'Examples/cyberpunk_2020/cyberpunk_2020_history.yaml'
     history_start, npc_start = get_history_starts(history_yaml)
 
-    # # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
-    # setup_skillstats(skillstats_yaml)
+    # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
+    # This should only be run once
+    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+    setup_skillstats(skillstats_yaml) # comment this out when you're done with it
 
-    # # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
-    # setup_history(history_yaml)
+    # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
+    # This should only be run once
+    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+    setup_history(history_yaml) # comment this out when you're done with it
 
     # names lists
     with open('MakeRPG/firstnames.txt','r') as firsts:
