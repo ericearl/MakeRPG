@@ -1,15 +1,19 @@
-# The System
+# The Idea is Here
 
-MakeRPG is intended to be a system that allows anyone who can edit plain text YAML files to make automatic characters and game systems.
+MakeRPG is intended to be a system that allows anyone who can edit plain text YAML files to make automatic characters from game systems.
 
-You can find the rules for creating the two necessary YAML files on the left pane of this website.
+# [The Code is on GitHub](https://github.com/ericearlpdx/MakeRPG)
+
+The actual code is open-sourced on GitHub.  It is written by `ericearlpdx` in Python 3.7 using Django 2.1.  The CharacterCreator app's random name generator list of names was built using U.S. Census data.  Please file bugs and feature requests using the [MakeRPG GitHub issues page](https://github.com/ericearlpdx/MakeRPG/issues).
 
 # YAML Files
 
+You can find the rules for creating the two necessary YAML files in the left menu of this readthedocs website.
+
 "YAML Ain't Markup Language" (YAML) files have a few basic formatting rules.
 
-1. Every character within the file is treated as a character, so quotatons and punctutation are not necessary, but they are allowed.
-1. "Octothorpes" or "pound signs" or "hashtags" `#` are always ignored by programs that are reading or parsing YAML files.
+1. Every character within the file is treated as a character, so quotations and punctuation are not necessary, but they are allowed.
+1. "Octothorpes" or "pound signs" or "hashtags" `#` are ignored by programs that are reading or parsing YAML files.
 1. "Keys" or "Keywords" are always the first thing followed by a colon and a space `: ` and then a "Value".
 1. You can either have:
     - Single values

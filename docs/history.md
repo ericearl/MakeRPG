@@ -82,15 +82,15 @@ Siblings:
 
 `START`
 
-The START key's value MUST match a `[History event name]`.
+The `START` key's value MUST match a `[History event name]`.
 
 `NPC`
 
-The NPC key's hyphenated list MUST match a `[History event name]` for each bulleted point.
+The `NPC` key's hyphenated list MUST match a `[History event name]` for each bulleted point.  This list is the order which will be used to create every NPC history.  This list order should also not trigger more NPC creations and ignores the `next` keyword in each `[History event name]` in the list.
 
 `[History event name]`
 
-Replace `[History event name]` here with your history event's name.  It is a single event which you would roll to choose in character creation during a regular character creation.  The order that history events appear does not matter as long as every named event has a matching definition.  History events MUST have at least a `dice` and a `roll` key.
+Replace `[History event name]` here with your history event's name.  It is a single event which you would roll to choose in character creation during your system's regular character creation.  The order that history events appear does not matter as long as every named event has a matching definition.  History events MUST have at least a `dice` and a `roll` key.
 
 `dice`
 
@@ -105,57 +105,57 @@ Any dice definition of the form `<QUANTITY>d<SIDES> <OPTIONAL + or -> <OPTIONAL 
 
 The `roll` keyword's values must themselves be key-value pairs where all the possible dice rolls are represented in the keys.  For example, let's say a history event has a `dice: 1d6`.  This means all values between 1 and 6 must have some sort of `outcome value`.  The following formats are supported:
 
-1. `EVEN` and `ODD` pair format
+- `EVEN` and `ODD` pair format
 
-    ```yaml
-    EVEN: Even-numbered outcome
-    ODD: Odd-numbered outcome
-    ```
+```yaml
+EVEN: Even-numbered outcome
+ODD: Odd-numbered outcome
+```
 
-1. Single format
+- Single format
 
-    ```yaml
-    1: Outcome A
-    2: Outcome B
-    3: Outcome C
-    4: Outcome D
-    5: Outcome E
-    6: Outcome F
-    ```
+```yaml
+1: Outcome A
+2: Outcome B
+3: Outcome C
+4: Outcome D
+5: Outcome E
+6: Outcome F
+```
 
-1. Hyphenated format
+- Hyphenated format
 
-    ```yaml
-    1-2: Outcome A
-    3-4: Outcome B
-    5-6: Outcome C
-    ```
+```yaml
+1-2: Outcome A
+3-4: Outcome B
+5-6: Outcome C
+```
 
-1. Comma-separated format
+- Comma-separated format
 
-    ```yaml
-    1,2: Outcome A
-    3,5: Outcome B
-    4,6: Outcome C
-    ```
-`
-1. Mixed format
+```yaml
+1,2: Outcome A
+3,5: Outcome B
+4,6: Outcome C
+```
 
-    ```yaml
-    1-2,4: Outcome A
-    3,5: Outcome B
-    6: Outcome C
-    ```
+- Mixed format
 
-# Optional
+```yaml
+1-2,4: Outcome A
+3,5: Outcome B
+6: Outcome C
+```
 
 `[Outcome value]`
 
 Replace `[Outcome value]` here with your roll's outcome.  Outcomes can be either a string describing the outcome of a roll OR a `next: [History event name]` key-value pair.
 
+# Optional
+
 `next`
 
-Controls what history event to roll next.
+Dictates what history event to roll next.
 
 `<ROLL X#>`
 
