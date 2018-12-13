@@ -1,22 +1,48 @@
 {% if character_list %}
-    <ul>
-    {% for c in character_list %}
-        <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
-        {% if npc_list %}
+    {% if role_list %}
+        {% for r in role_list %}
+            <li>{{ r }}</li>
             <ul>
-            {% for npc in npc_list %}
-                {% for h in npc_history %}
-                    {% if h.npc == npc and h.character == c %}
-                        {% ifchanged npc %}
-                            <li><a href="{% url 'npc' npc.id %}">{{ npc }}</a></li>
-                        {% endifchanged %}
+            {% for c in character_list %}
+                {% if c.role == r %}
+                    <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
+                    {% if npc_list %}
+                        <ul>
+                        {% for npc in npc_list %}
+                            {% for h in npc_history %}
+                                {% if h.npc == npc and h.character == c %}
+                                    {% ifchanged npc %}
+                                        <li><a href="{% url 'npc' npc.id %}">{{ npc }}</a></li>
+                                    {% endifchanged %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        </ul>
                     {% endif %}
-                {% endfor %}
+                {% endif %}
             {% endfor %}
             </ul>
-        {% endif %}
-    {% endfor %}
-    </ul>
+        {% endfor %}
+        </ul>
+    {% else %}
+        {% for c in character_list %}
+            <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
+            {% if npc_list %}
+                <ul>
+                {% for npc in npc_list %}
+                    {% for h in npc_history %}
+                        {% if h.npc == npc and h.character == c %}
+                            {% ifchanged npc %}
+                                <li><a href="{% url 'npc' npc.id %}">{{ npc }}</a></li>
+                            {% endifchanged %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
 {% else %}
     <p>No characters are available.</p>
 {% endif %}

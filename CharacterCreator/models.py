@@ -86,7 +86,7 @@ class Character(models.Model):
     other_points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.role.name + ': ' + self.name
+        return self.name
 
 
 class CharacterEventRoll(models.Model):

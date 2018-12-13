@@ -51,12 +51,19 @@ def roll_skills(c):
     op = c.other_points
 
     # initialize skills
-    special_skills = c.role.special_skills.all()
-    common_skills = c.role.common_skills.all()
-    role_skills = (special_skills | common_skills).distinct()
-    special_stat = Statistic.objects.get(name='SPECIAL')
-    all_special_skills = Skill.objects.filter(statistic=special_stat)
-    other_skills = Skill.objects.all().difference(all_special_skills, role_skills)
+    if c.role:
+        special_skills = c.role.special_skills.all()
+        common_skills = c.role.common_skills.all()
+        role_skills = (special_skills | common_skills).distinct()
+        special_stat = Statistic.objects.get(name='SPECIAL')
+        all_special_skills = Skill.objects.filter(statistic=special_stat)
+        other_skills = Skill.objects.all().difference(all_special_skills, role_skills)
+    else:
+        special_skills = []
+        common_skills = []
+        role_skills = []
+        other_skills = Skill.objects.all()
+
     for skill in role_skills:
         cskill = CharacterSkill()
         cskill.character = c
@@ -81,8 +88,7 @@ def roll_skills(c):
         op -= skill.minimum
         cskill.save()
 
-    other_cskills = CharacterSkill.objects.filter(
-        character=c).difference(role_cskills)
+    other_cskills = CharacterSkill.objects.filter(character=c).difference(role_cskills)
     while op > 0:
         skill = random.choice(other_skills)
         cskill = CharacterSkill.objects.get(character=c, skill=skill)
