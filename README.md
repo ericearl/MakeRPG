@@ -47,7 +47,7 @@ python manage.py runserver
 
 # Using CharacterCreator
 
-Now you are ready for the extra cool part, automatic character generation.  It is currently achieved with a Python script called `setup.py`.  You'll need to edit a few numbers in the `setup.py` script and then you'll be ready to start.
+Now you are ready for the extra cool part, automatic character generation.  It is currently achieved with two Python scripts called `setup.py` and `makecharacter.py`.  You'll need to edit a few numbers in the `makecharacter.py` script to be ready for the character generation portion, described in detail below.
 
 Make sure you already started your server.  If you just did your setup you are fine, but if you have restarted your computer or shut down your server you will need to run the following command again.  In a terminal navigated to the same folder from the "Getting Set Up" section above, type:
 
@@ -55,7 +55,7 @@ Make sure you already started your server.  If you just did your setup you are f
 python manage.py runserver
 ```
 
-## The first run of `setup.py`
+## First run `setup.py` once
 
 The first time you will need to have your YAML files ready and edit the `setup.py` to point to the absolute paths to those files on your computer or the relative paths from the code repository, like this:
 
@@ -64,7 +64,7 @@ skillstats_yaml = 'Examples/system_stats_skills.yaml'
 history_yaml = 'Examples/system_history.yaml'
 ```
 
-You can make sample characters at the same time if you want, but don't have to.  The important part is to only run `setup.py` once this way to initialize your database's history rolling and roles, stats, and skills.
+Only run `setup.py` once to initialize your database's history rolling and roles, stats, and skills.
 
 In another different terminal navigated to the same folder from the "Getting Set Up" section above, type:
 
@@ -76,35 +76,26 @@ It will print out a few messages about setting things up in your database.
 
 ## From then on
 
-You need to open up the `setup.py` and comment out the two lines that are only supposed to run once:
-
-```python
-# ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
-# This should only be run once
-# If it fails somehow, you should empty your database, adjust your YAML's, and try again
-setup_skillstats(skillstats_yaml) # comment this out when you're done with it
-
-# ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
-# This should only be run once
-# If it fails somehow, you should empty your database, adjust your YAML's, and try again
-setup_history(history_yaml) # comment this out when you're done with it
-```
-
-You can choose to create any number of characters with any amount of stat and skill points by editing these variables at the top of the `main` function:
+You can choose to create any number of characters with any amount of stat and skill points by editing these variables at the top of the `makecharacter.py` `__main__` function:
 
 ```python
 if __name__ == '__main__':
+    # character count to make per run
     character_count = 5
-    center_stat_points = 50
-    center_role_points = 40
-    center_other_points = 10
+
+    # mean (a.k.a. average) point values
+    mean_stat_points = 50
+    mean_role_points = 40
+    mean_other_points = 10
 ```
 
-Now you can run `setup.py` the same way every time you want more characters:
+You can run `makecharacter.py` the same way every time you want more characters:
 
 ```
-python setup.py
+python makecharacter.py
 ```
+
+Currently, by default, you enter `stat`, `role`, and `other` points as a mean which characters actual points are sampled from a normal distribution with 20% of the mean variance.
 
 Now open a web browser and go to [`http://localhost:8000/cc/`](http://localhost:8000/cc/) to see all of your characters.
 

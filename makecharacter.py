@@ -93,10 +93,17 @@ def roll_skills(c):
 
 
 if __name__ == '__main__':
+    # character count to make per run
     character_count = 5
-    center_stat_points = 40
-    center_role_points = 0
-    center_other_points = 20
+
+    # mean (a.k.a. average) point values
+    mean_stat_points = 40
+    mean_role_points = 0
+    mean_other_points = 20
+
+    # percentage of mean variance
+    mean_percentage = 20/100
+
     history_yaml = 'Examples/classless_cyberpunk_test/classless_cyberpunk_test_history.yaml'
     history_start, npc_start = get_history_starts(history_yaml)
 
@@ -113,22 +120,22 @@ if __name__ == '__main__':
 
         # set points based on a normal distribution with a center mean and 20% mean variance
         # and don't let any points go below zero
-        if center_stat_points > 0:
-            sp = round(random.normalvariate(center_stat_points, center_stat_points/5))
+        if mean_stat_points > 0:
+            sp = round(random.normalvariate(mean_stat_points, mean_stat_points*mean_percentage))
             if sp < 0:
                 sp = 0
         else:
             sp = 0
 
-        if center_role_points > 0:
-            rp = round(random.normalvariate(center_role_points, center_role_points/5))
+        if mean_role_points > 0:
+            rp = round(random.normalvariate(mean_role_points, mean_role_points*mean_percentage))
             if rp < 0:
                 rp = 0
         else:
             rp = 0
 
-        if center_other_points > 0:
-            op = round(random.normalvariate(center_other_points, center_other_points/5))
+        if mean_other_points > 0:
+            op = round(random.normalvariate(mean_other_points, mean_other_points*mean_percentage))
             if op < 0:
                 op = 0
         else:
@@ -202,25 +209,22 @@ if __name__ == '__main__':
 
             # set points based on a normal distribution with a center mean and 20% mean variance
             # and don't let any points go below zero
-            if center_stat_points > 0:
-                sp = round(random.normalvariate(
-                    center_stat_points, center_stat_points/5))
+            if mean_stat_points > 0:
+                sp = round(random.normalvariate(mean_stat_points, mean_stat_points*mean_percentage))
                 if sp < 0:
                     sp = 0
             else:
                 sp = 0
 
-            if center_role_points > 0:
-                rp = round(random.normalvariate(
-                    center_role_points, center_role_points/5))
+            if mean_role_points > 0:
+                rp = round(random.normalvariate(mean_role_points, mean_role_points*mean_percentage))
                 if rp < 0:
                     rp = 0
             else:
                 rp = 0
 
-            if center_other_points > 0:
-                op = round(random.normalvariate(
-                    center_other_points, center_other_points/5))
+            if mean_other_points > 0:
+                op = round(random.normalvariate(mean_other_points, mean_other_points*mean_percentage))
                 if op < 0:
                     op = 0
             else:
