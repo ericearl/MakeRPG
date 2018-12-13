@@ -6,20 +6,7 @@ For a fully documented YAML file example, see the `system_stats_skills.yaml` in 
 
 # Reference Examples
 
-`roles` keyword
-
-```yaml
-roles:
-    Warrior:
-        special:
-            Hit hard: 1-8
-        common:
-            - Buffness
-            - Melee
-            - Hand-to-hand
-```
-
-`stats` keyword
+Required `stats` keyword
 
 ```yaml
 stats:
@@ -33,21 +20,20 @@ stats:
             Tell bad jokes: 0-8
 ```
 
+Optional `roles` keyword
+
+```yaml
+roles:
+    Warrior:
+        special:
+            Hit hard: 1-8
+        common:
+            - Buffness
+            - Melee
+            - Hand-to-hand
+```
+
 # Required
-
-`roles`
-
-The `roles` indented keyword list is made of roles or what some systems call classes or types.  Each role listed after the roles key is the name of that role and each role has two necessary keywords, `special` and `common`.
-
-The role distributes `role` skill points among these two categories.  Any other skills require a separate set of `other` skill points.
-
-`special`
-
-The `special` keyword list is a list of skills that only that `role` has available.
-
-`common`
-
-The `common` keyword bulleted list is skills pulled from the broader pool of skills.
 
 `stats`
 
@@ -62,3 +48,19 @@ The minimum to maximum range of possible values of that stat.
 `skills`
 
 An indented list of keys and values where the key is the skill name and the value is the minimum to maximum range of possible values of that skill.
+
+# Optional
+
+`roles`
+
+The `roles` indented keyword list is made of roles or what some systems call classes or types.  Each role listed after the roles key is the name of that role and each role has two necessary keywords, `special` and `common`.
+
+The role distributes `role` skill points among these two categories.  Any other skills require a separate set of `other` skill points.
+
+`special`
+
+The `special` keyword list is a list of skills that only that `role` has available.
+
+`common`
+
+The `common` keyword bulleted list is skills pulled from the broader pool of skills.
