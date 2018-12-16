@@ -37,7 +37,7 @@ roles:
 
 `stats`
 
-The `stats` indented keyword list is an indented list of character statistics in the gaming system you're defining.  Indented under `stats` are the stat names as you want them to appear in character sheets.  Under each stat are the keywords `stat` and `skills`.
+The `stats` indented keyword list is an indented list of character statistics in the gaming system you're defining.  Indented under `stats` are the stat names as you want them to appear in character sheets.  Under each stat is the keyword `stat`.  `skills` is also allowed and optional for stats that boast skills specific to that stat.
 
 In skill and stat ranges, a minimum value greater than `0` means that minimum number of points will always be spent on that stat or skill from the stat or skill points.
 
@@ -45,11 +45,11 @@ In skill and stat ranges, a minimum value greater than `0` means that minimum nu
 
 The minimum to maximum range of possible values of that stat.
 
+# Optional
+
 `skills`
 
-An indented list of keys and values where the key is the skill name and the value is the minimum to maximum range of possible values of that skill.
-
-# Optional
+Nested under a named stat, `skills` is an indented list of keys and values where the key is the skill name and the value is the minimum to maximum range of possible values of that skill.
 
 `roles`
 

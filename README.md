@@ -55,16 +55,14 @@ Make sure you already started your server.  If you just did your setup you are f
 python manage.py runserver
 ```
 
-## First run `setup.py` once
+## Run `setup.py`
 
-The first time you will need to have your YAML files ready and edit the `setup.py` to point to the absolute paths to those files on your computer or the relative paths from the code repository, like this:
+To get set up you will need to have your YAML files ready and edit the `setup.py` to point to the absolute paths to those files on your computer or the relative paths from the code repository, like this:
 
 ```python
 skillstats_yaml = 'Examples/system_stats_skills.yaml'
 history_yaml = 'Examples/system_history.yaml'
 ```
-
-Only run `setup.py` once to initialize your database's history rolling and roles, stats, and skills.
 
 In another different terminal navigated to the same folder from the "Getting Set Up" section above, type:
 
@@ -72,7 +70,7 @@ In another different terminal navigated to the same folder from the "Getting Set
 python setup.py
 ```
 
-It will print out a few messages about setting things up in your database.
+`setup.py` has a built-in YAML validator that tells you about any errors in your YAML files.  Make sure to repeat running `setup.py` and correcting any YAML errors until you get the `Successfully completed setup.py!  Proceed to makecharacter.py...` message.  This initializes your database's history rolling and roles, stats, and skills.
 
 ## From then on
 

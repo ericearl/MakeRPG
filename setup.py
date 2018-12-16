@@ -6,6 +6,264 @@ django.setup()
 
 from CharacterCreator.models import *
 
+
+# class HistoryEventError(Exception):
+#     def __init__(self, name):
+#         self.name = name
+#     print(self.name + ' not present')
+#     raise
+
+
+def validate_skillstats(yaml_file):
+    print('Validating Skills & Stats YAML: ' + yaml_file)
+
+    with open(yaml_file, 'r') as yamlfile:
+        tree = yaml.load(yamlfile)
+
+    error_flag = False
+
+    if 'stats' not in tree.keys():
+        print('ERROR: Missing required stats keyword up top')
+        error_flag = True
+
+    skill_collection = []
+    for stat in tree['stats'].keys():
+        substat = tree['stats'][stat]
+
+        if 'stat' not in substat:
+            print('ERROR: stat keyword not in [stats > ' + stat + ']')
+            error_flag = True
+        else:
+            # improve with re non-hyphen + non-numeric tests
+            value_range = [int(value) for value in substat['stat'].split('-')]
+            prefix = 'ERROR: stat range (' + substat['stat'] + ') in [stats > ' + stat + ' > stat]'
+            if len(value_range) < 2:
+                print(prefix + ' has less than two hyphenated values')
+                error_flag = True
+            elif len(value_range) > 2:
+                print(prefix + ' has greater than two hyphenated values')
+                error_flag = True
+            elif value_range[0] > value_range[1]:
+                print(prefix + ' contains a larger first number (' + str(value_range[0]) + ') than second number (' + str(value_range[1]) + ')')
+                error_flag = True
+
+        if 'skills' not in substat:
+            print('WARNING: skills keyword not in [stats > ' + stat + ']')
+        else:
+            for skill in substat['skills'].keys():
+                subskill = substat['skills'][skill]
+                value_range = [int(value) for value in subskill.split('-')]
+                prefix = 'ERROR: skill range (' + subskill + ') in [stats > ' + stat + ' > skills > ' + skill + ']'
+                if len(value_range) < 2:
+                    print(prefix + ' has less than two hyphenated values')
+                    error_flag = True
+                elif len(value_range) > 2:
+                    print(prefix + ' has greater than two hyphenated values')
+                    error_flag = True
+                elif value_range[0] > value_range[1]:
+                    print(prefix + ' contains a larger first number (' + str(value_range[0]) + ') than second number (' + str(value_range[1]) + ')')
+                    error_flag = True
+                skill_collection.append(skill)
+
+    if 'roles' in tree.keys():
+        for role in tree['roles'].keys():
+            subrole = tree['roles'][role]
+            if 'special' not in subrole:
+                print('ERROR: special keyword not in [roles > ' + role + ']')
+                error_flag = True
+            if 'common' not in subrole:
+                print('ERROR: common keyword not in [roles > ' + role + ']')
+                error_flag = True
+            
+            for special in subrole['special'].keys():
+                subspecial = subrole['special'][special]
+                value_range = [int(value) for value in subspecial.split('-')]
+                prefix = 'ERROR: special range (' + subspecial + ') in [roles > ' + role + ' > special > ' + special + ']'
+                if len(value_range) < 2:
+                    print(prefix + ' has less than two hyphenated values')
+                    error_flag = True
+                elif len(value_range) > 2:
+                    print(prefix + ' has greater than two hyphenated values')
+                    error_flag = True
+                elif value_range[0] > value_range[1]:
+                    print(prefix + ' contains a larger first number (' + str(value_range[0]) + ') than second number (' + str(value_range[1]) + ')')
+                    error_flag = True
+
+            for common in subrole['common']:
+                if common not in skill_collection:
+                    print('ERROR: [roles > ' + role + ' > common > ' + common + '] not among all common skills:')
+                    print(skill_collection)
+                    error_flag = True
+
+    if error_flag:
+        return False
+    else:
+        print('Valid Skills & Stats YAML!')
+        return True
+
+
+def validate_history(yaml_file):
+    print('Validating History YAML: ' + yaml_file)
+
+    with open(yaml_file, 'r') as yamlfile:
+        tree = yaml.load(yamlfile)
+
+    events = list(tree.keys())
+    error_flag = False
+
+    if 'START' not in events:
+        print('ERROR: Missing required START keyword up top')
+        error_flag = True
+
+    if 'NPC' not in events:
+        print('ERROR: Missing required NPC keyword up top')
+        error_flag = True
+
+    events.remove('START')
+    events.remove('NPC')
+
+    reroll_list = []
+
+    for event in events:
+        event_dict = tree[event]
+
+        if 'dice' not in event_dict:
+            print('ERROR: dice keyword not in event ' + event)
+            error_flag = True
+        if 'roll' not in event_dict:
+            print('ERROR: roll keyword not in event ' + event)
+            error_flag = True
+
+        dice = event_dict['dice']
+        search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *([0-9]*)', dice)
+        if search.group(1) == None and search.group(2) == None:
+            print('ERROR: Invalid dice (' + dice + ') for event ' + event)
+            error_flag = True
+
+        quantity = int(search.group(1))
+        sides = int(search.group(2))
+        if search.group(3) == None:
+            offset = 0
+        else:
+            offset = int(search.group(3)+search.group(4))
+
+        dice_min = quantity + offset
+        dice_max = quantity * sides + offset
+        dice_span = list(range(dice_min, dice_max+1))
+
+        rolls = event_dict['roll']
+
+        if 'EVEN' in rolls and 'ODD' not in rolls and len(rolls) == 2:
+            print('ERROR: EVEN in roll, but no ODD in roll for event ' + event)
+            error_flag = True
+        elif 'EVEN' not in rolls and 'ODD' in rolls and len(rolls) == 2:
+            print('ERROR: ODD in roll, but no EVEN in roll for event ' + event)
+            error_flag = True
+        elif 'EVEN' in rolls and 'ODD' in rolls and len(rolls) > 2:
+            print('ERROR: EVEN and ODD keywords used, but there are more than two keywords in event ' + event)
+            error_flag = True
+        elif 'EVEN' not in rolls and 'ODD' not in rolls:
+            possible_rolls = []
+            # a dictionary of roll value lists whose keys are roll strings
+            for element in rolls.keys():
+                roll_str = str(element)
+
+                if '-' not in roll_str and ',' not in roll_str:
+                    # a single value
+                    values = int(roll_str)
+                    possible_rolls.append(values)
+                elif ',' in roll_str:
+                    # multiple values
+                    for partial in roll_str.split(','):
+                        if '-' in partial:
+                            # a span of comma-separated values
+                            minimum,maximum = (int(number) for number in partial.split('-'))
+                            values = list(range(minimum,maximum+1))
+                            possible_rolls += values
+                        else:
+                            # a single comma-separated value
+                            values = int(partial)
+                            possible_rolls.append(values)
+                elif '-' in roll_str:
+                    # a span of values
+                    minimum,maximum = (int(number) for number in roll_str.split('-'))
+                    values = list(range(minimum,maximum+1))
+                    possible_rolls += values
+
+            if len(possible_rolls) < len(dice_span):
+                print('ERROR: Too few possible rolls in ' + str(rolls) + ' for event ' + event)
+                error_flag = True
+            elif len(possible_rolls) > len(dice_span):
+                print('ERROR: Too many possible rolls in ' + str(rolls) + ' for event ' + event)
+                error_flag = True
+            elif sorted(possible_rolls) != dice_span:
+                print('ERROR: possible rolls (' + possible_rolls + ') does not match dice span (' + dice_span + ') for event ' + event)
+                error_flag = True
+
+            if 'next' in event_dict:
+                if event_dict['next'] not in events:
+                    print('ERROR: next event (' + event_dict['next'] + ') does not exist for event ' + event)
+                    error_flag = True
+
+            for roll in rolls.keys():
+                outcome = rolls[roll]
+                if type(outcome) is dict:
+                    for key in outcome.keys():
+                        if key != 'next':
+                            print('ERROR: Invalid keyword (' + key + ') for roll ' + str(roll) + ' in event ' + event)
+                            error_flag = True
+                        else:
+                            outcome = outcome['next']
+
+                            if '<NPC' in outcome:
+                                npc_match = re.match(r'(.*)<NPC\ *(.+)>\ *(.+)', outcome)
+                                outcome = npc_match.group(1) + npc_match.group(3)
+
+                            if '<ROLL X' in outcome:
+                                roll_x = re.match(r'(.*)<ROLL\ *X([0-9]+)>\ *(.+)', outcome)
+                                outcome = roll_x.group(1) + roll_x.group(3)
+                                reroll_list.append(outcome)
+
+                            if outcome not in events:
+                                print('ERROR: next event (' + outcome + ') does not exist for roll ' + str(roll) + ' in event ' + event)
+                                error_flag = True
+
+                elif type(outcome) is str:
+                    if '<NPC' in outcome:
+                        npc_match = re.match(r'(.*)<NPC\ *(.+)>\ *(.+)', outcome)
+                        outcome = npc_match.group(1) + npc_match.group(3)
+
+                    if '<ROLL X' in outcome:
+                        roll_x = re.match(r'(.*)<ROLL\ *X([0-9]+)>\ *(.+)', outcome)
+                        outcome = roll_x.group(1) + roll_x.group(3)
+                        reroll_list.append(outcome)
+
+                else:
+                    print('ERROR: Outcome is neither a next key-value pair nor a string for roll ' + str(roll) + ' in event ' + event)
+                    error_flag = True
+
+    reroll_set = set(reroll_list)
+    for event in events:
+        event_dict = tree[event]
+        if 'reroll' in event_dict:
+            reroll_event = event_dict['reroll']
+            if reroll_event in reroll_set:
+                reroll_set.remove(reroll_event)
+            else:
+                print('ERROR: reroll event (' + reroll_event + ') does not exist in any <ROLL X#> tag for event ' + event)
+                error_flag = True
+
+    if len(reroll_set) != 0:
+        print('ERROR: Unmatched reroll(s) among all <ROLL X#> tags: ' + str(reroll_set))
+        error_flag = True
+
+    if error_flag:
+        return False
+    else:
+        print('Valid History YAML!')
+        return True
+
+
 def setup_skillstats(yaml_file):
     # needs error handling
     with open(yaml_file,'r') as yamlfile:
@@ -238,15 +496,29 @@ def setup_history(yaml_file):
 
 
 if __name__ == '__main__':
-    skillstats_yaml = 'Examples/classless_cyberpunk_test/classless_cyberpunk_test_stats_skills.yaml'
-    history_yaml = 'Examples/classless_cyberpunk_test/classless_cyberpunk_test_history.yaml'
+    skillstats_yaml = 'Examples/system_stats_skills.yaml'
+    history_yaml = 'Examples/system_history.yaml'
 
-    # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
-    # This should only be run once
-    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
-    setup_skillstats(skillstats_yaml) # comment this out when you're done with it
+    valid_skillstats = validate_skillstats(skillstats_yaml)
+    valid_history = validate_history(history_yaml)
 
-    # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
-    # This should only be run once
-    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
-    setup_history(history_yaml) # comment this out when you're done with it
+    if not valid_skillstats:
+        print('Skils & Stats YAML had at least one ERROR, review this output and correct all errors')
+
+    if not valid_history:
+        print('History YAML had at least one ERROR, review this output and correct all errors')
+    
+    if not valid_skillstats or not valid_history:
+        print('Quitting without setting up game system database')
+    else:
+        print('Setting up game system database')
+        # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
+        # This should only be run once
+        # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+        setup_skillstats(skillstats_yaml) # comment this out when you're done with it
+
+        # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
+        # This should only be run once
+        # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+        setup_history(history_yaml) # comment this out when you're done with it
+        print('Successfully completed setup.py!  Proceed to makecharacter.py...')
