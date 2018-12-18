@@ -159,11 +159,11 @@ Dictates what history event to roll next.
 
 `<ROLL X#>`
 
-The `#` in `<ROLL X#>` indicates how many times you would reroll this outcome value, which should be a `next: [History event name]` key-value pair.  For every `<ROLL X#>` tag there has to be a `reroll` key down the line.
+The `#` in `<ROLL X#>` indicates how many times you would reroll this outcome value, which should be a `next: [History event name]` key-value pair.  For every `<ROLL X#>` tag there has to be a `reroll` key down the line using the same `[History event name]`.
 
 `reroll`
 
-The follow-up to a `<ROLL X#>` tag.  This tells the history event rolling queue to go back to the last `<ROLL X#>` tag.
+The follow-up to a `<ROLL X#>` tag.  This tells the history event rolling queue to go back to the last `<ROLL X#>` tag.  This key's value needs to be the same `[History event name]` that the `<ROLL X#>` tag used.
 
 `<NPC type>`
 
