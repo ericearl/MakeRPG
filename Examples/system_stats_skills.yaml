@@ -1,83 +1,160 @@
-# "YAML Ain't Markup Language" (YAML) files have a few basic formatting rules.
-#     1. Every character within the file is treated as a character, so quotatons
-#        and punctutation are not necessary, but they are allowed.
-#     2. "Octothorpes" or "pound signs" or "hashtags" (#) are always ignored by
-#        programs that are reading/parsing YAML files.
-#     3. "Keys" or "Keywords" are always the first thing followed by a colon (:)
-#        followed by a space ( ) and then a "Value".
-#     4. You can either have:
-#            a) Single values.
-#            b) Indented and hyphenated/bulleted lists of values.
-#            c) Indented and further expanded keys and values.
-#     5. Indents are made up of 2 or 4 spaces and must be consistent throughout,
-#        I prefer 4 spaces for easier readability.
-#
-# In this example Stats and Skills YAML for use with the MakeRPG system's
-# CharacterCreator application, I will demonstrate the rules to follow to build
-# a valid stats and skills system specifically for this software.
-#
-# There are more comments throughout, so please read from top to bottom
+defaults:
+    stats:
+        set: 0 # base level without rolling or purchasing, before modifiers
+        range: 0 # if there's a minimum and maximum value
+        direction: increasing # direction to start from in range
+        spend: roll
+        cost: 1
+        purchase: 0
+        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        special: no # skill is special to a role, and if so what role
+    skills:
+        set: 0 # base skill level without rolling or purchasing, what you have
+        range: 0-100 # possible range min-max
+        direction: decreasing # direction to start from in range
+        spend: <points> <BP> <set> + <points> <BP> <<stat>> # default points pool to purchase from
+        cost: 1
+        purchase: 0
+        tiers: multiply # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        special: no # skill is special to a role, and if so what role
 
-### vvv IMPORTANT vvv ###
-# A "roles" key and a "stats" key are required for CharacterCreator
-### ^^^ IMPORTANT ^^^ ###
+options:
+    Universal:
+        <skills> <.> <set>: <.> <stat>
 
-# The "roles" indented keywork list is made of roles or what some systems call
-# classes or types.  Each role listed after the roles key is the name of that
-# role and each role has two necessary keywords, "special" and "common".  The
-# special keyword list is a list of skills that only that role has available.
-# The common keyword bulleted list is skills pulled from the broader pool of
-# skills.  The role distributes "role" skill points among these.  Any other
-# skills require a separate set of "other" skill points.
-roles:
-    Warrior: # this is the role
-        special: # here's that special keyword
-            Hit hard: 1-8 # this special skill and has a min of 1 and max of 8
-        common: # common skills list from the larger pool below in "stats"
-            - Buffness
-            - Melee
-            - Hand-to-hand
-    Mage:
-        special:
-            Magic: 1-4
-        common:
-            - Read
-            - Look cool
-            - Be scary
-    Rogue:
-        special:
-            Move fast: 1-6
-        common:
-            - Talk fast
-            - Tell bad jokes
-            - Pointy things
+points:
+    BP:
+        set: 75
+        INTELLIGENCE: 0
+        CHARISMA: 0
+        WISDOM: 0
 
-# Here we have the "stats" keyword.  Indented under that are the names as you
-# want them of the character stats of the system you're defining.  Under each
-# stat are the keywords "stat" and "skills".  "stat" is simply the minimum to
-# maximum range of possible values of that stat.  "skills" is an indented list
-# of keys and values where the key is the skill name and the value is the
-# minimum to maximum range of possible values of that skill.
-
-### vvv IMPORTANT vvv ###
-# A minimum value greater than 0 means that minimum number of points will always
-# be spent on that stat or skill from the stat or skill points.
-### ^^^ IMPORTANT ^^^ ###
-
-# This example only has two stats, "THINK" abd "DO"
 stats:
-    THINK:
-        stat: 1-18 # all of the ranges can go between any minimum and maximum
-        skills:
-            Read: 0-4
-            Look cool: 0-6
-            Be scary: 0-4
-            Talk fast: 0-10
-            Tell bad jokes: 0-8
-    DO:
-        stat: 1-8
-        skills:
-            Buffness: 0-10
-            Melee: 0-10
-            Hand-to-hand: 0-10
-            Pointy things: 0-10
+    STRENGTH:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    INTELLIGENCE:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    WISDOM:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    DEXTERITY:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    CONSTITUTION:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    LOOKS:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    CHARISMA:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    HEALTH:
+        set: 1d4 + 20
+    REPUTATION:
+        set: rounddown( ( <stats> <STRENGTH> + <stats> <INTELLIGENCE> + <stats> <WISDOM> + <stats> <DEXTERITY> + <stats> <CONSTITUTION> + <stats> <LOOKS> + <stats> <CHARISMA> ) / 7 )
+    LIFT: default
+    CARRY: default
+    DRAG: default
+    ACCURACY: default
+    SPEED: default
+    FAME: default
+
+skills:
+    Accounting:
+        cost: 3
+        purchase: 1d8 + <.> <stat>
+        stat: <stats> <INTELLIGENCE>
+        prereq: <skills> <Mathematics> < 86
+    Administration:
+        cost: 5
+        purchase: 1d6 + <.> <stat>
+        stat: min( <stats> <INTELLIGENCE> , <stats> <WISDOM> , <stats> <CHARISMA> )
+        set: <options> <Universal> # because it's a universal skill
+    Animal Empathy:
+        cost: 2
+        purchase: 1d10 + <.> <stat>
+        stat: min( <stats> <WISDOM> , <stats> <CHARISMA> )
+    Animal Lore:
+        purchase: 1d10 + <.> <stat>
+        stat: <stats> <INTELLIGENCE>
+    Animal Training:
+        cost: 3
+        purchase: 1d8 + <.> <stat>
+        stat: <stats> <INTELLIGENCE>
+        prereq: <skills> <Animal Empathy> < 50 AND <skills> <Animal Lore> < 50
+
+traits:
+    smart: <stats> <INTELLIGENCE> + 2
+    dumb: <stats> <INTELLIGENCE> - 2
+    strong: <stats> <STRENGTH> + 2
+    weak: <stats> <STRENGTH> - 2
+
+modifiers:
+    points:
+        <BP> <INTELLIGENCE>:
+            <stats> <INTELLIGENCE>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+        <BP> <CHARISMA>:
+            <stats> <CHARISMA>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+        <BP> <WISDOM>:
+            <stats> <WISDOM>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+    stats:
+        <LIFT>:
+            <stats> <STRENGTH>:
+                101-150: +11
+                151-200: +25
+                201-2600: +50
+        <DAMAGE>:
+            <stats> <STRENGTH>:
+                101-150: -7
+                151-250: -6
+                251-1200: +0
+                1201-2600: +10
+        <ACCURACY>:
+            <stats> <INTELLIGENCE>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+            <stats> <DEXTERITY>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+        <SPEED>:
+            <stats> <WISDOM>:
+                101-2600: +2
+            <stats> <DEXTERITY>:
+                101-2600: +2
+        <HEALTH>:
+            <stats> <CONSTITUTION>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+    skills:
+        <.> <cost> WHERE <.> <stat> IS <stats> <INTELLIGENCE>:
+            <stats> <INTELLIGENCE>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14
+        <.> <cost> WHERE <skills> <.> <stat> IS <stats> <WISDOM>:
+            <stats> <WISDOM>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14
+        <.> <cost> WHERE <skills> <.> <stat> IS <stats> <CHARISMA>:
+            <stats> <CHARISMA>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14

@@ -1,8 +1,316 @@
+defaults:
+    stats:
+        set: <options> <Random>
+        range: 1-10
+        direction: increasing # direction to start from in range
+        spend: <points> <Character> <set> # default points pool to purchase from
+        cost: 1
+        purchase: 1
+        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        special: no # skill is special to a role, and if so what role
+    skills:
+        set: 0 # base skill level without rolling or purchasing, what you have
+        range: 0-10 # possible range
+        direction: increasing # direction to start from in range
+        spend: <points> <Pickup> <set> # default points pool to purchase from
+        cost: 1
+        purchase: 1
+        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        special: no # skill is special to a role, and if so what role
+
+options:
+    Random:
+        <points> <Character> <set>: 9d10
+        <defaults> <stats> <set>: 1
+    Fast:
+        <points> <Character> <set>: 0
+        <defaults> <stats> <set>: 1d10 > 2 # if it's less than 3 it is re-rolled
+    Cinematic:
+        <points> <Character> <set>: 50
+        <defaults> <stats> <set>: 1
+
+points:
+    Character:
+        set: <options> <Random>
+    Career:
+        set: 40
+    Pickup:
+        set: <stats> <REF> + <stats> <INT>
+
+stats:
+    ATTR: default
+    BODY: default
+    COOL: default
+    EMP: default
+    INT: default
+    LUCK: default
+    MA: default
+    REF: default
+    TECH: default
+    Humanity:
+        set: <stats> <EMPATHY> * 10
+    RUN:
+        set: <stats> <MA> * 3
+    LEAP:
+        set: exact( <stats> <MA> / 4 )
+    SAVE:
+        set: <stats> <BODY>
+    BTM:
+        set: 0
+
+skills:
+    Personal grooming:
+        stat: <stats> <ATTR>
+    Wardrobe & style:
+        stat: <stats> <ATTR>
+    Endurance:
+        stat: <stats> <BODY>
+    Strength Feat:
+        stat: <stats> <BODY>
+    Swimming:
+        stat: <stats> <BODY>
+    Interrogation:
+        stat: <stats> <COOL>
+    Intimidate:
+        stat: <stats> <COOL>
+    Oratory:
+        stat: <stats> <COOL>
+    Resist torture/drugs:
+        stat: <stats> <COOL>
+    Streetwise:
+        stat: <stats> <COOL>
+    Human perception:
+        stat: <stats> <EMP>
+    Interview:
+        stat: <stats> <EMP>
+    Leadership:
+        stat: <stats> <EMP>
+    Seduction:
+        stat: <stats> <EMP>
+    Social:
+        stat: <stats> <EMP>
+    Persuasion:
+        stat: <stats> <EMP>
+    Perform:
+        stat: <stats> <EMP>
+    Accounting:
+        stat: <stats> <INT>
+    Anthropology:
+        stat: <stats> <INT>
+    Awareness/Notice:
+        stat: <stats> <INT>
+    Biology:
+        stat: <stats> <INT>
+    Botany:
+        stat: <stats> <INT>
+    Chemistry:
+        stat: <stats> <INT>
+    Composition:
+        stat: <stats> <INT>
+    Diagnose illness:
+        stat: <stats> <INT>
+    Education:
+        stat: <stats> <INT>
+    Expert:
+        stat: <stats> <INT>
+    Gamble:
+        stat: <stats> <INT>
+    Geology:
+        stat: <stats> <INT>
+    Hide/Evade:
+        stat: <stats> <INT>
+    History:
+        stat: <stats> <INT>
+    Know language:
+        stat: <stats> <INT>
+    Library search:
+        stat: <stats> <INT>
+    Mathematics:
+        stat: <stats> <INT>
+    Physics:
+        stat: <stats> <INT>
+    Programming:
+        stat: <stats> <INT>
+    Shadow/track:
+        stat: <stats> <INT>
+    Stock market:
+        stat: <stats> <INT>
+    System knowledge:
+        stat: <stats> <INT>
+    Teaching:
+        stat: <stats> <INT>
+    Wilderness survival:
+        stat: <stats> <INT>
+    Zoology:
+        stat: <stats> <INT>
+    Archery:
+        stat: <stats> <REF>
+    Athletics:
+        stat: <stats> <REF>
+    Brawling:
+        stat: <stats> <REF>
+    Dance:
+        stat: <stats> <REF>
+    Dodge & escape:
+        stat: <stats> <REF>
+    Driving:
+        stat: <stats> <REF>
+    Fencing:
+        stat: <stats> <REF>
+    Handgun:
+        stat: <stats> <REF>
+    Heavy Weapons:
+        stat: <stats> <REF>
+    Martial arts (aikido):
+        cost: 3
+        stat: <stats> <REF>
+    Martial arts (animal kung fu):
+        cost: 3
+        stat: <stats> <REF>
+    Martial arts (boxing):
+        stat: <stats> <REF>
+    Martial arts (capoeria):
+        cost: 3
+        stat: <stats> <REF>
+    Martial arts (choi li fut):
+        cost: 3
+        stat: <stats> <REF>
+    Martial arts (judo):
+        stat: <stats> <REF>
+    Martial arts (karate):
+        cost: 2
+        stat: <stats> <REF>
+    Martial arts (tae kwon do):
+        cost: 3
+        stat: <stats> <REF>
+    Martial arts (thai kick boxing):
+        cost: 4
+        stat: <stats> <REF>
+    Martial arts (wrestling):
+        stat: <stats> <REF>
+    Melee:
+        stat: <stats> <REF>
+    Motorcycle:
+        stat: <stats> <REF>
+    Operate heavy machinery:
+        stat: <stats> <REF>
+    Piloting (gyro):
+        cost: 3
+        stat: <stats> <REF>
+    Piloting (fixed wing):
+        cost: 2
+        stat: <stats> <REF>
+    Piloting (dirigible):
+        cost: 2
+        stat: <stats> <REF>
+    Piloting (vectored thrust vehicle):
+        cost: 3
+        stat: <stats> <REF>
+    Rifle:
+        stat: <stats> <REF>
+    Stealth:
+        cost: 2
+        stat: <stats> <REF>
+    Submachinegun:
+        stat: <stats> <REF>
+    Aero tech:
+        cost: 2
+        stat: <stats> <TECH>
+    AV tech:
+        cost: 3
+        stat: <stats> <TECH>
+    Basic tech:
+        cost: 2
+        stat: <stats> <TECH>
+    Cryotank operation:
+        stat: <stats> <TECH>
+    Cyberdeck design:
+        cost: 2
+        stat: <stats> <TECH>
+    Cybertech:
+        cost: 2
+        stat: <stats> <TECH>
+    Demolitions:
+        cost: 2
+        stat: <stats> <TECH>
+    Disguise:
+        stat: <stats> <TECH>
+    Electronics:
+        stat: <stats> <TECH>
+    Electronic security:
+        cost: 2
+        stat: <stats> <TECH>
+    First aid:
+        stat: <stats> <TECH>
+    Forgery:
+        stat: <stats> <TECH>
+    Gyro tech:
+        cost: 3
+        stat: <stats> <TECH>
+    Paint or draw:
+        stat: <stats> <TECH>
+    Photography & film:
+        stat: <stats> <TECH>
+    Pharmaceuticals:
+        cost: 2
+        stat: <stats> <TECH>
+    Pick lock:
+        stat: <stats> <TECH>
+    Pick pocket:
+        stat: <stats> <TECH>
+    Play instrument:
+        stat: <stats> <TECH>
+    Weaponsmith:
+        cost: 2
+        stat: <stats> <TECH>
+    Combat sense:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Solo>
+    Resources:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Corporate>
+    Credibility:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Media>
+    Family:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Nomad>
+    Jury Rig:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Techie>
+    Authority:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Cop>
+    Charismatic Leadership:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Rockerboy>
+    Medical Tech:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Medtechie>
+    Streetdeal:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Fixer>
+    Interface:
+        range: 1-10
+        spend: <points> <Career> <set>
+        special: <roles> <Netrunner>
+
 roles:
     Solo:
-        special:
-            Combat sense: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Combat sense
             - Awareness/Notice
             - Handgun
             - Brawling
@@ -13,9 +321,9 @@ roles:
             - Submachinegun
             - Stealth
     Corporate:
-        special:
-            Resources: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Resources
             - Awareness/Notice
             - Human perception
             - Education
@@ -26,9 +334,9 @@ roles:
             - Wardrobe & style
             - Personal grooming
     Media:
-        special:
-            Credibility: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Credibility
             - Awareness/Notice
             - Composition
             - Education
@@ -39,9 +347,9 @@ roles:
             - Photography & film
             - Interview
     Nomad:
-        special:
-            Family: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Family
             - Awareness/Notice
             - Endurance
             - Melee
@@ -52,9 +360,9 @@ roles:
             - Brawling
             - Athletics
     Techie:
-        special:
-            Jury rig: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Jury Rig
             - Awareness/Notice
             - Basic tech
             - Cybertech
@@ -66,9 +374,9 @@ roles:
             - Weaponsmith
             - Electronic security
     Cop:
-        special:
-            Authority: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Authority
             - Awareness/Notice
             - Handgun
             - Human perception
@@ -79,9 +387,9 @@ roles:
             - Interrogation
             - Streetwise
     Rockerboy:
-        special:
-            Charismatic Leadership: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Charismatic Leadership
             - Awareness/Notice
             - Perform
             - Wardrobe & style
@@ -92,9 +400,9 @@ roles:
             - Persuasion
             - Seduction
     Medtechie:
-        special:
-            Medical Tech: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Medical Tech
             - Awareness/Notice
             - Basic tech
             - Diagnose illness
@@ -105,9 +413,9 @@ roles:
             - Zoology
             - Human perception
     Fixer:
-        special:
-            Streetdeal: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Streetdeal
             - Awareness/Notice
             - Forgery
             - Handgun
@@ -118,9 +426,9 @@ roles:
             - Intimidate
             - Persuasion
     Netrunner:
-        special:
-            Interface: 1-10
-        common:
+        <skills> <.> <spend>: <points> <Career> <set>
+        skills:
+            - Interface
             - Awareness/Notice
             - Basic tech
             - Education
@@ -130,125 +438,13 @@ roles:
             - Composition
             - Electronics
             - Programming
-stats:
-    ATTR:
-        stat: 1-10
-        skills:
-            Personal grooming: 0-10
-            Wardrobe & style: 0-10
-    BODY:
-        stat: 1-10
-        skills:
-            Endurance: 0-10
-            Strength Feat: 0-10
-            Swimming: 0-10
-    COOL:
-        stat: 1-10
-        skills:
-            Interrogation: 0-10
-            Intimidate: 0-10
-            Oratory: 0-10
-            Resist torture/drugs: 0-10
-            Streetwise: 0-10
-    EMP:
-        stat: 1-10
-        children:
-            Humanity: stat*10
-        skills:
-            Human perception: 0-10
-            Interview: 0-10
-            Leadership: 0-10
-            Seduction: 0-10
-            Social: 0-10
-            Persuasion: 0-10
-            Perform: 0-10
-    INT:
-        stat: 1-10
-        skills:
-            Accounting: 0-10
-            Anthropology: 0-10
-            Awareness/Notice: 0-10
-            Biology: 0-10
-            Botany: 0-10
-            Chemistry: 0-10
-            Composition: 0-10
-            Diagnose illness: 0-10
-            Education: 0-10
-            Expert: 0-10
-            Gamble: 0-10
-            Geology: 0-10
-            Hide/Evade: 0-10
-            History: 0-10
-            Know language: 0-10
-            Library search: 0-10
-            Mathematics: 0-10
-            Physics: 0-10
-            Programming: 0-10
-            Shadow/track: 0-10
-            Stock market: 0-10
-            System knowledge: 0-10
-            Teaching: 0-10
-            Wilderness survival: 0-10
-            Zoology: 0-10
-    LUCK:
-        stat: 1-10
-    MA:
-        stat: 1-10
-        children:
-            Run: stat*3
-            Leap: stat/4
-    REF:
-        stat: 1-10
-        skills:
-            Archery: 0-10
-            Athletics: 0-10
-            Brawling: 0-10
-            Dance: 0-10
-            Dodge & escape: 0-10
-            Driving: 0-10
-            Fencing: 0-10
-            Handgun: 0-10
-            Heavy Weapons: 0-10
-            Martial arts (aikido): 0-10
-            Martial arts (animal kung fu): 0-10
-            Martial arts (boxing): 0-10
-            Martial arts (capoeria): 0-10
-            Martial arts (choi li fut): 0-10
-            Martial arts (judo): 0-10
-            Martial arts (karate): 0-10
-            Martial arts (tae kwon do): 0-10
-            Martial arts (thai kick boxing): 0-10
-            Martial arts (wrestling): 0-10
-            Melee: 0-10
-            Motorcycle: 0-10
-            Operate heavy machinery: 0-10
-            Piloting (gyro): 0-10
-            Piloting (fixed wing): 0-10
-            Piloting (dirigible): 0-10
-            Piloting (vectored thrust vehicle): 0-10
-            Rifle: 0-10
-            Stealth: 0-10
-            Submachinegun: 0-10
-    TECH:
-        stat: 1-10
-        skills:
-            Aero tech: 0-10
-            AV tech: 0-10
-            Basic tech: 0-10
-            Cryotank operation: 0-10
-            Cyberdeck design: 0-10
-            Cybertech: 0-10
-            Demolitions: 0-10
-            Disguise: 0-10
-            Electronics: 0-10
-            Electronic security: 0-10
-            First aid: 0-10
-            Forgery: 0-10
-            Gyro tech: 0-10
-            Paint or draw: 0-10
-            Photography & film: 0-10
-            Pharmaceuticals: 0-10
-            Pick lock: 0-10
-            Pick pocket: 0-10
-            Play instrument: 0-10
-            Weaponsmith: 0-10
+
+modifiers:
+    <stats> <BTM>:
+        <stats> <BODY>:
+            1-2: -0
+            3-4: -1
+            5-7: -2
+            8-9: -3
+            10: -4
+            11-20: -5
