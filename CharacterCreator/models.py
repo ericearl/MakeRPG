@@ -1,8 +1,29 @@
 from django.db import models
-#from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinLengthValidator
+
+INC = 'I'
+DEC = 'D'
+DIRECTION_CHOICES = (
+    (INC, 'increasing'),
+    (DEC, 'decreasing'),
+)
+
+TIER_CHOICES = (
+    (0, 'add'),
+    (1, 'multiply'),
+    (2, 'double'),
+    (3, 'triple'),
+    (4, 'quadruple'),
+    (5, 'quintuple'),
+    (6, 'sextuple'),
+    (7, 'septuple'),
+    (8, 'octuple'),
+    (9, 'nonuple'),
+    (10, 'decuple'),
+)
 
 class Dice(models.Model):
-    string = models.CharField(max_length=50, null=True)
+    string = models.CharField(max_length=50, null=True, validators=[MinLengthValidator(1)])
     quantity = models.IntegerField(default=1)
     sides = models.IntegerField(default=2)
     offset = models.IntegerField(default=0)
@@ -17,7 +38,7 @@ class Dice(models.Model):
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
     dice = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
     rerollevent = models.ForeignKey('self', null=True, on_delete=models.CASCADE, related_name='RerollEvent')
     nextevent = models.ForeignKey('self', null=True, on_delete=models.CASCADE, related_name='NextEvent')
@@ -28,8 +49,8 @@ class Event(models.Model):
 
 class EventRoll(models.Model):
     roll = models.IntegerField(null=True)
-    outcome = models.CharField(max_length=300, null=True)
-    npc = models.CharField(max_length=50, null=True)
+    outcome = models.CharField(max_length=300, null=True, validators=[MinLengthValidator(1)])
+    npc = models.CharField(max_length=50, null=True, validators=[MinLengthValidator(1)])
     rerollcount = models.IntegerField(default=1)
     mainevent = models.ForeignKey(Event, null=True, on_delete=models.CASCADE, related_name='MainEvent')
     rollevent = models.ForeignKey(Event, null=True, on_delete=models.CASCADE, related_name='RollEvent')
@@ -51,18 +72,24 @@ class NPCEvent(models.Model):
 
 
 class Statistic(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField(null=True)
     maximum = models.IntegerField(null=True)
+    direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
+    cost = models.IntegerField(default=0)
+    tier = models.IntegerField(choices=TIER_CHOICES, default=0)
 
     def __str__(self):
         return self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField()
     maximum = models.IntegerField()
+    direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
+    cost = models.IntegerField(default=0)
+    tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -70,7 +97,9 @@ class Skill(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
+    special_stats = models.ManyToManyField(Statistic, related_name='SpecialStatistic')
+    common_stats = models.ManyToManyField(Statistic, related_name='CommonStatistic')
     special_skills = models.ManyToManyField(Skill, related_name='SpecialSkill')
     common_skills = models.ManyToManyField(Skill, related_name='CommonSkill')
 
@@ -79,7 +108,7 @@ class Role(models.Model):
 
 
 class Character(models.Model):
-    name = models.CharField(default='', unique=True, max_length=50)
+    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
     stat_points = models.IntegerField(default=0)
     role_points = models.IntegerField(default=0)

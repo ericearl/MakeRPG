@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CharactercreatorConfig(AppConfig):
+class CharacterCreatorConfig(AppConfig):
     name = 'CharacterCreator'

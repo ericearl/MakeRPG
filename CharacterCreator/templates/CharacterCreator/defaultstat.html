@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mt-2">MakeRPG: Default Statistic Entry</h2>
+<hr class="mt-0 mb-4">
+<form method="post">
+    <div class="form-group row">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            <div class="row">
+                <label class="col-sm-4 col-form-label">{{ field.label_tag }}</label>
+                <div class="col-sm-8">
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
