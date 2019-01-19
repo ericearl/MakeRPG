@@ -7,11 +7,194 @@ django.setup()
 from CharacterCreator.models import *
 
 
-# class HistoryEventError(Exception):
-#     def __init__(self, name):
-#         self.name = name
-#     print(self.name + ' not present')
-#     raise
+# Support for the MakeRPG YAML lookup language
+# dice:
+    # '[0-9]+d[0-9]+\ *(>|<)*'
+# lookup:
+    # '<([\w\ \.\-])+>' = ordered-lookup
+    # '<.>' = parent-lookup
+    # '<<(stat|skill)>>' = nested-lookup
+# math:
+    # '\ \+\ ' = add
+    # '\ \-\ ' = subtract
+    # '\ \*\ ' = multiply
+    # '\ \/\ ' = divide
+# functions( lookups, logicals, and/or math ) = function
+    # '\((\ lookup,*)+\ \)' = logical functions:
+        # 'min\((\ lookup,*)+\ \)' = minimum of csv's
+        # 'max\((\ lookup,*)+\ \)' = maximum of csv's
+    # '\(\ lookup\ math\ lookup\ \)' = math functions:
+        # 'exact\(\ lookup\ \)' = keep as fractional if fractional
+        # 'round\(\ lookup\ \)' = round regularly if fractional
+        # 'roundup\(\ lookup\ \)' = round up if fractional
+        # 'rounddown\(\ lookup\ \)' = round down if fractional
+    # '\ \(\ .+\ \)\ ' = inner evaluations
+    # '\ .+\ <\ .+\ ' = less than
+    # '\ .+\ >\ .+\ ' = greater than
+    # 'AND'
+    # 'OR'
+    # '.+\ WHERE\ .+\ IS\ .+'
+# ORDER OF OPERATIONS
+# 1. options:
+# 2. defaults:
+# 3. stats:
+# 4. parentheses
+# . multiplication
+# . division
+# . addition
+# . subtraction
+# . ordered-lookup
+
+def ordered_lookup(tree, branch, line):
+    lookup_list = line.split(' ')
+
+    lookup = lookup_list.pop(0)
+    new_lookup = lookup
+    while '<' in lookup and '>' in lookup:
+        if '<<stat>>' == lookup or '<<skill>>' == lookup:
+            nested_lookup(tree, branch, line)
+        elif '<.>' == lookup:
+            # throw away one branch depth to get parent
+            parent_lookup(tree, branch[:-1], line)
+        else:
+            lookup = lookup_list.pop(0)
+            new_lookup += ' ' + lookup
+
+    new_lookup_list = new_lookup.replace('<', '').replace('>', '').split(' ')
+
+    new_branch = new_lookup_list
+    new_lookup = new_lookup_list.pop(0)
+    tree_lookup = tree[new_lookup]
+    while len(new_lookup_list) > 0:
+        new_lookup = new_lookup_list.pop(0)
+        tree_lookup = tree_lookup[new_lookup]
+
+    parse(tree, new_branch, tree_lookup)
+    return
+
+def parent_lookup(tree, branch, line):
+    lookup_list = line.split(' ')
+
+    lookup = lookup_list.pop(0)
+    new_lookup = lookup
+    while '<' in lookup and '>' in lookup:
+        # lookup = lookup_list.pop(0)
+        # grandparent = re.replace(r'(.+)\ <.+>',group1)
+        # parent = branch
+        # parse(tree, grandparent, line)
+    return
+
+def nested_lookup(tree, branch, line):
+    lookup_list = line.split(' ')
+
+    lookup = lookup_list.pop(0)
+    new_lookup = lookup
+    while '<' in lookup and '>' in lookup:
+        if '<<stat>>' == lookup:
+            for stat in tree['stats'].keys():
+                continue
+                # if stat in branch:
+                    # forced lookup of relevant stat
+        elif '<<skill>>' == lookup:
+            for skill in tree['skills'].keys():
+                continue
+                # if skill in branch:
+                    # forced lookup of relevant skill
+    return
+
+def maths(tree, branch, line):
+    return
+
+def functions(tree, branch, line):
+    if line.startswith('min('):
+        continue
+    elif line.startswith('max('):
+        continue
+    elif line.startswith('exact('):
+        continue
+    elif line.startswith('round('):
+        continue
+    elif line.startswith('roundup('):
+        continue
+    elif line.startswith('rounddown('):
+        continue
+
+    return
+
+def parentheses(tree, branch, line):
+    open_p = re.finditer(r'\(', line)
+    close_p = re.finditer(r'\)', line)
+    pstarts = [p.start() for p in open_p]
+    pstops = [p.end() for p in close_p]
+    if len(open_p) > 0 and len(open_p) == len(close_p):
+        pairs = []
+        while len(pstarts) > 0:
+            pstart = pstarts.pop()
+            for i, elem in enumerate(pstops):
+                if elem > pstart:
+                    pstop = pstops.pop(i)
+                    break
+            pairs.append((pstart, pstop))
+
+        sublines = []
+        for pair in pairs:
+            subline = line[pair[0]+1:pair[1]]
+            sublines.append(subline)
+
+        parent_childs = []
+        for i, subline1 in enumerate(sublines):
+            for j, subline2 in enumerate(sublines):
+                if j > i:
+                    # i,j: (0,1) (0,2) (0,3) (1,2) (1,3) (2,3)
+                    # P->C: (1,0) (3,0) (3,1) (3,2)
+                    if subline2 in subline1:
+                        # 1 = parent, 2 = child
+                        parent_childs.append((i, j))
+                    elif subline1 in subline2:
+                        # 2 = parent, 1 = child
+                        parent_childs.append((j, i))
+
+        # score_parents: [0,1,0,3]
+        score_parents = [0 for _ in range(len(pairs))]
+        for parent_idx, child_idx in parent_childs:
+            score_parents[parent_idx] += 1
+
+        newline = line
+        for i, pair in enumerate(pairs):
+            for score in score_parents:
+                if score == i:
+                    subline = line[pair[0]+1:pair[1]]
+                    replaceline = parse(tree, branch, subline)
+                    newline.replace('('+subline+')', replaceline)
+    return
+
+def parse(tree, branch, line):
+    parseable_re = re.compile(r'<(\.|stats|skills|points|defaults|options)>|\d+d\d+|\(\ .+\ \)')
+    dice_re = re.compile('([0-9]+)d([0-9]+)')
+    lookup_re = re.compile('<([\w\ \.\-])+>')
+
+    if type(line) is int:
+        return line
+
+    elif type(line) is str and parseable_re.search(line) != None:
+        # example: Z - ( 6 * ( 8 + 9 ) - roundup( min( X , Y ) / 2 ) )
+        # O:[1,2,4,5] C:[3,6,7,8]
+        # P:[(5,6),(4,7),(2,3),(1,8)]
+        open_p = re.finditer(r'\(', line)
+        close_p = re.finditer(r'\)', line)
+        pstarts = [p.start() for p in open_p]
+        pstops = [p.end() for p in close_p]
+
+        if len(open_p) > 0 and len(open_p) == len(close_p):
+            parentheses(tree, branch, line)
+
+        else:
+            ordered_lookup(tree, branch, line)
+
+
+# For modifiers keys
+def modkeyparse(tree, line, parent):
+    return parse(tree, '<modifiers> <' + parent + '>', ' < ' + parent + ' > ' + line)
 
 
 def validate_skillstats(yaml_file):
@@ -269,28 +452,42 @@ def setup_skillstats(yaml_file):
     with open(yaml_file,'r') as yamlfile:
         tree = yaml.load(yamlfile)
 
-    if 'stats' not in tree:
-        print(yaml_file + ' is missing stats keyword.')
-        return
+    defstat = tree['defaults']['stats']
+    defskill = tree['defaults']['skills']
 
-    else:
-        for stat in tree['stats'].keys():
-            statmin,statmax = (int(number) for number in tree['stats'][stat]['stat'].split('-'))
-            st = Statistic()
-            st.name = stat
-            st.minimum = statmin
-            st.maximum = statmax
-            st.save()
+    for stat in tree['stats'].keys():
+        stat_definition = tree['stats'][stat]
+        stats = {}
 
-            if 'skills' in tree['stats'][stat]:
-                for skill in tree['stats'][stat]['skills'].keys():
-                    skillmin,skillmax = (int(number) for number in tree['stats'][stat]['skills'][skill].split('-'))
-                    sk = Skill()
-                    sk.name = skill
-                    sk.minimum = skillmin
-                    sk.maximum = skillmax
-                    sk.statistic = st
-                    sk.save()
+        for key in ['range', 'direction', 'cost', 'tier']:
+            if type(stat_definition) is dict and key in stat_definition:
+                stats[key] = stat_definition[key]
+            else:
+                stats[key] = defstat[key]
+
+        if type(stats['range']) is str:
+            statmin, statmax = (int(number) for number in stats['range'].split('-'))
+        elif type(stats['range']) is int:
+            statmin = stats['range']
+            statmax = stats['range']
+
+        st = Statistic()
+        st.name = stat
+        st.minimum = statmin
+        st.maximum = statmax
+        st.direction = stats['direction']
+        st.cost = stats['cost']
+        st.tier = stats['tier']
+        st.save()
+
+    for skill in tree['skills'].keys():
+        skillmin,skillmax = (int(number) for number in tree['stats'][stat]['skills'][skill].split('-'))
+        sk = Skill()
+        sk.name = skill
+        sk.minimum = skillmin
+        sk.maximum = skillmax
+        sk.statistic = st
+        sk.save()
 
     if 'roles' in tree:
         sp = Statistic()

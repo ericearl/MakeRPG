@@ -6,7 +6,7 @@ defaults:
         spend: roll
         cost: 1
         purchase: 0
-        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        tier: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
         prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         special: no # skill is special to a role, and if so what role
     skills:
@@ -16,7 +16,7 @@ defaults:
         spend: <points> <BP> <set> + <points> <BP> <<stat>> # default points pool to purchase from
         cost: 1
         purchase: 0
-        tiers: multiply # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        tier: multiply # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
         prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         special: no # skill is special to a role, and if so what role
 

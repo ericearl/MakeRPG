@@ -6,7 +6,7 @@ defaults:
         spend: <points> <Character> <set> # default points pool to purchase from
         cost: 1
         purchase: 1
-        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        tier: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
         prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         special: no # skill is special to a role, and if so what role
     skills:
@@ -16,7 +16,7 @@ defaults:
         spend: <points> <Pickup> <set> # default points pool to purchase from
         cost: 1
         purchase: 1
-        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        tier: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
         prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         special: no # skill is special to a role, and if so what role
 
@@ -440,11 +440,12 @@ roles:
             - Programming
 
 modifiers:
-    <stats> <BTM>:
-        <stats> <BODY>:
-            1-2: -0
-            3-4: -1
-            5-7: -2
-            8-9: -3
-            10: -4
-            11-20: -5
+    stats:
+        <BTM>:
+            <stats> <BODY>:
+                1-2: -0
+                3-4: -1
+                5-7: -2
+                8-9: -3
+                10: -4
+                11-20: -5

@@ -1,0 +1,117 @@
+# MakeRPG YAML lookup language
+# dice:
+#     '[0-9]+d[0-9]+\ *(>|<)*'
+# lookup:
+#     '<([\w\ \.\-])+>' = ordered-lookup
+#     '<.>' = parent-lookup
+#     '<<(stat|skill)>>' = nested-lookup
+# math:
+#     '\ \+\ ' = add
+#     '\ \-\ ' = subtract
+#     '\ \*\ ' = multiply
+#     '\ \/\ ' = divide
+# functions( lookups, logicals, and/or math ) = function
+#     '\((\ lookup,*)+\ \)' = logical functions:
+#         'min\((\ lookup,*)+\ \)' = minimum of csv's
+#         'max\((\ lookup,*)+\ \)' = maximum of csv's
+#     '\(\ lookup\ math\ lookup\ \)' = math functions:
+#         'exact\(\ lookup\ \)' = keep as fractional if fractional
+#         'round\(\ lookup\ \)' = round regularly if fractional
+#         'roundup\(\ lookup\ \)' = round up if fractional
+#         'rounddown\(\ lookup\ \)' = round down if fractional
+#     '\ \(\ .+\ \)\ ' = inner evaluations
+#     '\ .+\ <\ .+\ ' = less than
+#     '\ .+\ >\ .+\ ' = greater than
+#     'AND'
+#     'OR'
+#     '.+\ WHERE\ .+\ IS\ .+'
+# ORDER OF OPERATIONS
+# 1. options:
+# 2. defaults:
+# 3. stats:
+# 4. parentheses
+# . multiplication
+# . division
+# . addition
+# . subtraction
+# . ordered-lookup
+defaults:
+    stats:
+        set: <options> <Random>
+        spend: <points> <Character> <set>
+    skills:
+        spend: <points> <Pickup> <set> + <points> <BP> <<stat>>
+
+options:
+    Random:
+        <points> <Character> <set>: 9d10
+        <defaults> <stats> <set>: 1
+    Fast:
+        <points> <Character> <set>: 0
+        <defaults> <stats> <set>: 1d10 > 2 # if it's less than 3 it is re-rolled
+    Cinematic:
+        <points> <Character> <set>: 50
+        <defaults> <stats> <set>: 1
+    Universal:
+        <skills> <.> <set>: <.> <stat>
+
+points:
+    Character:
+        set: <options> <Random>
+    Pickup:
+        set: <stats> <REF> + <stats> <INT>
+    BP:
+        INTELLIGENCE: 0
+        CHARISMA: 0
+        WISDOM: 0
+
+stats:
+    Humanity:
+        set: <stats> <EMPATHY> * 10
+    LEAP:
+        set: exact( <stats> <MA> / 4 )
+    STRENGTH:
+        set: ( 3d6 * 100 ) + 1d100
+    REPUTATION:
+        set: rounddown( ( <stats> <STRENGTH> + <stats> <INTELLIGENCE> ) / 3 )
+
+skills:
+    Animal Lore:
+        set: <options> <Universal> # because it's a universal skill
+        purchase: 1d10 + <.> <stat>
+        stat: min( <stats> <INTELLIGENCE> , <stats> <WISDOM> , <stats> <CHARISMA> )
+        prereq: <skills> <Animal Empathy> < 50 AND <skills> <Animal Lore> > 50
+
+roles:
+    Solo:
+        <skills> <.> <spend>: <points> <Career> <set>
+
+traits:
+    smart: <stats> <INTELLIGENCE> + 2
+
+modifiers:
+    points:
+        <BP> <INTELLIGENCE>:
+            <stats> <INTELLIGENCE>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+    stats:
+        <BTM>:
+            <stats> <BODY>:
+                1-2: -0
+                3-4: -1
+                5-7: -2
+                8-9: -3
+                10: -4
+                11-20: -5
+            <stats> <INTELLIGENCE>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+    skills:
+        <.> <cost> WHERE <.> <stat> IS <stats> <INTELLIGENCE>:
+            <stats> <INTELLIGENCE>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14
