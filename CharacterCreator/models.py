@@ -71,6 +71,14 @@ class NPCEvent(models.Model):
         return self.current.name + ' -> ' + self.next.name
 
 
+class Pointpool(models.Model):
+    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
+    points = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name + ' (' + str(self.points) + ')'
+
+
 class Statistic(models.Model):
     name = models.CharField(max_length=50, unique=True, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField(null=True)
@@ -98,10 +106,6 @@ class Skill(models.Model):
 
 class Role(models.Model):
     name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
-    special_stats = models.ManyToManyField(Statistic, related_name='SpecialStatistic')
-    common_stats = models.ManyToManyField(Statistic, related_name='CommonStatistic')
-    special_skills = models.ManyToManyField(Skill, related_name='SpecialSkill')
-    common_skills = models.ManyToManyField(Skill, related_name='CommonSkill')
 
     def __str__(self):
         return self.name
@@ -110,9 +114,6 @@ class Role(models.Model):
 class Character(models.Model):
     name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
-    stat_points = models.IntegerField(default=0)
-    role_points = models.IntegerField(default=0)
-    other_points = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
