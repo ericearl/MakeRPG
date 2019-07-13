@@ -1,0 +1,160 @@
+defaults:
+    stats:
+        set: 0 # base level without rolling or purchasing, before modifiers
+        range: 0 # if there's a minimum and maximum value
+        direction: increasing # direction to start from in range
+        spend: roll
+        cost: 1
+        purchase: 0
+        tiers: add # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        special: no # skill is special to a role, and if so what role
+    skills:
+        set: 0 # base skill level without rolling or purchasing, what you have
+        range: 0-100 # possible range min-max
+        direction: decreasing # direction to start from in range
+        spend: <points> <BP> <set> + <points> <BP> <<stat>> # default points pool to purchase from
+        cost: 1
+        purchase: 0
+        tiers: multiply # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: no # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        special: no # skill is special to a role, and if so what role
+
+options:
+    Universal:
+        <skills> <.> <set>: <.> <stat>
+
+points:
+    BP:
+        set: 75
+        INTELLIGENCE: 0
+        CHARISMA: 0
+        WISDOM: 0
+
+stats:
+    STRENGTH:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    INTELLIGENCE:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    WISDOM:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    DEXTERITY:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    CONSTITUTION:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    LOOKS:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    CHARISMA:
+        set: ( 3d6 * 100 ) + 1d100
+        range: 101-2600
+    HEALTH:
+        set: 1d4 + 20
+    REPUTATION:
+        set: rounddown( ( <stats> <STRENGTH> + <stats> <INTELLIGENCE> + <stats> <WISDOM> + <stats> <DEXTERITY> + <stats> <CONSTITUTION> + <stats> <LOOKS> + <stats> <CHARISMA> ) / 7 )
+    LIFT: default
+    CARRY: default
+    DRAG: default
+    ACCURACY: default
+    SPEED: default
+    FAME: default
+
+skills:
+    Accounting:
+        cost: 3
+        purchase: 1d8 + <.> <stat>
+        stat: <stats> <INTELLIGENCE>
+        prereq: <skills> <Mathematics> < 86
+    Administration:
+        cost: 5
+        purchase: 1d6 + <.> <stat>
+        stat: min( <stats> <INTELLIGENCE> , <stats> <WISDOM> , <stats> <CHARISMA> )
+        set: <options> <Universal> # because it's a universal skill
+    Animal Empathy:
+        cost: 2
+        purchase: 1d10 + <.> <stat>
+        stat: min( <stats> <WISDOM> , <stats> <CHARISMA> )
+    Animal Lore:
+        purchase: 1d10 + <.> <stat>
+        stat: <stats> <INTELLIGENCE>
+    Animal Training:
+        cost: 3
+        purchase: 1d8 + <.> <stat>
+        stat: <stats> <INTELLIGENCE>
+        prereq: <skills> <Animal Empathy> < 50 AND <skills> <Animal Lore> < 50
+
+traits:
+    smart: <stats> <INTELLIGENCE> + 2
+    dumb: <stats> <INTELLIGENCE> - 2
+    strong: <stats> <STRENGTH> + 2
+    weak: <stats> <STRENGTH> - 2
+
+modifiers:
+    points:
+        <BP> <INTELLIGENCE>:
+            <stats> <INTELLIGENCE>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+        <BP> <CHARISMA>:
+            <stats> <CHARISMA>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+        <BP> <WISDOM>:
+            <stats> <WISDOM>:
+                101-1200: -0
+                1201-1600: +10
+                1601-2600: +105
+    stats:
+        <LIFT>:
+            <stats> <STRENGTH>:
+                101-150: +11
+                151-200: +25
+                201-2600: +50
+        <DAMAGE>:
+            <stats> <STRENGTH>:
+                101-150: -7
+                151-250: -6
+                251-1200: +0
+                1201-2600: +10
+        <ACCURACY>:
+            <stats> <INTELLIGENCE>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+            <stats> <DEXTERITY>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+        <SPEED>:
+            <stats> <WISDOM>:
+                101-2600: +2
+            <stats> <DEXTERITY>:
+                101-2600: +2
+        <HEALTH>:
+            <stats> <CONSTITUTION>:
+                101-400: -3
+                401-1800: -0
+                1801-2600: +3
+    skills:
+        <.> <cost> WHERE <.> <stat> IS <stats> <INTELLIGENCE>:
+            <stats> <INTELLIGENCE>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14
+        <.> <cost> WHERE <skills> <.> <stat> IS <stats> <WISDOM>:
+            <stats> <WISDOM>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14
+        <.> <cost> WHERE <skills> <.> <stat> IS <stats> <CHARISMA>:
+            <stats> <CHARISMA>:
+                101-1000: -9
+                1001-1200: +0
+                1201-2600: +14

@@ -1,0 +1,457 @@
+defaults:
+    stats:
+        set: <options> <Random>
+        range: 1-10
+        direction: increasing # direction to start from in range
+        points: Character     # default points pool to purchase from
+        cost: 1               # cost per point
+        purchase: 1           # result of a purchase
+        tiers: add            # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # skill is special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+    skills:
+        set: 0                # base skill level without rolling or purchasing, what you have
+        range: 0-10           # possible range
+        direction: increasing # direction to start from in range
+        points: Pickup        # default points pool to purchase from
+        cost: 1               # cost per point
+        purchase: 1           # result of a purchase
+        tiers: add            # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # skill is special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+
+options:
+    Random:
+        <points> <Character> <set>: 9d10
+        <defaults> <stats> <set>: 1
+    Fast:
+        <points> <Character> <set>: 0
+        <defaults> <stats> <set>: 1d10 > 2 # if it's less than 3 it is re-rolled
+    Cinematic:
+        <points> <Character> <set>: 50
+        <defaults> <stats> <set>: 1
+
+points:
+    Character:
+        set: <options> <Random>
+    Career:
+        set: 40
+    Pickup:
+        set: <stats> <REF> + <stats> <INT>
+
+stats:
+    ATTR: default
+    BODY: default
+    COOL: default
+    EMP: default
+    INT: default
+    LUCK: default
+    MA: default
+    REF: default
+    TECH: default
+    Humanity:
+        set: <stats> <EMPATHY> * 10
+        type: dependent
+    RUN:
+        set: <stats> <MA> * 3
+        type: dependent
+    LEAP:
+        set: exact( <stats> <MA> / 4 )
+        type: dependent
+    SAVE:
+        set: <stats> <BODY>
+        type: dependent
+    BTM:
+        set: 0
+        type: dependent
+
+skills:
+    Personal grooming:
+        stat: ATTR
+    Wardrobe & style:
+        stat: ATTR
+    Endurance:
+        stat: BODY
+    Strength Feat:
+        stat: BODY
+    Swimming:
+        stat: BODY
+    Interrogation:
+        stat: COOL
+    Intimidate:
+        stat: COOL
+    Oratory:
+        stat: COOL
+    Resist torture/drugs:
+        stat: COOL
+    Streetwise:
+        stat: COOL
+    Human perception:
+        stat: EMP
+    Interview:
+        stat: EMP
+    Leadership:
+        stat: EMP
+    Seduction:
+        stat: EMP
+    Social:
+        stat: EMP
+    Persuasion:
+        stat: EMP
+    Perform:
+        stat: EMP
+    Accounting:
+        stat: INT
+    Anthropology:
+        stat: INT
+    Awareness/Notice:
+        stat: INT
+    Biology:
+        stat: INT
+    Botany:
+        stat: INT
+    Chemistry:
+        stat: INT
+    Composition:
+        stat: INT
+    Diagnose illness:
+        stat: INT
+    Education:
+        stat: INT
+    Expert:
+        stat: INT
+    Gamble:
+        stat: INT
+    Geology:
+        stat: INT
+    Hide/Evade:
+        stat: INT
+    History:
+        stat: INT
+    Know language:
+        stat: INT
+    Library search:
+        stat: INT
+    Mathematics:
+        stat: INT
+    Physics:
+        stat: INT
+    Programming:
+        stat: INT
+    Shadow/track:
+        stat: INT
+    Stock market:
+        stat: INT
+    System knowledge:
+        stat: INT
+    Teaching:
+        stat: INT
+    Wilderness survival:
+        stat: INT
+    Zoology:
+        stat: INT
+    Archery:
+        stat: REF
+    Athletics:
+        stat: REF
+    Brawling:
+        stat: REF
+    Dance:
+        stat: REF
+    Dodge & escape:
+        stat: REF
+    Driving:
+        stat: REF
+    Fencing:
+        stat: REF
+    Handgun:
+        stat: REF
+    Heavy Weapons:
+        stat: REF
+    Martial arts (aikido):
+        cost: 3
+        stat: REF
+    Martial arts (animal kung fu):
+        cost: 3
+        stat: REF
+    Martial arts (boxing):
+        stat: REF
+    Martial arts (capoeria):
+        cost: 3
+        stat: REF
+    Martial arts (choi li fut):
+        cost: 3
+        stat: REF
+    Martial arts (judo):
+        stat: REF
+    Martial arts (karate):
+        cost: 2
+        stat: REF
+    Martial arts (tae kwon do):
+        cost: 3
+        stat: REF
+    Martial arts (thai kick boxing):
+        cost: 4
+        stat: REF
+    Martial arts (wrestling):
+        stat: REF
+    Melee:
+        stat: REF
+    Motorcycle:
+        stat: REF
+    Operate heavy machinery:
+        stat: REF
+    Piloting (gyro):
+        cost: 3
+        stat: REF
+    Piloting (fixed wing):
+        cost: 2
+        stat: REF
+    Piloting (dirigible):
+        cost: 2
+        stat: REF
+    Piloting (vectored thrust vehicle):
+        cost: 3
+        stat: REF
+    Rifle:
+        stat: REF
+    Stealth:
+        cost: 2
+        stat: REF
+    Submachinegun:
+        stat: REF
+    Aero tech:
+        cost: 2
+        stat: TECH
+    AV tech:
+        cost: 3
+        stat: TECH
+    Basic tech:
+        cost: 2
+        stat: TECH
+    Cryotank operation:
+        stat: TECH
+    Cyberdeck design:
+        cost: 2
+        stat: TECH
+    Cybertech:
+        cost: 2
+        stat: TECH
+    Demolitions:
+        cost: 2
+        stat: TECH
+    Disguise:
+        stat: TECH
+    Electronics:
+        stat: TECH
+    Electronic security:
+        cost: 2
+        stat: TECH
+    First aid:
+        stat: TECH
+    Forgery:
+        stat: TECH
+    Gyro tech:
+        cost: 3
+        stat: TECH
+    Paint or draw:
+        stat: TECH
+    Photography & film:
+        stat: TECH
+    Pharmaceuticals:
+        cost: 2
+        stat: TECH
+    Pick lock:
+        stat: TECH
+    Pick pocket:
+        stat: TECH
+    Play instrument:
+        stat: TECH
+    Weaponsmith:
+        cost: 2
+        stat: TECH
+    Combat sense:
+        range: 1-10
+        points: Career
+        role: Solo
+    Resources:
+        range: 1-10
+        points: Career
+        role: Corporate
+    Credibility:
+        range: 1-10
+        points: Career
+        role: Media
+    Family:
+        range: 1-10
+        points: Career
+        role: Nomad
+    Jury Rig:
+        range: 1-10
+        points: Career
+        role: Techie
+    Authority:
+        range: 1-10
+        points: Career
+        role: Cop
+    Charismatic Leadership:
+        range: 1-10
+        points: Career
+        role: Rockerboy
+    Medical Tech:
+        range: 1-10
+        points: Career
+        role: Medtechie
+    Streetdeal:
+        range: 1-10
+        points: Career
+        role: Fixer
+    Interface:
+        range: 1-10
+        points: Career
+        role: Netrunner
+
+roles:
+    Solo:
+        skillpoints: Career
+        skills:
+            - Combat sense
+            - Awareness/Notice
+            - Handgun
+            - Brawling
+            - Melee
+            - Weaponsmith
+            - Rifle
+            - Athletics
+            - Submachinegun
+            - Stealth
+    Corporate:
+        skillpoints: Career
+        skills:
+            - Resources
+            - Awareness/Notice
+            - Human perception
+            - Education
+            - Library search
+            - Social
+            - Persuasion
+            - Stock market
+            - Wardrobe & style
+            - Personal grooming
+    Media:
+        skillpoints: Career
+        skills:
+            - Credibility
+            - Awareness/Notice
+            - Composition
+            - Education
+            - Persuasion
+            - Human perception
+            - Social
+            - Streetwise
+            - Photography & film
+            - Interview
+    Nomad:
+        skillpoints: Career
+        skills:
+            - Family
+            - Awareness/Notice
+            - Endurance
+            - Melee
+            - Rifle
+            - Driving
+            - Basic tech
+            - Wilderness survival
+            - Brawling
+            - Athletics
+    Techie:
+        skillpoints: Career
+        skills:
+            - Jury Rig
+            - Awareness/Notice
+            - Basic tech
+            - Cybertech
+            - Teaching
+            - Education
+            - Electronics
+            - Gyro tech
+            - Aero tech
+            - Weaponsmith
+            - Electronic security
+    Cop:
+        skillpoints: Career
+        skills:
+            - Authority
+            - Awareness/Notice
+            - Handgun
+            - Human perception
+            - Athletics
+            - Education
+            - Brawling
+            - Melee
+            - Interrogation
+            - Streetwise
+    Rockerboy:
+        skillpoints: Career
+        skills:
+            - Charismatic Leadership
+            - Awareness/Notice
+            - Perform
+            - Wardrobe & style
+            - Composition
+            - Brawling
+            - Play instrument
+            - Streetwise
+            - Persuasion
+            - Seduction
+    Medtechie:
+        skillpoints: Career
+        skills:
+            - Medical Tech
+            - Awareness/Notice
+            - Basic tech
+            - Diagnose illness
+            - Education
+            - Cryotank operation
+            - Library search
+            - Pharmaceuticals
+            - Zoology
+            - Human perception
+    Fixer:
+        skillpoints: Career
+        skills:
+            - Streetdeal
+            - Awareness/Notice
+            - Forgery
+            - Handgun
+            - Brawling
+            - Melee
+            - Pick lock
+            - Pick pocket
+            - Intimidate
+            - Persuasion
+    Netrunner:
+        skillpoints: Career
+        skills:
+            - Interface
+            - Awareness/Notice
+            - Basic tech
+            - Education
+            - System knowledge
+            - Cybertech
+            - Cyberdeck design
+            - Composition
+            - Electronics
+            - Programming
+
+modifiers:
+    <stats> <BTM>:
+        <stats> <BODY>:
+            1-2: -0
+            3-4: -1
+            5-7: -2
+            8-9: -3
+            10: -4
+            11-20: -5
