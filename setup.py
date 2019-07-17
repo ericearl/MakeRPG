@@ -452,69 +452,52 @@ def setup_skillstats(yaml_file):
     with open(yaml_file,'r') as yamlfile:
         tree = yaml.load(yamlfile)
 
-    defstat = tree['defaults']['stats']
-    defskill = tree['defaults']['skills']
-
-    for stat in tree['stats'].keys():
-        stat_definition = tree['stats'][stat]
-        stats = {}
-
-        for key in ['range', 'direction', 'cost', 'tier']:
-            if type(stat_definition) is dict and key in stat_definition:
-                stats[key] = stat_definition[key]
-            else:
-                stats[key] = defstat[key]
-
-        if type(stats['range']) is str:
-            statmin, statmax = (int(number) for number in stats['range'].split('-'))
-        elif type(stats['range']) is int:
-            statmin = stats['range']
-            statmax = stats['range']
-
-        st = Statistic()
-        st.name = stat
-        st.minimum = statmin
-        st.maximum = statmax
-        st.direction = stats['direction']
-        st.cost = stats['cost']
-        st.tier = stats['tier']
-        st.save()
-
-    for skill in tree['skills'].keys():
-        skillmin,skillmax = (int(number) for number in tree['stats'][stat]['skills'][skill].split('-'))
-        sk = Skill()
-        sk.name = skill
-        sk.minimum = skillmin
-        sk.maximum = skillmax
-        sk.statistic = st
-        sk.save()
+    r = Role()
+    r.name = 'none'
+    r.save()
 
     if 'roles' in tree:
-        sp = Statistic()
-        sp.name = 'SPECIAL'
-        sp.save()
-
         for role in tree['roles'].keys():
             r = Role()
             r.name = role
             r.save()
 
-            if 'special' in tree['roles'][role]:
-                for special in tree['roles'][role]['special'].keys():
-                    specialmin,specialmax = (int(number) for number in tree['roles'][role]['special'][special].split('-'))
-                    spsk = Skill()
-                    spsk.name = special
-                    spsk.minimum = specialmin
-                    spsk.maximum = specialmax
-                    spsk.statistic = sp
-                    spsk.save()
-                    r.special_skills.add(spsk)
+    defstat = tree['defaults']['stats']
+    defskill = tree['defaults']['skills']
 
-            if 'common' in tree['roles'][role]:
-                for common in tree['roles'][role]['common']:
-                    r.common_skills.add( Skill.objects.get(name=common) )
+    for flavor in ['stats','skills']:
+    for kind in tree[flavor].keys():
+        definition = tree[flavor][kind]
+        kinds = {}
 
-            r.save()
+        for key in ['range', 'direction', 'cost', 'tier', 'type', 'role']:
+            if type(definition) is dict and key in definition:
+                kinds[key] = definition[key]
+            elif flavor == 'stats':
+                kinds[key] = defstat[key]
+            elif flavor == 'skills':
+                kinds[key] = defskill[key]
+
+        if type(kinds['range']) is str:
+            minimum, maximum = (int(number) for number in kinds['range'].split('-'))
+        elif type(kinds['range']) is int:
+            maximum = kinds['range']
+            maximum = kinds['range']
+
+        if flavor == 'stats':
+            s = Statistic()
+        elif flavor == 'skills':
+            s = Skill()
+            s.statistic = Statistic.objects.get(name=tree[flavor][kind]['stat'])
+
+        s.name = kind
+        s.minimum = minimum
+        s.maximum = maximum
+        s.direction = kinds['direction']
+        s.cost = kinds['cost']
+        s.tier = kinds['tier']
+        s.type = kinds['type']
+        s.save()
 
 
 def setup_history(yaml_file):
@@ -693,29 +676,29 @@ def setup_history(yaml_file):
 
 
 if __name__ == '__main__':
-    skillstats_yaml = 'Examples/system_stats_skills.yaml'
-    history_yaml = 'Examples/system_history.yaml'
+    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
+    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
 
     valid_skillstats = validate_skillstats(skillstats_yaml)
     valid_history = validate_history(history_yaml)
 
-    if not valid_skillstats:
-        print('Skils & Stats YAML had at least one ERROR, review this output and correct all errors')
+    # if not valid_skillstats:
+    #     print('Skils & Stats YAML had at least one ERROR, review this output and correct all errors')
 
     if not valid_history:
         print('History YAML had at least one ERROR, review this output and correct all errors')
     
-    if not valid_skillstats or not valid_history:
-        print('Quitting without setting up game system database')
-    else:
-        print('Setting up game system database')
-        # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
-        # This should only be run once
-        # If it fails somehow, you should empty your database, adjust your YAML's, and try again
-        setup_skillstats(skillstats_yaml) # comment this out when you're done with it
+    # if not valid_skillstats or not valid_history:
+    #     print('Quitting without setting up game system database')
+    # else:
+    print('Setting up game system database')
+    # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
+    # This should only be run once
+    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+    setup_skillstats(skillstats_yaml) # comment this out when you're done with it
 
-        # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
-        # This should only be run once
-        # If it fails somehow, you should empty your database, adjust your YAML's, and try again
-        setup_history(history_yaml) # comment this out when you're done with it
-        print('Successfully completed setup.py!  Proceed to makecharacter.py...')
+    # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
+    # This should only be run once
+    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+    setup_history(history_yaml) # comment this out when you're done with it
+    print('Successfully completed setup.py!  Proceed to makecharacter.py...')

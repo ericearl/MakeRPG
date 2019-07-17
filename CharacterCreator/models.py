@@ -8,6 +8,13 @@ DIRECTION_CHOICES = (
     (DEC, 'decreasing'),
 )
 
+IND = 'I'
+DEP = 'D'
+TYPE_CHOICES = (
+    (IND, 'independent'),
+    (DEP, 'dependent'),
+)
+
 TIER_CHOICES = (
     (0, 'add'),
     (1, 'multiply'),
@@ -79,6 +86,13 @@ class Pointpool(models.Model):
         return self.name + ' (' + str(self.points) + ')'
 
 
+class Role(models.Model):
+    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
+
+    def __str__(self):
+        return self.name
+
+
 class Statistic(models.Model):
     name = models.CharField(max_length=50, unique=True, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField(null=True)
@@ -86,6 +100,8 @@ class Statistic(models.Model):
     direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
+    type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=IND)
+    role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
@@ -99,16 +115,10 @@ class Skill(models.Model):
     cost = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return '[' + self.statistic.name + '] ' + self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
-
-
-class Role(models.Model):
-    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
-
-    def __str__(self):
-        return self.name
 
 
 class Character(models.Model):
