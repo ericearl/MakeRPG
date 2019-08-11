@@ -24,32 +24,27 @@ def get_history_starts(yaml_file):
     return (history_tree['START'], history_tree['NPC'][0])
 
 
-def roll_stats(c):
-    sp = c.stat_points
-
+def roll_stats(c,points):
     # initialize all character statistics
-    for stat in Statistic.objects.all().exclude(name='SPECIAL'):
+    for stat in Statistic.objects.all():
         cstat = CharacterStatistic()
         cstat.character = c
         cstat.statistic = stat
         cstat.current = stat.minimum
-        sp -= stat.minimum
+        points -= stat.minimum
         cstat.save()
 
-    # roll all character statistics until their sum is stat points
-    cstats = CharacterStatistic.objects.filter(character=c)
-    while sp > 0:
+    # roll all character statistics until their sum is "points"
+    cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type='D')
+    while points > 0:
         cstat = random.choice(cstats)
         if cstat.current < cstat.statistic.maximum:
             cstat.current += 1
-            sp -= 1
+            points -= 1
             cstat.save()
 
 
-def roll_skills(c):
-    rp = c.role_points
-    op = c.other_points
-
+def roll_skills(c,points):
     # initialize skills
     if c.role:
         special_skills = c.role.special_skills.all()
