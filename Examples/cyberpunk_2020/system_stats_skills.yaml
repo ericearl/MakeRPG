@@ -1,13 +1,25 @@
 options:
     Random:
-        <points> <Character> <set>: 9d10
-        <defaults> <stats> <set>: 1
+        points:
+            Character:
+                set: 9d10
+        defaults:
+            stats:
+                set: 1
     Fast:
-        <points> <Character> <set>: 0
-        <defaults> <stats> <set>: 1d10 > 2 # if it's less than 3 it is re-rolled
+        points:
+            Character:
+                set: 0
+        defaults:
+            stats:
+                set: 1d10 > 2 # 1 or 2 are re-rolled
     Cinematic:
-        <points> <Character> <set>: 50
-        <defaults> <stats> <set>: 1
+        points:
+            Character:
+                set: 50
+        defaults:
+            stats:
+                set: 1
 
 defaults:
     stats:
