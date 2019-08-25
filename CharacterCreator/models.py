@@ -102,6 +102,7 @@ class Statistic(models.Model):
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=IND)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
+    pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
@@ -116,10 +117,13 @@ class Skill(models.Model):
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
+    pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         if self.statistic:
             return '[' + self.statistic.name + '] ' + self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
+        elif self.role:
+            return '[' + self.role.name + '] ' + self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
         else:
             return self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
 
@@ -164,5 +168,9 @@ class CharacterSkill(models.Model):
     current = models.IntegerField(blank=True)
 
     def __str__(self):
-        return '[' + self.skill.statistic.name + '] ' + self.skill.name + ': ' + str(self.current)
-
+        if self.skill.statistic:
+            return '[' + self.skill.statistic.name + '] ' + self.skill.name + ': ' + str(self.current)
+        elif self.skill.role:
+            return '[' + self.skill.role.name + '] ' + self.skill.name + ': ' + str(self.current)
+        else:
+            return self.skill.name + ': ' + str(self.current)

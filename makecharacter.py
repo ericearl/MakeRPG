@@ -6,107 +6,121 @@ django.setup()
 
 from CharacterCreator.models import *
 
+IND = 'I'
+DEP = 'D'
+TYPE_CHOICES = (
+    (IND, 'independent'),
+    (DEP, 'dependent'),
+)
+
+
 def random_name(firstnames,lastnames):
     return ' '.join([ firstnames[random.randint(0, len(firstnames))] , lastnames[random.randint(0, len(lastnames))] ])
 
 
-def get_history_starts(yaml_file):
-    # needs error handling
-    with open(yaml_file, 'r') as yamlfile:
-        tree = yaml.load(yamlfile)
-
+def get_history_starts(tree):
     if 'START' in tree and 'NPC' in tree:
         history_tree = tree
     else:
-        print(yaml_file + ' is missing either START or NPC keywords.')
+        print('History YAML file is missing either START or NPC keywords.')
         return
 
     return (history_tree['START'], history_tree['NPC'][0])
 
 
-def roll_stats(c,points):
+def roll(c, tree):
     # initialize all character statistics
     for stat in Statistic.objects.all():
-        cstat = CharacterStatistic()
-        cstat.character = c
-        cstat.statistic = stat
-        cstat.current = stat.minimum
-        points -= stat.minimum
-        cstat.save()
-
-    # roll all character statistics until their sum is "points"
-    cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type='D')
-    while points > 0:
-        cstat = random.choice(cstats)
-        if cstat.current < cstat.statistic.maximum:
-            cstat.current += 1
-            points -= 1
+        if stat.type != DEP:
+            cstat = CharacterStatistic()
+            cstat.character = c
+            cstat.statistic = stat
+            cstat.current = stat.minimum
             cstat.save()
 
-
-def roll_skills(c,points):
-    # initialize skills
-    if c.role:
-        special_skills = c.role.special_skills.all()
-        common_skills = c.role.common_skills.all()
-        role_skills = (special_skills | common_skills).distinct()
-        special_stat = Statistic.objects.get(name='SPECIAL')
-        all_special_skills = Skill.objects.filter(statistic=special_stat)
-        other_skills = Skill.objects.all().difference(all_special_skills, role_skills)
-    else:
-        special_skills = []
-        common_skills = []
-        role_skills = []
-        other_skills = Skill.objects.all()
-
-    for skill in role_skills:
-        cskill = CharacterSkill()
-        cskill.character = c
-        cskill.skill = skill
-        cskill.current = skill.minimum
-        rp -= skill.minimum
-        cskill.save()
-
-    role_cskills = CharacterSkill.objects.filter(character=c)
-    while rp > 0:
-        cskill = random.choice(role_cskills)
-        if cskill.current < cskill.skill.maximum:
-            cskill.current += 1
-            rp -= 1
+    # initialize all character skills
+    for skill in Skill.objects.all():
+        if skill.role.name == 'none' or skill.role.name == c.role.name:
+            cskill = CharacterSkill()
+            cskill.character = c
+            cskill.skill = skill
+            cskill.current = skill.minimum
             cskill.save()
 
-    for skill in other_skills:
-        cskill = CharacterSkill()
-        cskill.character = c
-        cskill.skill = skill
-        cskill.current = skill.minimum
-        op -= skill.minimum
-        cskill.save()
+    for p in Pointpool.objects.all():
+        points = p.points
+        cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type=DEP)
+        cskills = CharacterSkill.objects.filter(character=c)
 
-    other_cskills = CharacterSkill.objects.filter(character=c).difference(role_cskills)
-    while op > 0:
-        skill = random.choice(other_skills)
-        cskill = CharacterSkill.objects.get(character=c, skill=skill)
-        if cskill.current < cskill.skill.maximum:
-            cskill.current += 1
-            op -= 1
-            cskill.save()
+        # subtract minimum points required to initialize stats and skills
+        for cstat in cstats:
+            if cstat.statistic.pointpool == p:
+                points -= cstat.current
+
+        for cskill in cskills:
+            if cskill.skill.pointpool == p and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
+
+                points -= cskill.current
+
+        # roll all character statistics and skills until their sum is "points"
+        choosy = []
+        if len(cstats) > 0:
+            choosy.append('stat')
+        if len(cskills) > 0:
+            choosy.append('skill')
+
+        while points > 0:
+            if len(cstats) > 0:
+                cstat = random.choice(cstats)
+            if len(cskills) > 0:
+                cskill = random.choice(cskills)
+
+            choice = random.choice(choosy)
+
+            if choice == 'stat' and (
+                    ( cstat.statistic.pointpool == p and cstat.statistic.type != DEP ) or
+                    (
+                    'roles' in tree and
+                    'statpoints' in tree['roles'][c.role.name] and
+                    tree['roles'][c.role.name]['statpoints'] == p.name and
+                    cstat.statistic.name in tree['roles'][c.role.name]['stats']
+                    )
+                    ) and cstat.current < cstat.statistic.maximum:
+
+                cstat.current += 1
+                points -= 1
+                cstat.save()
+
+            if choice == 'skill' and (
+                    cskill.skill.pointpool == p or
+                    (
+                    'roles' in tree and
+                    'skillpoints' in tree['roles'][c.role.name] and
+                    tree['roles'][c.role.name]['skillpoints'] == p.name and
+                    cskill.skill.name in tree['roles'][c.role.name]['skills']
+                    )
+                    ) and cskill.current < cskill.skill.maximum:
+
+                cskill.current += 1
+                points -= 1
+                cskill.save()
 
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 5
+    character_count = 3
 
-    # mean (a.k.a. average) point values
-    mean_stat_points = 40
-    mean_role_points = 0
-    mean_other_points = 20
+    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
+    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
 
-    # percentage of mean variance
-    mean_percentage = 20/100
+    # needs error handling
+    with open(history_yaml, 'r') as yamlfile:
+        history = yaml.load(yamlfile)
 
-    history_yaml = 'Examples/classless_cyberpunk_test/classless_cyberpunk_test_history.yaml'
-    history_start, npc_start = get_history_starts(history_yaml)
+    with open(skillstats_yaml,'r') as yamlfile:
+        skillstats = yaml.load(yamlfile)
+
+    history_start, npc_start = get_history_starts(history)
 
     # names lists
     with open('MakeRPG/firstnames.txt', 'r') as firsts:
@@ -119,41 +133,14 @@ if __name__ == '__main__':
     for _ in range(character_count):
         char_tstart = time.time()
 
-        # set points based on a normal distribution with a center mean and 20% mean variance
-        # and don't let any points go below zero
-        if mean_stat_points > 0:
-            sp = round(random.normalvariate(mean_stat_points, mean_stat_points*mean_percentage))
-            if sp < 0:
-                sp = 0
-        else:
-            sp = 0
-
-        if mean_role_points > 0:
-            rp = round(random.normalvariate(mean_role_points, mean_role_points*mean_percentage))
-            if rp < 0:
-                rp = 0
-        else:
-            rp = 0
-
-        if mean_other_points > 0:
-            op = round(random.normalvariate(mean_other_points, mean_other_points*mean_percentage))
-            if op < 0:
-                op = 0
-        else:
-            op = 0
-
         c = Character()
         c.name = random_name(firstnames, lastnames)
-        c.stat_points = sp
-        c.role_points = rp
-        c.other_points = op
-        all_roles = Role.objects.all()
+        all_roles = Role.objects.all().exclude(name='none')
         if len(all_roles) > 0:
             c.role = random.choice(all_roles)
         c.save()
 
-        roll_stats(c)
-        roll_skills(c)
+        roll(c, skillstats)
 
         # roll character history
         current = Event.objects.get(name=history_start)
@@ -208,40 +195,13 @@ if __name__ == '__main__':
             npc_tstart = time.time()
             npc_count += 1
 
-            # set points based on a normal distribution with a center mean and 20% mean variance
-            # and don't let any points go below zero
-            if mean_stat_points > 0:
-                sp = round(random.normalvariate(mean_stat_points, mean_stat_points*mean_percentage))
-                if sp < 0:
-                    sp = 0
-            else:
-                sp = 0
-
-            if mean_role_points > 0:
-                rp = round(random.normalvariate(mean_role_points, mean_role_points*mean_percentage))
-                if rp < 0:
-                    rp = 0
-            else:
-                rp = 0
-
-            if mean_other_points > 0:
-                op = round(random.normalvariate(mean_other_points, mean_other_points*mean_percentage))
-                if op < 0:
-                    op = 0
-            else:
-                op = 0
-
             npc = Character()
             npc.name = '[NPC ' + npc_q.get() + '] ' + random_name(firstnames, lastnames)
-            npc.stat_points = sp
-            npc.role_points = rp
-            npc.other_points = op
             if len(all_roles) > 0:
                 npc.role = random.choice(all_roles)
             npc.save()
 
-            roll_stats(npc)
-            roll_skills(npc)
+            roll(npc, skillstats)
 
             npc_event = Event.objects.get(name=npc_start)
             while True:

@@ -6,6 +6,11 @@ django.setup()
 
 from CharacterCreator.models import *
 
+TYPES = {
+    'independent': 'I',
+    'dependent': 'D'
+}
+
 TIERS = {
     'add': 0,
     'multiply': 1,
@@ -475,6 +480,12 @@ def setup_skillstats(yaml_file):
             r.name = role
             r.save()
 
+    for pointpool in tree['points']:
+        p = Pointpool()
+        p.name = pointpool
+        p.points = tree['points'][pointpool]['set']
+        p.save()
+    
     defstat = tree['defaults']['stats']
     defskill = tree['defaults']['skills']
 
@@ -483,7 +494,7 @@ def setup_skillstats(yaml_file):
             definition = tree[flavor][kind]
             kinds = {}
 
-            for key in ['range', 'direction', 'cost', 'tier', 'type', 'role']:
+            for key in ['range', 'direction', 'cost', 'tier', 'type', 'role', 'points']:
                 if type(definition) is dict and key in definition:
                     kinds[key] = definition[key]
                 elif flavor == 'stats':
@@ -494,7 +505,7 @@ def setup_skillstats(yaml_file):
             if type(kinds['range']) is str:
                 minimum, maximum = (int(number) for number in kinds['range'].split('-'))
             elif type(kinds['range']) is int:
-                maximum = kinds['range']
+                minimum = kinds['range']
                 maximum = kinds['range']
 
             if flavor == 'stats':
@@ -510,7 +521,9 @@ def setup_skillstats(yaml_file):
             s.direction = kinds['direction']
             s.cost = kinds['cost']
             s.tier = TIERS[kinds['tier']]
-            s.type = kinds['type']
+            s.type = TYPES[kinds['type']]
+            s.role = Role.objects.get(name=kinds['role'])
+            s.pointpool = Pointpool.objects.get(name=kinds['points'])
             s.save()
 
 
