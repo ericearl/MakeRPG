@@ -10,7 +10,7 @@ def index(request):
     npc_list = Character.objects.filter(name__contains='[NPC').order_by('role__name', 'name')
     npc_history_list = NPCEventRoll.objects.all()
     character_list = Character.objects.all().exclude(name__contains='[NPC').order_by('role__name', 'name')
-    role_list = Role.objects.all().order_by('name')
+    role_list = Role.objects.all().exclude(name='none').order_by('name')
     return render(request, 'CharacterCreator/index.html', {'character_list': character_list, 'npc_list': npc_list, 'npc_history': npc_history_list, 'role_list': role_list})
 
 
