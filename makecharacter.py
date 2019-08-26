@@ -6,12 +6,11 @@ django.setup()
 
 from CharacterCreator.models import *
 
+# globals
+INC = 'I'
+DEC = 'D'
 IND = 'I'
 DEP = 'D'
-TYPE_CHOICES = (
-    (IND, 'independent'),
-    (DEP, 'dependent'),
-)
 
 
 def random_name(firstnames,lastnames):
@@ -55,12 +54,13 @@ def roll(c, tree):
         # subtract minimum points required to initialize stats and skills
         for cstat in cstats:
             if cstat.statistic.pointpool == p:
-                points -= cstat.current
+                for i in range(cstat.current):
+                    points -= cstat.statistic.cost * ( (i+1) ^ cstat.statistic.tier )
 
         for cskill in cskills:
             if cskill.skill.pointpool == p and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
-
-                points -= cskill.current
+                for i in range(cskill.current):
+                    points -= cskill.skill.cost * ( (i+1) ^ cskill.skill.tier )
 
         # roll all character statistics and skills until their sum is "points"
         choosy = []
@@ -87,9 +87,11 @@ def roll(c, tree):
                     )
                     ) and cstat.current < cstat.statistic.maximum:
 
-                cstat.current += 1
-                points -= 1
-                cstat.save()
+                cost = cstat.statistic.cost * ( (cstat.current+1) ^ cstat.statistic.tier )
+                if points >= cost:
+                    points -= cost
+                    cstat.current += cstat.statistic.purchase
+                    cstat.save()
 
             if choice == 'skill' and (
                     cskill.skill.pointpool == p or
@@ -101,14 +103,16 @@ def roll(c, tree):
                     )
                     ) and cskill.current < cskill.skill.maximum:
 
-                cskill.current += 1
-                points -= 1
-                cskill.save()
+                cost = cskill.skill.cost * ( (cskill.current+1) ^ cskill.skill.tier )
+                if points >= cost:
+                    points -= cost
+                    cskill.current += cskill.skill.purchase
+                    cskill.save()
 
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 3
+    character_count = 5
 
     skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
     history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'

@@ -45,7 +45,7 @@ class Dice(models.Model):
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
+    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
     dice = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
     rerollevent = models.ForeignKey('self', null=True, on_delete=models.CASCADE, related_name='RerollEvent')
     nextevent = models.ForeignKey('self', null=True, on_delete=models.CASCADE, related_name='NextEvent')
@@ -87,18 +87,19 @@ class Pointpool(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
+    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
 
     def __str__(self):
         return self.name
 
 
 class Statistic(models.Model):
-    name = models.CharField(max_length=50, unique=True, validators=[MinLengthValidator(1)])
+    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField(null=True)
     maximum = models.IntegerField(null=True)
     direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
+    purchase = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=IND)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
@@ -109,11 +110,12 @@ class Statistic(models.Model):
 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=50, validators=[MinLengthValidator(1)])
+    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField()
     maximum = models.IntegerField()
     direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
+    purchase = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)

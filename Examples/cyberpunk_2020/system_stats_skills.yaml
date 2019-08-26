@@ -29,7 +29,7 @@ defaults:
         points: Character     # default points pool to purchase from
         cost: 1               # cost per point
         purchase: 1           # result of a purchase
-        tier: add            # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cosst
         prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         role: none            # skill is special to a role, and if so what role
         type: independent     # independent (stands alone), dependent (result of something else)
@@ -40,7 +40,7 @@ defaults:
         points: Pickup        # default points pool to purchase from
         cost: 1               # cost per point
         purchase: 1           # result of a purchase
-        tier: add            # values are "add" (1x,1x,1x,1x), "multiply" (1x,2x,3x,4x), or "double" (1x,2x,4x,8x)
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cosst
         prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         role: none            # skill is special to a role, and if so what role
         type: independent     # independent (stands alone), dependent (result of something else)
