@@ -155,6 +155,15 @@ class NPCEventRoll(models.Model):
         return str(self.eventroll)
 
 
+class CharacterPointpool(models.Model):
+    character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
+    pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
+    current = models.IntegerField(blank=True)
+
+    def __str__(self):
+        return self.pointpool.name + ': ' + str(self.current)
+
+
 class CharacterStatistic(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)

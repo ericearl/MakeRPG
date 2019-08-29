@@ -27,7 +27,7 @@ def get_history_starts(tree):
     return (history_tree['START'], history_tree['NPC'][0])
 
 
-def roll(c, tree):
+def init(c):
     # initialize all character statistics
     for stat in Statistic.objects.all():
         if stat.type != DEP:
@@ -47,20 +47,30 @@ def roll(c, tree):
             cskill.save()
 
     for p in Pointpool.objects.all():
-        points = p.points
+        cpoints = CharacterPointpool()
+        cpoints.character = c
+        cpoints.pointpool = p
+        cpoints.current = p.points
+        cpoints.save()
+
+
+def roll(c, tree):
+    for cp in CharacterPointpool.objects.filter(character=c):
         cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type=DEP)
         cskills = CharacterSkill.objects.filter(character=c)
 
         # subtract minimum points required to initialize stats and skills
         for cstat in cstats:
-            if cstat.statistic.pointpool == p:
+            if cstat.statistic.pointpool.name == cp.pointpool.name:
                 for i in range(cstat.current):
-                    points -= cstat.statistic.cost * ( (i+1) ^ cstat.statistic.tier )
+                    cp.current -= cstat.statistic.cost * ( (i+1) ^ cstat.statistic.tier )
+                    cp.save()
 
         for cskill in cskills:
-            if cskill.skill.pointpool == p and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
+            if cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
                 for i in range(cskill.current):
-                    points -= cskill.skill.cost * ( (i+1) ^ cskill.skill.tier )
+                    cp.current -= cskill.skill.cost * ( (i+1) ^ cskill.skill.tier )
+                    cp.save()
 
         # roll all character statistics and skills until their sum is "points"
         choosy = []
@@ -69,7 +79,7 @@ def roll(c, tree):
         if len(cskills) > 0:
             choosy.append('skill')
 
-        while points > 0:
+        while cp.current > 0:
             if len(cstats) > 0:
                 cstat = random.choice(cstats)
             if len(cskills) > 0:
@@ -78,36 +88,93 @@ def roll(c, tree):
             choice = random.choice(choosy)
 
             if choice == 'stat' and (
-                    ( cstat.statistic.pointpool == p and cstat.statistic.type != DEP ) or
+                    ( cstat.statistic.pointpool.name == cp.pointpool.name and cstat.statistic.type != DEP ) or
                     (
                     'roles' in tree and
                     'statpoints' in tree['roles'][c.role.name] and
-                    tree['roles'][c.role.name]['statpoints'] == p.name and
+                    tree['roles'][c.role.name]['statpoints'] == cp.pointpool.name and
                     cstat.statistic.name in tree['roles'][c.role.name]['stats']
                     )
                     ) and cstat.current < cstat.statistic.maximum:
 
                 cost = cstat.statistic.cost * ( (cstat.current+1) ^ cstat.statistic.tier )
-                if points >= cost:
-                    points -= cost
+                if cp.current >= cost:
+                    cp.current -= cost
                     cstat.current += cstat.statistic.purchase
                     cstat.save()
+                    cp.save()
 
             if choice == 'skill' and (
-                    cskill.skill.pointpool == p or
+                    cskill.skill.pointpool.name == cp.pointpool.name or
                     (
                     'roles' in tree and
                     'skillpoints' in tree['roles'][c.role.name] and
-                    tree['roles'][c.role.name]['skillpoints'] == p.name and
+                    tree['roles'][c.role.name]['skillpoints'] == cp.pointpool.name and
                     cskill.skill.name in tree['roles'][c.role.name]['skills']
                     )
                     ) and cskill.current < cskill.skill.maximum:
 
                 cost = cskill.skill.cost * ( (cskill.current+1) ^ cskill.skill.tier )
-                if points >= cost:
-                    points -= cost
+                if cp.current >= cost:
+                    cp.current -= cost
                     cskill.current += cskill.skill.purchase
                     cskill.save()
+                    cp.save()
+
+    if 'modifiers' in tree and 'points' in tree['modifiers']:
+        for pointpool in tree['modifiers']['points']:
+            for modifier_key in tree['modifiers']['points'][pointpool]:
+                for modifier_lookup in tree['modifiers']['points'][pointpool][modifier_key]:
+                    if modifier_key == 'stats':
+                        cstat = CharacterStatistic.objects.filter(character=c).filter(statistic__name=modifier_lookup)
+                        cp = CharacterPointpool.objects.filter(character=c).filter(pointpool__name=pointpool)
+                        lookup = tree['modifiers']['points'][pointpool][modifier_key][modifier_lookup]
+
+                        possible_rolls = []
+                        # a dictionary of roll value lists whose keys are roll strings
+                        roll_dict = {}
+                        for element in lookup.keys():
+                            roll_str = str(element)
+
+                            if '-' not in roll_str and ',' not in roll_str:
+                                # a single value
+                                values = int(roll_str)
+                                roll_dict[roll_str] = [values]
+                                possible_rolls.append(values)
+                            elif ',' in roll_str:
+                                # multiple values
+                                for partial in roll_str.split(','):
+                                    if '-' in partial:
+                                        # a span of comma-separated values
+                                        minimum,maximum = (int(number) for number in partial.split('-'))
+                                        values = list(range(minimum,maximum+1))
+                                        roll_dict[roll_str] = values
+                                        possible_rolls += values
+                                    else:
+                                        # a single comma-separated value
+                                        values = int(partial)
+                                        roll_dict[roll_str] = [values]
+                                        possible_rolls.append(values)
+                            elif '-' in roll_str:
+                                # a span of values
+                                minimum,maximum = (int(number) for number in roll_str.split('-'))
+                                values = list(range(minimum,maximum+1))
+                                roll_dict[roll_str] = values
+                                possible_rolls += values
+
+                        for key in lookup.keys():
+                            if cstat.current in roll_dict[str(key)]:
+                                outcome = lookup[key]
+
+                        if '+' in outcome:
+                            addition = int(outcome.replace('+',''))
+                            cp.current += addition
+                            cp.save()
+                        elif '-' in outcome:
+                            subtraction = int(outcome.replace('-',''))
+                            cp.current -= subtraction
+                            cp.save()
+
 
 
 if __name__ == '__main__':
