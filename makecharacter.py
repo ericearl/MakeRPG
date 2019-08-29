@@ -27,7 +27,7 @@ def get_history_starts(tree):
     return (history_tree['START'], history_tree['NPC'][0])
 
 
-def init(c):
+def roll(c, tree):
     # initialize all character statistics
     for stat in Statistic.objects.all():
         if stat.type != DEP:
@@ -46,6 +46,7 @@ def init(c):
             cskill.current = skill.minimum
             cskill.save()
 
+    # initialize all character pointpools
     for p in Pointpool.objects.all():
         cpoints = CharacterPointpool()
         cpoints.character = c
@@ -53,8 +54,7 @@ def init(c):
         cpoints.current = p.points
         cpoints.save()
 
-
-def roll(c, tree):
+    # begin spending points from character pointpools
     for cp in CharacterPointpool.objects.filter(character=c):
         cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type=DEP)
         cskills = CharacterSkill.objects.filter(character=c)
