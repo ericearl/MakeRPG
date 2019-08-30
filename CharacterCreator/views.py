@@ -18,17 +18,19 @@ def character(request, character_id):
     character = get_object_or_404(Character, pk=character_id)
     stat_list = get_list_or_404(CharacterStatistic, character=character_id)
     skill_list = get_list_or_404(CharacterSkill, character=character_id)
+    point_list = get_list_or_404(CharacterPointpool, character=character_id)
     history_list = get_list_or_404(CharacterEventRoll, character=character_id)
     npc_list = get_list_or_404(NPCEventRoll, character=character_id)
-    return render(request, 'CharacterCreator/character.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'history': history_list, 'npcs': npc_list })
+    return render(request, 'CharacterCreator/character.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'points': point_list, 'history': history_list, 'npcs': npc_list })
 
 
 def npc(request, npc_id):
     character = get_object_or_404(Character, pk=npc_id)
     stat_list = get_list_or_404(CharacterStatistic, character=npc_id)
     skill_list = get_list_or_404(CharacterSkill, character=npc_id)
+    point_list = get_list_or_404(CharacterPointpool, character=npc_id)
     history_list = get_list_or_404(NPCEventRoll, npc=npc_id)
-    return render(request, 'CharacterCreator/npc.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'history': history_list })
+    return render(request, 'CharacterCreator/npc.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'points': point_list, 'history': history_list })
 
 
 def get_default_statistic(request):
