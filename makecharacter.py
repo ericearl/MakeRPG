@@ -21,65 +21,30 @@ def get_history_starts(tree):
     return (history_tree['START'], history_tree['NPC'][0])
 
 
-def roll(c, tree):
-    # initialize all character statistics
-    for stat in Statistic.objects.all():
-        if stat.type != 'dependent':
-            cstat = CharacterStatistic()
-            cstat.character = c
-            cstat.statistic = stat
-
-            if stat.direction == 'increasing':
-                cstat.current = stat.minimum
-            elif stat.direction == 'decreasing':
-                cstat.current = stat.maximum
-
-            cstat.save()
-
-    # initialize all character skills
-    for skill in Skill.objects.all():
-        if skill.role.name == 'none' or skill.role.name == c.role.name:
-            cskill = CharacterSkill()
-            cskill.character = c
-            cskill.skill = skill
-
-            if skill.direction == 'increasing':
-                cskill.current = skill.minimum
-            elif skill.direction == 'decreasing':
-                cskill.current = skill.maximum
-
-            cskill.save()
-
-    # initialize all character pointpools
-    for p in Pointpool.objects.all():
-        cpoints = CharacterPointpool()
-        cpoints.character = c
-        cpoints.pointpool = p
-        cpoints.current = p.points
-        cpoints.save()
-
-    # begin spending points from character pointpools
+def spend_points(c, tree, initial=False):
+    # spend points from character pointpools
     for cp in CharacterPointpool.objects.filter(character=c):
         cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type='dependent')
         cskills = CharacterSkill.objects.filter(character=c)
 
-        # subtract minimum points required to initialize stats and skills
-        for cstat in cstats:
-            if cstat.statistic.pointpool.name == cp.pointpool.name:
-                if cstat.statistic.direction == 'increasing':
-                    for i in range(cstat.current):
-                        cp.current -= cstat.statistic.cost * ( (i+1) ** cstat.statistic.tier )
-                        cp.save()
-                elif cstat.statistic.direction == 'decreasing':
-                    for i in range(cstat.statistic.maximum - cstat.current):
-                        cp.current -= cstat.statistic.cost * ( (i+1) ** cstat.statistic.tier )
-                        cp.save()
+        if initial:
+            # subtract minimum points required to initialize stats and skills
+            for cstat in cstats:
+                if cstat.statistic.pointpool.name == cp.pointpool.name:
+                    if cstat.statistic.direction == 'increasing':
+                        for i in range(cstat.current):
+                            cp.current -= cstat.statistic.cost * ( (i+1) ** cstat.statistic.tier )
+                            cp.save()
+                    elif cstat.statistic.direction == 'decreasing':
+                        for i in range(cstat.statistic.maximum - cstat.current):
+                            cp.current -= cstat.statistic.cost * ( (i+1) ** cstat.statistic.tier )
+                            cp.save()
 
-        for cskill in cskills:
-            if cp.current > 0 and cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
-                for i in range(cskill.current):
-                    cp.current -= cskill.skill.cost * ( (i+1) ** cskill.skill.tier )
-                    cp.save()
+            for cskill in cskills:
+                if cp.current > 0 and cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
+                    for i in range(cskill.current):
+                        cp.current -= cskill.skill.cost * ( (i+1) ** cskill.skill.tier )
+                        cp.save()
 
         # roll all character statistics and skills until their sum is "points"
         choosy = []
@@ -146,6 +111,46 @@ def roll(c, tree):
                         cskill.save()
                         cp.save()
 
+
+def roll(c, tree):
+    # initialize all character statistics
+    for stat in Statistic.objects.all():
+        if stat.type != 'dependent':
+            cstat = CharacterStatistic()
+            cstat.character = c
+            cstat.statistic = stat
+
+            if stat.direction == 'increasing':
+                cstat.current = stat.minimum
+            elif stat.direction == 'decreasing':
+                cstat.current = stat.maximum
+
+            cstat.save()
+
+    # initialize all character skills
+    for skill in Skill.objects.all():
+        if skill.role.name == 'none' or skill.role.name == c.role.name:
+            cskill = CharacterSkill()
+            cskill.character = c
+            cskill.skill = skill
+
+            if skill.direction == 'increasing':
+                cskill.current = skill.minimum
+            elif skill.direction == 'decreasing':
+                cskill.current = skill.maximum
+
+            cskill.save()
+
+    # initialize all character pointpools
+    for p in Pointpool.objects.all():
+        cpoints = CharacterPointpool()
+        cpoints.character = c
+        cpoints.pointpool = p
+        cpoints.current = p.points
+        cpoints.save()
+
+    spend_points(c, tree, initial=True)
+
     if 'modifiers' in tree and 'points' in tree['modifiers']:
         for pointpool in tree['modifiers']['points']:
             for modifier_key in tree['modifiers']['points'][pointpool]:
@@ -194,6 +199,8 @@ def roll(c, tree):
 
                         cp.current += outcome
                         cp.save()
+
+    spend_points(c, tree)
 
 
 if __name__ == '__main__':
