@@ -76,7 +76,7 @@ def roll(c, tree):
                         cp.save()
 
         for cskill in cskills:
-            if cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
+            if cp.current > 0 and cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
                 for i in range(cskill.current):
                     cp.current -= cskill.skill.cost * ( (i+1) ** cskill.skill.tier )
                     cp.save()
@@ -152,7 +152,7 @@ def roll(c, tree):
                 for modifier_lookup in tree['modifiers']['points'][pointpool][modifier_key]:
                     if modifier_key == 'stats':
                         cstat = CharacterStatistic.objects.filter(character=c).get(statistic__name=modifier_lookup)
-                        cp = CharacterPointpool.objects.filter(character=c).filter(pointpool__name=pointpool)
+                        cp = CharacterPointpool.objects.filter(character=c).get(pointpool__name=pointpool)
                         lookup = tree['modifiers']['points'][pointpool][modifier_key][modifier_lookup]
 
                         possible_rolls = []
@@ -190,15 +190,10 @@ def roll(c, tree):
                         for key in lookup.keys():
                             if cstat.current in roll_dict[str(key)]:
                                 outcome = lookup[key]
+                                break
 
-                        if '+' in outcome:
-                            addition = int(outcome.replace('+',''))
-                            cp.current += addition
-                            cp.save()
-                        elif '-' in outcome:
-                            subtraction = int(outcome.replace('-',''))
-                            cp.current -= subtraction
-                            cp.save()
+                        cp.current += outcome
+                        cp.save()
 
 
 if __name__ == '__main__':
