@@ -28,10 +28,12 @@ def roll(c, tree):
             cstat = CharacterStatistic()
             cstat.character = c
             cstat.statistic = stat
+
             if stat.direction == INC:
                 cstat.current = stat.minimum
             elif stat.direction == DEC:
                 cstat.current = stat.maximum
+
             cstat.save()
 
     # initialize all character skills
@@ -40,10 +42,12 @@ def roll(c, tree):
             cskill = CharacterSkill()
             cskill.character = c
             cskill.skill = skill
+
             if skill.direction == INC:
                 cskill.current = skill.minimum
             elif skill.direction == DEC:
                 cskill.current = skill.maximum
+
             cskill.save()
 
     # initialize all character pointpools
