@@ -6,12 +6,6 @@ django.setup()
 
 from CharacterCreator.models import *
 
-# globals
-INC = 'I'
-DEC = 'D'
-IND = 'I'
-DEP = 'D'
-
 
 def random_name(firstnames,lastnames):
     return ' '.join([ firstnames[random.randint(0, len(firstnames))] , lastnames[random.randint(0, len(lastnames))] ])
@@ -34,7 +28,10 @@ def roll(c, tree):
             cstat = CharacterStatistic()
             cstat.character = c
             cstat.statistic = stat
-            cstat.current = stat.minimum
+            if stat.direction == INC:
+                cstat.current = stat.minimum
+            elif stat.direction == DEC:
+                cstat.current = stat.maximum
             cstat.save()
 
     # initialize all character skills
@@ -43,7 +40,10 @@ def roll(c, tree):
             cskill = CharacterSkill()
             cskill.character = c
             cskill.skill = skill
-            cskill.current = skill.minimum
+            if skill.direction == INC:
+                cskill.current = skill.minimum
+            elif skill.direction == DEC:
+                cskill.current = skill.maximum
             cskill.save()
 
     # initialize all character pointpools
@@ -62,9 +62,14 @@ def roll(c, tree):
         # subtract minimum points required to initialize stats and skills
         for cstat in cstats:
             if cstat.statistic.pointpool.name == cp.pointpool.name:
-                for i in range(cstat.current):
-                    cp.current -= cstat.statistic.cost * ( (i+1) ^ cstat.statistic.tier )
-                    cp.save()
+                if cstat.statistic.direction == INC:
+                    for i in range(cstat.current):
+                        cp.current -= cstat.statistic.cost * ( (i+1) ^ cstat.statistic.tier )
+                        cp.save()
+                elif cstat.statistic.direction == DEC:
+                    for i in range(cstat.statistic.maximum - cstat.current):
+                        cp.current -= cstat.statistic.cost * ( (i+1) ^ cstat.statistic.tier )
+                        cp.save()
 
         for cskill in cskills:
             if cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
@@ -95,14 +100,22 @@ def roll(c, tree):
                     tree['roles'][c.role.name]['statpoints'] == cp.pointpool.name and
                     cstat.statistic.name in tree['roles'][c.role.name]['stats']
                     )
-                    ) and cstat.current < cstat.statistic.maximum:
+                    ):
 
-                cost = cstat.statistic.cost * ( (cstat.current+1) ^ cstat.statistic.tier )
-                if cp.current >= cost:
-                    cp.current -= cost
-                    cstat.current += cstat.statistic.purchase
-                    cstat.save()
-                    cp.save()
+                if cstat.statistic.direction == INC and cstat.current < cstat.statistic.maximum:
+                    cost = cstat.statistic.cost * ( (cstat.current+1) ^ cstat.statistic.tier )
+                    if cp.current >= cost:
+                        cp.current -= cost
+                        cstat.current += cstat.statistic.purchase
+                        cstat.save()
+                        cp.save()
+                elif cstat.statistic.direction == DEC and cstat.current > cstat.statistic.minimum:
+                    cost = cstat.statistic.cost * ( (cstat.statistic.maximum - cstat.current + 1) ^ cstat.statistic.tier )
+                    if cp.current >= cost:
+                        cp.current -= cost
+                        cstat.current -= cstat.statistic.purchase
+                        cstat.save()
+                        cp.save()
 
             if choice == 'skill' and (
                     cskill.skill.pointpool.name == cp.pointpool.name or
@@ -112,14 +125,22 @@ def roll(c, tree):
                     tree['roles'][c.role.name]['skillpoints'] == cp.pointpool.name and
                     cskill.skill.name in tree['roles'][c.role.name]['skills']
                     )
-                    ) and cskill.current < cskill.skill.maximum:
+                    ):
 
-                cost = cskill.skill.cost * ( (cskill.current+1) ^ cskill.skill.tier )
-                if cp.current >= cost:
-                    cp.current -= cost
-                    cskill.current += cskill.skill.purchase
-                    cskill.save()
-                    cp.save()
+                if cskill.skill.direction == INC and cskill.current < cskill.skill.maximum:
+                    cost = cskill.skill.cost * ( (cskill.current+1) ^ cskill.skill.tier )
+                    if cp.current >= cost:
+                        cp.current -= cost
+                        cskill.current += cskill.skill.purchase
+                        cskill.save()
+                        cp.save()
+                elif cskill.skill.direction == DEC and cskill.current > cskill.skill.minimum:
+                    cost = cskill.skill.cost * ( (cskill.skill.maximum - cskill.current + 1) ^ cskill.skill.tier )
+                    if cp.current >= cost:
+                        cp.current -= cost
+                        cskill.current -= cskill.skill.purchase
+                        cskill.save()
+                        cp.save()
 
     if 'modifiers' in tree and 'points' in tree['modifiers']:
         for pointpool in tree['modifiers']['points']:
@@ -174,7 +195,6 @@ def roll(c, tree):
                             subtraction = int(outcome.replace('-',''))
                             cp.current -= subtraction
                             cp.save()
-
 
 
 if __name__ == '__main__':
