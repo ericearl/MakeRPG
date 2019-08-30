@@ -494,7 +494,7 @@ def setup_skillstats(yaml_file):
             definition = tree[flavor][kind]
             kinds = {}
 
-            for key in ['range', 'direction', 'cost', 'tier', 'type', 'role', 'points']:
+            for key in ['range', 'direction', 'cost', 'purchase', 'tier', 'type', 'role', 'points']:
                 if type(definition) is dict and key in definition:
                     kinds[key] = definition[key]
                 elif flavor == 'stats':
@@ -520,6 +520,7 @@ def setup_skillstats(yaml_file):
             s.maximum = maximum
             s.direction = kinds['direction']
             s.cost = kinds['cost']
+            s.purchase = kinds['purchase']
             s.tier = TIERS[kinds['tier']]
             s.type = TYPES[kinds['type']]
             s.role = Role.objects.get(name=kinds['role'])
