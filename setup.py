@@ -503,7 +503,11 @@ def setup_skillstats(yaml_file):
                     kinds[key] = defskill[key]
 
             if type(kinds['range']) is str:
-                minimum, maximum = (int(number) for number in kinds['range'].split('-'))
+                if kinds['range'][0] == '-':
+                    pos_minimum, maximum = (int(number) for number in kinds['range'][1:].split('-'))
+                    minimum = pos_minimum * (-1)
+                else:
+                    minimum, maximum = (int(number) for number in kinds['range'].split('-'))
             elif type(kinds['range']) is int:
                 minimum = kinds['range']
                 maximum = kinds['range']

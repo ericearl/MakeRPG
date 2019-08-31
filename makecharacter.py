@@ -24,7 +24,7 @@ def get_history_starts(tree):
 def spend_points(c, tree, initial=False):
     # spend points from character pointpools
     for cp in CharacterPointpool.objects.filter(character=c):
-        cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type='dependent')
+        cstats = CharacterStatistic.objects.filter(character=c).exclude(statistic__type=DEP)
         cskills = CharacterSkill.objects.filter(character=c)
 
         if initial:
@@ -42,9 +42,14 @@ def spend_points(c, tree, initial=False):
 
             for cskill in cskills:
                 if cp.current > 0 and cskill.skill.pointpool.name == cp.pointpool.name and ( cskill.skill.role.name == 'none' or cskill.skill.role.name == c.role.name ):
-                    for i in range(cskill.current):
-                        cp.current -= cskill.skill.cost * ( (i+1) ** cskill.skill.tier )
-                        cp.save()
+                    if cskill.skill.direction == 'increasing':
+                        for i in range(cskill.current):
+                            cp.current -= cskill.skill.cost * ( (i+1) ** cskill.skill.tier )
+                            cp.save()
+                    elif cskill.skill.direction == 'decreasing':
+                        for i in range(cskill.skill.maximum - cskill.current):
+                            cp.current -= cskill.skill.cost * ( (i+1) ** cskill.skill.tier )
+                            cp.save()
 
         # roll all character statistics and skills until their sum is "points"
         choosy = []
@@ -112,20 +117,81 @@ def spend_points(c, tree, initial=False):
                         cp.save()
 
 
+def modify(c, tree, modifier):
+    for being_modified in tree['modifiers'][modifier]:
+        for modifier_key in tree['modifiers'][modifier][being_modified]:
+            for modifier_lookup in tree['modifiers'][modifier][being_modified][modifier_key]:
+                if modifier_key == 'stats':
+                    cs = CharacterStatistic.objects.filter(character=c).get(statistic__name=modifier_lookup)
+                elif modifier_key == 'skills':
+                    cs = CharacterSkill.objects.filter(character=c).get(skill__name=modifier_lookup)
+
+                if modifier == 'points':
+                    cx = CharacterPointpool.objects.filter(character=c).get(pointpool__name=being_modified)
+                elif modifier == 'stats':
+                    cx = CharacterStatistic.objects.filter(character=c).get(statistic__name=being_modified)
+                elif modifier == 'skills':
+                    cx = CharacterSkill.objects.filter(character=c).get(skill__name=being_modified)
+
+                lookup = tree['modifiers'][modifier][being_modified][modifier_key][modifier_lookup]
+
+                possible_rolls = []
+                # a dictionary of roll value lists whose keys are roll strings
+                roll_dict = {}
+                for element in lookup.keys():
+                    roll_str = str(element)
+
+                    if '-' not in roll_str and ',' not in roll_str:
+                        # a single value
+                        values = int(roll_str)
+                        roll_dict[roll_str] = [values]
+                        possible_rolls.append(values)
+                    elif ',' in roll_str:
+                        # multiple values
+                        for partial in roll_str.split(','):
+                            if '-' in partial:
+                                # a span of comma-separated values
+                                minimum,maximum = (int(number) for number in partial.split('-'))
+                                values = list(range(minimum,maximum+1))
+                                roll_dict[roll_str] = values
+                                possible_rolls += values
+                            else:
+                                # a single comma-separated value
+                                values = int(partial)
+                                roll_dict[roll_str] = [values]
+                                possible_rolls.append(values)
+                    elif '-' in roll_str:
+                        # a span of values
+                        minimum,maximum = (int(number) for number in roll_str.split('-'))
+                        values = list(range(minimum,maximum+1))
+                        roll_dict[roll_str] = values
+                        possible_rolls += values
+
+                for key in lookup.keys():
+                    if cs.current in roll_dict[str(key)]:
+                        outcome = lookup[key]
+                        cx.current += outcome
+                        cx.save()
+                        break
+
+
 def roll(c, tree):
     # initialize all character statistics
-    for stat in Statistic.objects.all():
-        if stat.type != 'dependent':
-            cstat = CharacterStatistic()
-            cstat.character = c
-            cstat.statistic = stat
+    for stat_name in tree['stats'].keys():
+        stat = Statistic.objects.get(name=stat_name)
+        cstat = CharacterStatistic()
+        cstat.character = c
+        cstat.statistic = stat
 
+        if stat.type == IND:
             if stat.direction == 'increasing':
                 cstat.current = stat.minimum
             elif stat.direction == 'decreasing':
                 cstat.current = stat.maximum
+        elif stat.type == DEP:
+            cstat.current = tree['stats'][str(stat.name)]['set']
 
-            cstat.save()
+        cstat.save()
 
     # initialize all character skills
     for skill in Skill.objects.all():
@@ -151,56 +217,17 @@ def roll(c, tree):
 
     spend_points(c, tree, initial=True)
 
-    if 'modifiers' in tree and 'points' in tree['modifiers']:
-        for pointpool in tree['modifiers']['points']:
-            for modifier_key in tree['modifiers']['points'][pointpool]:
-                for modifier_lookup in tree['modifiers']['points'][pointpool][modifier_key]:
-                    if modifier_key == 'stats':
-                        cstat = CharacterStatistic.objects.filter(character=c).get(statistic__name=modifier_lookup)
-                        cp = CharacterPointpool.objects.filter(character=c).get(pointpool__name=pointpool)
-                        lookup = tree['modifiers']['points'][pointpool][modifier_key][modifier_lookup]
+    if 'modifiers' in tree:
 
-                        possible_rolls = []
-                        # a dictionary of roll value lists whose keys are roll strings
-                        roll_dict = {}
-                        for element in lookup.keys():
-                            roll_str = str(element)
+        if 'points' in tree['modifiers']:
+            modify(c, tree, 'points')
+            spend_points(c, tree)
 
-                            if '-' not in roll_str and ',' not in roll_str:
-                                # a single value
-                                values = int(roll_str)
-                                roll_dict[roll_str] = [values]
-                                possible_rolls.append(values)
-                            elif ',' in roll_str:
-                                # multiple values
-                                for partial in roll_str.split(','):
-                                    if '-' in partial:
-                                        # a span of comma-separated values
-                                        minimum,maximum = (int(number) for number in partial.split('-'))
-                                        values = list(range(minimum,maximum+1))
-                                        roll_dict[roll_str] = values
-                                        possible_rolls += values
-                                    else:
-                                        # a single comma-separated value
-                                        values = int(partial)
-                                        roll_dict[roll_str] = [values]
-                                        possible_rolls.append(values)
-                            elif '-' in roll_str:
-                                # a span of values
-                                minimum,maximum = (int(number) for number in roll_str.split('-'))
-                                values = list(range(minimum,maximum+1))
-                                roll_dict[roll_str] = values
-                                possible_rolls += values
+        if 'stats' in tree['modifiers']:
+            modify(c, tree, 'stats')
 
-                        for key in lookup.keys():
-                            if cstat.current in roll_dict[str(key)]:
-                                outcome = lookup[key]
-                                break
-
-                        cp.current += outcome
-                        cp.save()
-
-    spend_points(c, tree)
+        if 'skills' in tree['modifiers']:
+            modify(c, tree, 'skills')
 
 
 if __name__ == '__main__':
