@@ -170,7 +170,7 @@ class CharacterStatistic(models.Model):
     current = models.IntegerField(blank=True)
 
     def __str__(self):
-        return self.statistic.name + ': ' + str(self.current)
+        return self.statistic.name + ' (' + str(self.statistic.cost) + '): ' + str(self.current)
 
 
 class CharacterSkill(models.Model):
@@ -180,8 +180,8 @@ class CharacterSkill(models.Model):
 
     def __str__(self):
         if self.skill.statistic:
-            return '[' + self.skill.statistic.name + '] ' + self.skill.name + ': ' + str(self.current)
+            return '[' + self.skill.statistic.name + '] ' + self.skill.name + ' (' + str(self.skill.cost) + '): ' + str(self.current)
         elif self.skill.role:
-            return '[' + self.skill.role.name + '] ' + self.skill.name + ': ' + str(self.current)
+            return '[' + self.skill.role.name + '] ' + self.skill.name + ' (' + str(self.skill.cost) + '): ' + str(self.current)
         else:
-            return self.skill.name + ': ' + str(self.current)
+            return self.skill.name + ' (' + str(self.skill.cost) + '): ' + str(self.current)
