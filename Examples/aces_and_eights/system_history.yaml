@@ -373,6 +373,7 @@ Sibling status (city):
         58-66: Died from accidental causes
         67-100:
             next: Living sibling
+    reroll: Sibling sex
 Living sibling:
     dice: 1d100
     roll:

@@ -215,6 +215,26 @@ TIERS = {
 #     return parse(tree, '<modifiers> <' + parent + '>', ' < ' + parent + ' > ' + line)
 
 
+def parse_dice(dice_str):
+    search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *([0-9]*)', dice_str)
+    if search.group(1) == None and search.group(2) == None:
+        print('ERROR: Invalid dice (' + dice_str + ') for event ' + event)
+        error_flag = True
+
+    quantity = int(search.group(1))
+    sides = int(search.group(2))
+    if search.group(3) == None:
+        offset = 0
+    else:
+        offset = int(search.group(3)+search.group(4))
+
+    dice_min = quantity + offset
+    dice_max = quantity * sides + offset
+    dice_span = list(range(dice_min, dice_max+1))
+
+    return dice_span
+
+
 def validate_skillstats(yaml_file):
     print('Validating Skills & Stats YAML: ' + yaml_file)
 
@@ -336,21 +356,7 @@ def validate_history(yaml_file):
             error_flag = True
 
         dice = event_dict['dice']
-        search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *([0-9]*)', dice)
-        if search.group(1) == None and search.group(2) == None:
-            print('ERROR: Invalid dice (' + dice + ') for event ' + event)
-            error_flag = True
-
-        quantity = int(search.group(1))
-        sides = int(search.group(2))
-        if search.group(3) == None:
-            offset = 0
-        else:
-            offset = int(search.group(3)+search.group(4))
-
-        dice_min = quantity + offset
-        dice_max = quantity * sides + offset
-        dice_span = list(range(dice_min, dice_max+1))
+        dice_span = parse_dice(dice)
 
         rolls = event_dict['roll']
 
@@ -473,6 +479,11 @@ def setup_skillstats(yaml_file):
     r = Role()
     r.name = 'none'
     r.save()
+
+    p = Pointpool()
+    p.name = 'roll'
+    p.points = 0
+    p.save()
 
     if 'roles' in tree:
         for role in tree['roles'].keys():
@@ -708,8 +719,8 @@ def setup_history(yaml_file):
 
 
 if __name__ == '__main__':
-    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
-    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
+    skillstats_yaml = 'Examples/aces_and_eights/system_stats_skills.yaml'
+    history_yaml = 'Examples/aces_and_eights/system_history.yaml'
 
     # valid_skillstats = validate_skillstats(skillstats_yaml)
     valid_history = validate_history(history_yaml)

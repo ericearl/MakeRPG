@@ -1,5 +1,6 @@
 import django, os, yaml, random, queue, time
 from django.db.models import Sum
+from setup import parse_dice
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MakeRPG.settings")
 django.setup()
@@ -184,6 +185,8 @@ def roll(c, tree):
         cstat.statistic = stat
 
         if stat.type == IND:
+            if tree['stats'][str(stat.name)]['points'] == 'roll':
+                cstat.current = random.choice(parse_dice(tree['stats'][str(stat.name)]['set']))
             if stat.direction == 'increasing':
                 cstat.current = stat.minimum
             elif stat.direction == 'decreasing':
@@ -234,8 +237,8 @@ if __name__ == '__main__':
     # character count to make per run
     character_count = 5
 
-    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
-    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
+    skillstats_yaml = 'Examples/aces_and_eights/system_stats_skills.yaml'
+    history_yaml = 'Examples/aces_and_eights/system_history.yaml'
 
     # needs error handling
     with open(history_yaml, 'r') as yamlfile:
