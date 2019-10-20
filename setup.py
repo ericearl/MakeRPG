@@ -216,14 +216,15 @@ TIERS = {
 
 
 def parse_dice(dice_str):
-    search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *([0-9]*)', dice_str)
+    print(dice_str)
+    search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *(stat|[0-9]*)', dice_str)
     if search.group(1) == None and search.group(2) == None:
         print('ERROR: Invalid dice (' + dice_str + ') for event ' + event)
-        error_flag = True
+        # error_flag = True
 
     quantity = int(search.group(1))
     sides = int(search.group(2))
-    if search.group(3) == None:
+    if search.group(3) == None or search.group(4) == 'stat':
         offset = 0
     else:
         offset = int(search.group(3)+search.group(4))
@@ -232,7 +233,7 @@ def parse_dice(dice_str):
     dice_max = quantity * sides + offset
     dice_span = list(range(dice_min, dice_max+1))
 
-    return dice_span
+    return quantity, sides, offset, dice_span
 
 
 def validate_skillstats(yaml_file):
@@ -356,7 +357,7 @@ def validate_history(yaml_file):
             error_flag = True
 
         dice = event_dict['dice']
-        dice_span = parse_dice(dice)
+        quantity, sides, offset, dice_span = parse_dice(dice)
 
         rolls = event_dict['roll']
 
@@ -471,6 +472,30 @@ def validate_history(yaml_file):
         return True
 
 
+def save_skillstat(s,
+                    name,
+                    minimum,
+                    maximum,
+                    direction,
+                    cost,
+                    purchase,
+                    tier,
+                    s_type,
+                    role,
+                    pointpool):
+    s.name = name
+    s.minimum = minimum
+    s.maximum = maximum
+    s.direction = direction
+    s.cost = cost
+    s.purchase = purchase
+    s.tier = tier
+    s.type = s_type
+    s.role = role
+    s.pointpool = pointpool
+    s.save()
+
+
 def setup_skillstats(yaml_file):
     # needs error handling
     with open(yaml_file,'r') as yamlfile:
@@ -523,24 +548,89 @@ def setup_skillstats(yaml_file):
                 minimum = kinds['range']
                 maximum = kinds['range']
 
+            if type(kinds['purchase']) == int:
+                dice_str = '0d0 + ' + str(kinds['purchase'])
+            elif type(kinds['purchase']) == str:
+                dice_str = kinds['purchase']
+
+            quantity, sides, offset, dice_span = parse_dice(dice_str)
+
+            dice = Dice.objects.filter(quantity=quantity).filter(sides=sides).filter(offset=offset)
+            if dice:
+                d = dice.get()
+            else:
+                d = Dice()
+                d.string = dice_str
+                d.quantity = quantity
+                d.sides = sides
+                d.offset = offset
+                d.save()
+
             if flavor == 'stats':
                 s = Statistic()
+                save_skillstat(s, 
+                    name=kind,
+                    minimum=minimum,
+                    maximum=maximum,
+                    direction=kinds['direction'],
+                    cost=kinds['cost'],
+                    purchase=d,
+                    tier=TIERS[kinds['tier']],
+                    s_type=TYPES[kinds['type']],
+                    role=Role.objects.get(name=kinds['role']),
+                    pointpool=Pointpool.objects.get(name=kinds['points']))
             elif flavor == 'skills':
-                s = Skill()
-                if 'stat' in tree[flavor][kind]:
-                    s.statistic = Statistic.objects.get(name=tree[flavor][kind]['stat'])
+                stat_str = tree[flavor][kind]['stat']
+                if 'stat' in dice_str:
+                    if (stat_str[:4] == 'min(' or stat_str[:4] == 'max(') and stat_str[-1] == ')':
+                        for stat in stat_str[4:-1].split('|'):
+                            skillstat = Statistic.objects.get(name=stat)
+                            s = Skill()
+                            s.statistic = skillstat
+                            save_skillstat(s, 
+                                name=kind,
+                                minimum=minimum,
+                                maximum=maximum,
+                                direction=kinds['direction'],
+                                cost=kinds['cost'],
+                                purchase=d,
+                                tier=TIERS[kinds['tier']],
+                                s_type=TYPES[kinds['type']],
+                                role=Role.objects.get(name=kinds['role']),
+                                pointpool=Pointpool.objects.get(name=kinds['points']))
+                    else:
+                        skillstat = Statistic.objects.get(name=stat_str)
+                        if 'stat' in tree[flavor][kind]:
+                            s = Skill()
+                            s.statistic = skillstat
+                            save_skillstat(s, 
+                                name=kind,
+                                minimum=minimum,
+                                maximum=maximum,
+                                direction=kinds['direction'],
+                                cost=kinds['cost'],
+                                purchase=d,
+                                tier=TIERS[kinds['tier']],
+                                s_type=TYPES[kinds['type']],
+                                role=Role.objects.get(name=kinds['role']),
+                                pointpool=Pointpool.objects.get(name=kinds['points']))
 
-            s.name = kind
-            s.minimum = minimum
-            s.maximum = maximum
-            s.direction = kinds['direction']
-            s.cost = kinds['cost']
-            s.purchase = kinds['purchase']
-            s.tier = TIERS[kinds['tier']]
-            s.type = TYPES[kinds['type']]
-            s.role = Role.objects.get(name=kinds['role'])
-            s.pointpool = Pointpool.objects.get(name=kinds['points'])
-            s.save()
+                else:
+                    skillstat = Statistic.objects.get(name=stat_str)
+                    if 'stat' in tree[flavor][kind]:
+                        s = Skill()
+                        s.statistic = skillstat
+                        save_skillstat(s, 
+                            name=kind,
+                            minimum=minimum,
+                            maximum=maximum,
+                            direction=kinds['direction'],
+                            cost=kinds['cost'],
+                            purchase=d,
+                            tier=TIERS[kinds['tier']],
+                            s_type=TYPES[kinds['type']],
+                            role=Role.objects.get(name=kinds['role']),
+                            pointpool=Pointpool.objects.get(name=kinds['points']))
 
 
 def setup_history(yaml_file):

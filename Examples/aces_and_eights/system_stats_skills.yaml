@@ -132,7 +132,7 @@ skills:
         stat: min(WISDOM|CHARISMA)
     Animal Herding:
         purchase: 1d10 + stat
-        stat: 
+        stat: WISDOM
     Animal Husbandry:
         set: 100 - stat
         purchase: 1d10 + stat

@@ -81,14 +81,14 @@ def spend_points(c, tree, initial=False):
                     cost = cstat.statistic.cost * ( (cstat.current+1) ** cstat.statistic.tier )
                     if cp.current >= cost:
                         cp.current -= cost
-                        cstat.current += cstat.statistic.purchase
+                        cstat.current += cstat.statistic.purchase.roll()
                         cstat.save()
                         cp.save()
                 elif cstat.statistic.direction == 'decreasing' and cstat.current > cstat.statistic.minimum:
                     cost = cstat.statistic.cost * ( (cstat.statistic.maximum - cstat.current + 1) ** cstat.statistic.tier )
                     if cp.current >= cost:
                         cp.current -= cost
-                        cstat.current -= cstat.statistic.purchase
+                        cstat.current -= cstat.statistic.purchase.roll()
                         cstat.save()
                         cp.save()
 
@@ -106,14 +106,14 @@ def spend_points(c, tree, initial=False):
                     cost = cskill.skill.cost * ( (cskill.current+1) ** cskill.skill.tier )
                     if cp.current >= cost:
                         cp.current -= cost
-                        cskill.current += cskill.skill.purchase
+                        cskill.current += cskill.skill.purchase.roll()
                         cskill.save()
                         cp.save()
                 elif cskill.skill.direction == 'decreasing' and cskill.current > cskill.skill.minimum:
                     cost = cskill.skill.cost * ( (cskill.skill.maximum - cskill.current + 1) ** cskill.skill.tier )
                     if cp.current >= cost:
                         cp.current -= cost
-                        cskill.current -= cskill.skill.purchase
+                        cskill.current -= cskill.skill.purchase.roll()
                         cskill.save()
                         cp.save()
 
@@ -186,7 +186,8 @@ def roll(c, tree):
 
         if stat.type == IND:
             if tree['stats'][str(stat.name)]['points'] == 'roll':
-                cstat.current = random.choice(parse_dice(tree['stats'][str(stat.name)]['set']))
+                quantity, sides, offset, dice_span = parse_dice(tree['stats'][str(stat.name)]['set'])
+                cstat.current = random.choice(dice_span)
             if stat.direction == 'increasing':
                 cstat.current = stat.minimum
             elif stat.direction == 'decreasing':

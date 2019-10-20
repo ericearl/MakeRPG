@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
+import random
 
 INC = 'I'
 DEC = 'D'
@@ -42,6 +43,13 @@ class Dice(models.Model):
             return str(self.quantity) + 'd' + str(self.sides)
         elif self.offset > 0:
             return str(self.quantity) + 'd' + str(self.sides) + ' + ' + str(self.offset)
+    
+    def roll(self):
+        total = 0
+        for die in range(self.quantity):
+            total += random.choice(range(self.sides)) + 1
+
+        return total + self.offset
 
 
 class Event(models.Model):
@@ -99,9 +107,9 @@ class Statistic(models.Model):
     maximum = models.IntegerField(null=True)
     direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
-    purchase = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=IND)
+    purchase = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
 
@@ -110,16 +118,16 @@ class Statistic(models.Model):
 
 
 class Skill(models.Model):
-    name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
+    name = models.CharField(default='0', max_length=50, validators=[MinLengthValidator(1)])
     minimum = models.IntegerField()
     maximum = models.IntegerField()
     direction = models.CharField(max_length=1, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
-    purchase = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
-    statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
+    purchase = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
+    statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         if self.statistic:
