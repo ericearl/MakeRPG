@@ -88,7 +88,7 @@ class NPCEvent(models.Model):
 
 class Pointpool(models.Model):
     name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
-    points = models.IntegerField(default=0)
+    # points = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name + ' (' + str(self.points) + ')'
@@ -167,9 +167,10 @@ class CharacterPointpool(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
     current = models.IntegerField(blank=True)
+    total = models.IntegerField(blank=True)
 
     def __str__(self):
-        return self.pointpool.name + ': ' + str(self.current)
+        return self.pointpool.name + ': ' + str(self.current) + '/' + str(self.total)
 
 
 class CharacterStatistic(models.Model):

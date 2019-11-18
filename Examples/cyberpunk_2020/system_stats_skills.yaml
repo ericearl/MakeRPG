@@ -47,7 +47,7 @@ defaults:
 
 points:
     Character:
-        set: 50
+        set: 9d10
     Career:
         set: 40
     Pickup:
