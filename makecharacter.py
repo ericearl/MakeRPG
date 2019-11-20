@@ -280,7 +280,7 @@ def roll(c, tree):
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 3
+    character_count = 30
 
     skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
     history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'

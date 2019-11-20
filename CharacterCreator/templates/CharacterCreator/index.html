@@ -6,19 +6,6 @@
             {% for c in character_list %}
                 {% if c.role == r %}
                     <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
-                    {% if npc_list %}
-                        <ul>
-                        {% for npc in npc_list %}
-                            {% for h in npc_history %}
-                                {% if h.npc == npc and h.character == c %}
-                                    {% ifchanged npc %}
-                                        <li><a href="{% url 'npc' npc.id %}">{{ npc }}</a></li>
-                                    {% endifchanged %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
                 {% endif %}
             {% endfor %}
             </ul>
@@ -27,19 +14,6 @@
     {% else %}
         {% for c in character_list %}
             <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
-            {% if npc_list %}
-                <ul>
-                {% for npc in npc_list %}
-                    {% for h in npc_history %}
-                        {% if h.npc == npc and h.character == c %}
-                            {% ifchanged npc %}
-                                <li><a href="{% url 'npc' npc.id %}">{{ npc }}</a></li>
-                            {% endifchanged %}
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-                </ul>
-            {% endif %}
         {% endfor %}
         </ul>
     {% endif %}
