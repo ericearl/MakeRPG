@@ -12,6 +12,28 @@ def random_name(firstnames,lastnames):
     return ' '.join([ firstnames[random.randint(0, len(firstnames))] , lastnames[random.randint(0, len(lastnames))] ])
 
 
+def expand_skillstats(tree):
+    defstat = tree['defaults']['stats']
+    defskill = tree['defaults']['skills']
+
+    for flavor in ['stats','skills']:
+        for kind in tree[flavor].keys():
+            definition = tree[flavor][kind]
+            kinds = {}
+
+            for key in ['range', 'direction', 'cost', 'purchase', 'tier', 'type', 'role', 'points','set']:
+                if type(definition) is dict and key in definition:
+                    kinds[key] = definition[key]
+                elif flavor == 'stats':
+                    kinds[key] = defstat[key]
+                elif flavor == 'skills':
+                    kinds[key] = defskill[key]
+
+            tree[flavor][kind] = kinds
+
+    return tree
+
+
 def get_history_starts(tree):
     if 'START' in tree and 'NPC' in tree:
         history_tree = tree
@@ -185,15 +207,15 @@ def roll(c, tree):
         cstat.statistic = stat
 
         if stat.type == IND:
-            if tree['stats'][str(stat.name)]['points'] == 'roll':
-                quantity, sides, offset, dice_span = parse_dice(tree['stats'][str(stat.name)]['set'])
+            if tree['stats'][stat_name]['points'] == 'roll':
+                quantity, sides, offset, dice_span = parse_dice(tree['stats'][stat_name]['set'])
                 cstat.current = random.choice(dice_span)
             if stat.direction == 'increasing':
                 cstat.current = stat.minimum
             elif stat.direction == 'decreasing':
                 cstat.current = stat.maximum
         elif stat.type == DEP:
-            cstat.current = tree['stats'][str(stat.name)]['set']
+            cstat.current = tree['stats'][stat_name]['set']
 
         cstat.save()
 
@@ -213,11 +235,33 @@ def roll(c, tree):
 
     # initialize all character pointpools
     for p in Pointpool.objects.all():
-        cpoints = CharacterPointpool()
-        cpoints.character = c
-        cpoints.pointpool = p
-        cpoints.current = p.points
-        cpoints.save()
+        if p.name != 'roll':
+            cpoints = CharacterPointpool()
+            cpoints.character = c
+            cpoints.pointpool = p
+
+            points_set = tree['points'][p.name]['set']
+            if type(points_set) is int:
+                cpoints.current = points_set
+                cpoints.total = points_set
+            elif type(points_set) is str:
+                quantity, sides, offset, dice_span = parse_dice(points_set)
+                dice = Dice.objects.filter(quantity=quantity).filter(sides=sides).filter(offset=offset)
+
+                if dice:
+                    d = dice.get()
+                else:
+                    d = Dice()
+                    d.string = points_set
+                    d.quantity = quantity
+                    d.sides = sides
+                    d.offset = offset
+                    d.save()
+
+                cpoints.current = d.roll()
+                cpoints.total = cpoints.current
+
+            cpoints.save()
 
     spend_points(c, tree, initial=True)
 
@@ -236,17 +280,17 @@ def roll(c, tree):
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 5
+    character_count = 3
 
-    skillstats_yaml = 'Examples/aces_and_eights/system_stats_skills.yaml'
-    history_yaml = 'Examples/aces_and_eights/system_history.yaml'
+    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
+    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
 
     # needs error handling
     with open(history_yaml, 'r') as yamlfile:
         history = yaml.load(yamlfile)
 
     with open(skillstats_yaml,'r') as yamlfile:
-        skillstats = yaml.load(yamlfile)
+        skillstats = expand_skillstats( yaml.load(yamlfile) )
 
     history_start, npc_start = get_history_starts(history)
 

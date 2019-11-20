@@ -88,10 +88,9 @@ class NPCEvent(models.Model):
 
 class Pointpool(models.Model):
     name = models.CharField(default='0', unique=True, max_length=50, validators=[MinLengthValidator(1)])
-    # points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name + ' (' + str(self.points) + ')'
+        return self.name
 
 
 class Role(models.Model):

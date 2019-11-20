@@ -216,11 +216,9 @@ TIERS = {
 
 
 def parse_dice(dice_str):
-    print(dice_str)
     search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *(stat|[0-9]*)', dice_str)
     if search.group(1) == None and search.group(2) == None:
         print('ERROR: Invalid dice (' + dice_str + ') for event ' + event)
-        # error_flag = True
 
     quantity = int(search.group(1))
     sides = int(search.group(2))
@@ -580,8 +578,8 @@ def setup_skillstats(yaml_file):
                     role=Role.objects.get(name=kinds['role']),
                     pointpool=Pointpool.objects.get(name=kinds['points']))
             elif flavor == 'skills':
-                stat_str = tree[flavor][kind]['stat']
                 if 'stat' in dice_str:
+                    stat_str = tree[flavor][kind]['stat']
                     if (stat_str[:4] == 'min(' or stat_str[:4] == 'max(') and stat_str[-1] == ')':
                         for stat in stat_str[4:-1].split('|'):
                             skillstat = Statistic.objects.get(name=stat)
@@ -616,21 +614,21 @@ def setup_skillstats(yaml_file):
                                 pointpool=Pointpool.objects.get(name=kinds['points']))
 
                 else:
-                    skillstat = Statistic.objects.get(name=stat_str)
+                    s = Skill()
                     if 'stat' in tree[flavor][kind]:
-                        s = Skill()
+                        skillstat = Statistic.objects.get(name=tree[flavor][kind]['stat'])
                         s.statistic = skillstat
-                        save_skillstat(s, 
-                            name=kind,
-                            minimum=minimum,
-                            maximum=maximum,
-                            direction=kinds['direction'],
-                            cost=kinds['cost'],
-                            purchase=d,
-                            tier=TIERS[kinds['tier']],
-                            s_type=TYPES[kinds['type']],
-                            role=Role.objects.get(name=kinds['role']),
-                            pointpool=Pointpool.objects.get(name=kinds['points']))
+                    save_skillstat(s, 
+                        name=kind,
+                        minimum=minimum,
+                        maximum=maximum,
+                        direction=kinds['direction'],
+                        cost=kinds['cost'],
+                        purchase=d,
+                        tier=TIERS[kinds['tier']],
+                        s_type=TYPES[kinds['type']],
+                        role=Role.objects.get(name=kinds['role']),
+                        pointpool=Pointpool.objects.get(name=kinds['points']))
 
 
 def setup_history(yaml_file):
@@ -809,8 +807,8 @@ def setup_history(yaml_file):
 
 
 if __name__ == '__main__':
-    skillstats_yaml = 'Examples/aces_and_eights/system_stats_skills.yaml'
-    history_yaml = 'Examples/aces_and_eights/system_history.yaml'
+    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
+    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
 
     # valid_skillstats = validate_skillstats(skillstats_yaml)
     valid_history = validate_history(history_yaml)
