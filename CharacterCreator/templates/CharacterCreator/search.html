@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+
+{% block heading %}
+
+    <title>CharacterCreator</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <h1 class="mt-2">MakeRPG Character Search</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <h2 class="mt-2">Role (choose one or more)</h2>
+        <div class="row">
+            {{ roleform.as_p }}
+        </div>
+
+        <h2 class="mt-2">Points (choose minimum)</h2>
+        <div class="row">
+            {% for point in points %}
+                <div class="col">
+                    {{ point }}
+                    {{ pointform.as_p }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="mt-2">Statistics (choose minimum)</h2>
+        <div class="row">
+            {% for stat in stats %}
+            <div class="col">
+                    {{ stat }}
+                    {{ statform.as_p }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="mt-2">Skills (choose minimum)</h2>
+        <div class="form-group row">
+            {% for skill in skills %}
+            <div class="col">
+                    {{ skill }}
+                    {{ skillform.as_p }}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Filter Results</button>
+    </form>
+
+    <h2 class="mt-2">Results</h2>
+
+    <div class="row">
+        <ul>
+            {% for c in characters %}
+            <li>
+                <a href="{% url 'character' c.id %}">{{ c }}</a>
+            </li>
+            {% endfor %}
+        <ul>
+    </div>
+
+{% endblock %}

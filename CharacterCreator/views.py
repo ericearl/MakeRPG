@@ -1,17 +1,27 @@
-# from django.http import Http404
 from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import HttpResponseRedirect
-# from django.template import loader
+from django.views.generic import ListView
+from django_tables2 import SingleTableView
+from django.db.models import Q, Max
+
 from .models import *
 from .forms import *
 
 
+# class CharacterTableView(SingleTableView):
+#     model = Character
+#     table_class = CharacterTable
+#     template_name = 'CharacterCreator/results.html'
+
+
 def index(request):
-    npc_list = Character.objects.filter(name__contains='[NPC').order_by('role__name', 'name')
-    npc_history_list = NPCEventRoll.objects.all()
-    character_list = Character.objects.all().exclude(name__contains='[NPC').order_by('role__name', 'name')
+    character_list = Character.objects.exclude(name__contains='[NPC').order_by('role__name', 'name')
     role_list = Role.objects.all().exclude(name='none').order_by('name')
-    return render(request, 'CharacterCreator/index.html', {'character_list': character_list, 'npc_list': npc_list, 'npc_history': npc_history_list, 'role_list': role_list})
+
+    return render(request, 'CharacterCreator/index.html',
+        {'character_list': character_list,
+        'role_list': role_list}
+        )
 
 
 def character(request, character_id):
@@ -30,7 +40,86 @@ def npc(request, npc_id):
     skill_list = get_list_or_404(CharacterSkill, character=npc_id)
     point_list = get_list_or_404(CharacterPointpool, character=npc_id)
     history_list = get_list_or_404(NPCEventRoll, npc=npc_id)
-    return render(request, 'CharacterCreator/npc.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'points': point_list, 'history': history_list })
+    return render(request, 'CharacterCreator/npc.html', {
+        'character': character,
+        'stats': stat_list,
+        'skills': skill_list,
+        'points': point_list,
+        'history': history_list
+        })
+
+
+def search(request):
+    characters = Character.objects.exclude(name__contains='[NPC')
+    point_list = get_list_or_404(Pointpool.objects.exclude(name='roll'))
+    stat_list = get_list_or_404(Statistic.objects.exclude(type='D'))
+    skill_list = get_list_or_404(Skill.objects.filter(role__name='none'))
+
+    roleform = RoleForm()
+    pointform = PointForm()
+    statform = StatForm()
+    skillform = SkillForm()
+
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        q = request.POST
+
+        roles = q.getlist('role')
+        mins = q.getlist('minimum')
+
+        characters = characters.filter(role__in=roles)
+        for one_char in characters:
+            for idx, val in enumerate(point_list):
+                check = CharacterPointpool.objects.filter(
+                    character__pk=one_char.pk,
+                    pointpool__name=val.name,
+                    total__gte=mins[idx]
+                )
+
+                if not check:
+                    characters = characters.exclude(pk=one_char.pk)
+                    break
+
+            if check:
+                for idx, val in enumerate(stat_list):
+                    check = CharacterStatistic.objects.filter(
+                        character__pk=one_char.pk,
+                        statistic__name=val.name,
+                        current__gte=mins[idx+len(point_list)]
+                    )
+
+                    if not check:
+                        characters = characters.exclude(pk=one_char.pk)
+                        break
+
+            if check:
+                for idx, val in enumerate(skill_list):
+                    check = CharacterSkill.objects.filter(
+                        character__pk=one_char.pk,
+                        skill__name=val.name,
+                        current__gte=mins[idx+len(point_list)+len(stat_list)]
+                    )
+
+                    if not check:
+                        characters = characters.exclude(pk=one_char.pk)
+                        break
+
+        # table = CharacterTableView(characters)
+
+    # # if a GET (or any other method) we'll create a blank form
+    # else:
+    character_list = get_list_or_404(characters)
+
+    return render(request, 'CharacterCreator/search.html', {
+        'characters': character_list,
+        'roleform': roleform,
+        'pointform': pointform,
+        'statform': statform,
+        'skillform': skillform,
+        'stats': stat_list,
+        'skills': skill_list,
+        'points': point_list
+        })
 
 
 def get_default_statistic(request):

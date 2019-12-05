@@ -141,7 +141,10 @@ class Character(models.Model):
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        if self.role and self.role.name != 'none':
+            return '[' + self.role.name + '] ' + self.name
+        else:
+            return self.name
 
 
 class CharacterEventRoll(models.Model):
@@ -165,8 +168,8 @@ class NPCEventRoll(models.Model):
 class CharacterPointpool(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
-    current = models.IntegerField(blank=True)
-    total = models.IntegerField(blank=True)
+    current = models.IntegerField(default=0)
+    total = models.IntegerField(default=0)
 
     def __str__(self):
         return self.pointpool.name + ': ' + str(self.current) + '/' + str(self.total)
@@ -175,7 +178,7 @@ class CharacterPointpool(models.Model):
 class CharacterStatistic(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
-    current = models.IntegerField(blank=True)
+    current = models.IntegerField(default=0)
 
     def __str__(self):
         return self.statistic.name + ' (' + str(self.statistic.cost) + '): ' + str(self.current)
@@ -184,7 +187,7 @@ class CharacterStatistic(models.Model):
 class CharacterSkill(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, null=True, on_delete=models.CASCADE)
-    current = models.IntegerField(blank=True)
+    current = models.IntegerField(default=0)
 
     def __str__(self):
         if self.skill.statistic:

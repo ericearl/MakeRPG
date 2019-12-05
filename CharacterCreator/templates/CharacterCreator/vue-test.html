@@ -1,0 +1,58 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script type='text/javascript'>
+    var characters = {{ character_list | safe }};
+</script>
+
+<div id="app">
+    [[message]]
+
+    <ul>
+        <li v-for="character in characters">
+            <a v-bind:href="character.pk">[[ character.fields.name ]]</a>
+            <button v-on:click="greet(character.fields.name)">hey</button>
+        </li>
+    </ul>
+
+</div>
+
+<!-- {% if character_list %}
+    {% if role_list %}
+        {% for r in role_list %}
+            <li>{{ r }}</li>
+            <ul>
+            {% for c in character_list %}
+                {% if c.role == r %}
+                    <li>
+                        <a href="{% url 'character' c.id %}">{{ c }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endfor %}
+        </ul>
+    {% else %}
+        {% for c in character_list %}
+            <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    <p>No characters are available.</p>
+{% endif %} -->
+
+<script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            characters: characters,
+        },
+        methods: {
+            greet: function(name) {
+                console.log('Hello from ' + name + '!')
+            }
+        }
+    });
+</script>

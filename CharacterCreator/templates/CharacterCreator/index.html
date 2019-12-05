@@ -5,7 +5,9 @@
             <ul>
             {% for c in character_list %}
                 {% if c.role == r %}
-                    <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
+                    <li>
+                        <a href="{% url 'character' c.id %}">{{ c }}</a>
+                    </li>
                 {% endif %}
             {% endfor %}
             </ul>
@@ -13,11 +15,12 @@
         </ul>
     {% else %}
         {% for c in character_list %}
-            <li><a href="{% url 'character' c.id %}">{{ c }}</a></li>
+            <li>
+                <a href="{% url 'character' c.id %}">{{ c }}</a>
+            </li>
         {% endfor %}
         </ul>
     {% endif %}
 {% else %}
     <p>No characters are available.</p>
 {% endif %}
-
