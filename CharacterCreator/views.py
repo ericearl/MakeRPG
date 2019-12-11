@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
-from django_tables2 import SingleTableView
+# from django_tables2 import SingleTableView
 from django.db.models import Q, Max
 
 from .models import *
