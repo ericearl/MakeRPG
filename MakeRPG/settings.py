@@ -122,4 +122,6 @@ STATIC_URL = '/static/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # additional me-added settings
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+}
