@@ -2,3 +2,4 @@ dj-database-url
 Django
 gunicorn
 psycopg2-binary
+PyYAML
