@@ -4,3 +4,4 @@ db.sqlite3*
 CharacterCreator/migrations/*.py
 MakeRPG/settings.py
 db.json
+ignore.txt

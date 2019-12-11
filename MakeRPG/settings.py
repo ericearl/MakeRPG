@@ -11,24 +11,28 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8w&!zj@q*9x6rri@$p9%@g=$0vaiv2d+q@*=@r&#sdbn#pvjnk'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['makerpg.herokuapp.com']
+
+# DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
 
 # Application definition
+
+    # 'django_tables2',
 
 INSTALLED_APPS = [
     'CharacterCreator.apps.CharacterCreatorConfig',
@@ -74,14 +78,6 @@ WSGI_APPLICATION = 'MakeRPG.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -125,3 +121,5 @@ STATIC_URL = '/static/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+# additional me-added settings
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
