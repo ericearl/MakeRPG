@@ -2,4 +2,5 @@ db.sqlite3*
 *.pyc
 .vscode/
 CharacterCreator/migrations/*.py
-
+MakeRPG/settings.py
+db.json
