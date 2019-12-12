@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.search, name='search'),
+    path('', views.search, name='index'),
     # path('search/', views.search, name='search'),
     # # path('results/', views.CharacterTableView.as_view(), name='results'),
     # path('defstat/', views.get_default_statistic, name='get_default_statistic'),
