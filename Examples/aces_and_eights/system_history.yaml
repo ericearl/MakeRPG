@@ -24,7 +24,7 @@ Place of origin/birth:
         88-91: CSA Southeast (FL, Cuba)
         92-99: CSA West (MS, AL, TN)
         100: French Orleans
-    next: Ages 15-25
+    next: Age
 Outside North America:
     dice: 1d20
     roll:
@@ -34,7 +34,7 @@ Outside North America:
         11-12: China
         13-18: Germany
         19-20: Scandinavia
-Ages 15-25:
+Age:
     dice: 1d12
     roll:
         1: Age 15
@@ -413,7 +413,7 @@ Social class:
         100: UUC <Fame+10, Reputation+10, Starting money+20>
 NPC:
     - Place of origin/birth
-    - Ages 15-25
+    - Age
     - Handedness
     - Sex
     - Circumstances of Birth

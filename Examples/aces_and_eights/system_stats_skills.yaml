@@ -7,7 +7,7 @@ defaults:
         cost: 0               # cost per point
         purchase: 0           # result of a purchase
         tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
-        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <
         role: none            # skill is special to a role, and if so what role
         type: independent     # independent (stands alone), dependent (result of something else)
     skills:
@@ -18,7 +18,7 @@ defaults:
         cost: 1               # cost per point
         purchase: 0           # result of a purchase
         tier: multiply        # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
-        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <
         role: none            # skill is special to a role, and if so what role
         type: independent     # independent (stands alone), dependent (result of something else)
 
