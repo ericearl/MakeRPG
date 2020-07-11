@@ -34,25 +34,25 @@ points:
 
 stats:
     STRENGTH:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: 101-2600
     INTELLIGENCE:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: 101-2600
     WISDOM:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: 101-2600
     DEXTERITY:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: 101-2600
     CONSTITUTION:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: 101-2600
     LOOKS:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: 101-2600
     CHARISMA:
-        set: 1d1600 + 300
+        set: 3d6*100 + 1d100
         range: -400-3000
     HIT POINTS:
         set: 1d4 + 20
