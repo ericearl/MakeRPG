@@ -14,7 +14,8 @@ import os
 import dj_database_url
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'yeahwhatever'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,16 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['makerpg.herokuapp.com']
-
-# DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
+ALLOWED_HOSTS = ['makerpg.herokuapp.com', 'localhost']
 
 
 # Application definition
-
-    # 'django_tables2',
 
 INSTALLED_APPS = [
     'CharacterCreator.apps.CharacterCreatorConfig',
@@ -122,6 +119,12 @@ STATIC_URL = '/static/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # additional me-added settings
+# DATABASES = {
+#     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+# }
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'shadowrun',
+    }
 }

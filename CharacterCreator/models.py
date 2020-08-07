@@ -100,10 +100,15 @@ class Role(models.Model):
         return self.name
 
 
+class Archetype(models.Model):
+    name = models.CharField(default='0', unique=True, max_length=500, validators=[MinLengthValidator(1)])
+
+    def __str__(self):
+        return self.name
+
+
 class Statistic(models.Model):
     name = models.CharField(default='0', unique=True, max_length=500, validators=[MinLengthValidator(1)])
-    minimum = models.IntegerField(null=True)
-    maximum = models.IntegerField(null=True)
     direction = models.CharField(max_length=100, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
@@ -113,13 +118,11 @@ class Statistic(models.Model):
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
+        return self.name
 
 
 class Skill(models.Model):
     name = models.CharField(default='0', max_length=500, validators=[MinLengthValidator(1)])
-    minimum = models.IntegerField()
-    maximum = models.IntegerField()
     direction = models.CharField(max_length=100, choices=DIRECTION_CHOICES, default=INC)
     cost = models.IntegerField(default=0)
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
@@ -130,19 +133,25 @@ class Skill(models.Model):
 
     def __str__(self):
         if self.statistic:
-            return '[' + self.statistic.name + '] ' + self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
+            return '[' + self.statistic.name + '] ' + self.name
         elif self.role:
-            return '[' + self.role.name + '] ' + self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
+            return '[' + self.role.name + '] ' + self.name
         else:
-            return self.name + ' (' + str(self.minimum) + '->' + str(self.maximum) + ')'
+            return self.name
+
 
 class Character(models.Model):
     name = models.CharField(default='0', unique=True, max_length=500, validators=[MinLengthValidator(1)])
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
+    archetype = models.ForeignKey(Archetype, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        if self.role and self.role.name != 'none':
+        if self.archetype and self.archetype.name != 'none' and self.role and self.role.name != 'none':
+            return '[' + self.archetype.name + ' ' + self.role.name + '] ' + self.name
+        elif self.role and self.role.name != 'none':
             return '[' + self.role.name + '] ' + self.name
+        elif self.archetype and self.archetype.name != 'none':
+            return '[' + self.archetype.name + '] ' + self.name
         else:
             return self.name
 
@@ -179,6 +188,8 @@ class CharacterStatistic(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
     current = models.IntegerField(default=0)
+    minimum = models.IntegerField(null=True)
+    maximum = models.IntegerField(null=True)
 
     def __str__(self):
         return self.statistic.name + ' (' + str(self.statistic.cost) + '): ' + str(self.current)
@@ -188,6 +199,8 @@ class CharacterSkill(models.Model):
     character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, null=True, on_delete=models.CASCADE)
     current = models.IntegerField(default=0)
+    minimum = models.IntegerField(null=True)
+    maximum = models.IntegerField(null=True)
 
     def __str__(self):
         if self.skill.statistic:

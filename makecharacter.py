@@ -36,12 +36,13 @@ def expand_skillstats(tree):
 
 def get_history_starts(tree):
     if 'START' in tree and 'NPC' in tree:
-        history_tree = tree
+        return (tree['START'], tree['NPC'][0])
+    elif 'START' in tree and 'NPC' not in tree:
+        return (tree['START'], None)
     else:
         print('History YAML file is missing either START or NPC keywords.')
         return
 
-    return (history_tree['START'], history_tree['NPC'][0])
 
 
 def spend_points(c, tree, initial=False):
@@ -201,10 +202,21 @@ def modify(c, tree, modifier):
 def roll(c, tree):
     # initialize all character statistics
     for stat_name in tree['stats'].keys():
+        stat_range = tree['stats'][stat_name]['range']
         stat = Statistic.objects.get(name=stat_name)
         cstat = CharacterStatistic()
         cstat.character = c
         cstat.statistic = stat
+
+        if type(stat_range) is str:
+            if stat_range[0] == '-':
+                pos_minimum, cstat.maximum = (int(number) for number in stat_range[1:].split('-'))
+                cstat.minimum = pos_minimum * (-1)
+            else:
+                cstat.minimum, cstat.maximum = (int(number) for number in stat_range.split('-'))
+        elif type(stat_range) is int:
+            cstat.minimum = stat_range
+            cstat.maximum = stat_range
 
         if stat.type == IND:
             if tree['stats'][stat_name]['points'] == 'roll':
@@ -222,9 +234,20 @@ def roll(c, tree):
     # initialize all character skills
     for skill in Skill.objects.all():
         if skill.role.name == 'none' or skill.role.name == c.role.name:
+            skill_range = tree['skills'][skill.name]['range']
             cskill = CharacterSkill()
             cskill.character = c
             cskill.skill = skill
+
+            if type(skill_range) is str:
+                if skill_range[0] == '-':
+                    pos_minimum, cskill.maximum = (int(number) for number in skill_range[1:].split('-'))
+                    cskill.minimum = pos_minimum * (-1)
+                else:
+                    cskill.minimum, cskill.maximum = (int(number) for number in skill_range.split('-'))
+            elif type(skill_range) is int:
+                cskill.minimum = skill_range
+                cskill.maximum = skill_range
 
             if skill.direction == 'increasing':
                 cskill.current = skill.minimum
@@ -280,17 +303,15 @@ def roll(c, tree):
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 1000
-
-    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
-    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
+    character_count = 3
+    system_yaml = 'Examples/shadowrun_5e/system.yaml'
 
     # needs error handling
-    with open(history_yaml, 'r') as yamlfile:
-        history = yaml.load(yamlfile)
+    with open(system_yaml, 'r') as yamlfile:
+        tree = yaml.load(yamlfile)
 
-    with open(skillstats_yaml,'r') as yamlfile:
-        skillstats = expand_skillstats( yaml.load(yamlfile) )
+    history = tree['history']
+    skillstats = expand_skillstats( tree )
 
     history_start, npc_start = get_history_starts(history)
 
@@ -312,7 +333,10 @@ if __name__ == '__main__':
             c.role = random.choice(all_roles)
         c.save()
 
+        # BIG IMPORTANT DEAL FOR SKILLS AND STATS
+        # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
         roll(c, skillstats)
+        # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
         # roll character history
         current = Event.objects.get(name=history_start)
@@ -331,6 +355,23 @@ if __name__ == '__main__':
             cer.character = c
             cer.eventroll = er
             cer.save()
+
+            ename = er.mainevent.name
+            eroll = er.roll
+
+            rolly = history[ename]['roll'][eroll]
+            if type(rolly) is dict:
+                for key in rolly:
+                    if key == 'archetypes':
+                        c.archetype = Archetype.objects.filter(name=rolly['archetypes'])
+                    elif key == 'points':
+                        rolly[key]
+                    elif key == 'currency':
+                        rolly[key]
+                    elif key == 'stats':
+                        rolly[key]
+                    elif key == 'skills':
+                        rolly[key]
 
             if current.nextevent:
                 next_q.put(current.nextevent)

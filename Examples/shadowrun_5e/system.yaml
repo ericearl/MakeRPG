@@ -1,0 +1,2013 @@
+defaults:
+    stats:
+        set: 1                # base level without rolling or purchasing, what you have
+        range: 1-6            # possible range
+        direction: increasing # direction to start from in range
+        points: Attribute     # default points pool to purchase from
+        cost: 1               # cost per point, negative cost is a refund
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        prereq: none          # prerequisites, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+    skills:
+        set: 0                # base level without rolling or purchasing, what you have
+        range: 0-13           # possible range
+        direction: increasing # direction to start from in range
+        points: Skill         # default points pool to purchase from
+        cost: 1               # cost per point, negative cost is a refund
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        prereq: none          # prerequisites, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+    traits:
+        set: 0                # base level without rolling or purchasing, what you have
+        range: 0-1            # possible range
+        direction: increasing # direction to start from in range
+        points: Karma         # default points pool to purchase from
+        cost: 0               # cost per point, negative cost is a refund
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # skill is special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+
+
+points:
+    Karma:
+        set: 25
+    Attribute:
+        set: 14
+    Special Attribute:
+        set: 1
+    Skill:
+        set: 0
+    Skill Group:
+        set: 0
+
+
+stats:
+    BODY: default
+    AGILITY: default
+    REACTION: default
+    STRENGTH: default
+    CHARISMA: default
+    INTUITION: default
+    LOGIC: default
+    WILLPOWER: default
+    ESSENCE:
+        set: 6
+        range: 0-100
+    EDGE:
+        points: Special Attribute
+    RESONANCE:
+        set: 0
+        points: Special Attribute
+    INITIATIVE:
+        set: 0
+        range: 0-20
+        type: dependent
+    MAGIC:
+        set: 0
+        range: 0-20
+        type: dependent
+
+
+skills:
+    Archery:
+        stat: AGILITY
+    Automatics:
+        stat: AGILITY
+    Blades:
+        stat: AGILITY
+    Clubs:
+        stat: AGILITY
+    Exotic Ranged Weapon:
+        stat: AGILITY
+    Heavy Weapons:
+        stat: AGILITY
+    Longarms:
+        stat: AGILITY
+    Pistols:
+        stat: AGILITY
+    Throwing Weapons:
+        stat: AGILITY
+    Unarmed Combat:
+        stat: AGILITY
+    Disguise:
+        stat: INTUITION
+    Diving:
+        stat: BODY
+    Escape Artist:
+        stat: AGILITY
+    Free-Fall:
+        stat: BODY
+    Gymnastics:
+        stat: AGILITY
+    Palming:
+        stat: AGILITY
+    Perception:
+        stat: INTUITION
+    Running:
+        stat: STRENGTH
+    Sneaking:
+        stat: AGILITY
+    Survival:
+        stat: WILLPOWER
+    Swimming:
+        stat: STRENGTH
+    Tracking:
+        stat: INTUITION
+    Con:
+        stat: CHARISMA
+    Etiquette:
+        stat: CHARISMA
+    Impersonation:
+        stat: CHARISMA
+    Instruction:
+        stat: CHARISMA
+    Intimidation:
+        stat: CHARISMA
+    Leadership:
+        stat: CHARISMA
+    Negotiation:
+        stat: CHARISMA
+    Performance:
+        stat: CHARISMA
+    Alchemy:
+        stat: MAGIC
+    Arcana:
+        stat: LOGIC
+    Artificing:
+        stat: MAGIC
+    Assensing:
+        stat: INTUITION
+    Astral Combat:
+        stat: WILLPOWER
+    Banishing:
+        stat: MAGIC
+    Binding:
+        stat: MAGIC
+    Counterspelling:
+        stat: MAGIC
+    Disenchanting:
+        stat: MAGIC
+    Ritual Spellcasting:
+        stat: MAGIC
+    Spellcasting:
+        stat: MAGIC
+    Summoning:
+        stat: MAGIC
+    Compiling:
+        stat: RESONANCE
+    Decompiling:
+        stat: RESONANCE
+    Registering:
+        stat: RESONANCE
+    Aeronautics Mechanic:
+        stat: LOGIC
+    Animal Handling:
+        stat: CHARISMA
+    Armorer:
+        stat: LOGIC
+    Artisan:
+        stat: INTUITION
+    Automotive Mechanic:
+        stat: LOGIC
+    Biotechnology:
+        stat: LOGIC
+    Chemistry:
+        stat: LOGIC
+    Computer:
+        stat: LOGIC
+    Cybercombat:
+        stat: LOGIC
+    Cybertechnology:
+        stat: LOGIC
+    Demolitions:
+        stat: LOGIC
+    Electronic Warfare:
+        stat: LOGIC
+    First Aid:
+        stat: LOGIC
+    Forgery:
+        stat: LOGIC
+    Hacking:
+        stat: LOGIC
+    Hardware:
+        stat: LOGIC
+    Industrial Mechanic:
+        stat: LOGIC
+    Locksmith:
+        stat: AGILITY
+    Medicine:
+        stat: LOGIC
+    Nautical Mechanic:
+        stat: LOGIC
+    Navigation:
+        stat: INTUITION
+    Software:
+        stat: LOGIC
+    Gunnery:
+        stat: AGILITY
+    Pilot Aerospace:
+        stat: REACTION
+    Pilot Aircraft:
+        stat: REACTION
+    Pilot Walker:
+        stat: REACTION
+    Pilot Exotic Vehicle:
+        stat: REACTION
+    Pilot Ground Craft:
+        stat: REACTION
+    Pilot Watercraft:
+        stat: REACTION
+    Acting:
+        points: Skill Group
+    Athletics:
+        points: Skill Group
+    Biotech:
+        points: Skill Group
+    Close Combat:
+        points: Skill Group
+    Conjuring:
+        points: Skill Group
+    Cracking:
+        points: Skill Group
+    Electronics:
+        points: Skill Group
+    Enchanting:
+        points: Skill Group
+    Engineering:
+        points: Skill Group
+    Firearms:
+        points: Skill Group
+    Influence:
+        points: Skill Group
+    Outdoors:
+        points: Skill Group
+    Sorcery:
+        points: Skill Group
+    Stealth:
+        points: Skill Group
+    Tasking:
+        points: Skill Group
+
+
+traits:
+    Positive Qualities:
+        Ambidextrous:
+            cost: 4
+        Aanlytical Mind:
+            cost: 5
+        Aptitude:
+            cost: 14
+        Astral Chameleon:
+            cost: 10
+        Bilingual:
+            cost: 5
+        Blandness:
+            cost: 8
+        Catlike:
+            cost: 7
+        Codeslinger:
+            cost: 10
+        Double-Jointed:
+            cost: 6
+        Exceptional Attribute:
+            cost: 14
+        First Impression:
+            cost: 11
+        Focused Concentration:
+            cost: 4
+            range: 0-6
+        Gearhead:
+            cost: 11
+        Guts:
+            cost: 10
+        High Pain Tolerance:
+            cost: 7
+            range: 0-3
+        Home Ground:
+            cost: 10
+        Human-Looking:
+            cost: 6
+        Indomitable:
+            cost: 8
+            range: 0-3
+        Juryrigger:
+            cost: 10
+        Lucky:
+            cost: 12
+        Magical Resistance:
+            cost: 6
+            range: 0-4
+        Mentor Spirit:
+            cost: 5
+        Natural Athlete:
+            cost: 7
+        Natural Hardening:
+            cost: 10
+        Natural Immunity (single natural disease or toxin):
+            cost: 4
+        Natural Immunity (single synthetic disease or toxin):
+            cost: 10
+        Photographic Memory:
+            cost: 6
+        Quick Healer:
+            cost: 3
+        Resistance to Pathogens:
+            cost: 4
+        Resistance to Toxins:
+            cost: 4
+        Spirit Affinity:
+            cost: 7
+        Toughness:
+            cost: 9
+        Will to Live:
+            cost: 3
+            range: 0-3
+    Negative Qualities:
+        Addiction:
+            cost: -4
+            range: 0-6
+        Allergy:
+            cost: -5
+            range: 0-5
+        Astral Beacon:
+            cost: -10
+        Bad Luck:
+            cost: -12
+        Bad Rep:
+            cost: -7
+        Code of Honor:
+            cost: -15
+        Codeblock:
+            cost: -10
+        Combat Paralysis:
+            cost: -12
+        Dependent(s):
+            cost: -3
+            range: 0-3
+        Distinctive Style:
+            cost: -5
+        Elf Poser:
+            cost: -6
+        Gremlins:
+            cost: -4
+            range: 0-4
+        Incompetent:
+            cost: -5
+        Insomnia:
+            cost: -10
+        Loss of Confidence:
+            cost: -10
+        Low Pain Tolerance:
+            cost: -9
+        Ork Poser:
+            cost: -6
+        Prejudiced:
+            cost: -3
+            range: 0-3
+        Scorched:
+            cost: -10
+        Sensitive System:
+            cost: -12
+        Simsense Vertigo:
+            cost: -5
+        SINner (Layered):
+            cost: -5
+            range: 0-4
+        Social Stress:
+            cost: -8
+        Spirit Bane:
+            cost: -7
+        Uncouth:
+            cost: -14
+        Uneducated:
+            cost: -8
+        Unsteady Hands:
+            cost: -7
+        Weak Immune System:
+            cost: -10
+
+
+archetypes:
+    Human:
+        stats:
+            EDGE:
+                set: 2
+                range: 2-7
+        points:
+            Attribute:
+                set: 15
+    Elf:
+        traits:
+            Racial:
+                - Low-Light Vision
+        stats:
+            AGILITY:
+                set: 2
+                range: 2-7
+            CHARISMA:
+                set: 3
+                range: 3-8
+        points:
+            Attribute:
+                set: 17
+    Dwarf:
+        traits:
+            Racial:
+                - Thermographic Vision
+                - Pathogen and toxin resistance +2 dice
+                - Lifestyle cost +20%
+        stats:
+            BODY:
+                set: 3
+                range: 3-8
+            REACTION:
+                range: 1-5
+            STRENGTH:
+                set: 3
+                range: 3-8
+            WILLPOWER:
+                set: 2
+                range: 2-7
+        points:
+            Attribute:
+                set: 19
+    Ork:
+        traits:
+            Racial:
+                - Low-Light Vision
+        stats:
+            BODY:
+                set: 4
+                range: 4-9
+            STRENGTH:
+                set: 3
+                range: 3-8
+            LOGIC:
+                range: 1-5
+            CHARISMA:
+                range: 1-5
+        points:
+            Attribute:
+                set: 19
+    Troll:
+        traits:
+            Racial:
+                - Thermographic Vision
+                - Reach +1
+                - Dermal armor +1
+                - Lifestyle cost +100%
+        stats:
+            BODY:
+                set: 5
+                range: 5-10
+            AGILITY:
+                range: 1-5
+            STRENGTH:
+                set: 5
+                range: 5-10
+            LOGIC:
+                range: 1-5
+            INTUITION:
+                range: 1-5
+            CHARISMA:
+                range: 1-4
+        points:
+            Attribute:
+                set: 22
+
+
+modifiers:
+    skills:
+        Con:
+            skills:
+                Acting:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Impersonation:
+            skills:
+                Acting:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Performance:
+            skills:
+                Acting:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Gymnastics:
+            skills:
+                Athletics:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Running:
+            skills:
+                Athletics:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Swimming:
+            skills:
+                Athletics:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Biotechnology:
+            skills:
+                Biotech:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Cybertechnology:
+            skills:
+                Biotech:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        First Aid:
+            skills:
+                Biotech:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Medicine:
+            skills:
+                Biotech:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Blades:
+            skills:
+                Close Combat:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Clubs:
+            skills:
+                Close Combat:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Unarmed Combat:
+            skills:
+                Close Combat:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Banishing:
+            skills:
+                Conjuring:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Binding:
+            skills:
+                Conjuring:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Summoning:
+            skills:
+                Conjuring:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Cybercombat:
+            skills:
+                Cracking:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Electronic Warfare:
+            skills:
+                Cracking:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Hacking:
+            skills:
+                Cracking:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Computer:
+            skills:
+                Electronics:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Hardware:
+            skills:
+                Electronics:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Software:
+            skills:
+                Electronics:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Alchemy:
+            skills:
+                Enchanting:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Artificing:
+            skills:
+                Enchanting:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Disenchanting:
+            skills:
+                Enchanting:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Aeronautics Mechanic:
+            skills:
+                Engineering:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Automotive Mechanic:
+            skills:
+                Engineering:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Industrial Mechanic:
+            skills:
+                Engineering:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Nautical Mechanic:
+            skills:
+                Engineering:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Automatics:
+            skills:
+                Firearms:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Longarms:
+            skills:
+                Firearms:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Pistols:
+            skills:
+                Firearms:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Etiquette:
+            skills:
+                Influence:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Leadership:
+            skills:
+                Influence:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Negotiation:
+            skills:
+                Influence:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Navigation:
+            skills:
+                Outdoors:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Survival:
+            skills:
+                Outdoors:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Tracking:
+            skills:
+                Outdoors:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Counterspelling:
+            skills:
+                Sorcery:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Ritual Spellcasting:
+            skills:
+                Sorcery:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Spellcasting:
+            skills:
+                Sorcery:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Disguise:
+            skills:
+                Stealth:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Palming:
+            skills:
+                Stealth:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Sneaking:
+            skills:
+                Stealth:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Compiling:
+            skills:
+                Tasking:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Decompiling:
+            skills:
+                Tasking:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+        Registering:
+            skills:
+                Tasking:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                    11: 11
+                    12: 12
+                    13: 13
+
+
+history:
+    START: Priorities
+    Priorities:
+        dice: 1d5
+        roll:
+            1:
+                next: Metatype (Priority A)
+            2:
+                points:
+                    Attribute:
+                        set: 24
+                next: Priorities (Attributes)
+            3:
+                next: Magic or Resonance (Priority A)
+            4:
+                points:
+                    Skill:
+                        set: 46
+                    Skill Group:
+                        set: 10
+                next: Priorities (Skills)
+            5:
+                currency:
+                    Nuyen:
+                        set: 450000
+                next: Priorities (Resources)
+    Priorities (Metatype):
+        dice: 1d4
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 20
+                next: Priorities (Metatype, Attributes)
+            2:
+                next: Magic or Resonance (Priority B, Metatype)
+            3:
+                points:
+                    Skill:
+                        set: 36
+                    Skill Group:
+                        set: 5
+                next: Priorities (Metatype, Skills)
+            4:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Metatype, Resources)
+    Priorities (Attributes):
+        dice: 1d4
+        roll:
+            1:
+                next: Metatype (Priority B, Attributes)
+            2:
+                next: Magic or Resonance (Priority B, Attributes)
+            3:
+                points:
+                    Skill:
+                        set: 36
+                    Skill Group:
+                        set: 5
+                next: Priorities (Attributes, Skills)
+            4:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Attributes, Resources)
+    Priorities (Magic or Resonance):
+        dice: 1d4
+        roll:
+            1:
+                next: Metatype (Priority B, Magic or Resonance)
+            2:
+                next: Priorities (Attributes, Magic or Resonance)
+            3:
+                points:
+                    Skill:
+                        set: 36
+                    Skill Group:
+                        set: 5
+                next: Priorities (Magic or Resonance, Skills)
+            4:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Magic or Resonance, Resources)
+    Priorities (Skills):
+        dice: 1d4
+        roll:
+            1:
+                next: Metatype (Priority B, Skills)
+            2:
+                points:
+                    Attribute:
+                        set: 20
+                next: Priorities (Attributes, Skills)
+            3:
+                next: Magic or Resonance (Priority B, Skills)
+            4:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Skills, Resources)
+    Priorities (Resources):
+        dice: 1d4
+        roll:
+            1:
+                next: Metatype (Priority B, Resources)
+            2:
+                points:
+                    Attribute:
+                        set: 20
+                next: Priorities (Attributes, Resources)
+            3:
+                next: Magic or Resonance (Priority B, Resources)
+            4:
+                points:
+                    Skill:
+                        set: 36
+                    Skill Group:
+                        set: 5
+                next: Priorities (Skills, Resources)
+    Priorities (Metatype, Attributes):
+        dice: 1d3
+        roll:
+            1:
+                next: Magic or Resonance (Priority C, Metatype, Attributes)
+            2:
+                points:
+                    Skill:
+                        set: 28
+                    Skill Group:
+                        set: 2
+                next: Priorities (Metatype, Attributes, Skills)
+            3:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Metatype, Attributes, Resources)
+    Priorities (Metatype, Magic or Resonance):
+        dice: 1d3
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 16
+                next: Priorities (Metatype, Attributes, Magic or Resonance)
+            2:
+                points:
+                    Skill:
+                        set: 28
+                    Skill Group:
+                        set: 2
+                next: Priorities (Metatype, Magic or Resonance, Skills)
+            3:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Metatype, Magic or Resonance, Resources)
+    Priorities (Metatype, Skills):
+        dice: 1d3
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 16
+                next: Priorities (Metatype, Attributes, Skills)
+            2:
+                next: Magic or Resonance (Priority C, Metatype, Skills)
+            3:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Metatype, Skills, Resources)
+    Priorities (Metatype, Resources):
+        dice: 1d3
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 16
+                next: Priorities (Metatype, Attributes, Resources)
+            2:
+                next: Magic or Resonance (Priority C, Metatype, Resources)
+            3:
+                points:
+                    Skill:
+                        set: 28
+                    Skill Group:
+                        set: 2
+                next: Priorities (Metatype, Skills, Resources)
+    Priorities (Attributes, Magic or Resonance):
+        dice: 1d3
+        roll:
+            1:
+                next: Metatype (Priority C, Attributes, Magic or Resonance)
+            2:
+                points:
+                    Skill:
+                        set: 28
+                    Skill Group:
+                        set: 2
+                next: Priorities (Attributes, Magic or Resonance, Skills)
+            3:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Attributes, Magic or Resonance, Resources)
+    Priorities (Attributes, Skills):
+        dice: 1d3
+        roll:
+            1:
+                next: Metatype (Priority C, Attributes, Skills)
+            2:
+                next: Magic or Resonance (Priority C, Attributes, Skills)
+            3:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Attributes, Skills, Resources)
+    Priorities (Attributes, Resources):
+        dice: 1d3
+        roll:
+            1:
+                next: Metatype (Priority C, Attributes, Skills)
+            2:
+                next: Magic or Resonance (Priority C, Attributes, Skills)
+            3:
+                points:
+                    Skill:
+                        set: 28
+                    Skill Group:
+                        set: 2
+                next: Priorities (Attributes, Skills, Resources)
+    Priorities (Magic or Resonance, Skills):
+        dice: 1d3
+        roll:
+            1:
+                next: Metatype (Priority C, Magic or Resonance, Skills)
+            2:
+                points:
+                    Attribute:
+                        set: 16
+                next: Priorities (Attributes, Magic or Resonance, Skills)
+            3:
+                currency:
+                    Nuyen:
+                        set: 275000
+                next: Priorities (Magic or Resonance, Skills, Resources)
+    Priorities (Magic or Resonance, Resources):
+        dice: 1d3
+        roll:
+            1:
+                next: Metatype (Priority C, Magic or Resonance, Resources)
+            2:
+                points:
+                    Attribute:
+                        set: 16
+                next: Priorities (Attributes, Magic or Resonance, Resources)
+            3:
+                points:
+                    Skill:
+                        set: 28
+                    Skill Group:
+                        set: 2
+                next: Priorities (Magic or Resonance, Skills, Resources)
+    Priorities (Skills, Resources):
+        dice: 1d3
+        roll:
+            1:
+                next: Metatype (Priority C, Skills, Resources)
+            2:
+                points:
+                    Attribute:
+                        set: 16
+                next: Priorities (Attributes, Skills, Resources)
+            3:
+                next: Magic or Resonance (Priority C, Skills, Resources)
+    Priorities (Metatype, Attributes, Magic or Resonance):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Skill:
+                        set: 22
+                currency:
+                    Nuyen:
+                        set: 6000
+            2:
+                currency:
+                    Nuyen:
+                        set: 50000
+                points:
+                    Skill:
+                        set: 18
+    Priorities (Metatype, Attributes, Skills):
+        dice: 1d2
+        roll:
+            1:
+                currency:
+                    Nuyen:
+                        set: 6000
+                next: Magic or Resonance (Priority D, Metatype, Attributes, Skills)
+            2:
+                currency:
+                    Nuyen:
+                        set: 50000
+    Priorities (Metatype, Attributes, Resources):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Skill:
+                        set: 18
+                next: Magic or Resonance (Priority D, Metatype, Attributes, Resources)
+            2:
+                points:
+                    Skill:
+                        set: 22
+    Priorities (Metatype, Magic or Resonance, Skills):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 14
+                currency:
+                    Nuyen:
+                        set: 6000
+            2:
+                points:
+                    Attribute:
+                        set: 12
+                currency:
+                    Nuyen:
+                        set: 50000
+    Priorities (Metatype, Magic or Resonance, Resources):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 14
+                    Skill:
+                        set: 18
+            2:
+                points:
+                    Attribute:
+                        set: 12
+                    Skill:
+                        set: 22
+    Priorities (Metatype, Skills, Resources):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 14
+            2:
+                points:
+                    Attribute:
+                        set: 12
+                next: Magic or Resonance (Priority D)
+    Priorities (Attributes, Magic or Resonance, Skills):
+        dice: 1d2
+        roll:
+            1:
+                currency:
+                    Nuyen:
+                        set: 6000
+                next: Metatype (Priority D)
+            2:
+                currency:
+                    Nuyen:
+                        set: 50000
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 1
+    Priorities (Attributes, Magic or Resonance, Resources):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Skill:
+                        set: 18
+                next: Metatype (Priority D)
+            2:
+                points:
+                    Skill:
+                        set: 22
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 1
+    Priorities (Attributes, Skills, Resources):
+        dice: 1d2
+        roll:
+            1:
+                next: Metatype (Priority D)
+            2:
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 1
+                next: Magic or Resonance (Priority D, Attributes, Skills, Resources)
+    Priorities (Magic or Resonance, Skills, Resources):
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Attribute:
+                        set: 12
+                next: Metatype (Priority D)
+            2:
+                points:
+                    Attribute:
+                        set: 14
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 1
+    Metatype (Priority A):
+        dice: 1d5
+        roll:
+            1:
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 9
+            2:
+                archetypes: Elf
+                points:
+                    Special Attribute:
+                        set: 8
+            3:
+                archetypes: Dwarf
+                points:
+                    Special Attribute:
+                        set: 7
+            4:
+                archetypes: Ork
+                points:
+                    Special Attribute:
+                        set: 7
+            5:
+                archetypes: Troll
+                points:
+                    Special Attribute:
+                        set: 5
+        next: Priorities (Metatype)
+    Metatype (Priority B):
+        dice: 1d5
+        roll:
+            1:
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 7
+            2:
+                archetypes: Elf
+                points:
+                    Special Attribute:
+                        set: 6
+            3:
+                archetypes: Dwarf
+                points:
+                    Special Attribute:
+                        set: 4
+            4:
+                archetypes: Ork
+                points:
+                    Special Attribute:
+                        set: 4
+            5:
+                archetypes: Troll
+    Metatype (Priority C):
+        dice: 1d4
+        roll:
+            1:
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 5
+            2:
+                archetypes: Elf
+                points:
+                    Special Attribute:
+                        set: 3
+            3:
+                archetypes: Dwarf
+                points:
+                    Special Attribute:
+                        set: 1
+            4:
+                archetypes: Ork
+    Metatype (Priority D):
+        dice: 1d2
+        roll:
+            1:
+                archetypes: Human
+                points:
+                    Special Attribute:
+                        set: 3
+            2:
+                archetypes: Elf
+    Magic or Resonance (Priority A):
+        dice: 1d3
+        roll:
+            1:
+                roles: Magician
+                stats:
+                    MAGIC:
+                        set: 6
+                points:
+                    Spells:
+                        set: 10
+                    Magical Skill:
+                        set: 10
+            2:
+                roles: Mystic Adept
+                stats:
+                    MAGIC:
+                        set: 6
+                points:
+                    Spells:
+                        set: 10
+                    Magical Skill:
+                        set: 10
+            3:
+                roles: Technomancer
+                stats:
+                    Resonance:
+                        set: 6
+                points:
+                    Resonance Skill:
+                        set: 10
+                    Complex Form:
+                        set: 5
+    Magic or Resonance (Priority B):
+        dice: 1d5
+        roll:
+            1:
+                roles: Magician
+                stats:
+                    MAGIC:
+                        set: 3
+                points:
+                    Spells:
+                        set: 5
+            2:
+                roles: Mystic Adept
+                stats:
+                    MAGIC:
+                        set: 3
+                points:
+                    Spells:
+                        set: 5
+            3:
+                roles: Technomancer
+                stats:
+                    Resonance:
+                        set: 3
+                points:
+                    Complex Form:
+                        set: 1
+            4:
+                roles: Adept
+                stats:
+                    MAGIC:
+                        set: 4
+                points:
+                    Active Skill:
+                        set: 2
+            5:
+                roles: Aspected Magician
+                stats:
+                    MAGIC:
+                        set: 3
+                points:
+                    Magical Skill Group:
+                        set: 2
+    Magic or Resonance (Priority C):
+        dice: 1d5
+        roll:
+            1:
+                roles: Magician
+                stats:
+                    MAGIC:
+                        set: 3
+                points:
+                    Spells:
+                        set: 5
+            2:
+                roles: Mystic Adept
+                stats:
+                    MAGIC:
+                        set: 3
+                points:
+                    Spells:
+                        set: 5
+            3:
+                roles: Technomancer
+                stats:
+                    Resonance:
+                        set: 3
+                points:
+                    Complex Form:
+                        set: 1
+            4:
+                roles: Adept
+                stats:
+                    MAGIC:
+                        set: 4
+                points:
+                    Active Skill:
+                        set: 2
+            5:
+                roles: Aspected Magician
+                stats:
+                    MAGIC:
+                        set: 3
+                points:
+                    Magical Skill Group:
+                        set: 2
+    Magic or Resonance (Priority D):
+        dice: 1d2
+        roll:
+            1:
+                roles: Adept
+                stats:
+                    MAGIC:
+                        set: 2
+            2:
+                roles: Aspected Magician
+                stats:
+                    MAGIC:
+                        set: 2
+    Magic or Resonance (Priority B, Metatype):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority B)
+        next: Priorities (Metatype, Magic or Resonance)
+    Magic or Resonance (Priority B, Attributes):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority B)
+        next: Priorities (Attributes, Magic or Resonance)
+    Magic or Resonance (Priority B, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority B)
+        next: Priorities (Magic or Resonance, Skills)
+    Magic or Resonance (Priority B, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority B)
+        next: Priorities (Magic or Resonance, Resources)
+    Magic or Resonance (Priority C, Metatype, Attributes):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority C)
+        next: Priorities (Metatype, Attributes, Magic or Resonance)
+    Magic or Resonance (Priority C, Metatype, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority C)
+        next: Priorities (Metatype, Magic or Resonance, Skills)
+    Magic or Resonance (Priority C, Metatype, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority C)
+        next: Priorities (Metatype, Magic or Resonance, Resources)
+    Magic or Resonance (Priority C, Attributes, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority C)
+        next: Priorities (Attributes, Magic or Resonance, Skills)
+    Magic or Resonance (Priority C, Attributes, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority C)
+        next: Priorities (Attributes, Magic or Resonance, Resources)
+    Magic or Resonance (Priority C, Skills, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority C)
+        next: Priorities (Magic or Resonance, Skills, Resources)
+    Magic or Resonance (Priority D, Metatype, Attributes, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority D)
+    Magic or Resonance (Priority D, Metatype, Attributes, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority D)
+    Magic or Resonance (Priority D, Attributes, Skills, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Magic or Resonance (Priority D)
+    Metatype (Priority B, Attributes):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority B)
+        next: Priorities (Metatype, Attributes)
+    Metatype (Priority B, Magic or Resonance):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority B)
+        next: Priorities (Metatype, Magic or Resonance)
+    Metatype (Priority B, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority B)
+        next: Priorities (Metatype, Skills)
+    Metatype (Priority B, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority B)
+        next: Priorities (Metatype, Resources)
+    Metatype (Priority C, Attributes, Magic or Resonance):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority C)
+        next: Priorities (Metatype, Attributes, Magic or Resonance)
+    Metatype (Priority C, Attributes, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority C)
+        next: Priorities (Metatype, Attributes, Skills)
+    Metatype (Priority C, Attributes, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority C)
+        next: Priorities (Metatype, Attributes, Resources)
+    Metatype (Priority C, Magic or Resonance, Skills):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority C)
+        next: Priorities (Metatype, Magic or Resonance, Skills)
+    Metatype (Priority C, Magic or Resonance, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority C)
+        next: Priorities (Metatype, Magic or Resonance, Resources)
+    Metatype (Priority C, Skills, Resources):
+        dice: 1d1
+        roll:
+            1:
+                next: Metatype (Priority C)
+        next: Priorities (Metatype, Skills, Resources)

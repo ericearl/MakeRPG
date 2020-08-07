@@ -1,4 +1,4 @@
-import django, os, yaml, re, sys
+import django, math, os, yaml, re, sys
 from django.db.models import Sum
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MakeRPG.settings")
@@ -27,21 +27,20 @@ TIERS = {
 
 # Support for the MakeRPG YAML lookup language
 # dice:
-    # '[0-9]+d[0-9]+\ *(>|<)*'
+    # '[0-9]+d[0-9]+\ *(>|<)*=*'
 # lookup:
-    # '<([\w\ \.\-])+>' = ordered-lookup
-    # '<.>' = parent-lookup
-    # '<<(stat|skill)>>' = nested-lookup
+    # '(options|defaults|points|stats|skills|traits)\|[\w\ \.\-\/]+'
+    # '\w' = indirect-lookup
 # math:
-    # '\ \+\ ' = add
-    # '\ \-\ ' = subtract
     # '\ \*\ ' = multiply
     # '\ \/\ ' = divide
+    # '\ \+\ ' = add
+    # '\ \-\ ' = subtract
 # functions( lookups, logicals, and/or math ) = function
-    # '\((\ lookup,*)+\ \)' = logical functions:
-        # 'min\((\ lookup,*)+\ \)' = minimum of csv's
-        # 'max\((\ lookup,*)+\ \)' = maximum of csv's
-    # '\(\ lookup\ math\ lookup\ \)' = math functions:
+    # '\(\ lookup(\ ,\ )*)+\ \)' = logical functions
+        # 'min\(\ lookup(\ ,\ )*\ \)' = minimum of csv's
+        # 'max\(\ lookup(\ ,\ )*\ \)' = maximum of csv's
+    # '\(\ lookup\ math\ lookup\ \)' = math functions
         # 'exact\(\ lookup\ \)' = keep as fractional if fractional
         # 'round\(\ lookup\ \)' = round regularly if fractional
         # 'roundup\(\ lookup\ \)' = round up if fractional
@@ -49,46 +48,95 @@ TIERS = {
     # '\ \(\ .+\ \)\ ' = inner evaluations
     # '\ .+\ <\ .+\ ' = less than
     # '\ .+\ >\ .+\ ' = greater than
-    # 'AND'
-    # 'OR'
-    # '.+\ WHERE\ .+\ IS\ .+'
+    # '\ \)\ AND\ \(\ '
+    # '\ \)\ OR\ \(\ '
 # ORDER OF OPERATIONS
-# 1. options:
-# 2. defaults:
-# 3. stats:
-# 4. parentheses
-# . multiplication
-# . division
-# . addition
-# . subtraction
-# . ordered-lookup
+# 1. option
+# 2. default
+# 3. point
+# 4. stat
+# 5. skill
+# 6. parenthesis
+# 7. multiplication
+# 8. division
+# 9. addition
+# 10. subtraction
 
-# def ordered_lookup(tree, branch, line):
-#     lookup_list = line.split(' ')
 
-#     lookup = lookup_list.pop(0)
-#     new_lookup = lookup
-#     while '<' in lookup and '>' in lookup:
-#         if '<<stat>>' == lookup or '<<skill>>' == lookup:
-#             nested_lookup(tree, branch, line)
-#         elif '<.>' == lookup:
-#             # throw away one branch depth to get parent
-#             parent_lookup(tree, branch[:-1], line)
-#         else:
-#             lookup = lookup_list.pop(0)
-#             new_lookup += ' ' + lookup
+def op(tree, oper, inputs):
+    unary_ops = ['exact(', 'round(', 'roundup(', 'rounddown(']
+    binary_ops = ['*', '/', '+', '-', '>', '<', '>=', '<=', '==', '!=', '<>', '><']
 
-#     new_lookup_list = new_lookup.replace('<', '').replace('>', '').split(' ')
+    if len(inputs) == 1 and oper in unary_ops:
+        in1 = inputs[0]
 
-#     new_branch = new_lookup_list
-#     new_lookup = new_lookup_list.pop(0)
-#     tree_lookup = tree[new_lookup]
-#     while len(new_lookup_list) > 0:
-#         new_lookup = new_lookup_list.pop(0)
-#         tree_lookup = tree_lookup[new_lookup]
+        if oper == 'exact(':
+            out = in1
+        elif oper == 'round(':
+            out = round(in1)
+        elif oper == 'roundup(':
+            out = math.ceil(in1)
+        elif oper == 'rounddown(':
+            out = math.floor(in1)
 
-#     parse(tree, new_branch, tree_lookup)
-#     return
+    if len(inputs) == 2 and oper in binary_ops:
+        in1 = inputs[0]
+        in2 = inputs[1]
+
+        if oper == '*':
+            out = in1 * in2
+        elif oper == '/':
+            out = in1 / in2
+        elif oper == '+':
+            out = in1 + in2
+        elif oper == '-':
+            out = in1 - in2
+        elif oper == '>':
+            out = in1 > in2
+        elif oper == '<':
+            out = in1 < in2
+        elif oper == '>=':
+            out = in1 >= in2
+        elif oper == '<=':
+            out = in1 <= in2
+        elif oper == '==':
+            out = in1 == in2
+        elif oper in ['!=', '<>','><']:
+            out = in1 != in2
+
+    if oper in ['min(', 'max(']:
+        elements = {}
+        for key in inputs:
+            elements[key] = tree
+
+    return out
+
+
+def lookup(tree, branch, line):
+    element_list = line.split(' ')
+
+    element = element_list.pop(0)
+    new_element = element
+    if '<<stat>>' == element or '<<skill>>' == element:
+        nested_element(tree, branch, line)
+    elif '<.>' == element:
+        # throw away one branch depth to get parent
+        parent_element(tree, branch[:-1], line)
+    else:
+        element = element_list.pop(0)
+        new_element += ' ' + element
+
+    new_element_list = new_element.replace('<', '').replace('>', '').split(' ')
+
+    new_branch = new_element_list
+    new_element = new_element_list.pop(0)
+    tree_element = tree[new_element]
+    while len(new_element_list) > 0:
+        new_element = new_element_list.pop(0)
+        tree_element = tree_element[new_element]
+
+    parse(tree, new_branch, tree_element)
+    return
 
 # def parent_lookup(tree, branch, line):
 #     lookup_list = line.split(' ')
@@ -186,29 +234,48 @@ TIERS = {
 #                     newline.replace('('+subline+')', replaceline)
 #     return
 
-# def parse(tree, branch, line):
-#     parseable_re = re.compile(r'<(\.|stats|skills|points|defaults|options)>|\d+d\d+|\(\ .+\ \)')
-#     dice_re = re.compile('([0-9]+)d([0-9]+)')
-#     lookup_re = re.compile('<([\w\ \.\-])+>')
+def parse(tree, branch, line):
+    parseable_re = re.compile(r'(stats\||skills\||points\||defaults\||options\||\d+d\d+|\(\ .+\ \))')
+    dice_re = re.compile(r'(\d+)d(\d+)')
+    lookup_re = re.compile(r'(stats|skills|points|defaults|options)\|([\w\ ])+')
+    word_re = re.compile(r'\w')
+    open_p_re = re.compile(r'\(\ ')
+    close_p_re = re.compile(r'\ \)')
+    comparison_re = re.compile(r'\ (<|>|<=|>=|==|!=|<>|><)\ ')
+    logical_func_re = re.compile(r'(min|max)\(\ ')
+    math_func_re = re.compile(r'(exact|round|roundup|rounddown)\(\ ')
+    logical_re = re.compile(r'\ \)\ (AND|OR)\ \(\ ')
+    math_re = re.compile(r'\ [\*\/\+\-]\ ')
 
-#     if type(line) is int:
-#         return line
+    if type(line) is not str:
+        return line
+    
+    dice = re.match(dice_re, line)
+    lookups = re.match(lookup_re, line)
+    words = re.match(word_re, line)
+    open_ps = re.match(open_p_re, line)
+    close_ps = re.match(close_p_re, line)
+    comparisons = re.match(comparison_re, line)
+    logical_funcs = re.match(logical_func_re, line)
+    math_funcs = re.match(math_func_re, line)
+    logicals = re.match(logical_re, line)
+    maths = re.match(math_re, line)
 
-#     elif type(line) is str and parseable_re.search(line) != None:
-#         # example: Z - ( 6 * ( 8 + 9 ) - roundup( min( X , Y ) / 2 ) )
-#         # O:[1,2,4,5] C:[3,6,7,8]
-#         # P:[(5,6),(4,7),(2,3),(1,8)]
-#         open_p = re.finditer(r'\(', line)
-#         close_p = re.finditer(r'\)', line)
-#         pstarts = [p.start() for p in open_p]
-#         pstops = [p.end() for p in close_p]
+        # # example: Z - ( 6 * ( 8 + 9 ) - roundup( min( X , Y ) / 2 ) )
+        # # O:[1,2,4,5] C:[3,6,7,8]
+        # # P:[(5,6),(4,7),(2,3),(1,8)]
+        # open_p = re.finditer(r'\(', line)
+        # close_p = re.finditer(r'\)', line)
+        # pstarts = [p.start() for p in open_p]
+        # pstops = [p.end() for p in close_p]
 
-#         if len(open_p) > 0 and len(open_p) == len(close_p):
-#             parentheses(tree, branch, line)
+        # if len(open_p) > 0 and len(open_p) == len(close_p):
+        #     parentheses(tree, branch, line)
 
-#         else:
-#             ordered_lookup(tree, branch, line)
+        # else:
+        #     ordered_lookup(tree, branch, line)
 
+    return
 
 # For modifiers keys
 # def modkeyparse(tree, line, parent):
@@ -322,30 +389,21 @@ def validate_skillstats(yaml_file):
         return True
 
 
-def validate_history(yaml_file):
-    print('Validating History YAML: ' + yaml_file)
+def validate_history(tree):
 
-    with open(yaml_file, 'r') as yamlfile:
-        tree = yaml.load(yamlfile)
-
-    events = list(tree.keys())
+    events = list(tree['history'].keys())
     error_flag = False
 
     if 'START' not in events:
         print('ERROR: Missing required START keyword up top')
         error_flag = True
 
-    if 'NPC' not in events:
-        print('ERROR: Missing required NPC keyword up top')
-        error_flag = True
-
     events.remove('START')
-    events.remove('NPC')
 
     reroll_list = []
 
     for event in events:
-        event_dict = tree[event]
+        event_dict = tree['history'][event]
 
         if 'dice' not in event_dict:
             print('ERROR: dice keyword not in event ' + event)
@@ -450,7 +508,7 @@ def validate_history(yaml_file):
 
     reroll_set = set(reroll_list)
     for event in events:
-        event_dict = tree[event]
+        event_dict = tree['history'][event]
         if 'reroll' in event_dict:
             reroll_event = event_dict['reroll']
             if reroll_event in reroll_set:
@@ -472,8 +530,6 @@ def validate_history(yaml_file):
 
 def save_skillstat(s,
                     name,
-                    minimum,
-                    maximum,
                     direction,
                     cost,
                     purchase,
@@ -482,8 +538,6 @@ def save_skillstat(s,
                     role,
                     pointpool):
     s.name = name
-    s.minimum = minimum
-    s.maximum = maximum
     s.direction = direction
     s.cost = cost
     s.purchase = purchase
@@ -494,10 +548,7 @@ def save_skillstat(s,
     s.save()
 
 
-def setup_skillstats(yaml_file):
-    # needs error handling
-    with open(yaml_file,'r') as yamlfile:
-        tree = yaml.load(yamlfile)
+def setup_skillstats(tree):
 
     r = Role()
     r.name = 'none'
@@ -528,28 +579,13 @@ def setup_skillstats(yaml_file):
             definition = tree[flavor][kind]
             kinds = {}
 
-            for key in ['range', 'direction', 'cost', 'purchase', 'tier', 'type', 'role', 'points']:
+            for key in ['direction', 'cost', 'purchase', 'tier', 'type', 'role', 'points']:
                 if type(definition) is dict and key in definition:
                     kinds[key] = definition[key]
                 elif flavor == 'stats':
                     kinds[key] = defstat[key]
                 elif flavor == 'skills':
                     kinds[key] = defskill[key]
-
-            if type(kinds['range']) is str:
-                if kinds['range'][0] == '-':
-                    pos_minimum, maximum = (int(number) for number in kinds['range'][1:].split('-'))
-                    minimum = pos_minimum * (-1)
-                else:
-                    minimum, maximum = (int(number) for number in kinds['range'].split('-'))
-            elif type(kinds['range']) is int:
-                minimum = kinds['range']
-                maximum = kinds['range']
-
-            if type(kinds['purchase']) == int:
-                dice_str = '0d0 + ' + str(kinds['purchase'])
-            elif type(kinds['purchase']) == str:
-                dice_str = kinds['purchase']
 
             quantity, sides, offset, dice_span = parse_dice(dice_str)
 
@@ -568,8 +604,6 @@ def setup_skillstats(yaml_file):
                 s = Statistic()
                 save_skillstat(s, 
                     name=kind,
-                    minimum=minimum,
-                    maximum=maximum,
                     direction=kinds['direction'],
                     cost=kinds['cost'],
                     purchase=d,
@@ -587,8 +621,6 @@ def setup_skillstats(yaml_file):
                             s.statistic = skillstat
                             save_skillstat(s, 
                                 name=kind,
-                                minimum=minimum,
-                                maximum=maximum,
                                 direction=kinds['direction'],
                                 cost=kinds['cost'],
                                 purchase=d,
@@ -603,8 +635,6 @@ def setup_skillstats(yaml_file):
                             s.statistic = skillstat
                             save_skillstat(s, 
                                 name=kind,
-                                minimum=minimum,
-                                maximum=maximum,
                                 direction=kinds['direction'],
                                 cost=kinds['cost'],
                                 purchase=d,
@@ -620,8 +650,6 @@ def setup_skillstats(yaml_file):
                         s.statistic = skillstat
                     save_skillstat(s, 
                         name=kind,
-                        minimum=minimum,
-                        maximum=maximum,
                         direction=kinds['direction'],
                         cost=kinds['cost'],
                         purchase=d,
@@ -631,15 +659,11 @@ def setup_skillstats(yaml_file):
                         pointpool=Pointpool.objects.get(name=kinds['points']))
 
 
-def setup_history(yaml_file):
-    # needs error handling
-    with open(yaml_file,'r') as yamlfile:
-        tree = yaml.load(yamlfile)
-
-    if 'START' in tree and 'NPC' in tree:
-        history_tree = tree
+def setup_history(tree):
+    if 'START' in tree['history']:
+        history_tree = tree['history']
     else:
-        print(yaml_file + ' is missing either START or NPC keywords.')
+        print('System YAML is missing the history START keyword.')
         return
 
     start = history_tree['START']
@@ -795,41 +819,34 @@ def setup_history(yaml_file):
                     print('Possible rolls and dice span do not match in ' + str(rolls))
                     sys.exit()
 
-    npc_order = history_tree['NPC']
+    if 'NPC' in history_tree:
+        npc_order = history_tree['NPC']
 
-    if type(npc_order) is list and len(npc_order)>1:
-        for i,next_event in enumerate(npc_order[1:]):
-            current_event = npc_order[i]
-            n = NPCEvent()
-            n.current = Event.objects.get(name=current_event)
-            n.next = Event.objects.get(name=next_event)
-            n.save()
+        if type(npc_order) is list and len(npc_order)>1:
+            for i,next_event in enumerate(npc_order[1:]):
+                current_event = npc_order[i]
+                n = NPCEvent()
+                n.current = Event.objects.get(name=current_event)
+                n.next = Event.objects.get(name=next_event)
+                n.save()
 
 
 if __name__ == '__main__':
-    skillstats_yaml = 'Examples/cyberpunk_2020/system_stats_skills.yaml'
-    history_yaml = 'Examples/cyberpunk_2020/system_history.yaml'
+    system_yaml = 'Examples/shadowrun_5e/system.yaml'
 
-    # valid_skillstats = validate_skillstats(skillstats_yaml)
-    valid_history = validate_history(history_yaml)
+    # needs error handling
+    with open(system_yaml,'r') as yamlfile:
+        tree = yaml.load(yamlfile)
 
-    # if not valid_skillstats:
-    #     print('Skils & Stats YAML had at least one ERROR, review this output and correct all errors')
-
-    if not valid_history:
-        print('History YAML had at least one ERROR, review this output and correct all errors')
-    
-    # if not valid_skillstats or not valid_history:
-    #     print('Quitting without setting up game system database')
-    # else:
     print('Setting up game system database')
+
     # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
     # This should only be run once
     # If it fails somehow, you should empty your database, adjust your YAML's, and try again
-    setup_skillstats(skillstats_yaml) # comment this out when you're done with it
+    setup_skillstats(tree) # comment this out when you're done with it
 
     # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
     # This should only be run once
     # If it fails somehow, you should empty your database, adjust your YAML's, and try again
-    setup_history(history_yaml) # comment this out when you're done with it
+    setup_history(tree) # comment this out when you're done with it
     print('Successfully completed setup.py!  Proceed to makecharacter.py...')

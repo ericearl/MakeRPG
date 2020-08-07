@@ -34,25 +34,25 @@ points:
 
 stats:
     STRENGTH:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: 101-2600
     INTELLIGENCE:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: 101-2600
     WISDOM:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: 101-2600
     DEXTERITY:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: 101-2600
     CONSTITUTION:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: 101-2600
     LOOKS:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: 101-2600
     CHARISMA:
-        set: 3d6*100 + 1d100
+        set: ( 3d6 * 100 ) + 1d100
         range: -400-3000
     HIT POINTS:
         set: 1d4 + 20
@@ -114,477 +114,477 @@ skills:
     Accounting:
         cost: 3
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Mathematics <= 85
     Administration:
         set: 100 - stat
         cost: 5
         purchase: 1d6 + stat
-        stat: min(INTELLIGENCE|WISDOM|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|WISDOM , stats|CHARISMA )
     Agriculture:
         set: 100 - stat
         cost: 2
         purchase: 1d10 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Animal Empathy:
         cost: 2
         purchase: 1d10 + stat
-        stat: min(WISDOM|CHARISMA)
+        stat: min( stats|WISDOM , stats|CHARISMA )
     Animal Herding:
         purchase: 1d10 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Animal Husbandry:
         set: 100 - stat
         purchase: 1d10 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Animal Lore:
         purchase: 1d10 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Animal Mimicry:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Animal Training:
         cost: 10
         purchase: 1d10 + stat
-        prereq: (skills|Animal Empathy < 50)AND(skills|Animal Lore < 50)
-        stat: min(INTELLIGENCE|WISDOM)
+        prereq: ( skills|Animal Empathy < 50 ) AND ( skills|Animal Lore < 50 )
+        stat: min( stats|INTELLIGENCE , stats|WISDOM )
     Appraisal:
         purchase: 1d8 + stat
-        stat: min(INTELLIGENCE|WISDOM)
+        stat: min( stats|INTELLIGENCE , stats|WISDOM )
     Artistic Ability:
         set: 100 - stat
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|WISDOM)
+        stat: min( stats|DEXTERITY , stats|WISDOM )
     Blacksmithing/Metalworking:
         cost: 7
         purchase: 1d8 + stat
-        stat: min(STRENGTH|INTELLIGENCE)
+        stat: min( stats|STRENGTH , stats|INTELLIGENCE )
     Boating:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Bookbinding:
         purchase: 1d10 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
-        prereq: (skills|Leatherworking <= 85)AND(skills|Seamstress/Tailor <= 85)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
+        prereq: ( skills|Leatherworking <= 85 ) AND ( skills|Seamstress/Tailor <= 85 )
     Botany:
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Brewing:
         purchase: 1d12 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Bronc Busting:
         set: 100 - stat
         cost: 2
         purchase: 1d6 + stat
-        stat: min(STRENGTH|WISDOM|CHARISMA)
+        stat: min( stats|STRENGTH , stats|WISDOM , stats|CHARISMA )
         prereq: skills|Riding <= 80
     Calligraphy/Signmaking:
         purchase: 1d10 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
         prereq: skills|Reading Comprehension/Penmanship <= 90
     Camouflage:
         set: 100 - stat
         cost: 6
         purchase: 1d10 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Carpentry:
         set: 100 - stat
         cost: 2
         purchase: 1d10 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Cartography:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Reading Comprehension/Penmanship <= 90
     Chemistry:
         cost: 4
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Mathematics <= 85
     Climbing:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: min(STRENGTH|DEXTERITY)
+        stat: min( stats|STRENGTH , stats|DEXTERITY )
     Cobbling:
         purchase: 1d12 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
         prereq: skills|Leatherworking <= 85
     Cooking:
         set: 100 - stat
         purchase: 1d12 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Culture:
         purchase: 1d12 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Current Affairs:
         set: 100 - stat
         cost: 2
         purchase: 1d6 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Deception:
         set: 100 - stat
         cost: 4
         purchase: 1d6 + stat
-        stat: min(INTELLIGENCE|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|CHARISMA )
     Demolition:
         set: 100 - stat
         cost: 6
         purchase: 1d4 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Dentistry:
         cost: 5
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Diplomacy:
         set: 100 - stat
         cost: 4
         purchase: 1d8 + stat
-        stat: min(INTELLIGENCE|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|CHARISMA )
     Disguise:
         set: 100 - stat
         cost: 4
         purchase: 1d6 + stat
-        stat: min(INTELLIGENCE|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|CHARISMA )
     Distraction:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Driving Stagecoach/Wagon:
         set: 100 - stat
         cost: 3
         purchase: 1d20 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Engineering Design:
         cost: 7
         purchase: 1d4 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Mathematics <= 60
     Engineering Locomotive/Steamboat:
         cost: 3
         purchase: 1d10 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Engineering Design <= 80
     Escape Artist:
         set: 100 - stat
         cost: 8
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     Fast Talking:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Fire-building/Extinguishing:
         set: 100 - stat
         purchase: 1d6 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Fishing:
         set: 100 - stat
         purchase: 1d10 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Forgery:
         set: 100 - stat
         cost: 10
         purchase: 1d4 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
         prereq: skills|Reading Comprehension/Penmanship <= 65
     Fortune Telling:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Gambling:
         cost: 7
         purchase: 1d6 + stat
-        stat: min(WISDOM|CHARISMA)
+        stat: min( stats|WISDOM , stats|CHARISMA )
     Gaming:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     Geology:
         cost: 4
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Glean Information:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: min(INTELLIGENCE|WISDOM|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|WISDOM , stats|CHARISMA )
     Graceful Entrance/Exit:
         set: 100 - stat
         purchase: 1d6 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Gunsmithing:
         cost: 8
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     Hiding:
         set: 100 - stat
         cost: 3
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     History:
         purchase: 1d12 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Reading Comprehension/Penmanship <= 80
     Hunting:
         set: 100 - stat
         cost: 5
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|WISDOM)
+        stat: min( stats|DEXTERITY , stats|WISDOM )
     Idle Gossip:
         set: 100 - stat
         purchase: 1d12 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Interrogation:
         set: 100 - stat
         cost: 5
         purchase: 1d6 + stat
-        stat: min(STRENGTH|WISDOM)
+        stat: min( stats|STRENGTH , stats|WISDOM )
     Intimidation:
         set: 100 - stat
         cost: 2
         purchase: 1d4 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Jeweler:
         cost: 9
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Appraisal <= 90
     Joke Telling:
         set: 100 - stat
         purchase: 1d4 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Journalism/Composition:
         cost: 2
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Reading Comprehension/Penmanship <= 80
     Juggling:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Language:
         cost: 5
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Law:
         cost: 6
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Reading Comprehension/Penmanship <= 60
     Leatherworking:
         purchase: 1d8 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     Listening:
         set: 100 - stat
         cost: 5
         purchase: 1d6 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Lock Picking:
         set: 100 - stat
         cost: 8
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
         prereq: skills|Listening <= 85
     Locksmithing:
         cost: 4
         purchase: 1d6 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     Logging:
         cost: 3
         purchase: 1d20 + stat
-        stat: min(STRENGTH|INTELLIGENCE)
+        stat: min( stats|STRENGTH , stats|INTELLIGENCE )
     Machine Operating/Repairing:
         cost: 2
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Mathematics:
         cost: 6
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Reading Comprehension/Penmanship <= 90
     Medicine:
         cost: 10
         purchase: 1d4 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
     Military Engineering:
         cost: 2
         purchase: 1d4 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Engineering Design <= 80
     Military Strategy/Tactics:
         cost: 5
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Millinery:
         purchase: 1d10 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Mimic Dialect:
         set: 100 - stat
         purchase: 1d8 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Nursing:
         cost: 3
         purchase: 1d8 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Observation:
         set: 100 - stat
         cost: 6
         purchase: 1d8 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Oration:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: min(INTELLIGENCE|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|CHARISMA )
     Photography:
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Chemistry <= 85
     Pick Pocket:
         set: 100 - stat
         cost: 9
         purchase: 1d6 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Pottery:
         purchase: 1d10 + stat
-        stat: min(DEXTERITY|WISDOM)
+        stat: min( stats|DEXTERITY , stats|WISDOM )
     Primitive Ranged Weapon Use:
         cost: 4
         purchase: 1d12 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Primitive Weapong Making:
         cost: 6
         purchase: 1d8 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Prospecting:
         set: 100 - stat
         cost: 9
         purchase: 1d6 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Reading Comprehension/Penmanship:
         cost: 4
         purchase: 1d6 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Reading Lips:
         set: 100 - stat
         cost: 7
         purchase: 1d4 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Recruiting:
         set: 100 - stat
         cost: 4
         purchase: 1d8 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Religion:
         set: 100 - stat
         cost: 5
         purchase: 1d12 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Resist Persuasion:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Riding:
         set: 100 - stat
         cost: 3
         purchase: 1d8 + stat
-        stat: min(DEXTERITY|WISDOM)
+        stat: min( stats|DEXTERITY , stats|WISDOM )
     Rope Use:
         set: 100 - stat
         cost: 2
         purchase: 1d8 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Salesmanship:
         set: 100 - stat
         cost: 7
         purchase: 1d6 + stat
-        stat: min(INTELLIGENCE|WISDOM|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|WISDOM , stats|CHARISMA )
     Seamstress/Tailor:
         purchase: 1d12 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Searching:
         set: 100 - stat
         cost: 5
         purchase: 1d8 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Seduction, Art of:
         set: 100 - stat
         purchase: 1d6 + stat
-        stat: min(CHARISMA|LOOKS)
+        stat: min( stats|CHARISMA , stats|LOOKS)
     Set Traps:
         cost: 10
         purchase: 1d8 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Skinning/Tanning:
         set: 100 - stat
         cost: 3
         purchase: 1d8 + stat
-        stat: min(STRENGTH|WISDOM)
+        stat: min( stats|STRENGTH , stats|WISDOM )
     Slaughter:
         set: 100 - stat
         cost: 2
         purchase: 1d10 + stat
-        stat: min(STRENGTH|INTELLIGENCE)
+        stat: min( stats|STRENGTH , stats|INTELLIGENCE )
     Sleight of Hand:
         set: 100 - stat
         cost: 2
         purchase: 1d6 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Slick Talker:
         cost: 4
         purchase: 1d4 + stat
-        stat: min(INTELLIGENCE|CHARISMA)
+        stat: min( stats|INTELLIGENCE , stats|CHARISMA )
     Sneaking:
         set: 100 - stat
         cost: 8
         purchase: 1d6 + stat
-        stat: DEXTERITY
+        stat: stats|DEXTERITY
     Social Etiquette:
         cost: 4
         purchase: 1d6 + stat
-        stat: CHARISMA
+        stat: stats|CHARISMA
     Stonemasonry:
         cost: 2
         purchase: 1d10 + stat
-        stat: min(STRENGTH|INTELLIGENCE)
+        stat: min( stats|STRENGTH , stats|INTELLIGENCE )
     Survival:
         set: 100 - stat
         cost: 7
         purchase: 1d6 + stat
-        stat: min(CONSTITUTION|INTELLIGENCE|WISDOM)
+        stat: min( stats|CONSTITUTION , stats|INTELLIGENCE , stats|WISDOM )
     Swimming:
         purchase: 1d12 + stat
-        stat: min(STRENGTH|CONSTITUTION)
+        stat: min( stats|STRENGTH , stats|CONSTITUTION )
     Telegraph Operating:
         cost: 4
         purchase: 1d8 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
         prereq: skills|Reading Comprehension/Penmanship <= 90
     Tracking:
         set: 100 - stat
         cost: 9
         purchase: 1d4 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Ventriloquism:
         set: 100 - stat
         cost: 8
         purchase: 1d4 + stat
-        stat: INTELLIGENCE
+        stat: stats|INTELLIGENCE
     Weather Sense:
         set: 100 - stat
         cost: 3
         purchase: 1d4 + stat
-        stat: WISDOM
+        stat: stats|WISDOM
     Weaving:
         purchase: 1d8 + stat
-        stat: min(DEXTERITY|INTELLIGENCE)
+        stat: min( stats|DEXTERITY , stats|INTELLIGENCE )
 
 modifiers:
     points:
