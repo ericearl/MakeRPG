@@ -186,17 +186,16 @@ def history(tree):
                     else:
                         outcome = rolls['ODD']
 
+                    if type(outcome)==dict and len(outcome) > 1:
+                        er.selection = True
+                        er.save()
+
                     if type(outcome)==dict and 'next' in outcome:
                         er.rollevent = Event.objects.get(name=outcome['next'])
                         er.save()
                     elif type(outcome)==str:
                         er.outcome = outcome
                         er.save()
-                    
-                    if type(outcome)==dict and 'next' not in outcome:
-                        er.selection = True
-                        er.save()
-
 
             else:
                 possible_rolls = []
@@ -247,6 +246,10 @@ def history(tree):
                         for key in rolls.keys():
                             if roll in roll_dict[str(key)]:
                                 outcome = rolls[key]
+
+                                if type(outcome) is dict and len(outcome) > 1:
+                                    er.selection = True
+                                    er.save()
 
                                 if type(outcome) is dict and 'next' in outcome:
                                     outcome = outcome['next']
