@@ -125,6 +125,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'shadowrun',
+        'NAME': 'shadowrun.sqlite',
     }
 }

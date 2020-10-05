@@ -1,7 +1,8 @@
 defaults:
     stats:
         set: 1                # base level without rolling or purchasing, what you have
-        range: 1-6            # possible range
+        min: 1                # low end of range
+        max: 6                # high end of range
         direction: increasing # direction to start from in range
         points: Attribute     # default points pool to purchase from
         cost: 1               # cost per point, negative cost is a refund
@@ -9,10 +10,12 @@ defaults:
         tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
         prereq: none          # prerequisites, keywords <AND> and <OR>, > and <, <trait>
         role: none            # special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
         type: independent     # independent (stands alone), dependent (result of something else)
     skills:
         set: 0                # base level without rolling or purchasing, what you have
-        range: 0-13           # possible range
+        min: 0                # low end of range
+        max: 13               # high end of range
         direction: increasing # direction to start from in range
         points: Skill         # default points pool to purchase from
         cost: 1               # cost per point, negative cost is a refund
@@ -20,10 +23,13 @@ defaults:
         tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
         prereq: none          # prerequisites, keywords <AND> and <OR>, > and <, <trait>
         role: none            # special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
         type: independent     # independent (stands alone), dependent (result of something else)
+        stat: none            # associated statistic for each skill
     traits:
         set: 0                # base level without rolling or purchasing, what you have
-        range: 0-1            # possible range
+        min: 0                # low end of range
+        max: 1                # high end of range
         direction: increasing # direction to start from in range
         points: Karma         # default points pool to purchase from
         cost: 0               # cost per point, negative cost is a refund
@@ -31,20 +37,107 @@ defaults:
         tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
         prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         role: none            # skill is special to a role, and if so what role
-        type: independent     # independent (stands alone), dependent (result of something else)
+        archetype: none       # special to an archetype, and if so what archetype
+        category: none        # category of trait
 
 
 points:
+    Nuyen:
+        set: 0
     Karma:
         set: 25
     Attribute:
-        set: 14
+        set: 0
     Special Attribute:
         set: 1
     Skill:
         set: 0
     Skill Group:
         set: 0
+
+
+archetypes:
+    Human:
+        stats:
+            EDGE:
+                set: 2
+                min: 2
+                max: 7
+    Elf:
+        traits:
+            Racial:
+                - Low-Light Vision
+        stats:
+            AGILITY:
+                set: 2
+                min: 2
+                max: 7
+            CHARISMA:
+                set: 3
+                min: 3
+                max: 8
+    Dwarf:
+        traits:
+            Racial:
+                - Thermographic Vision
+                - Pathogen and toxin resistance +2 dice
+                - Lifestyle cost +20%
+        stats:
+            BODY:
+                set: 3
+                min: 3
+                max: 8
+            REACTION:
+                max: 5
+            STRENGTH:
+                set: 3
+                min: 3
+                max: 8
+            WILLPOWER:
+                set: 2
+                min: 2
+                max: 7
+    Ork:
+        traits:
+            Racial:
+                - Low-Light Vision
+        stats:
+            BODY:
+                set: 4
+                min: 4
+                max: 9
+            STRENGTH:
+                set: 3
+                min: 3
+                max: 8
+            LOGIC:
+                max: 5
+            CHARISMA:
+                max: 5
+    Troll:
+        traits:
+            Racial:
+                - Thermographic Vision
+                - Reach +1
+                - Dermal armor +1
+                - Lifestyle cost +100%
+        stats:
+            BODY:
+                set: 5
+                min: 5
+                max: 10
+            AGILITY:
+                max: 5
+            STRENGTH:
+                set: 5
+                min: 5
+                max: 10
+            LOGIC:
+                max: 5
+            INTUITION:
+                max: 5
+            CHARISMA:
+                max: 4
 
 
 stats:
@@ -58,7 +151,8 @@ stats:
     WILLPOWER: default
     ESSENCE:
         set: 6
-        range: 0-100
+        min: 0
+        max: 100
     EDGE:
         points: Special Attribute
     RESONANCE:
@@ -66,11 +160,13 @@ stats:
         points: Special Attribute
     INITIATIVE:
         set: 0
-        range: 0-20
+        min: 0
+        max: 20
         type: dependent
     MAGIC:
         set: 0
-        range: 0-20
+        min: 0
+        max: 20
         type: dependent
 
 
@@ -256,230 +352,211 @@ skills:
 
 
 traits:
-    Positive Qualities:
-        Ambidextrous:
-            cost: 4
-        Aanlytical Mind:
-            cost: 5
-        Aptitude:
-            cost: 14
-        Astral Chameleon:
-            cost: 10
-        Bilingual:
-            cost: 5
-        Blandness:
-            cost: 8
-        Catlike:
-            cost: 7
-        Codeslinger:
-            cost: 10
-        Double-Jointed:
-            cost: 6
-        Exceptional Attribute:
-            cost: 14
-        First Impression:
-            cost: 11
-        Focused Concentration:
-            cost: 4
-            range: 0-6
-        Gearhead:
-            cost: 11
-        Guts:
-            cost: 10
-        High Pain Tolerance:
-            cost: 7
-            range: 0-3
-        Home Ground:
-            cost: 10
-        Human-Looking:
-            cost: 6
-        Indomitable:
-            cost: 8
-            range: 0-3
-        Juryrigger:
-            cost: 10
-        Lucky:
-            cost: 12
-        Magical Resistance:
-            cost: 6
-            range: 0-4
-        Mentor Spirit:
-            cost: 5
-        Natural Athlete:
-            cost: 7
-        Natural Hardening:
-            cost: 10
-        Natural Immunity (single natural disease or toxin):
-            cost: 4
-        Natural Immunity (single synthetic disease or toxin):
-            cost: 10
-        Photographic Memory:
-            cost: 6
-        Quick Healer:
-            cost: 3
-        Resistance to Pathogens:
-            cost: 4
-        Resistance to Toxins:
-            cost: 4
-        Spirit Affinity:
-            cost: 7
-        Toughness:
-            cost: 9
-        Will to Live:
-            cost: 3
-            range: 0-3
-    Negative Qualities:
-        Addiction:
-            cost: -4
-            range: 0-6
-        Allergy:
-            cost: -5
-            range: 0-5
-        Astral Beacon:
-            cost: -10
-        Bad Luck:
-            cost: -12
-        Bad Rep:
-            cost: -7
-        Code of Honor:
-            cost: -15
-        Codeblock:
-            cost: -10
-        Combat Paralysis:
-            cost: -12
-        Dependent(s):
-            cost: -3
-            range: 0-3
-        Distinctive Style:
-            cost: -5
-        Elf Poser:
-            cost: -6
-        Gremlins:
-            cost: -4
-            range: 0-4
-        Incompetent:
-            cost: -5
-        Insomnia:
-            cost: -10
-        Loss of Confidence:
-            cost: -10
-        Low Pain Tolerance:
-            cost: -9
-        Ork Poser:
-            cost: -6
-        Prejudiced:
-            cost: -3
-            range: 0-3
-        Scorched:
-            cost: -10
-        Sensitive System:
-            cost: -12
-        Simsense Vertigo:
-            cost: -5
-        SINner (Layered):
-            cost: -5
-            range: 0-4
-        Social Stress:
-            cost: -8
-        Spirit Bane:
-            cost: -7
-        Uncouth:
-            cost: -14
-        Uneducated:
-            cost: -8
-        Unsteady Hands:
-            cost: -7
-        Weak Immune System:
-            cost: -10
-
-
-archetypes:
-    Human:
-        stats:
-            EDGE:
-                set: 2
-                range: 2-7
-        points:
-            Attribute:
-                set: 15
-    Elf:
-        traits:
-            Racial:
-                - Low-Light Vision
-        stats:
-            AGILITY:
-                set: 2
-                range: 2-7
-            CHARISMA:
-                set: 3
-                range: 3-8
-        points:
-            Attribute:
-                set: 17
-    Dwarf:
-        traits:
-            Racial:
-                - Thermographic Vision
-                - Pathogen and toxin resistance +2 dice
-                - Lifestyle cost +20%
-        stats:
-            BODY:
-                set: 3
-                range: 3-8
-            REACTION:
-                range: 1-5
-            STRENGTH:
-                set: 3
-                range: 3-8
-            WILLPOWER:
-                set: 2
-                range: 2-7
-        points:
-            Attribute:
-                set: 19
-    Ork:
-        traits:
-            Racial:
-                - Low-Light Vision
-        stats:
-            BODY:
-                set: 4
-                range: 4-9
-            STRENGTH:
-                set: 3
-                range: 3-8
-            LOGIC:
-                range: 1-5
-            CHARISMA:
-                range: 1-5
-        points:
-            Attribute:
-                set: 19
-    Troll:
-        traits:
-            Racial:
-                - Thermographic Vision
-                - Reach +1
-                - Dermal armor +1
-                - Lifestyle cost +100%
-        stats:
-            BODY:
-                set: 5
-                range: 5-10
-            AGILITY:
-                range: 1-5
-            STRENGTH:
-                set: 5
-                range: 5-10
-            LOGIC:
-                range: 1-5
-            INTUITION:
-                range: 1-5
-            CHARISMA:
-                range: 1-4
-        points:
-            Attribute:
-                set: 22
+    Ambidextrous:
+        cost: 4
+        category: Positive Quality
+    Aanlytical Mind:
+        cost: 5
+        category: Positive Quality
+    Aptitude:
+        cost: 14
+        category: Positive Quality
+    Astral Chameleon:
+        cost: 10
+        category: Positive Quality
+    Bilingual:
+        cost: 5
+        category: Positive Quality
+    Blandness:
+        cost: 8
+        category: Positive Quality
+    Catlike:
+        cost: 7
+        category: Positive Quality
+    Codeslinger:
+        cost: 10
+        category: Positive Quality
+    Double-Jointed:
+        cost: 6
+        category: Positive Quality
+    Exceptional Attribute:
+        cost: 14
+        category: Positive Quality
+    First Impression:
+        cost: 11
+        category: Positive Quality
+    Focused Concentration:
+        cost: 4
+        min: 0
+        max: 6
+        category: Positive Quality
+    Gearhead:
+        cost: 11
+        category: Positive Quality
+    Guts:
+        cost: 10
+        category: Positive Quality
+    High Pain Tolerance:
+        cost: 7
+        min: 0
+        max: 3
+        category: Positive Quality
+    Home Ground:
+        cost: 10
+        category: Positive Quality
+    Human-Looking:
+        cost: 6
+        category: Positive Quality
+    Indomitable:
+        cost: 8
+        min: 0
+        max: 3
+        category: Positive Quality
+    Juryrigger:
+        cost: 10
+        category: Positive Quality
+    Lucky:
+        cost: 12
+        category: Positive Quality
+    Magical Resistance:
+        cost: 6
+        min: 0
+        max: 4
+        category: Positive Quality
+    Mentor Spirit:
+        cost: 5
+        category: Positive Quality
+    Natural Athlete:
+        cost: 7
+        category: Positive Quality
+    Natural Hardening:
+        cost: 10
+        category: Positive Quality
+    Natural Immunity (single natural disease or toxin):
+        cost: 4
+        category: Positive Quality
+    Natural Immunity (single synthetic disease or toxin):
+        cost: 10
+        category: Positive Quality
+    Photographic Memory:
+        cost: 6
+        category: Positive Quality
+    Quick Healer:
+        cost: 3
+        category: Positive Quality
+    Resistance to Pathogens:
+        cost: 4
+        category: Positive Quality
+    Resistance to Toxins:
+        cost: 4
+        category: Positive Quality
+    Spirit Affinity:
+        cost: 7
+        category: Positive Quality
+    Toughness:
+        cost: 9
+        category: Positive Quality
+    Will to Live:
+        cost: 3
+        min: 0
+        max: 3
+        category: Positive Quality
+    Addiction:
+        cost: -4
+        min: 0
+        max: 6
+        category: Negative Qualities
+    Allergy:
+        cost: -5
+        min: 0
+        max: 5
+        category: Negative Qualities
+    Astral Beacon:
+        cost: -10
+        category: Negative Qualities
+    Bad Luck:
+        cost: -12
+        category: Negative Qualities
+    Bad Rep:
+        cost: -7
+        category: Negative Qualities
+    Code of Honor:
+        cost: -15
+        category: Negative Qualities
+    Codeblock:
+        cost: -10
+        category: Negative Qualities
+    Combat Paralysis:
+        cost: -12
+        category: Negative Qualities
+    Dependent(s):
+        cost: -3
+        min: 0
+        max: 3
+        category: Negative Qualities
+    Distinctive Style:
+        cost: -5
+        category: Negative Qualities
+    Elf Poser:
+        cost: -6
+        category: Negative Qualities
+    Gremlins:
+        cost: -4
+        min: 0
+        max: 4
+        category: Negative Qualities
+    Incompetent:
+        cost: -5
+        category: Negative Qualities
+    Insomnia:
+        cost: -10
+        category: Negative Qualities
+    Loss of Confidence:
+        cost: -10
+        category: Negative Qualities
+    Low Pain Tolerance:
+        cost: -9
+        category: Negative Qualities
+    Ork Poser:
+        cost: -6
+        category: Negative Qualities
+    Prejudiced:
+        cost: -3
+        min: 0
+        max: 3
+        category: Negative Qualities
+    Scorched:
+        cost: -10
+        category: Negative Qualities
+    Sensitive System:
+        cost: -12
+        category: Negative Qualities
+    Simsense Vertigo:
+        cost: -5
+        category: Negative Qualities
+    SINner (Layered):
+        cost: -5
+        min: 0
+        max: 4
+        category: Negative Qualities
+    Social Stress:
+        cost: -8
+        category: Negative Qualities
+    Spirit Bane:
+        cost: -7
+        category: Negative Qualities
+    Uncouth:
+        cost: -14
+        category: Negative Qualities
+    Uneducated:
+        cost: -8
+        category: Negative Qualities
+    Unsteady Hands:
+        cost: -7
+        category: Negative Qualities
+    Weak Immune System:
+        cost: -10
+        category: Negative Qualities
 
 
 modifiers:
@@ -1260,7 +1337,7 @@ history:
                         set: 10
                 next: Priorities (Skills)
             5:
-                currency:
+                points:
                     Nuyen:
                         set: 450000
                 next: Priorities (Resources)
@@ -1282,7 +1359,7 @@ history:
                         set: 5
                 next: Priorities (Metatype, Skills)
             4:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Metatype, Resources)
@@ -1301,7 +1378,7 @@ history:
                         set: 5
                 next: Priorities (Attributes, Skills)
             4:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Attributes, Resources)
@@ -1320,7 +1397,7 @@ history:
                         set: 5
                 next: Priorities (Magic or Resonance, Skills)
             4:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Magic or Resonance, Resources)
@@ -1337,7 +1414,7 @@ history:
             3:
                 next: Magic or Resonance (Priority B, Skills)
             4:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Skills, Resources)
@@ -1373,7 +1450,7 @@ history:
                         set: 2
                 next: Priorities (Metatype, Attributes, Skills)
             3:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Metatype, Attributes, Resources)
@@ -1393,7 +1470,7 @@ history:
                         set: 2
                 next: Priorities (Metatype, Magic or Resonance, Skills)
             3:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Metatype, Magic or Resonance, Resources)
@@ -1408,7 +1485,7 @@ history:
             2:
                 next: Magic or Resonance (Priority C, Metatype, Skills)
             3:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Metatype, Skills, Resources)
@@ -1442,7 +1519,7 @@ history:
                         set: 2
                 next: Priorities (Attributes, Magic or Resonance, Skills)
             3:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Attributes, Magic or Resonance, Resources)
@@ -1454,7 +1531,7 @@ history:
             2:
                 next: Magic or Resonance (Priority C, Attributes, Skills)
             3:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Attributes, Skills, Resources)
@@ -1483,7 +1560,7 @@ history:
                         set: 16
                 next: Priorities (Attributes, Magic or Resonance, Skills)
             3:
-                currency:
+                points:
                     Nuyen:
                         set: 275000
                 next: Priorities (Magic or Resonance, Skills, Resources)
@@ -1523,26 +1600,24 @@ history:
                 points:
                     Skill:
                         set: 22
-                currency:
                     Nuyen:
                         set: 6000
             2:
-                currency:
+                points:
                     Nuyen:
                         set: 50000
-                points:
                     Skill:
                         set: 18
     Priorities (Metatype, Attributes, Skills):
         dice: 1d2
         roll:
             1:
-                currency:
+                points:
                     Nuyen:
                         set: 6000
                 next: Magic or Resonance (Priority D, Metatype, Attributes, Skills)
             2:
-                currency:
+                points:
                     Nuyen:
                         set: 50000
     Priorities (Metatype, Attributes, Resources):
@@ -1564,14 +1639,12 @@ history:
                 points:
                     Attribute:
                         set: 14
-                currency:
                     Nuyen:
                         set: 6000
             2:
                 points:
                     Attribute:
                         set: 12
-                currency:
                     Nuyen:
                         set: 50000
     Priorities (Metatype, Magic or Resonance, Resources):
@@ -1605,18 +1678,17 @@ history:
         dice: 1d2
         roll:
             1:
-                currency:
+                points:
                     Nuyen:
                         set: 6000
                 next: Metatype (Priority D)
             2:
-                currency:
+                points:
                     Nuyen:
                         set: 50000
-                archetypes: Human
-                points:
                     Special Attribute:
                         set: 1
+                archetypes: Human
     Priorities (Attributes, Magic or Resonance, Resources):
         dice: 1d2
         roll:
@@ -1629,10 +1701,9 @@ history:
                 points:
                     Skill:
                         set: 22
-                archetypes: Human
-                points:
                     Special Attribute:
                         set: 1
+                archetypes: Human
     Priorities (Attributes, Skills, Resources):
         dice: 1d2
         roll:
@@ -1656,10 +1727,9 @@ history:
                 points:
                     Attribute:
                         set: 14
-                archetypes: Human
-                points:
                     Special Attribute:
                         set: 1
+                archetypes: Human
     Metatype (Priority A):
         dice: 1d5
         roll:

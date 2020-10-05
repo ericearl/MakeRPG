@@ -67,6 +67,7 @@ class EventRoll(models.Model):
     outcome = models.CharField(max_length=500, null=True, validators=[MinLengthValidator(1)])
     npc = models.CharField(max_length=500, null=True, validators=[MinLengthValidator(1)])
     rerollcount = models.IntegerField(default=1)
+    selection = models.BooleanField(default=False)
     mainevent = models.ForeignKey(Event, null=True, on_delete=models.CASCADE, related_name='MainEvent')
     rollevent = models.ForeignKey(Event, null=True, on_delete=models.CASCADE, related_name='RollEvent')
 
@@ -77,6 +78,7 @@ class EventRoll(models.Model):
             return self.mainevent.name + ' (' + str(self.roll) + ') -> ' + self.rollevent.name
         else:
             return self.mainevent.name + ' (' + str(self.roll) + ')'
+
 
 class NPCEvent(models.Model):
     current = models.ForeignKey(Event, null=True, on_delete=models.CASCADE, related_name='CurrentNPCEvent')
@@ -107,6 +109,13 @@ class Archetype(models.Model):
         return self.name
 
 
+class TraitCategory(models.Model):
+    name = models.CharField(default='0', unique=True, max_length=500, validators=[MinLengthValidator(1)])
+
+    def __str__(self):
+        return self.name
+
+
 class Statistic(models.Model):
     name = models.CharField(default='0', unique=True, max_length=500, validators=[MinLengthValidator(1)])
     direction = models.CharField(max_length=100, choices=DIRECTION_CHOICES, default=INC)
@@ -115,6 +124,7 @@ class Statistic(models.Model):
     type = models.CharField(max_length=100, choices=TYPE_CHOICES, default=IND)
     purchase = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
+    archetype = models.ForeignKey(Archetype, null=True, on_delete=models.CASCADE)
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -128,6 +138,7 @@ class Skill(models.Model):
     tier = models.IntegerField(choices=TIER_CHOICES, default=0)
     purchase = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
+    archetype = models.ForeignKey(Archetype, null=True, on_delete=models.CASCADE)
     pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
 
@@ -138,6 +149,21 @@ class Skill(models.Model):
             return '[' + self.role.name + '] ' + self.name
         else:
             return self.name
+
+
+class Trait(models.Model):
+    name = models.CharField(default='0', unique=True, max_length=500, validators=[MinLengthValidator(1)])
+    direction = models.CharField(max_length=100, choices=DIRECTION_CHOICES, default=INC)
+    cost = models.IntegerField(default=0)
+    tier = models.IntegerField(choices=TIER_CHOICES, default=0)
+    category = models.ForeignKey(TraitCategory, null=True, on_delete=models.CASCADE)
+    purchase = models.ForeignKey(Dice, null=True, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, null=True, on_delete=models.CASCADE)
+    archetype = models.ForeignKey(Archetype, null=True, on_delete=models.CASCADE)
+    pointpool = models.ForeignKey(Pointpool, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class Character(models.Model):
@@ -209,3 +235,18 @@ class CharacterSkill(models.Model):
             return '[' + self.skill.role.name + '] ' + self.skill.name + ' (' + str(self.skill.cost) + '): ' + str(self.current)
         else:
             return self.skill.name + ' (' + str(self.skill.cost) + '): ' + str(self.current)
+
+
+class CharacterTrait(models.Model):
+    character = models.ForeignKey(Character, null=True, on_delete=models.CASCADE)
+    trait = models.ForeignKey(Trait, null=True, on_delete=models.CASCADE)
+    current = models.IntegerField(default=0)
+    minimum = models.IntegerField(null=True)
+    maximum = models.IntegerField(null=True)
+
+    def __str__(self):
+        if self.trait.category:
+            return '[' + self.trait.category.name + '] ' + self.trait.name + ' (' + str(self.trait.cost) + '): ' + str(self.current)
+        else:
+            return self.trait.name + ' (' + str(self.trait.cost) + '): ' + str(self.current)
+
