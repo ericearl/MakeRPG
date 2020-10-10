@@ -1,4 +1,4 @@
-db.sqlite3*
+*.sqlite*
 *.pyc
 .vscode/
 CharacterCreator/migrations/*.py

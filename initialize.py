@@ -1,6 +1,33 @@
+import django
+import os
 import re
+import yaml
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MakeRPG.settings")
+django.setup()
 
 from CharacterCreator.models import *
+
+
+TYPES = {
+    'independent': 'I',
+    'dependent': 'D'
+}
+
+TIERS = {
+    'add': 0,
+    'multiply': 1,
+    'double': 2,
+    'triple': 3,
+    'quadruple': 4,
+    'quintuple': 5,
+    'sextuple': 6,
+    'septuple': 7,
+    'octuple': 8,
+    'nonuple': 9,
+    'decuple': 10
+}
+
 
 # system
 def system(tree):
@@ -17,6 +44,10 @@ def system(tree):
     tc.name = 'none'
     tc.save()
 
+    s = Statistic()
+    s.name = 'none'
+    s.save()
+
     p = Pointpool()
     p.name = 'roll'
     p.save()
@@ -32,6 +63,18 @@ def system(tree):
             r = Role()
             r.name = role
             r.save()
+
+    if 'traits' in tree:
+        trait_cats = []
+        for t in tree['traits']:
+            trait = tree['traits'][t]
+            if 'category' in trait and trait['category'] not in trait_cats:
+                trait_cats.append(trait['category'])
+
+        for trait_cat in trait_cats:
+            tc = TraitCategory()
+            tc.name = trait_cat
+            tc.save()
 
     for pointpool in tree['points']:
         p = Pointpool()
@@ -52,6 +95,7 @@ def system(tree):
                 for key in defstat:
                     if type(definition) is dict and key in definition:
                         kinds[key] = definition[key]
+                    else:
                         kinds[key] = defstat[key]
 
                 s = Statistic()
@@ -70,9 +114,14 @@ def system(tree):
                 for key in defskill:
                     if type(definition) is dict and key in definition:
                         kinds[key] = definition[key]
+                    else:
                         kinds[key] = defskill[key]
 
-                stat_str = tree[flavor][kind]['stat']
+                try:
+                    stat_str = tree[flavor][kind]['stat']
+                except:
+                    stat_str = defskill['stat']
+
                 skillstat = Statistic.objects.get(name=stat_str)
 
                 s = Skill()
@@ -91,6 +140,7 @@ def system(tree):
                 for key in deftrait:
                     if type(definition) is dict and key in definition:
                         kinds[key] = definition[key]
+                    else:
                         kinds[key] = deftrait[key]
 
                 t = Trait()
@@ -102,7 +152,7 @@ def system(tree):
                 t.role = Role.objects.get(name=kinds['role'])
                 t.archetype = Archetype.objects.get(name=kinds['archetype'])
                 t.pointpool = Pointpool.objects.get(name=kinds['points'])
-    
+
                 trait_cat = TraitCategory.objects.get(name=kinds['category'])
                 if trait_cat:
                     t.category = trait_cat
@@ -297,3 +347,23 @@ def history(tree):
                 n.next = Event.objects.get(name=next_event)
                 n.save()
 
+
+if __name__ == '__main__':
+    system_yaml = 'Examples/shadowrun_5e/system.yaml'
+
+    # needs error handling
+    with open(system_yaml,'r') as yamlfile:
+        tree = yaml.load(yamlfile)
+
+    print('Setting up game system database')
+
+    # ONE-TIME roles, stats, and skills definitions ONLY HAPPENS ONCE
+    # This should only be run once
+    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+    system(tree) # comment this out when you're done with it
+
+    # ONE-TIME history events and rolls definitions ONLY HAPPENS ONCE
+    # This should only be run once
+    # If it fails somehow, you should empty your database, adjust your YAML's, and try again
+    history(tree) # comment this out when you're done with it
+    print('Successfully completed setup.py!  Proceed to makecharacter.py...')

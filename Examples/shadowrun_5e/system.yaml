@@ -355,7 +355,7 @@ traits:
     Ambidextrous:
         cost: 4
         category: Positive Quality
-    Aanlytical Mind:
+    Analytical Mind:
         cost: 5
         category: Positive Quality
     Aptitude:
@@ -465,98 +465,98 @@ traits:
         cost: -4
         min: 0
         max: 6
-        category: Negative Qualities
+        category: Negative Quality
     Allergy:
         cost: -5
         min: 0
         max: 5
-        category: Negative Qualities
+        category: Negative Quality
     Astral Beacon:
         cost: -10
-        category: Negative Qualities
+        category: Negative Quality
     Bad Luck:
         cost: -12
-        category: Negative Qualities
+        category: Negative Quality
     Bad Rep:
         cost: -7
-        category: Negative Qualities
+        category: Negative Quality
     Code of Honor:
         cost: -15
-        category: Negative Qualities
+        category: Negative Quality
     Codeblock:
         cost: -10
-        category: Negative Qualities
+        category: Negative Quality
     Combat Paralysis:
         cost: -12
-        category: Negative Qualities
+        category: Negative Quality
     Dependent(s):
         cost: -3
         min: 0
         max: 3
-        category: Negative Qualities
+        category: Negative Quality
     Distinctive Style:
         cost: -5
-        category: Negative Qualities
+        category: Negative Quality
     Elf Poser:
         cost: -6
-        category: Negative Qualities
+        category: Negative Quality
     Gremlins:
         cost: -4
         min: 0
         max: 4
-        category: Negative Qualities
+        category: Negative Quality
     Incompetent:
         cost: -5
-        category: Negative Qualities
+        category: Negative Quality
     Insomnia:
         cost: -10
-        category: Negative Qualities
+        category: Negative Quality
     Loss of Confidence:
         cost: -10
-        category: Negative Qualities
+        category: Negative Quality
     Low Pain Tolerance:
         cost: -9
-        category: Negative Qualities
+        category: Negative Quality
     Ork Poser:
         cost: -6
-        category: Negative Qualities
+        category: Negative Quality
     Prejudiced:
         cost: -3
         min: 0
         max: 3
-        category: Negative Qualities
+        category: Negative Quality
     Scorched:
         cost: -10
-        category: Negative Qualities
+        category: Negative Quality
     Sensitive System:
         cost: -12
-        category: Negative Qualities
+        category: Negative Quality
     Simsense Vertigo:
         cost: -5
-        category: Negative Qualities
+        category: Negative Quality
     SINner (Layered):
         cost: -5
         min: 0
         max: 4
-        category: Negative Qualities
+        category: Negative Quality
     Social Stress:
         cost: -8
-        category: Negative Qualities
+        category: Negative Quality
     Spirit Bane:
         cost: -7
-        category: Negative Qualities
+        category: Negative Quality
     Uncouth:
         cost: -14
-        category: Negative Qualities
+        category: Negative Quality
     Uneducated:
         cost: -8
-        category: Negative Qualities
+        category: Negative Quality
     Unsteady Hands:
         cost: -7
-        category: Negative Qualities
+        category: Negative Quality
     Weak Immune System:
         cost: -10
-        category: Negative Qualities
+        category: Negative Quality
 
 
 modifiers:
