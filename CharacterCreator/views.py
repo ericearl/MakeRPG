@@ -1,8 +1,9 @@
+from django import forms
 from django.shortcuts import get_object_or_404, get_list_or_404, render
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 # from django_tables2 import SingleTableView
-from django.db.models import Q, Max
+from django.db.models import Q, Min, Max
 
 from .models import *
 from .forms import *
@@ -25,13 +26,22 @@ def index(request):
 
 
 def character(request, character_id):
-    character = get_object_or_404(Character, pk=character_id)
-    stat_list = get_list_or_404(CharacterStatistic, character=character_id)
-    skill_list = get_list_or_404(CharacterSkill, character=character_id)
-    point_list = get_list_or_404(CharacterPointpool, character=character_id)
-    history_list = get_list_or_404(CharacterEventRoll, character=character_id)
-    npc_list = get_list_or_404(NPCEventRoll, character=character_id)
-    return render(request, 'CharacterCreator/character.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'points': point_list, 'history': history_list, 'npcs': npc_list })
+    character = Character.objects.get(pk=character_id)
+    trait_list = CharacterTrait.objects.filter(character=character_id).order_by('trait__category__name')
+    stat_list = CharacterStatistic.objects.filter(character=character_id).order_by('statistic__name')
+    skill_list = CharacterSkill.objects.filter(character=character_id).order_by('skill__statistic__name', 'skill__name')
+    point_list = CharacterPointpool.objects.filter(character=character_id).order_by('pointpool__name')
+    history_list = CharacterEventRoll.objects.filter(character=character_id).order_by('pk')
+    # npc_list = get_list_or_404(NPCEventRoll, character=character_id)
+    # return render(request, 'CharacterCreator/character.html', {'character': character, 'stats': stat_list, 'skills': skill_list, 'points': point_list, 'history': history_list, 'npcs': npc_list })
+    return render(request, 'CharacterCreator/character.html', {
+            'character': character,
+            'points': point_list,
+            'stats': stat_list,
+            'skills': skill_list,
+            'traits': trait_list,
+            'history': history_list
+            })
 
 
 def npc(request, npc_id):
@@ -51,23 +61,53 @@ def npc(request, npc_id):
 
 def search(request):
     characters = Character.objects.exclude(name__contains='[NPC')
-    point_list = get_list_or_404(Pointpool.objects.exclude(name='roll'))
-    stat_list = get_list_or_404(Statistic.objects.exclude(type='D'))
-    skill_list = get_list_or_404(Skill.objects.filter(role__name='none'))
+    point_list = Pointpool.objects.exclude(name='roll').order_by('name')
+    stat_list = Statistic.objects.exclude(type='D').exclude(name='none').order_by('name')
+    skill_list = Skill.objects.filter(role__name='none').order_by('statistic__name', 'name')
 
+    archetypeform = ArchetypeForm()
     roleform = RoleForm()
-    pointform = PointForm()
-    statform = StatForm()
-    skillform = SkillForm()
+
+    pointforms = [
+        ActiveSkillPointForm(),
+        AttributePointForm(),
+        ComplexFormPointForm(),
+        KarmaPointForm(),
+        MagicalSkillPointForm(),
+        MagicalSkillGroupPointForm(),
+        NuyenPointForm(),
+        ResonanceSkillPointForm(),
+        SkillPointForm(),
+        SkillGroupPointForm(),
+        SpecialAttributePointForm(),
+        SpellPointForm()
+        ]
+
+    statforms = [
+        AGILITYStatForm(),
+        BODYStatForm(),
+        CHARISMAStatForm(),
+        EDGEStatForm(),
+        ESSENCEStatForm(),
+        INTUITIONStatForm(),
+        LOGICStatForm(),
+        REACTIONStatForm(),
+        RESONANCEStatForm(),
+        STRENGTHStatForm(),
+        WILLPOWERStatForm()
+    ]
+
+    skillforms = [SkillForm() for s in skill_list]
 
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         q = request.POST
 
+        archetypes = q.getlist('archetype')
         roles = q.getlist('role')
         mins = q.getlist('minimum')
 
-        characters = characters.filter(role__in=roles)
+        characters = characters.filter(archetype__in=archetypes).filter(role__in=roles)
         for one_char in characters:
             for idx, val in enumerate(point_list):
                 check = CharacterPointpool.objects.filter(
@@ -108,14 +148,18 @@ def search(request):
 
     # # if a GET (or any other method) we'll create a blank form
     # else:
-    character_list = get_list_or_404(characters)
+    character_list = characters.order_by('archetype', 'role')
+
+    # print(pointforms)
+    # print(pointforms[0])
 
     return render(request, 'CharacterCreator/search.html', {
         'characters': character_list,
+        'archetypeform': archetypeform,
         'roleform': roleform,
-        'pointform': pointform,
-        'statform': statform,
-        'skillform': skillform,
+        'pointforms': pointforms,
+        'statforms': statforms,
+        'skillforms': skillforms,
         'stats': stat_list,
         'skills': skill_list,
         'points': point_list

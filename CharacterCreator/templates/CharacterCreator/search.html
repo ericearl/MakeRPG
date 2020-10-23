@@ -14,38 +14,55 @@
 
     <form method="post">
         {% csrf_token %}
+        <h2 class="mt-2">Archetype (choose one or more)</h2>
+        <div class="col">
+            {{ archetypeform }}
+        </div>
+
         <h2 class="mt-2">Role (choose one or more)</h2>
-        <div class="row">
-            {{ roleform.as_p }}
+        <div class="col">
+            {{ roleform }}
         </div>
 
         <h2 class="mt-2">Points (choose minimum)</h2>
         <div class="row">
             {% for point in points %}
-                <div class="col">
-                    {{ point }}
-                    {{ pointform.as_p }}
-                </div>
+                {% for pointform in pointforms %}
+                    {% if forloop.counter == forloop.parentloop.counter %}
+                        <div class="col">
+                            {{ point }}
+                            {{ pointform.as_p }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
         </div>
 
         <h2 class="mt-2">Statistics (choose minimum)</h2>
         <div class="row">
             {% for stat in stats %}
-            <div class="col">
-                    {{ stat }}
-                    {{ statform.as_p }}
-            </div>
+                {% for statform in statforms %}
+                    {% if forloop.counter == forloop.parentloop.counter %}
+                        <div class="col">
+                            {{ stat }}
+                            {{ statform.as_p }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
         </div>
 
         <h2 class="mt-2">Skills (choose minimum)</h2>
         <div class="form-group row">
             {% for skill in skills %}
-            <div class="col">
-                    {{ skill }}
-                    {{ skillform.as_p }}
-            </div>
+                {% for skillform in skillforms %}
+                    {% if forloop.counter == forloop.parentloop.counter %}
+                        <div class="col">
+                            {{ skill }}
+                            {{ skillform.as_p }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
         </div>
         <button type="submit" class="btn btn-primary">Filter Results</button>

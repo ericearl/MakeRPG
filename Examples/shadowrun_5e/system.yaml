@@ -52,7 +52,19 @@ points:
         set: 1
     Skill:
         set: 0
+    Active Skill:
+        set: 0
+    Resonance Skill:
+        set: 0
+    Magical Skill:
+        set: 0
     Skill Group:
+        set: 0
+    Magical Skill Group:
+        set: 0
+    Spell:
+        set: 0
+    Complex Form:
         set: 0
 
 
@@ -138,6 +150,14 @@ archetypes:
                 max: 5
             CHARISMA:
                 max: 4
+
+
+roles:
+    - Adept
+    - Mystic Adept
+    - Magician
+    - Technomancer
+    - Aspected Magician
 
 
 stats:
@@ -1452,7 +1472,7 @@ history:
             3:
                 points:
                     Nuyen:
-                        set: 275000
+                        set: 140000
                 next: Priorities (Metatype, Attributes, Resources)
     Priorities (Metatype, Magic or Resonance):
         dice: 1d3
@@ -1472,7 +1492,7 @@ history:
             3:
                 points:
                     Nuyen:
-                        set: 275000
+                        set: 140000
                 next: Priorities (Metatype, Magic or Resonance, Resources)
     Priorities (Metatype, Skills):
         dice: 1d3
@@ -1487,7 +1507,7 @@ history:
             3:
                 points:
                     Nuyen:
-                        set: 275000
+                        set: 140000
                 next: Priorities (Metatype, Skills, Resources)
     Priorities (Metatype, Resources):
         dice: 1d3
@@ -1521,7 +1541,7 @@ history:
             3:
                 points:
                     Nuyen:
-                        set: 275000
+                        set: 140000
                 next: Priorities (Attributes, Magic or Resonance, Resources)
     Priorities (Attributes, Skills):
         dice: 1d3
@@ -1533,7 +1553,7 @@ history:
             3:
                 points:
                     Nuyen:
-                        set: 275000
+                        set: 140000
                 next: Priorities (Attributes, Skills, Resources)
     Priorities (Attributes, Resources):
         dice: 1d3
@@ -1562,7 +1582,7 @@ history:
             3:
                 points:
                     Nuyen:
-                        set: 275000
+                        set: 140000
                 next: Priorities (Magic or Resonance, Skills, Resources)
     Priorities (Magic or Resonance, Resources):
         dice: 1d3
@@ -1823,7 +1843,7 @@ history:
                     MAGIC:
                         set: 6
                 points:
-                    Spells:
+                    Spell:
                         set: 10
                     Magical Skill:
                         set: 10
@@ -1833,20 +1853,21 @@ history:
                     MAGIC:
                         set: 6
                 points:
-                    Spells:
+                    Spell:
                         set: 10
                     Magical Skill:
                         set: 10
             3:
                 roles: Technomancer
                 stats:
-                    Resonance:
+                    RESONANCE:
                         set: 6
                 points:
                     Resonance Skill:
                         set: 10
                     Complex Form:
                         set: 5
+        next: Priorities (Magic or Resonance)
     Magic or Resonance (Priority B):
         dice: 1d5
         roll:
@@ -1856,7 +1877,7 @@ history:
                     MAGIC:
                         set: 3
                 points:
-                    Spells:
+                    Spell:
                         set: 5
             2:
                 roles: Mystic Adept
@@ -1864,12 +1885,12 @@ history:
                     MAGIC:
                         set: 3
                 points:
-                    Spells:
+                    Spell:
                         set: 5
             3:
                 roles: Technomancer
                 stats:
-                    Resonance:
+                    RESONANCE:
                         set: 3
                 points:
                     Complex Form:
@@ -1899,7 +1920,7 @@ history:
                     MAGIC:
                         set: 3
                 points:
-                    Spells:
+                    Spell:
                         set: 5
             2:
                 roles: Mystic Adept
@@ -1907,12 +1928,12 @@ history:
                     MAGIC:
                         set: 3
                 points:
-                    Spells:
+                    Spell:
                         set: 5
             3:
                 roles: Technomancer
                 stats:
-                    Resonance:
+                    RESONANCE:
                         set: 3
                 points:
                     Complex Form:

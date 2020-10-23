@@ -53,13 +53,27 @@ def system(tree):
     p.save()
 
     if 'archetypes' in tree:
-        for archetype in tree['archetypes'].keys():
+        archetypes = tree['archetypes']
+
+        if type(archetypes) is dict:
+            iterable = archetypes.keys()
+        elif type(archetypes) is list:
+            iterable = archetypes
+
+        for archetype in iterable:
             a = Archetype()
             a.name = archetype
             a.save()
 
     if 'roles' in tree:
-        for role in tree['roles'].keys():
+        roles = tree['roles']
+
+        if type(roles) is dict:
+            iterable = roles.keys()
+        elif type(roles) is list:
+            iterable = roles
+
+        for role in iterable:
             r = Role()
             r.name = role
             r.save()
