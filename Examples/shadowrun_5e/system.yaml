@@ -2120,29 +2120,141 @@ items:
                 cost: 4000
                 skill: Blades
                 specifics:
-                    acc:
-                    reach:
-                    damage:
-                    AP:
-                    avail:
+                    acc: 4
+                    reach: 2
+                    damage: (STR+5)P
+                    AP: -4
+                    avail: 12R
             Combat Knife:
+                cost: 300
+                skill: 
+                specifics:
+                    acc: 6
+                    damage: (STR+2)P
+                    AP: -3
+                    avail: 4
             Forearm Snap-Blades:
+                cost: 200
+                skill: 
+                specifics:
+                    acc: 4
+                    damage: (STR+2)P
+                    AP: -2
+                    avail: 7R
             Katana:
+                cost: 1000
+                skill: 
+                specifics:
+                    acc: 7
+                    reach: 1
+                    damage: (STR+3)P
+                    AP: -3
+                    avail: 9R
             Knife:
+                cost: 10
+                skill: 
+                specifics:
+                    acc: 5
+                    damage: (STR+1)P
+                    AP: -1
             Pole Arm:
+                cost: 1000
+                skill: 
+                specifics:
+                    acc: 5
+                    reach: 3
+                    damage: (STR+3)P
+                    AP: -2
+                    avail: 6R
             Survival Knife:
+                cost: 100
+                skill: 
+                specifics:
+                    acc: 5
+                    damage: (STR+2)P
+                    AP: -1
             Sword:
+                cost: 500
+                skill: 
+                specifics:
+                    acc: 6
+                    reach: 1
+                    damage: (STR+3)P
+                    AP: -2
+                    avail: 5R
         Clubs:
             Club:
+                cost: 30
+                skill: 
+                specifics:
+                    acc: 4
+                    reach: 1
+                    damage: (STR+3)P
             Extendable Baton:
+                cost: 100
+                skill: 
+                specifics:
+                    acc: 5
+                    reach: 1
+                    damage: (STR+2)P
+                    avail: 4
             Sap:
+                cost: 30
+                skill: 
+                specifics:
+                    acc: 5
+                    damage: (STR+2)P
+                    avail: 2
             Staff:
+                cost: 100
+                skill: 
+                specifics:
+                    acc: 6
+                    reach: 2
+                    damage: (STR+3)P
+                    avail: 3
             Stun Baton:
+                cost: 750
+                skill: 
+                specifics:
+                    acc: 4
+                    reach: 1
+                    damage: 9S(e)
+                    AP: -5
+                    avail: 6R
             Telescoping Staff:
+                cost: 350
+                skill: 
+                specifics:
+                    acc: 4
+                    reach: 2
+                    damage: (STR+2)P
+                    avail: 4
         Other:
             Knucks:
+                cost: 100
+                skill: 
+                specifics:
+                    acc: Physical
+                    damage: (STR+1)P
+                    avail: 2R
             Monofilament Whip:
+                cost: 10000
+                skill: 
+                specifics:
+                    acc: 5(7)
+                    reach: 2
+                    damage: 12P
+                    AP: -8
+                    avail: 12F
             Shock Gloves:
+                cost: 550
+                skill: 
+                specifics:
+                    acc: Physical
+                    damage: 8S(e)
+                    AP: -5
+                    avail: 6R
     Projectile and Throwing Weapons:
         Bows:
             Bow:
@@ -2150,10 +2262,10 @@ items:
                 skill: Archery
                 require: Projectile and Throwing Weapons > Arrows
                 specifics:
-                    acc:
-                    damage:
-                    AP:
-                    avail:
+                    acc: 6
+                    damage: (Rating+2)P
+                    AP: -(Rating/4)
+                    avail: Rating
                 mods:
                     cost:
                         Rating:
@@ -2169,117 +2281,802 @@ items:
                             10: x10
         Arrows:
             Arrow:
+                cost: 2
+                require: Projectile and Throwing Weapons > Bows > Bow
+                specifics:
+                    avail: Rating
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
+                            7: x7
+                            8: x8
+                            9: x9
+                            10: x10
             Injection Arrow:
+                cost: 20
+                require: Projectile and Throwing Weapons > Bows > Bow
+                specifics:
+                    avail: (Rating+2)R
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
+                            7: x7
+                            8: x8
+                            9: x9
+                            10: x10
         Crossbows:
             Light:
+                cost: 300
+                skill: 
+                require: Projectile and Throwing Weapons > Bolts
+                specifics:
+                    acc: 7
+                    damage: 5P
+                    AP: -1
+                    avail: 2
             Medium:
+                cost: 500
+                skill: 
+                specifics:
+                    acc: 6
+                    damage: 7P
+                    AP: -2
+                    avail: 4R
             Heavy:
+                cost: 1000
+                skill: 
+                specifics:
+                    acc: 5
+                    damage: 10P
+                    AP: -3
+                    avail: 8R
         Bolts:
             Bolt:
+                cost: 5
+                specifics:
+                    avail: 2
             Injection Bolt:
+                cost: 50
+                specifics:
+                    avail: 8R
         Throwing Weapons:
             Throwing Knife/Shuriken:
                 cost: 25
+                skill: 
+                specifics:
+                    acc: Physical
+                    damage: (STR+1)P
+                    AP: -1
+                    avail: 4R
     Firearms:
         Tasers:
             Defiance EX Shocker:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Yamaha Pulsar:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Hold-Outs:
             Fichetti Tiffani Needler:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Streetline Special:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Walther Palm Pistol:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Light Pistols:
             Ares Light Fire 75:
-                points: Nuyen
                 cost: 1250
                 skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc:
-                    damage:
-                    AP:
-                    mode:
-                    RC:
-                    avail:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Ares Light Fire 70:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Beretta 201T:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Colt America L36:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Fichetti Security 600:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Taurus Omni-6:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Heavy Pistols:
             Ares Predator V:
-            Ares Viper Silvergun:
-            Browning Ultra-Power:
-            Colt Government 2066:
-            Remington Roomsweeper:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
                 specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
+            Ares Viper Silvergun:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
+            Browning Ultra-Power:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
+            Colt Government 2066:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
+            Remington Roomsweeper:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
                     damage: (w/o Flechettes) 7P | (w/Flechettes) 9P (f)
                     AP: (w/o Flechettes) -1 | (w/Flechettes) +4
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Ruger Super Warhawk:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Machine Pistols:
             Ares Crusader II:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Ceska Black Scorpion:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Steyr TMP:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Submachine Guns:
             Colt Cobra TZ-120:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             FN P93 Praetor:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             HK-227:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Ingram Smartgun X:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             SCK Model 100:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Uzi IV:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Assault Rifles:
             AK-97:
-            Ares Alpha w/Underbarrel Grenade Launcher:
-                require: Firearm Ammunition
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
                 specifics:
-                    acc:
-                    damage:
-                    AP:
-                    mode:
-                    RC:
-                    avail:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
+            Ares Alpha Rifle:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
+            Ares Alpha included Grenade Launcher:
+                cost: 0
+                skill: 
+                require: Firearm Ammunition > Grenades
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Colt M23:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             FN HAR:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Yamaha Raiden:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Sniper Rifles:
             Ares Desert Strike:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Cavalier Arms Crockett EBR:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Ranger Arms SM-5:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Remington 950:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Ruger 100:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Shotguns:
             Defiance T-250:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Enfield AS-7:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             PJSS Model 55:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Special Weapons:
             Ares S-III Super Squirt:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Fichetti Pain Inducer:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Parashield Dart Pistol:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Parashield Dart Rifle:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Machine Guns:
             Ingram Valiant:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Stoner-Ares M202:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             RPK HMG:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
         Cannons/Launchers:
             Ares Antioch-2:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             ArmTech MGL-12:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Aztechnology Striker:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Krime Cannon:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Onotari Interceptor:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
             Panther XXL:
+                cost: 
+                skill: 
+                require: Firearm Ammunition > Ammo
+                specifics:
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                    avail: 
     Firearm Accessories:
         Accessories:
             Airburst Link:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Bipod:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Concealable Holster:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Gas-Vent System:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Gyro Mount:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Hidden Arm Slide:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Imaging Scope:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Laser Sight:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Periscope:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Quick-Draw Holster:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Shock Pad:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Silencer/Suppresor:
                 cost: 500
                 require: Firearms
@@ -2287,60 +3084,234 @@ items:
                     mount: Barrel
                     avail: 9F
             Smart Firing Platform:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Smartgun System, Internal:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Smartgun System, External:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Spare Clip:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Speed Loader:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
             Tripod:
+                cost: 
+                require: Firearms
+                specifics:
+                    mount: 
+                    avail: 
     Firearm Ammunition:
         Ammo:
             APDS:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Assault Cannon:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Explosive Rounds:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Flechette Rounds:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Gel Rounds:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Hollow Points:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Injection Darts:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Regular:
                 cost: 20
                 qty: 10
                 unit: cased or caseless bullets
                 require: Firearms
                 specifics:
+                    damage mod: 
+                    AP mod: 
                     avail: 2R
             Stick-n-Shock:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Tracer:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
             Taser Dart:
+                cost: 
                 qty: 10
+                require: Firearms
+                specifics:
+                    damage mod: 
+                    AP mod: 
+                    avail: 
         Grenades:
             Flash-Bang:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Flash-Pak:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Fragmentation:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             High Explosive:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Gas:
-                require: Industrial Chemicals > Chemicals
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Smoke:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Thermal Smoke:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
         Rockets:
             Anti-Vehicle:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Fragmentation:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             High-Explosive:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
         Missiles:
             Anti-Vehicle:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             Fragmentation:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
             High-Explosive:
+                cost: 
+                specifics:
+                    damage: 
+                    AP: 
+                    blast: 
+                    avail: 
     Explosives:
         Type:
             Commercial:
+                cost: 100
+                unit: Kg
+                specifics:
+                    Rating: 5
+                    avail: 8R
             Foam:
                 cost: 100
                 unit: Kg
@@ -2399,93 +3370,386 @@ items:
                             25: x25
         Accessories:
             Detonator Cap:
+                cost: 75
+                specifics:
+                    avail: 8R
     Clothing and Armor:
         Clothing Article:
             Electrochromic Modification:
                 cost: 500
+                specifics:
+                    armor rating: 
+                    avail: 
             Feedback Clothing:
                 cost: 500
+                specifics:
+                    armor rating: 
+                    avail: 
             (Synth)Leather:
                 cost: 200
+                specifics:
+                    armor rating: 
+                    avail: 
         Armor:
             Actioneer Business Clothes:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             Armor Clothing:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             Armor Jacket:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             Armor Vest:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             Chameleon Suit:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             Lined Coat:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
         Full Body Armor:
             w/o Add-ons:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             w/Full Helmet:
+                cost: 
+                require: Clothing and Armor > Full Body Armor > w/o Add-ons
+                specifics:
+                    armor rating: 
+                    avail: 
             w/Chemical Seal:
+                cost: 
+                require: Clothing and Armor > Full Body Armor > w/o Add-ons
+                specifics:
+                    armor rating: 
+                    avail: 
             w/Environment Adaptation:
+                cost: 
+                require: Clothing and Armor > Full Body Armor > w/o Add-ons
+                specifics:
+                    armor rating: 
+                    avail: 
         Urban Explorer Jumpsuit:
             w/o Helmet:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             w/Helmet:
+                cost: 
+                require: Clothing and Armor > Urban Explorer Jumpsuit > w/o Helmet
+                specifics:
+                    armor rating: 
+                    avail: 
         Armor Modifications:
             Chemical Protection:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
             Chemical Seal:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Fire Resistance:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
             Insulation:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
             Nonconductivity:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
             Shock Frills:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Thermal Damping:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
         Helmets/Shields:
             Helmet:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
             Ballistic Shield:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
+                    acc: 
+                    reach: 
+                    damage: 
+                    AP: 
             Riot Shield:
+                cost: 
+                specifics:
+                    armor rating: 
+                    avail: 
+                    acc: 
+                    reach: 
+                    damage: 
+                    AP: 
     Electronics:
         Commlinks:
             Meta Link:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Sony Emperor:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Renraku Sensei:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Erika Elite:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Hermes Ikon:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Transys Avalon:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Fairlight Caliban:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
         Commlink Modifications:
             Sim Module w/o Hot-Sim:
+                cost: 
             Sim Module w/Hot-Sim:
+                cost: 
+                specifics:
+                    avail: 
         Cyberdecks:
             Erika MCD-1:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Microdeck Summit:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Microtronica Azteca 200:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Hermes Chariot:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Novatech Navigator:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Renraku Tsurugi:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Sony CIY-720:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Shiawase Cyber-5:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
             Fairlight Excalibur:
+                cost: 
+                specifics:
+                    device rating: 
+                    attribute array: 
+                    programs: 
+                    avail: 
         Accessories:
             AR Gloves:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Biomteric Reader:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Electronic Paper:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Printer:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Satellite Link:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Simrig:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Subvocal Mic:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Trid Projector:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Trodes:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
         RFID Tags:
             Standard Tags:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Datachip:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Security Tags:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Sensor Tags:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
             Stealth Tags:
+                cost: 
+                specifics:
+                    device rating: 
+                    avail: 
         Communications and Countermeasures:
             Bug Scanner:
+                cost: 
+                specifics:
+                    avail: 
             Data Tap:
+                cost: 
+                specifics:
+                    avail: 
             Headjammer:
+                cost: 
+                specifics:
+                    avail: 
             Jammer, Area:
+                cost: 
+                specifics:
+                    avail: 
             Jammer, Directional:
+                cost: 
+                specifics:
+                    avail: 
             Micro-Transceiver:
+                cost: 
+                specifics:
+                    avail: 
             Tag Eraser:
+                cost: 
+                specifics:
+                    avail: 
             White Noise Generator:
+                cost: 
+                specifics:
+                    avail: 
         Software:
             Agent:
                 cost: 1000
                 specifics:
-                    avail:
+                    avail: 
                 mods:
                     cost:
                         Rating:
@@ -2496,349 +3760,4024 @@ items:
                             5: x10
                             6: x12
             Autosoft:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
             Cyberprogram, Common Use:
+                cost: 
+                specifics:
+                    avail: 
             Cyberprogram, Hacking:
+                cost: 
+                specifics:
+                    avail: 
             Datasoft:
+                cost: 
+                specifics:
+                    avail: 
             Mapsoft:
+                cost: 
+                specifics:
+                    avail: 
             Shopsoft:
+                cost: 
+                specifics:
+                    avail: 
             Tutorsoft:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
         Skillsofts:
             Activesofts:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
             Knowsofts:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
             Linguasofts:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
     ID and Credit:
         Credsticks:
             Standard:
+                cost: 
+                specifics:
+                    max value: 
+                    avail: 
             Silver:
+                cost: 
+                specifics:
+                    max value: 
+                    avail: 
             Gold:
+                cost: 
+                specifics:
+                    max value: 
+                    avail: 
             Platinum:
+                cost: 
+                specifics:
+                    max value: 
+                    avail: 
             Ebony:
+                cost: 
+                specifics:
+                    max value: 
+                    avail: 
         Identification:
             Fake SIN:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
             Fake License:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
     Building and Repairing:
         Tools:
             Kit:
+                cost: 
+                specifics:
+                    avail: 
             Shop:
+                cost: 
+                specifics:
+                    avail: 
             Facility:
+                cost: 
+                specifics:
+                    avail: 
     Optical and Imaging Devices:
         Imaging:
             Binoculars, Electronic:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Capacity:
+                            1: x1
+                            2: x2
+                            3: x3
             Binoculars, Optical:
+                cost: 
+                specifics:
+                    avail: 
             Camera:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Capacity:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
             Micro-Camera:
+                cost: 
+                specifics:
+                    avail: 
             Contacts:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Capacity:
+                            1: x1
+                            2: x2
+                            3: x3
             Glasses:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Capacity:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
             Goggles:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Capacity:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
             Imaging Scopes:
+                cost: 
+                specifics:
+                    avail: 
             Monocle:
+                cost: 
+                specifics:
+                    avail: 
+                mods:
+                    cost:
+                        Capacity:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
         Optical:
             Endoscope:
+                cost: 
+                specifics:
+                    avail: 
             Mage Sight Goggles:
+                cost: 
+                specifics:
+                    avail: 
             Periscope:
+                cost: 
+                specifics:
+                    avail: 
     Vision:
         Enhancements:
             Low-Light Vision:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Flare Compensation:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Image Link:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Smartlink:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Thermographic Vision:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Vision Enhancement:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
+                mods:
+                    cost:
+                        Rating:
+                            1: x1
+                            2: x2
+                            3: x3
+                            4: x4
+                            5: x5
+                            6: x6
             Vision Magnification:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
     Audio:
         Devices:
             Directional Mic:
+                cost: 
+                specifics:
+                    avail: 
             Ear Buds:
+                cost: 
+                specifics:
+                    avail: 
             Headphones:
+                cost: 
+                specifics:
+                    avail: 
             Laser Mic:
+                cost: 
+                specifics:
+                    avail: 
             Omni-Directional Mic:
+                cost: 
+                specifics:
+                    avail: 
         Enhancements:
             Audio Enhancement:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Select Sound Filter:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Spatial Recognizer:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
     Sensors:
         Devices:
             Handheld Housing:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Wall-Mounted Housing:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Sensor Array:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
             Single Sensor:
+                cost: 
+                specifics:
+                    capacity: 
+                    avail: 
     Security and Restraints:
         Security:
             Key/Combination Lock:
+                cost: 
+                specifics:
+                    avail: 
             Maglock:
+                cost: 
+                specifics:
+                    avail: 
             Keypad or Card Reader:
+                cost: 
+                specifics:
+                    avail: 
             Anti-Tamper Circuits:
+                cost: 
+                specifics:
+                    avail: 
             Biometric Reader:
+                cost: 
+                specifics:
+                    avail: 
         Restraints:
             Metal:
+                cost: 
+                specifics:
+                    avail: 
             Plasteel:
+                cost: 
+                specifics:
+                    avail: 
             Plastic:
+                cost: 
                 qty: 10
+                specifics:
+                    avail: 
             Containment Manacles:
+                cost: 
+                specifics:
+                    avail: 
     Breaking and Entering:
         Gear:
             Autopicker:
+                cost: 
+                specifics:
+                    avail: 
             Cellular Glove Molder:
+                cost: 
+                specifics:
+                    avail: 
             Chisel/Crowbar:
+                cost: 
+                specifics:
+                    avail: 
             Keycard Copier:
+                cost: 
+                specifics:
+                    avail: 
             Lockpick Set:
+                cost: 
+                specifics:
+                    avail: 
             Maglock Passkey:
+                cost: 
+                specifics:
+                    avail: 
             Miniwelder:
+                cost: 
+                specifics:
+                    avail: 
             Minwelder Fuel Canister:
+                cost: 
+                specifics:
+                    avail: 
             Monofilament Chainsaw:
+                cost: 
+                specifics:
+                    avail: 
+                    acc: 
+                    reach: 
+                    damage: 
+                    AP: 
             Sequencer:
+                cost: 
+                specifics:
+                    avail: 
     Industrial Chemicals:
         Chemicals:
             Glue Solvent:
+                cost: 
+                specifics:
+                    avail: 
             Glue Sprayer:
+                cost: 
+                specifics:
+                    avail: 
             Thermite Burning Bar:
+                cost: 
+                specifics:
+                    avail: 
     Survival Gear:
         Gear:
             Chemsuit:
+                cost: 
+                specifics:
+                    avail: 
             Climbing Gear:
+                cost: 
+                specifics:
+                    avail: 
             Diving Gear:
+                cost: 
+                specifics:
+                    avail: 
             Flashlight:
+                cost: 
+                specifics:
+                    avail: 
             Gas Mask:
+                cost: 
+                specifics:
+                    avail: 
             Gecko Tape Gloves:
+                cost: 
+                specifics:
+                    avail: 
             Hazmat Suit:
+                cost: 
+                specifics:
+                    avail: 
             Light Stick:
+                cost: 
+                specifics:
+                    avail: 
             Magnesium Torch:
+                cost: 
+                specifics:
+                    avail: 
             Micro Flare Launcher:
+                cost: 
+                specifics:
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    ammo: 
             Micro Flares:
+                cost: 
+                specifics:
+                    avail: 
             Rappelling Gloves:
+                cost: 
+                specifics:
+                    avail: 
             Respirator:
+                cost: 
+                specifics:
+                    avail: 
             Survival Kit:
+                cost: 
+                specifics:
+                    avail: 
     Grapple Gun:
         Gear:
             Grapple Gun:
+                cost: 
+                specifics:
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    ammo: 
             Catalyst Stick:
+                cost: 
+                specifics:
+                    avail: 
             Microwire:
+                cost: 
+                qty: 100
+                unit: Meters
+                specifics:
+                    avail: 
             Myomeric Rope:
+                cost: 
+                qty: 10
+                unit: Meters
+                specifics:
+                    avail: 
             Standard Rope:
+                cost: 
+                qty: 100
+                unit: Meters
+                specifics:
+                    avail: 
             Stealth Rope:
+                cost: 
+                qty: 100
+                unit: Meters
+                specifics:
+                    avail: 
     Biotech:
         Devices:
             Biomonitor:
+                cost: 
+                specifics:
+                    avail: 
             Disposale Syringe:
+                cost: 
+                specifics:
+                    avail: 
             Medkit:
+                cost: 
+                specifics:
+                    avail: 
             Medkit Supplies (Re-stock):
+                cost: 
                 require: Biotech > Devices > Medkit
+                specifics:
+                    avail: 
     DocWagon Contracts:
         Contracts:
             Basic:
+                cost: 
+                unit: Year
             Gold:
+                cost: 
+                unit: Year
             Platinum:
+                cost: 
+                unit: Year
             Super-Platinum:
+                cost: 
+                unit: Year
     Slap Patches:
         Patches:
             Antidote Patch:
+                cost: 
+                specifics:
+                    avail: 
             Chem Patch:
+                cost: 
+                specifics:
+                    avail: 
             Stim Patch:
+                cost: 
+                specifics:
+                    avail: 
             Tranq Patch:
+                cost: 
+                specifics:
+                    avail: 
             Trauma Patch:
+                cost: 
+                specifics:
+                    avail: 
     Augmentations: # need to figure out 'Ware Grades
         Headware:
             Commlink:
+                cost: 
+                require: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Control Rig:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Cortex Kink Bomb:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Cortex Microbomb:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Cortex Area Bomb:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Cyberdeck:
+                cost: 
+                require: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Datajack:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Data Lock:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Olfactory Booster:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Simrig:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Skilljack:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Taste Booster:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Tooth Compartment:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Ultrasound Sensor:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Voice Modulator:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Eyeware:
             Cybereyes Basic System:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Flare Compensation:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Image Link:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Low-Light Vision:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Ocular Drone:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Retinal Duplication:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Smartlink:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Thermographic Vision:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Vision Enhancement:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Vision Magnification:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Earware:
             Cyberears:
-                Audio Enhancement:
-                Balance Augmenter:
-                Damper:
-                Select Sound Filter:
-                Sound Link:
-                Spatial Recognizer:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+            Audio Enhancement:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+            Balance Augmenter:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+            Damper:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+            Select Sound Filter:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+            Sound Link:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+            Spatial Recognizer:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Bodyware:
             Plastic Bone Lacing:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    body boost: 
+                    armor: 
+                    unarmed damage: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Aluminum Bone Lacing:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    body boost: 
+                    armor: 
+                    unarmed damage: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Titanium Bone Lacing:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    body boost: 
+                    armor: 
+                    unarmed damage: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Dermal Plating:
+                cost: 
                 exclude:
                     archetype: Troll
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Fingertip Compartment:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Grapple Gun:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Internal Air Tank:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Muscle Replacement:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Reaction Enhancers:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Skillwires:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Smuggling Compartment:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Wired Reflexes:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
     Cyberlimbs:
         Obvious:
             Full Arm:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Full Leg:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Hand/Foot:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Lower Arm:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Lower Leg:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Torso:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Skull:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Synthetic:
             Full Arm:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Full Leg:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Hand/Foot:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Lower Arm:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Lower Leg:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Torso:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Skull:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Enhancements:
             Agility:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Armor:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Strength:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Accessories:
             Cyberarm Gyromount:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Cyberarm Slide:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Cyber Holster:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Hydraulic Jacks:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Large Smuggling Compartment:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
     Implant Weapons:
         Cyberguns:
             Hold-Out Pistol:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Light Pistol:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Machine Pistol:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Heavy Pistol:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Submachine Gun:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Shotgun:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Grenade Launcher:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    acc: 
+                    damage: 
+                    AP: 
+                    mode: 
+                    RC: 
+                    ammo: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Cybergun Accessories:
             External Clip Port:
+                cost: 
                 require: Implant Weapons > Cyberguns
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Laser Sight:
+                cost: 
                 require: Implant Weapons > Cyberguns
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Silencer/Suppresor:
+                cost: 
                 require: Implant Weapons > Cyberguns
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Cyber Melee:
             Hand Blade (retractable):
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    reach: 
+                    damage: 
+                    AP: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Hand Razors (retractable):
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    reach: 
+                    damage: 
+                    AP: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Spurs (retractable):
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    reach: 
+                    damage: 
+                    AP: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Shock Hand:
+                cost: 
+                specifics:
+                    essence: 
+                    capacity: 
+                    avail: 
+                    reach: 
+                    damage: 
+                    AP: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
     Bioware:
         Basic:
             Adrenaline Pump:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Bone Density Augmentation:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
+                    unarmed damage:
+                        Rating:
+                            1: (STR)P
+                            2: (STR+1)P
+                            3: (STR+2)P
+                            4: (STR+3)P
             Cat's Eye:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Enhanced Articulation:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Muscle Augmentation:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Muscle Toner:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Orthoskin:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Pathogenic Defense:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Platelet Factories:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Skin Pocket:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Suprathyroid Gland:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Symbiotes:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Synthacardium:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Tailored Pheromones:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Toxin Extractor:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Tracheal Filter:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
         Cultured:
             Cerebral Booster:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Damage Compensators:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Mnemonic Enhancer:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Pain Editor:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Reflex Recorder:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Sleep Regulator:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
             Synaptic Booster:
+                cost: 
+                specifics:
+                    essence: 
+                    avail: 
+                mods:
+                    essence:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x0.8
+                            Betaware: x0.7
+                            Deltaware: x0.5
+                            Used: x1.25
+                    avail: 
+                        Ware Grades:
+                            Alphaware: +2
+                            Betaware: +4
+                            Deltaware: +8
+                            Used: -4
+                    cost:
+                        Ware Grades:
+                            Standard: x1.0
+                            Alphaware: x1.2
+                            Betaware: x1.5
+                            Deltaware: x2.5
+                            Used: x0.75
     Magical Equipment:
         Foci:
             Enchanting Focus:
+                cost: 
+                specifics:
+                    avail: 
             Metamagic Focus:
+                cost: 
+                specifics:
+                    avail: 
             Power Focus:
+                cost: 
+                specifics:
+                    avail: 
             Qi Focus:
+                cost: 
+                specifics:
+                    avail: 
             Spell Focus:
+                cost: 
+                specifics:
+                    avail: 
             Spirit Focus:
+                cost: 
+                specifics:
+                    avail: 
             Weapon Focus:
+                cost: 
+                specifics:
+                    avail: 
         Formulae:
             Focus Formula:
+                cost: 
+                specifics:
+                    avail: 
             Combat Spell Formula:
+                cost: 
+                specifics:
+                    avail: 
             Detection Spell Formula:
+                cost: 
+                specifics:
+                    avail: 
             Health Spell Formula:
+                cost: 
+                specifics:
+                    avail: 
             Illusion Spell Formula:
+                cost: 
+                specifics:
+                    avail: 
             Manipulation Spell Formula:
+                cost: 
+                specifics:
+                    avail: 
         Supplies:
             Magical Lodge Materials:
+                cost: 
+                specifics:
+                    avail: 
             Reagents:
+                cost: 
                 unit: dram
     Vehicles:
         Bikes:
             Dodge Scoot:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Harley-Davidson Scorpion:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Yamaha Growler:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Suzuki Mirage:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         Cars:
             Chrysler-Nissan Jackrabbit:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Honda Spirit:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Hyundai Shin-Hyung:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Eurocar Westwind 3000:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Ford Americar:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Saeder-Krupp-Bentley Concordat:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Mitsubishi Nigthsky:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         Trucks and Vans:
             Toyota Gopher:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             GMC Bulldog Step-Van:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Rover Model 2072:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Ares Roadmaster:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         Boats:
             Samuvani Criscraft Otter:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Yongkang Gala Trinity:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Morgan Cutlass:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         Submarines:
             Proteus Lamprey:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Vulkan Electronaut:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         Fixed-Wing Aircraft:
             Artemis Industries Nightwing:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Cessna C750:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Renault-Flat Fokker Tundra-9:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         Rotorcraft:
             Ares Dragon:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Nissan Hound:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Northrup Wasp:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
         VTOL/VSTOL:
             Ares Venture:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             GMC Banshee:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
             Federated Boeing Commuter:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    seats: 
+                    avail: 
     Vehicle Modifications:
         Modifications:
             Rigger Interface:
+                cost: 
+                specifics:
+                    avail: 
             Standard Weapon Mount:
+                cost: 
+                specifics:
+                    avail: 
             Heavy Weapon Mount:
+                cost: 
+                specifics:
+                    avail: 
             Manual Operation:
+                cost: 
+                specifics:
+                    avail: 
     Drones:
         Micro:
             Shiawase Kanmushi:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
             Sikorsky-Bell Microskimmer:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
         Mini:
             Horizon Flying Eye:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
             MCT Fly-Spy:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
         Small:
             Aztechnology Crawler:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
             Lockheed Optic-X2:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
         Medium:
             Ares Duelist:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
             GM-Nissan Doberman:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
             MCT-Nissan Roto-Drone:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
         Large:
             Cyberspace Designs Dalmation:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
             Steel Lynx Combat Drone:
+                cost: 
+                specifics:
+                    handl: 
+                    speed: 
+                    accel: 
+                    bod: 
+                    armor: 
+                    pilot: 
+                    sensor: 
+                    avail: 
