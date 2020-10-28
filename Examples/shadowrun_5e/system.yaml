@@ -4803,7 +4803,7 @@ items:
                             Deltaware: x2.5
                             Used: x0.75
             Flare Compensation:
-                cost: 
+                cost: 1000
                 specifics:
                     essence: 
                     capacity: 
