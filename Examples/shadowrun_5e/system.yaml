@@ -2127,7 +2127,7 @@ items:
                     avail: 12R
             Combat Knife:
                 cost: 300
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 6
                     damage: (STR+2)P
@@ -2135,7 +2135,7 @@ items:
                     avail: 4
             Forearm Snap-Blades:
                 cost: 200
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 4
                     damage: (STR+2)P
@@ -2143,7 +2143,7 @@ items:
                     avail: 7R
             Katana:
                 cost: 1000
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 7
                     reach: 1
@@ -2152,14 +2152,14 @@ items:
                     avail: 9R
             Knife:
                 cost: 10
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 5
                     damage: (STR+1)P
                     AP: -1
             Pole Arm:
                 cost: 1000
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 5
                     reach: 3
@@ -2168,14 +2168,14 @@ items:
                     avail: 6R
             Survival Knife:
                 cost: 100
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 5
                     damage: (STR+2)P
                     AP: -1
             Sword:
                 cost: 500
-                skill: 
+                skill: Blades
                 specifics:
                     acc: 6
                     reach: 1
@@ -2185,14 +2185,14 @@ items:
         Clubs:
             Club:
                 cost: 30
-                skill: 
+                skill: Clubs
                 specifics:
                     acc: 4
                     reach: 1
                     damage: (STR+3)P
             Extendable Baton:
                 cost: 100
-                skill: 
+                skill: Clubs
                 specifics:
                     acc: 5
                     reach: 1
@@ -2200,14 +2200,14 @@ items:
                     avail: 4
             Sap:
                 cost: 30
-                skill: 
+                skill: Clubs
                 specifics:
                     acc: 5
                     damage: (STR+2)P
                     avail: 2
             Staff:
                 cost: 100
-                skill: 
+                skill: Clubs
                 specifics:
                     acc: 6
                     reach: 2
@@ -2215,7 +2215,7 @@ items:
                     avail: 3
             Stun Baton:
                 cost: 750
-                skill: 
+                skill: Clubs
                 specifics:
                     acc: 4
                     reach: 1
@@ -2224,7 +2224,7 @@ items:
                     avail: 6R
             Telescoping Staff:
                 cost: 350
-                skill: 
+                skill: Clubs
                 specifics:
                     acc: 4
                     reach: 2
@@ -2233,14 +2233,14 @@ items:
         Other:
             Knucks:
                 cost: 100
-                skill: 
+                skill: Unarmed
                 specifics:
                     acc: Physical
                     damage: (STR+1)P
                     avail: 2R
             Monofilament Whip:
                 cost: 10000
-                skill: 
+                skill: Exotic
                 specifics:
                     acc: 5(7)
                     reach: 2
@@ -2249,7 +2249,7 @@ items:
                     avail: 12F
             Shock Gloves:
                 cost: 550
-                skill: 
+                skill: Unarmed
                 specifics:
                     acc: Physical
                     damage: 8S(e)
@@ -2319,7 +2319,7 @@ items:
         Crossbows:
             Light:
                 cost: 300
-                skill: 
+                skill: Bows
                 require: Projectile and Throwing Weapons > Bolts
                 specifics:
                     acc: 7
@@ -2328,7 +2328,7 @@ items:
                     avail: 2
             Medium:
                 cost: 500
-                skill: 
+                skill: Bows
                 specifics:
                     acc: 6
                     damage: 7P
@@ -2336,7 +2336,7 @@ items:
                     avail: 4R
             Heavy:
                 cost: 1000
-                skill: 
+                skill: Bows
                 specifics:
                     acc: 5
                     damage: 10P
@@ -2354,7 +2354,7 @@ items:
         Throwing Weapons:
             Throwing Knife/Shuriken:
                 cost: 25
-                skill: 
+                skill: Throwing
                 specifics:
                     acc: Physical
                     damage: (STR+1)P
@@ -2363,652 +2363,652 @@ items:
     Firearms:
         Tasers:
             Defiance EX Shocker:
-                cost: 
-                skill: 
+                cost: 250
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 9S
+                    AP: -5
+                    mode: Single
+                    RC: 0
+                    ammo: 4 
+                    avail: 0
             Yamaha Pulsar:
-                cost: 
-                skill: 
+                cost: 180
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 7S
+                    AP: -5
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 4 
+                    avail: 0
         Hold-Outs:
             Fichetti Tiffani Needler:
-                cost: 
-                skill: 
+                cost: 1000
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 8P
+                    AP: +5
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 4
+                    avail: 5R
             Streetline Special:
-                cost: 
-                skill: 
+                cost: 120
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 6P
+                    AP: 0
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 6
+                    avail: 4R
             Walther Palm Pistol:
-                cost: 
-                skill: 
+                cost: 180
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 7P
+                    AP: 0
+                    mode: Single, BurstFire
+                    RC: 0
+                    ammo: 2
+                    avail: 4R
         Light Pistols:
             Ares Light Fire 75:
                 cost: 1250
                 skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6 (8)
+                    damage: 6P
+                    AP: 0
+                    mode: SemiAuto 
+                    RC: 0
+                    ammo: 16
+                    avail: 6F
             Ares Light Fire 70:
-                cost: 
-                skill: 
+                cost: 200
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 7
+                    damage: 6P
+                    AP: 0
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 16
+                    avail: 3R
             Beretta 201T:
-                cost: 
-                skill: 
+                cost: 210
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: 6P
+                    AP: 0
+                    mode: SemiAuto, BurstFire 
+                    RC: 0(1)
+                    ammo: 21
+                    avail: 7R
             Colt America L36:
-                cost: 
-                skill: 
+                cost: 320
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 7
+                    damage: 7P
+                    AP: 0
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 11 
+                    avail: 4R
             Fichetti Security 600:
-                cost: 
-                skill: 
+                cost: 350
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6(7)
+                    damage: 7P
+                    AP: 0
+                    mode: SemiAuto 
+                    RC: 0(1)
+                    ammo: 30
+                    avail: 6R
             Taurus Omni-6:
-                cost: 
-                skill: 
+                cost: 300
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(6)
+                    damage: 6P(7P)
+                    AP: 0(-1)
+                    mode: SemiAuto, Single
+                    RC: 0
+                    ammo: 6
+                    avail: 3R
         Heavy Pistols:
             Ares Predator V:
-                cost: 
-                skill: 
+                cost: 725
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(7)
+                    damage: 8P
+                    AP: -1
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 15 
+                    avail: 5R
             Ares Viper Silvergun:
-                cost: 
-                skill: 
+                cost: 380
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 9P
+                    AP: +4
+                    mode: SemiAuto, BurstFire
+                    RC: 0
+                    ammo: 30 
+                    avail: 8F
             Browning Ultra-Power:
-                cost: 
-                skill: 
+                cost: 640
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(6)
+                    damage: 8P
+                    AP: -1 
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 10 
+                    avail: 4R
             Colt Government 2066:
-                cost: 
-                skill: 
+                cost: 425
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: 7P
+                    AP: -1 
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 14
+                    avail: 7R
             Remington Roomsweeper:
-                cost: 
-                skill: 
+                cost: 250
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
+                    acc: 4
                     damage: (w/o Flechettes) 7P | (w/Flechettes) 9P (f)
                     AP: (w/o Flechettes) -1 | (w/Flechettes) +4
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 8
+                    avail: 6R
             Ruger Super Warhawk:
-                cost: 
-                skill: 
+                cost: 400
+                skill: Pistols
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 9P
+                    AP: -2 
+                    mode: Single
+                    RC: 0
+                    ammo: 6
+                    avail: 4R
         Machine Pistols:
             Ares Crusader II:
-                cost: 
-                skill: 
+                cost: 830
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(7)
+                    damage: 7P
+                    AP: 0
+                    mode: SemiAuto, BurstFire
+                    RC: 2
+                    ammo: 40
+                    avail: 9R
             Ceska Black Scorpion:
-                cost: 
-                skill: 
+                cost: 270
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 6P
+                    AP: 0
+                    mode: SemiAuto, BurstFire
+                    RC: 0(1)
+                    ammo: 35
+                    avail: 6R
             Steyr TMP:
-                cost: 
-                skill: 
+                cost: 350
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 7P
+                    AP: 0
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 0
+                    ammo: 30
+                    avail: 8R
         Submachine Guns:
             Colt Cobra TZ-120:
-                cost: 
-                skill: 
+                cost: 660
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(5)
+                    damage: 7P
+                    AP: 0
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 2(3)
+                    ammo: 32
+                    avail: 5R
             FN P93 Praetor:
-                cost: 
-                skill: 
+                cost: 900
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: 8P
+                    AP: 0
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 1(2)
+                    ammo: 50
+                    avail: 11F
             HK-227:
-                cost: 
-                skill: 
+                cost: 730
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(7)
+                    damage: 7P
+                    AP: 0
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 0(1)
+                    ammo: 28
+                    avail: 8R
             Ingram Smartgun X:
-                cost: 
-                skill: 
+                cost: 800
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(6)
+                    damage: 8P
+                    AP: 0
+                    mode: BurstFire, FullAuto
+                    RC: 2
+                    ammo: 32
+                    avail: 6R
             SCK Model 100:
-                cost: 
-                skill: 
+                cost: 875
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(7)
+                    damage: 8P
+                    AP: SemiAuto, BurstFire
+                    mode: SemiAuto, BurstFire
+                    RC: 0(1)
+                    ammo: 30
+                    avail: 6R
             Uzi IV:
-                cost: 
-                skill: 
+                cost: 450
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(5)
+                    damage: 7P
+                    AP: 0
+                    mode: BurstFire
+                    RC: 0(1)
+                    ammo: 24
+                    avail: 4R
         Assault Rifles:
             AK-97:
-                cost: 
-                skill: 
+                cost: 950
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 10P
+                    AP: -2 
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 0
+                    ammo: 38
+                    avail: 4R
             Ares Alpha Rifle:
-                cost: 
-                skill: 
+                cost: 2650
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(7)
+                    damage: 11P
+                    AP: -2  
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 2
+                    ammo: 42
+                    avail: 11F
             Ares Alpha included Grenade Launcher:
                 cost: 0
-                skill: 
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Grenades
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(6)
+                    damage: Grenade
+                    AP: Grenade
+                    mode: Single
+                    RC: 0
+                    ammo: 6
+                    avail: 11F
             Colt M23:
-                cost: 
-                skill: 
+                cost: 550
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 9P
+                    AP: -2 
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 0
+                    ammo: 40
+                    avail: 4R
             FN HAR:
-                cost: 
-                skill: 
+                cost: 1500
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(6)
+                    damage: 10P
+                    AP: -2 
+                    mode: SemiAuto, BurstFire, FullAuto
+                    RC: 2
+                    ammo: 35
+                    avail: 8R
             Yamaha Raiden:
-                cost: 
-                skill: 
+                cost: 2600
+                skill: Automatics
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6(8)
+                    damage: 11P
+                    AP: -2   
+                    mode: BurstFire, FullAuto
+                    RC: 2
+                    ammo: 60
+                    avail: 14F
         Sniper Rifles:
             Ares Desert Strike:
-                cost: 
-                skill: 
+                cost: 17500
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 7
+                    damage: 13P
+                    AP: -4
+                    mode: SemiAuto
+                    RC: 0(1)
+                    ammo: 14
+                    avail: 10F
             Cavalier Arms Crockett EBR:
-                cost: 
-                skill: 
+                cost: 10300
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: 12P
+                    AP: -3
+                    mode: SemiAuto, BurstFire
+                    RC: 0(1)
+                    ammo: 20
+                    avail: 12F
             Ranger Arms SM-5:
-                cost: 
-                skill: 
+                cost: 28000
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 8
+                    damage: 14P
+                    AP: -5
+                    mode: SemiAuto
+                    RC: 0(1)
+                    ammo: 15
+                    avail: 16F
             Remington 950:
-                cost: 
-                skill: 
+                cost: 2100
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 7
+                    damage: 12P
+                    AP: -4
+                    mode: Single
+                    RC: 0
+                    ammo: 5
+                    avail: 4R
             Ruger 100:
-                cost: 
-                skill: 
+                cost: 1300
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: 11P
+                    AP: -3
+                    mode: SemiAuto
+                    RC: 0(1)
+                    ammo: 8
+                    avail: 4R
         Shotguns:
             Defiance T-250:
-                cost: 
-                skill: 
+                cost: 450
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 10P
+                    AP: -1 
+                    mode: Single, SemiAuto
+                    RC: 0
+                    ammo: 5
+                    avail: 4R
             Enfield AS-7:
-                cost: 
-                skill: 
+                cost: 1100
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(5)
+                    damage: 13P
+                    AP: -1
+                    mode: SemiAuto, BurstFire
+                    RC: 0
+                    ammo: 10(24)
+                    avail: 12F
             PJSS Model 55:
-                cost: 
-                skill: 
+                cost: 1000
+                skill: Longarms
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: 11P
+                    AP: -1 
+                    mode: Single
+                    RC: 0(1)
+                    ammo: 2
+                    avail: 9R
         Special Weapons:
             Ares S-III Super Squirt:
-                cost: 
-                skill: 
+                cost: 950
+                skill: Exotic
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 3
+                    damage: Chemical 
+                    AP: 0
+                    mode: SemiAuto 
+                    RC: 0
+                    ammo: 20
+                    avail: 7R
             Fichetti Pain Inducer:
-                cost: 
-                skill: 
+                cost: 5000
+                skill: Exotic
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 3
+                    damage: Special
+                    AP: 0
+                    mode: Single
+                    RC: 0
+                    ammo: Special
+                    avail: 11R
             Parashield Dart Pistol:
-                cost: 
-                skill: 
+                cost: 600
+                skill: Exotic
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: Drug/Toxin
+                    AP: 0
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 5
+                    avail: 4R
             Parashield Dart Rifle:
-                cost: 
-                skill: 
+                cost: 1200
+                skill: Exotic
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 6
+                    damage: Drug/Toxin
+                    AP: 0
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 6
+                    avail: 6R
         Machine Guns:
             Ingram Valiant:
-                cost: 
-                skill: 
+                cost: 5800
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(6)
+                    damage: 9P
+                    AP: -2 
+                    mode: BurstFire, FullAuto
+                    RC: 2(3)
+                    ammo: 50(c), 100(belt)
+                    avail: 12F
             Stoner-Ares M202:
-                cost: 
-                skill: 
+                cost: 7000
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 10P
+                    AP: -3
+                    mode: FullAuto
+                    RC: 0
+                    ammo: 50(c), 100(belt)
+                    avail: 12F
             RPK HMG:
-                cost: 
-                skill: 
+                cost: 16300
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: 12P
+                    AP: -4
+                    mode: FullAuto
+                    RC: 0(6)
+                    ammo: 50(c), 100(belt)
+                    avail: 16F
         Cannons/Launchers:
             Ares Antioch-2:
-                cost: 
-                skill: 
+                cost: 3200
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(6)
+                    damage: Grenade
+                    AP: Grenade
+                    mode: Single
+                    RC: 0
+                    ammo: 8
+                    avail: 8F
             ArmTech MGL-12:
-                cost: 
-                skill: 
+                cost: 5000
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: Grenade
+                    AP: Grenade
+                    mode: SemiAuto
+                    RC: 0
+                    ammo: 12
+                    avail: 10F
             Aztechnology Striker:
-                cost: 
-                skill: 
+                cost: 1200
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5
+                    damage: Missile
+                    AP: Missile
+                    mode: Single
+                    RC: 0
+                    ammo: 1
+                    avail: 10F
             Krime Cannon:
-                cost: 
-                skill: 
+                cost: 21000
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4
+                    damage: 16P
+                    AP: -6
+                    mode: SemiAuto
+                    RC: 0(1)
+                    ammo: 6
+                    avail: 20F
             Onotari Interceptor:
-                cost: 
-                skill: 
+                cost: 14000
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 4(6)
+                    damage: Missile
+                    AP: Missile
+                    mode: Single
+                    RC: 0
+                    ammo: 2
+                    avail: 18F
             Panther XXL:
-                cost: 
-                skill: 
+                cost: 43000
+                skill: HeavyWeapons
                 require: Firearm Ammunition > Ammo
                 specifics:
-                    acc: 
-                    damage: 
-                    AP: 
-                    mode: 
-                    RC: 
-                    ammo: 
-                    avail: 
+                    acc: 5(7)
+                    damage: 17P
+                    AP: -6
+                    mode: Single
+                    RC: 0
+                    ammo: 15
+                    avail: 20F
     Firearm Accessories:
         Accessories:
             Airburst Link:
