@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'makerpg.herokuapp.com',
     'localhost',
-    'makerpg.us-west-2.elasticbeanstalk.com',
+    'makerpg-dev2-dev.us-west-2.elasticbeanstalk.com',
     ]
 
 
