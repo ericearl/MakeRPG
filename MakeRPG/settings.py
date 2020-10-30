@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     'makerpg.herokuapp.com',
     'localhost',
     'makerpg.us-west-2.elasticbeanstalk.com',
-    '172.31.45.123',
+    '172.31.27.143',
     ]
 
 
