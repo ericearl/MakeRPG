@@ -28,7 +28,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['makerpg.herokuapp.com', 'localhost', '192.168.0.111']
+ALLOWED_HOSTS = [
+    'localhost',
+    'makerpg.net',
+    '192.168.0.111',
+    'makerpg.herokuapp.com',
+    ]
 
 
 # Application definition
