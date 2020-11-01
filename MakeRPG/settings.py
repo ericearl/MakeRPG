@@ -91,6 +91,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+OSCAR_DEFAULT_CURRENCY = 'USD'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

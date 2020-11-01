@@ -17,7 +17,7 @@ class ItemImporter(CatalogueImporter):
 
     def __init__(self):
         logger = logging.getLogger('oscar.catalogue.import')
-        super().__init__(logger)
+        super().__init__(logger, flush=True)
 
     def _import(self, system_yaml):
         with open(system_yaml,'r') as yamlfile:
@@ -26,18 +26,53 @@ class ItemImporter(CatalogueImporter):
         file_path = os.path.join( os.path.dirname(system_yaml) , 'items.csv' )
 
         with open(file_path, 'w') as csvfile:
+
             product_type = 'Item'
             fulfillment_partner = 'Item partner'
             stock = 1
-            description = 'NULL'
+
             for item_cat in tree['items']:
                 for item_type in tree['items'][item_cat]:
                     category = ' > '.join([ item_cat , item_type ])
-                    for item in tree['items'][item_cat][item_type]:
+
+                    item_list = [item for item in tree['items'][item_cat][item_type]]
+                    for item in reversed(item_list):
+                        item_dict = tree['items'][item_cat][item_type][item]
+
                         uid = uuid.uuid5( uuid.NAMESPACE_OID , ' > '.join([ category , item ]) )
-                        price = tree['items'][item_cat][item_type][item]['cost']
+                        price = item_dict['cost']
                         if not price:
                             price = 0
+
+                        if ('qty' in item_dict or \
+                            'unit' in item_dict or \
+                            'skill' in item_dict or \
+                            'require' in item_dict or \
+                            'specifics' in item_dict):
+                            description = ''
+                        else:
+                            description = 'NULL'
+
+                        if 'qty' in item_dict:
+                            description += 'Quantity: ' + str(item_dict['qty']) + '  |  '
+
+                        if 'unit' in item_dict:
+                            description += 'Units: ' + str(item_dict['unit']) + '  |  '
+
+                        if 'skill' in item_dict:
+                            description += 'Skill: ' + str(item_dict['skill']) + '  |  '
+
+                        if 'require' in item_dict:
+                            description += 'Requires: ' + str(item_dict['require']) + '  |  '
+
+                        if 'specifics' in item_dict:
+                            specifics = []
+
+                            for key in item_dict['specifics']:
+                                value = item_dict['specifics'][key]
+                                specifics.append( str(key) + ': ' + str(value) )
+
+                            description += '  |  '.join(specifics)
 
                         line = ','.join([
                             product_type,
