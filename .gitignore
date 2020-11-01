@@ -7,3 +7,4 @@ db.json
 ignore.txt
 static/
 media/
+Examples/*/*.csv

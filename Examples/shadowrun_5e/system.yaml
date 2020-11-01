@@ -3089,13 +3089,13 @@ items:
                 specifics:
                     mount: 
                     avail: 
-            Smartgun System, Internal:
+            Internal Smartgun System:
                 cost: 
                 require: Firearms
                 specifics:
                     mount: 
                     avail: 
-            Smartgun System, External:
+            External Smartgun System:
                 cost: 
                 require: Firearms
                 specifics:
@@ -3725,11 +3725,11 @@ items:
                 cost: 
                 specifics:
                     avail: 
-            Jammer, Area:
+            Area Jammer:
                 cost: 
                 specifics:
                     avail: 
-            Jammer, Directional:
+            Directional Jammer:
                 cost: 
                 specifics:
                     avail: 
@@ -3766,11 +3766,11 @@ items:
                 mods:
                     cost:
                         Rating:
-            Cyberprogram, Common Use:
+            Common Use Cyberprogram:
                 cost: 
                 specifics:
                     avail: 
-            Cyberprogram, Hacking:
+            Hacking Cyberprogram:
                 cost: 
                 specifics:
                     avail: 
@@ -3909,7 +3909,7 @@ items:
                     avail: 
     Optical and Imaging Devices:
         Imaging:
-            Binoculars, Electronic:
+            Electronic Binoculars:
                 cost: 
                 specifics:
                     avail: 
@@ -3919,7 +3919,7 @@ items:
                             1: x1
                             2: x2
                             3: x3
-            Binoculars, Optical:
+            Optical Binoculars:
                 cost: 
                 specifics:
                     avail: 
