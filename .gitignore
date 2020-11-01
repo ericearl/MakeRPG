@@ -5,3 +5,5 @@ CharacterCreator/migrations/*.py
 MakeRPG/settings.py
 db.json
 ignore.txt
+static/
+media/
