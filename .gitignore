@@ -1,5 +1,6 @@
 *.sqlite*
 *.pyc
+*.pdf
 .vscode/
 CharacterCreator/migrations/*.py
 MakeRPG/settings.py
