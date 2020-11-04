@@ -4051,320 +4051,587 @@ items:
     Audio:
         Devices:
             Directional Mic:
-                cost: 
+                cost: 50
                 specifics:
-                    Availability: 
+                    Availability: 4
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Ear Buds:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 50
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
             Headphones:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 50
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Laser Mic:
-                cost: 
+                cost: 100
                 specifics:
-                    Availability: 
+                    Availability: 6R
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Omni-Directional Mic:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 50
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
         Enhancements:
             Audio Enhancement:
-                cost: 
+                cost: 500
+                require: Audio > Devices
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 2
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                    Capacity:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
             Select Sound Filter:
-                cost: 
+                cost: 250
+                require: Audio > Devices
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 3
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                    Capacity:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
             Spatial Recognizer:
-                cost: 
+                cost: 1000
+                require: Audio > Devices
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 2
+                    Availability: 4
     Sensors:
         Devices:
             Handheld Housing:
-                cost: 
-                specifics:
-                    Capacity: 
-                    Availability: 
+                cost: 100
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
             Wall-Mounted Housing:
-                cost: 
-                specifics:
-                    Capacity: 
-                    Availability: 
+                cost: 250
+                mods:
+                    cost:
+                        Capacity:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Sensor Array:
-                cost: 
+                cost: 1000
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 6
+                    Availability: 7
+                mods:
+                    cost:
+                        Rating:
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                            7: "*7"
+                            8: "*8"
             Single Sensor:
-                cost: 
+                cost: 100
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 5
+                mods:
+                    cost:
+                        Rating:
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                            7: "*7"
+                            8: "*8"
     Security and Restraints:
         Security:
             Key/Combination Lock:
-                cost: 
+                cost: 10
                 specifics:
-                    Availability: 
+                    Availability: 1
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Maglock:
-                cost: 
+                cost: 100
                 specifics:
-                    Availability: 
+                    Availability: 1
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Keypad or Card Reader:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 50
             Anti-Tamper Circuits:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 1
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
             Biometric Reader:
-                cost: 
+                cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 4
         Restraints:
             Metal:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 20
             Plasteel:
-                cost: 
+                cost: 50
                 specifics:
-                    Availability: 
+                    Availability: 6R
             Plastic:
-                cost: 
+                cost: 5
                 qty: 10
-                specifics:
-                    Availability: 
             Containment Manacles:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 6R
     Breaking and Entering:
         Gear:
             Autopicker:
-                cost: 
+                cost: 500
                 specifics:
-                    Availability: 
+                    Availability: 8R
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Cellular Glove Molder:
-                cost: 
+                cost: 500
                 specifics:
-                    Availability: 
+                    Availability: 12F
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
             Chisel/Crowbar:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 20
             Keycard Copier:
-                cost: 
+                cost: 600
                 specifics:
-                    Availability: 
+                    Availability: 8F
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Lockpick Set:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 4R
             Maglock Passkey:
-                cost: 
+                cost: 2000
                 specifics:
-                    Availability: 
+                    Availability: 3F
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
             Miniwelder:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 2
             Minwelder Fuel Canister:
-                cost: 
+                cost: 80
                 specifics:
-                    Availability: 
+                    Availability: 2
             Monofilament Chainsaw:
-                cost: 
+                cost: 500
                 specifics:
-                    Availability: 
-                    Accuracy: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    Availability: 8
+                    Accuracy: 3
+                    Reach: 1
+                    Damage: 8P
+                    AP: -6
             Sequencer:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 3F
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
     Industrial Chemicals:
         Chemicals:
             Glue Solvent:
-                cost: 
+                cost: 90
                 specifics:
-                    Availability: 
+                    Availability: 2
             Glue Sprayer:
-                cost: 
+                cost: 150
                 specifics:
-                    Availability: 
+                    Availability: 2
             Thermite Burning Bar:
-                cost: 
+                cost: 500
                 specifics:
-                    Availability: 
+                    Availability: 16R
     Survival Gear:
         Gear:
             Chemsuit:
-                cost: 
+                cost: 150
                 specifics:
-                    Availability: 
+                    Availability: 2
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Climbing Gear:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 200
             Diving Gear:
-                cost: 
+                cost: 2000
                 specifics:
-                    Availability: 
+                    Availability: 6
             Flashlight:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 25
             Gas Mask:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 200
             Gecko Tape Gloves:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 12
             Hazmat Suit:
-                cost: 
+                cost: 3000
                 specifics:
-                    Availability: 
+                    Availability: 8
             Light Stick:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 25
             Magnesium Torch:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 5
             Micro Flare Launcher:
-                cost: 
+                cost: 175
                 specifics:
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    Ammo: 
+                    Accuracy: 3
+                    Damage: 5P (Fire)
+                    AP: -5
+                    Mode: SS
+                    Ammo: 1 (ml)
             Micro Flares:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 25
             Rappelling Gloves:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 50
             Respirator:
-                cost: 
-                specifics:
-                    Availability: 
+                cost: 50
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Survival Kit:
-                cost: 
+                cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 4
     Grapple Gun:
         Gear:
             Grapple Gun:
-                cost: 
+                cost: 500
                 specifics:
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    Ammo: 
+                    Availability: 8R
+                    Accuracy: 3
+                    Damage: 7S
+                    AP: -2
+                    Mode: SS
+                    Ammo: 1 (ml)
             Catalyst Stick:
-                cost: 
+                cost: 120
                 specifics:
-                    Availability: 
+                    Availability: 8F
             Microwire:
-                cost: 
+                cost: 50
                 qty: 100
                 unit: Meters
                 specifics:
-                    Availability: 
+                    Availability: 4
             Myomeric Rope:
-                cost: 
+                cost: 200
                 qty: 10
                 unit: Meters
                 specifics:
-                    Availability: 
+                    Availability: 10
             Standard Rope:
-                cost: 
+                cost: 50
                 qty: 100
                 unit: Meters
-                specifics:
-                    Availability: 
             Stealth Rope:
-                cost: 
+                cost: 85
                 qty: 100
                 unit: Meters
                 specifics:
-                    Availability: 
+                    Availability: 8F
     Biotech:
         Devices:
             Biomonitor:
-                cost: 
+                cost: 300
                 specifics:
-                    Availability: 
-            Disposale Syringe:
-                cost: 
+                    Availability: 3
+            Disposable Syringe:
+                cost: 10
                 specifics:
-                    Availability: 
+                    Availability: 3
             Medkit:
-                cost: 
+                cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 1
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Medkit Supplies (Re-stock):
-                cost: 
+                cost: 100
                 require: Biotech > Devices > Medkit
-                specifics:
-                    Availability: 
     DocWagon Contracts:
         Contracts:
             Basic:
-                cost: 
+                cost: 5000
                 unit: Year
             Gold:
-                cost: 
+                cost: 25000
                 unit: Year
             Platinum:
-                cost: 
+                cost: 50000
                 unit: Year
             Super-Platinum:
-                cost: 
+                cost: 100000
                 unit: Year
     Slap Patches:
         Patches:
             Antidote Patch:
-                cost: 
+                cost: 50
                 specifics:
-                    Availability: 
+                    Availability: 1
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Chem Patch:
-                cost: 
+                cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 6
             Stim Patch:
-                cost: 
+                cost: 25
                 specifics:
-                    Availability: 
+                    Availability: 2
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Tranq Patch:
-                cost: 
+                cost: 20
                 specifics:
-                    Availability: 
+                    Availability: 2
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Trauma Patch:
-                cost: 
+                cost: 500
                 specifics:
-                    Availability: 
+                    Availability: 6
     Augmentations:
         Headware:
             Commlink:
