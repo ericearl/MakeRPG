@@ -3012,67 +3012,73 @@ items:
     Firearm Accessories:
         Accessories:
             Airburst Link:
-                cost: 
+                cost: 600
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Bipod:
-                cost: 
+                cost: 200
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Concealable Holster:
-                cost: 
+                cost: 150
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Gas-Vent System:
-                cost: 
+                cost: 200
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount:
+                    Availability: (Ratingx2)R
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
             Gyro Mount:
-                cost: 
+                cost: 1400
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Hidden Arm Slide:
-                cost: 
+                cost: 350
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Imaging Scope:
-                cost: 
+                cost: 300
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Laser Sight:
-                cost: 
+                cost: 125
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Periscope:
-                cost: 
+                cost: 70
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Quick-Draw Holster:
-                cost: 
+                cost: 175
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Shock Pad:
-                cost: 
+                cost: 50
                 require: Firearms
                 specifics:
                     Mount: 
@@ -3084,37 +3090,37 @@ items:
                     Mount: Barrel
                     Availability: 9F
             Smart Firing Platform:
-                cost: 
+                cost: 2500
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Internal Smartgun System:
-                cost: 
+                cost: Special
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             External Smartgun System:
-                cost: 
+                cost: 200
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Spare Clip:
-                cost: 
+                cost: 5
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Speed Loader:
-                cost: 
+                cost: 25
                 require: Firearms
                 specifics:
                     Mount: 
                     Availability: 
             Tripod:
-                cost: 
+                cost: 500
                 require: Firearms
                 specifics:
                     Mount: 
@@ -3122,7 +3128,7 @@ items:
     Firearm Ammunition:
         Ammo:
             APDS:
-                cost: 
+                cost: 120
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3130,7 +3136,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Assault Cannon:
-                cost: 
+                cost: 400
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3138,7 +3144,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Explosive Rounds:
-                cost: 
+                cost: 80
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3146,7 +3152,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Flechette Rounds:
-                cost: 
+                cost: 65
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3154,7 +3160,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Gel Rounds:
-                cost: 
+                cost: 25
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3162,7 +3168,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Hollow Points:
-                cost: 
+                cost: 70
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3170,7 +3176,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Injection Darts:
-                cost: 
+                cost: 75
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3187,7 +3193,7 @@ items:
                     AP Modifier: 
                     Availability: 2R
             Stick-n-Shock:
-                cost: 
+                cost: 80
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3195,7 +3201,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Tracer:
-                cost: 
+                cost: 60
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3203,7 +3209,7 @@ items:
                     AP Modifier: 
                     Availability: 
             Taser Dart:
-                cost: 
+                cost: 50
                 qty: 10
                 require: Firearms
                 specifics:
@@ -3212,49 +3218,49 @@ items:
                     Availability: 
         Grenades:
             Flash-Bang:
-                cost: 
+                cost: 100
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Flash-Pak:
-                cost: 
+                cost: 125
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Fragmentation:
-                cost: 
+                cost: 100
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             High Explosive:
-                cost: 
+                cost: 100
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Gas:
-                cost: 
+                cost: Special
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Smoke:
-                cost: 
+                cost: 40
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Thermal Smoke:
-                cost: 
+                cost: 60
                 specifics:
                     Damage: 
                     AP: 
@@ -3262,21 +3268,21 @@ items:
                     Availability: 
         Rockets:
             Anti-Vehicle:
-                cost: 
+                cost: 2800
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Fragmentation:
-                cost: 
+                cost: 2000
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             High-Explosive:
-                cost: 
+                cost: 2100
                 specifics:
                     Damage: 
                     AP: 
@@ -3284,21 +3290,21 @@ items:
                     Availability: 
         Missiles:
             Anti-Vehicle:
-                cost: 
+                cost: Special
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             Fragmentation:
-                cost: 
+                cost: Special
                 specifics:
                     Damage: 
                     AP: 
                     Blast: 
                     Availability: 
             High-Explosive:
-                cost: 
+                cost: Special
                 specifics:
                     Damage: 
                     AP: 
@@ -3392,130 +3398,160 @@ items:
                     Availability: 
         Armor:
             Actioneer Business Clothes:
-                cost: 
+                cost: 1500
                 specifics:
                     Armor Rating: 
                     Availability: 
             Armor Clothing:
-                cost: 
+                cost: 450
                 specifics:
                     Armor Rating: 
                     Availability: 
             Armor Jacket:
-                cost: 
+                cost: 1000
                 specifics:
                     Armor Rating: 
                     Availability: 
             Armor Vest:
-                cost: 
+                cost: 500
                 specifics:
                     Armor Rating: 
                     Availability: 
             Chameleon Suit:
-                cost: 
+                cost: 1700
                 specifics:
                     Armor Rating: 
                     Availability: 
             Lined Coat:
-                cost: 
+                cost: 900
                 specifics:
                     Armor Rating: 
                     Availability: 
         Full Body Armor:
             w/o Add-ons:
-                cost: 
+                cost: 2000
                 specifics:
                     Armor Rating: 
                     Availability: 
             w/Full Helmet:
-                cost: 
+                cost: 2500
                 require: Clothing and Armor > Full Body Armor > w/o Add-ons
                 specifics:
                     Armor Rating: 
                     Availability: 
             w/Chemical Seal:
-                cost: 
+                cost: 8000
                 require: Clothing and Armor > Full Body Armor > w/o Add-ons
                 specifics:
                     Armor Rating: 
                     Availability: 
             w/Environment Adaptation:
-                cost: 
+                cost: 3000
                 require: Clothing and Armor > Full Body Armor > w/o Add-ons
                 specifics:
                     Armor Rating: 
                     Availability: 
         Urban Explorer Jumpsuit:
             w/o Helmet:
-                cost: 
+                cost: 650
                 specifics:
                     Armor Rating: 
                     Availability: 
             w/Helmet:
-                cost: 
+                cost: 750
                 require: Clothing and Armor > Urban Explorer Jumpsuit > w/o Helmet
                 specifics:
                     Armor Rating: 
                     Availability: 
         Armor Modifications:
             Chemical Protection:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
                 mods:
                     cost:
                         Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Chemical Seal:
-                cost: 
+                cost: 3000
                 specifics:
                     Capacity: 
                     Availability: 
             Fire Resistance:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
                 mods:
                     cost:
                         Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Insulation:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
                 mods:
                     cost:
                         Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Nonconductivity:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
                 mods:
                     cost:
-                        Rating:
+                        Rating:1:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Shock Frills:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
             Thermal Damping:
-                cost: 
+                cost: 500
                 specifics:
                     Capacity: 
                     Availability: 
                 mods:
                     cost:
                         Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
         Helmets/Shields:
             Helmet:
-                cost: 
+                cost: 100
                 specifics:
                     Armor Rating: 
                     Availability: 
             Ballistic Shield:
-                cost: 
+                cost: 1200
                 specifics:
                     Armor Rating: 
                     Availability: 
@@ -3524,7 +3560,7 @@ items:
                     Damage: 
                     AP: 
             Riot Shield:
-                cost: 
+                cost: 1500
                 specifics:
                     Armor Rating: 
                     Availability: 
@@ -3535,106 +3571,106 @@ items:
     Electronics:
         Commlinks:
             Meta Link:
-                cost: 
+                cost: 100
                 specifics:
                     Device Rating: 
                     Availability: 
             Sony Emperor:
-                cost: 
+                cost: 700
                 specifics:
                     Device Rating: 
                     Availability: 
             Renraku Sensei:
-                cost: 
+                cost: 1000
                 specifics:
                     Device Rating: 
                     Availability: 
             Erika Elite:
-                cost: 
+                cost: 2500
                 specifics:
                     Device Rating: 
                     Availability: 
             Hermes Ikon:
-                cost: 
+                cost: 3000
                 specifics:
                     Device Rating: 
                     Availability: 
             Transys Avalon:
-                cost: 
+                cost: 5000
                 specifics:
                     Device Rating: 
                     Availability: 
             Fairlight Caliban:
-                cost: 
+                cost: 8000
                 specifics:
                     Device Rating: 
                     Availability: 
         Commlink Modifications:
             Sim Module w/o Hot-Sim:
-                cost: 
+                cost: 100
             Sim Module w/Hot-Sim:
-                cost: 
+                cost: 350
                 specifics:
                     Availability: 
         Cyberdecks:
             Erika MCD-1:
-                cost: 
+                cost: 49500
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Microdeck Summit:
-                cost: 
+                cost: 58000
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Microtronica Azteca 200:
-                cost: 
+                cost: 110250
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Hermes Chariot:
-                cost: 
+                cost: 123000
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Novatech Navigator:
-                cost: 
+                cost: 205750
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Renraku Tsurugi:
-                cost: 
+                cost: 214125
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Sony CIY-720:
-                cost: 
+                cost: 345000
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Shiawase Cyber-5:
-                cost: 
+                cost: 549375
                 specifics:
                     Device Rating: 
                     Attribute Array: 
                     Programs: 
                     Availability: 
             Fairlight Excalibur:
-                cost: 
+                cost: 823250
                 specifics:
                     Device Rating: 
                     Attribute Array: 
@@ -3642,109 +3678,154 @@ items:
                     Availability: 
         Accessories:
             AR Gloves:
-                cost: 
+                cost: 150
                 specifics:
                     Device Rating: 
                     Availability: 
             Biomteric Reader:
-                cost: 
+                cost: 200
                 specifics:
                     Device Rating: 
                     Availability: 
             Electronic Paper:
-                cost: 
+                cost: 5
                 specifics:
                     Device Rating: 
                     Availability: 
             Printer:
-                cost: 
+                cost: 25
                 specifics:
                     Device Rating: 
                     Availability: 
             Satellite Link:
-                cost: 
+                cost: 500
                 specifics:
                     Device Rating: 
                     Availability: 
             Simrig:
-                cost: 
+                cost: 1000
                 specifics:
                     Device Rating: 
                     Availability: 
             Subvocal Mic:
-                cost: 
+                cost: 50
                 specifics:
                     Device Rating: 
                     Availability: 
             Trid Projector:
-                cost: 
+                cost: 200
                 specifics:
                     Device Rating: 
                     Availability: 
             Trodes:
-                cost: 
+                cost: 70
                 specifics:
                     Device Rating: 
                     Availability: 
         RFID Tags:
             Standard Tags:
-                cost: 
+                cost: 1
                 specifics:
                     Device Rating: 
                     Availability: 
             Datachip:
-                cost: 
+                cost: 5
                 specifics:
                     Device Rating: 
                     Availability: 
             Security Tags:
-                cost: 
+                cost: 5
                 specifics:
                     Device Rating: 
                     Availability: 
             Sensor Tags:
-                cost: 
+                cost: 40
                 specifics:
                     Device Rating: 
                     Availability: 
             Stealth Tags:
-                cost: 
+                cost: 10
                 specifics:
                     Device Rating: 
                     Availability: 
         Communications and Countermeasures:
             Bug Scanner:
-                cost: 
+                cost: 100
                 specifics:
                     Availability: 
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Data Tap:
-                cost: 
+                cost: 300
                 specifics:
                     Availability: 
             Headjammer:
-                cost: 
+                cost: 150
                 specifics:
                     Availability: 
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Area Jammer:
-                cost: 
+                cost: 200
                 specifics:
                     Availability: 
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Directional Jammer:
-                cost: 
+                cost: 200
                 specifics:
                     Availability: 
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Micro-Transceiver:
-                cost: 
+                cost: 100
                 specifics:
                     Availability: 
             Tag Eraser:
-                cost: 
+                cost: 450
                 specifics:
                     Availability: 
             White Noise Generator:
-                cost: 
+                cost: 50
                 specifics:
                     Availability: 
+                mods:
+                    cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
         Software:
             Agent:
                 cost: 1000
@@ -3760,34 +3841,40 @@ items:
                             5: "*10"
                             6: "*12"
             Autosoft:
-                cost: 
+                cost: 500
                 specifics:
                     Availability: 
                 mods:
                     cost:
                         Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Common Use Cyberprogram:
-                cost: 
+                cost: 80
                 specifics:
                     Availability: 
             Hacking Cyberprogram:
-                cost: 
+                cost: 250
                 specifics:
                     Availability: 
             Datasoft:
-                cost: 
+                cost: 120
                 specifics:
                     Availability: 
             Mapsoft:
-                cost: 
+                cost: 100
                 specifics:
                     Availability: 
             Shopsoft:
-                cost: 
+                cost: 150
                 specifics:
                     Availability: 
             Tutorsoft:
-                cost: 
+                cost: 400
                 specifics:
                     Availability: 
                 mods:
@@ -3801,7 +3888,7 @@ items:
                             6: "*6"
         Skillsofts:
             Activesofts:
-                cost: 
+                cost: 5000
                 specifics:
                     Availability: 
                 mods:
@@ -3814,7 +3901,7 @@ items:
                             5: "*5"
                             6: "*6"
             Knowsofts:
-                cost: 
+                cost: 2000
                 specifics:
                     Availability: 
                 mods:
@@ -3827,7 +3914,7 @@ items:
                             5: "*5"
                             6: "*6"
             Linguasofts:
-                cost: 
+                cost: 1000
                 specifics:
                     Availability: 
                 mods:
@@ -3842,33 +3929,33 @@ items:
     ID and Credit:
         Credsticks:
             Standard:
-                cost: 
+                cost: 5
                 specifics:
                     Max Value: 
                     Availability: 
             Silver:
-                cost: 
+                cost: 20
                 specifics:
                     Max Value: 
                     Availability: 
             Gold:
-                cost: 
+                cost: 100
                 specifics:
                     Max Value: 
                     Availability: 
             Platinum:
-                cost: 
+                cost: 500
                 specifics:
                     Max Value: 
                     Availability: 
             Ebony:
-                cost: 
+                cost: 1000
                 specifics:
                     Max Value: 
                     Availability: 
         Identification:
             Fake SIN:
-                cost: 
+                cost: 2500
                 specifics:
                     Availability: 
                 mods:
@@ -3881,7 +3968,7 @@ items:
                             5: "*5"
                             6: "*6"
             Fake License:
-                cost: 
+                cost: 200
                 specifics:
                     Availability: 
                 mods:
@@ -3896,21 +3983,21 @@ items:
     Building and Repairing:
         Tools:
             Kit:
-                cost: 
+                cost: 500
                 specifics:
                     Availability: 
             Shop:
-                cost: 
+                cost: 5000
                 specifics:
                     Availability: 
             Facility:
-                cost: 
+                cost: 50000
                 specifics:
                     Availability: 
     Optical and Imaging Devices:
         Imaging:
             Electronic Binoculars:
-                cost: 
+                cost: 50
                 specifics:
                     Availability: 
                 mods:
@@ -3920,11 +4007,11 @@ items:
                             2: "*2"
                             3: "*3"
             Optical Binoculars:
-                cost: 
+                cost: 50
                 specifics:
                     Availability: 
             Camera:
-                cost: 
+                cost: 100
                 specifics:
                     Availability: 
                 mods:
@@ -3937,11 +4024,11 @@ items:
                             5: "*5"
                             6: "*6"
             Micro-Camera:
-                cost: 
+                cost: 100
                 specifics:
                     Availability: 
             Contacts:
-                cost: 
+                cost: 200
                 specifics:
                     Availability: 
                 mods:
@@ -3951,7 +4038,7 @@ items:
                             2: "*2"
                             3: "*3"
             Glasses:
-                cost: 
+                cost: 100
                 specifics:
                     Availability: 
                 mods:
@@ -3962,7 +4049,7 @@ items:
                             3: "*3"
                             4: "*4"
             Goggles:
-                cost: 
+                cost: 50
                 specifics:
                     Availability: 
                 mods:
@@ -3975,11 +4062,11 @@ items:
                             5: "*5"
                             6: "*6"
             Imaging Scopes:
-                cost: 
+                cost: 300
                 specifics:
                     Availability: 
             Monocle:
-                cost: 
+                cost: 120
                 specifics:
                     Availability: 
                 mods:
@@ -3991,46 +4078,46 @@ items:
                             4: "*4"
         Optical:
             Endoscope:
-                cost: 
+                cost: 250
                 specifics:
                     Availability: 
             Mage Sight Goggles:
-                cost: 
+                cost: 3000
                 specifics:
                     Availability: 
             Periscope:
-                cost: 
+                cost: 50
                 specifics:
                     Availability: 
     Vision:
         Enhancements:
             Low-Light Vision:
-                cost: 
+                cost: 500
                 specifics:
                     Capacity: 
                     Availability: 
             Flare Compensation:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
             Image Link:
-                cost: 
+                cost: 25
                 specifics:
                     Capacity: 
                     Availability: 
             Smartlink:
-                cost: 
+                cost: 2000
                 specifics:
                     Capacity: 
                     Availability: 
             Thermographic Vision:
-                cost: 
+                cost: 500
                 specifics:
                     Capacity: 
                     Availability: 
             Vision Enhancement:
-                cost: 
+                cost: 500
                 specifics:
                     Capacity: 
                     Availability: 
@@ -4044,7 +4131,7 @@ items:
                             5: "*5"
                             6: "*6"
             Vision Magnification:
-                cost: 
+                cost: 250
                 specifics:
                     Capacity: 
                     Availability: 
