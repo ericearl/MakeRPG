@@ -19,19 +19,23 @@ MakeRPG chooses a history from the priority table, stats, skills, and some quali
 
 MakeRPG calls this the "History", which is really just selecting priorities automatically from the Priority Table.
 
+Note: There's something wrong with the metatype racial bonuses in MakeRPG right now, so make sure to enter your own from page 66.
+
 ## Step Three: (If You) Choose Magic or Resonance
 
 There are characters with or without Magic or Resonance in MakeRPG.  Look at page 69 if you go with Magic though (Adept, Magician, Aspected Magician, or Mystic Adept).  There's also a short explanation of Technomancers (users of Resonance skills) on page 69.  Basic Magic and Resonance skills are listed on page 90.
 
 ## Step Four: Purchase Qualities
 
-MakeRPG chooses a small amount of positive or negative qualities which increase or decrease your Karma points, respectively.  You can choose more or swap around as you like, but the more you choose, the more difficult it may become to roleplay or use your character's skills.
+MakeRPG chooses a small amount of positive or negative qualities which decrease or increase your Karma points, respectively.  You can choose more or swap around as you like, but the more you choose, the more difficult it may become to roleplay or use your character's skills.
 
 ## Step Five: Purchase Skills
 
 There are "skill groups" and "skills" (and you can further specialize skills if you like).  Points taken in a skill group apply to a few skills at once.  See page 90 for a fleshed out list.
 
 MakeRPG does not purchase any knowledge or language skills, so make sure to distribute skill points from what you have if you want some knowledge or language skills.
+
+Note: MakeRPG skill levels have already added in bonuses from Skill Groups, so be careful with redistributing skill points from skills you got from a skill group.
 
 ## Step Six: Spend Your Resources
 
@@ -63,7 +67,7 @@ Commonly needed/used gear (from page 94):
 - Disguises
 - Sensors and sensory enhancement
 - Magical goods
-- Certified credsticks (basically credit cards)
+- Certified credsticks
 - DocWagon contract
 
 ## Step Seven: Spending Your Leftover Karma
