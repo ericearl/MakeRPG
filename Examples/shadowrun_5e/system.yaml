@@ -3015,26 +3015,24 @@ items:
                 cost: 600
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 6R
             Bipod:
                 cost: 200
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Under
+                    Availability: 2
             Concealable Holster:
                 cost: 150
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 2
             Gas-Vent System:
                 cost: 200
                 require: Firearms
                 specifics:
-                    Mount:
-                    Availability: (Ratingx2)R
+                    Mount: Barrel
+                    Availability: 3R
                 mods:
                     cost:
                         Rating:
@@ -3045,44 +3043,41 @@ items:
                 cost: 1400
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Under
+                    Availability: 7
             Hidden Arm Slide:
                 cost: 350
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 4R
             Imaging Scope:
                 cost: 300
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Top
+                    Availability: 2
             Laser Sight:
                 cost: 125
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Top or Under
+                    Availability: 2
             Periscope:
                 cost: 70
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Top
+                    Availability: 3
             Quick-Draw Holster:
                 cost: 175
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 4
             Shock Pad:
                 cost: 50
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 2
             Silencer/Suppresor:
                 cost: 500
                 require: Firearms
@@ -3093,38 +3088,35 @@ items:
                 cost: 2500
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Under
+                    Availability: 12F
             Internal Smartgun System:
-                cost: Special
+                cost: 2
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 2R
             External Smartgun System:
                 cost: 200
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Top or Under
+                    Availability: 4R
             Spare Clip:
                 cost: 5
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 4
             Speed Loader:
                 cost: 25
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Availability: 2
             Tripod:
                 cost: 500
                 require: Firearms
                 specifics:
-                    Mount: 
-                    Availability: 
+                    Mount: Under
+                    Availability: 4
     Firearm Ammunition:
         Ammo:
             APDS:
@@ -3132,184 +3124,171 @@ items:
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    AP Modifier: -4
+                    Availability: 12F
             Assault Cannon:
                 cost: 400
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Availability: 12F
             Explosive Rounds:
                 cost: 80
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Damage Modifier: 1
+                    AP Modifier: -1
+                    Availability: 9F
             Flechette Rounds:
                 cost: 65
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Damage Modifier: 2
+                    AP Modifier: 5
+                    Availability: 6R
             Gel Rounds:
                 cost: 25
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Damage Modifier: 0S
+                    AP Modifier: 1
+                    Availability: 2R
             Hollow Points:
                 cost: 70
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Damage Modifier: 1
+                    AP Modifier: 2
+                    Availability: 4F
             Injection Darts:
                 cost: 75
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Availability: 4R
             Regular:
                 cost: 20
                 qty: 10
                 unit: cased or caseless bullets
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
                     Availability: 2R
             Stick-n-Shock:
                 cost: 80
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Damage Modifier: -2S(e)
+                    AP Modifier: -5
+                    Availability: 6R
             Tracer:
                 cost: 60
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Availability: 6R
             Taser Dart:
                 cost: 50
                 qty: 10
                 require: Firearms
                 specifics:
-                    Damage Modifier: 
-                    AP Modifier: 
-                    Availability: 
+                    Availability: 3
         Grenades:
             Flash-Bang:
                 cost: 100
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: 10S
+                    AP: -4
+                    Blast: 10m Radius
+                    Availability: 6R
             Flash-Pak:
                 cost: 125
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: Special
+                    Blast: Special
+                    Availability: 4
             Fragmentation:
                 cost: 100
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: 18P(f)
+                    AP: 5
+                    Blast: -1/m
+                    Availability: 11F
             High Explosive:
                 cost: 100
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: 16P
+                    AP: -2
+                    Blast: -2/m
+                    Availability: 11F
+# TODO: Gas cost
             Gas:
                 cost: Special
                 specifics:
                     Damage: 
-                    AP: 
-                    Blast: 
+                    Blast: 10m Radius
                     Availability: 
             Smoke:
                 cost: 40
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Blast: 10m Radius
+                    Availability: 4R
             Thermal Smoke:
                 cost: 60
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Blast: 10m Radius
+                    Availability: 6R
         Rockets:
             Anti-Vehicle:
                 cost: 2800
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: 24P
+                    AP: -4/-10
+                    Blast: -4/m
+                    Availability: 18F
             Fragmentation:
                 cost: 2000
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: 23P (f)
+                    AP: 5
+                    Blast: -1/m
+                    Availability: 12F
             High-Explosive:
                 cost: 2100
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Damage: 21P
+                    AP: -2
+                    Blast: -2/m
+                    Availability: 18F
         Missiles:
             Anti-Vehicle:
-                cost: Special
+                cost: 2800
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Sensor Rating: 1
+                    Damage: 24P
+                    AP: -4/-10
+                    Blast: -4/m
+                    Availability: 22F
             Fragmentation:
-                cost: Special
+                cost: 2000
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Sensor Rating: 1
+                    Damage: 23P (f)
+                    AP: 5
+                    Blast: -1/m
+                    Availability: 16F
             High-Explosive:
-                cost: Special
+                cost: 2100
                 specifics:
-                    Damage: 
-                    AP: 
-                    Blast: 
-                    Availability: 
+                    Sensor Rating: 1
+                    Damage: 21P
+                    AP: -2
+                    Blast: -2/m
+                    Availability: 22F
     Explosives:
         Type:
             Commercial:
@@ -3384,91 +3363,86 @@ items:
             Electrochromic Modification:
                 cost: 500
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Availability: 2
             Feedback Clothing:
                 cost: 500
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Availability: 8
             (Synth)Leather:
                 cost: 200
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 4
         Armor:
             Actioneer Business Clothes:
                 cost: 1500
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 8
+                    Availability: 8
             Armor Clothing:
                 cost: 450
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 6
+                    Availability: 2
             Armor Jacket:
                 cost: 1000
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 12
+                    Availability: 2
             Armor Vest:
                 cost: 500
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 9
+                    Availability: 4
             Chameleon Suit:
                 cost: 1700
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 9
+                    Availability: 10R
             Lined Coat:
                 cost: 900
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 9
+                    Availability: 4
         Full Body Armor:
             w/o Add-ons:
                 cost: 2000
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 15
+                    Availability: 14R
             w/Full Helmet:
-                cost: 2500
+                cost: 500
                 require: Clothing and Armor > Full Body Armor > w/o Add-ons
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 3
+                    Availability: 14R
             w/Chemical Seal:
-                cost: 8000
+                cost: 6000
                 require: Clothing and Armor > Full Body Armor > w/o Add-ons
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Availability: 20R
             w/Environment Adaptation:
-                cost: 3000
+                cost: 1000
                 require: Clothing and Armor > Full Body Armor > w/o Add-ons
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Availability: 17R
         Urban Explorer Jumpsuit:
             w/o Helmet:
                 cost: 650
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 9
+                    Availability: 8
             w/Helmet:
-                cost: 750
+                cost: 100
                 require: Clothing and Armor > Urban Explorer Jumpsuit > w/o Helmet
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 2
+                    Availability: 8
         Armor Modifications:
             Chemical Protection:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 6
                 mods:
                     cost:
                         Rating:
@@ -3481,13 +3455,13 @@ items:
             Chemical Seal:
                 cost: 3000
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 6
+                    Availability: 12R
             Fire Resistance:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 6
                 mods:
                     cost:
                         Rating:
@@ -3500,8 +3474,8 @@ items:
             Insulation:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 6
                 mods:
                     cost:
                         Rating:
@@ -3514,8 +3488,8 @@ items:
             Nonconductivity:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 6
                 mods:
                     cost:
                         Rating:1:
@@ -3528,13 +3502,13 @@ items:
             Shock Frills:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 2
+                    Availability: 6R
             Thermal Damping:
                 cost: 500
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 10R
                 mods:
                     cost:
                         Rating:
@@ -3548,211 +3522,201 @@ items:
             Helmet:
                 cost: 100
                 specifics:
-                    Armor Rating: 
-                    Availability: 
+                    Armor Rating: 2
+                    Availability: 2
             Ballistic Shield:
                 cost: 1200
                 specifics:
-                    Armor Rating: 
-                    Availability: 
-                    Accuracy: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    Armor Rating: 6
+                    Availability: 12R
+                    Accuracy: 4
+                    Damage: (STRENGTH+2)S
             Riot Shield:
                 cost: 1500
                 specifics:
-                    Armor Rating: 
-                    Availability: 
-                    Accuracy: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    Armor Rating: 6
+                    Availability: 10R
+                    Accuracy: 4
+                    Damage: 9S(e)
+                    AP: -5
     Electronics:
         Commlinks:
             Meta Link:
                 cost: 100
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 1
+                    Availability: 2
             Sony Emperor:
                 cost: 700
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 2
+                    Availability: 4
             Renraku Sensei:
                 cost: 1000
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
+                    Availability: 6
             Erika Elite:
                 cost: 2500
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 4
+                    Availability: 8
             Hermes Ikon:
                 cost: 3000
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 5
+                    Availability: 10
             Transys Avalon:
                 cost: 5000
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 6
+                    Availability: 12
             Fairlight Caliban:
                 cost: 8000
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 7
+                    Availability: 14
         Commlink Modifications:
             Sim Module w/o Hot-Sim:
                 cost: 100
             Sim Module w/Hot-Sim:
                 cost: 350
                 specifics:
-                    Availability: 
+                    Availability: 4F
         Cyberdecks:
             Erika MCD-1:
                 cost: 49500
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 1
+                    Attribute Array: 4 3 2 1
+                    Programs: 1
+                    Availability: 3R
             Microdeck Summit:
                 cost: 58000
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 1
+                    Attribute Array: 4 3 3 1
+                    Programs: 1
+                    Availability: 3R
             Microtronica Azteca 200:
                 cost: 110250
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 2
+                    Attribute Array: 5 4 3 2
+                    Programs: 2
+                    Availability: 6R
             Hermes Chariot:
                 cost: 123000
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 2
+                    Attribute Array: 5 4 4 2
+                    Programs: 2
+                    Availability: 6R
             Novatech Navigator:
                 cost: 205750
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 3
+                    Attribute Array: 6 5 4 3
+                    Programs: 3
+                    Availability: 9R
             Renraku Tsurugi:
                 cost: 214125
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 3
+                    Attribute Array: 6 5 5 3
+                    Programs: 3
+                    Availability: 9R
             Sony CIY-720:
                 cost: 345000
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 4
+                    Attribute Array: 7 6 5 4
+                    Programs: 4
+                    Availability: 12R
             Shiawase Cyber-5:
                 cost: 549375
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 5
+                    Attribute Array: 8 7 6 5
+                    Programs: 5
+                    Availability: 15R
             Fairlight Excalibur:
                 cost: 823250
                 specifics:
-                    Device Rating: 
-                    Attribute Array: 
-                    Programs: 
-                    Availability: 
+                    Device Rating: 6
+                    Attribute Array: 9 8 7 6
+                    Programs: 6
+                    Availability: 18R
         Accessories:
             AR Gloves:
                 cost: 150
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
             Biomteric Reader:
                 cost: 200
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
+                    Availability: 4
             Electronic Paper:
                 cost: 5
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 1
             Printer:
                 cost: 25
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
             Satellite Link:
                 cost: 500
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 4
+                    Availability: 6
             Simrig:
                 cost: 1000
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
+                    Availability: 12
             Subvocal Mic:
                 cost: 50
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
+                    Availability: 4
             Trid Projector:
                 cost: 200
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
             Trodes:
                 cost: 70
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
         RFID Tags:
             Standard Tags:
                 cost: 1
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 1
             Datachip:
                 cost: 5
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 1
             Security Tags:
                 cost: 5
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
+                    Availability: 3
             Sensor Tags:
                 cost: 40
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 2
+                    Availability: 5
             Stealth Tags:
                 cost: 10
                 specifics:
-                    Device Rating: 
-                    Availability: 
+                    Device Rating: 3
+                    Availability: 7R
         Communications and Countermeasures:
             Bug Scanner:
                 cost: 100
                 specifics:
-                    Availability: 
+                    Availability: 1R
                 mods:
                     cost:
                         Rating:
@@ -3765,11 +3729,11 @@ items:
             Data Tap:
                 cost: 300
                 specifics:
-                    Availability: 
+                    Availability: 6R
             Headjammer:
                 cost: 150
                 specifics:
-                    Availability: 
+                    Availability: 1R
                 mods:
                     cost:
                         Rating:
@@ -3782,7 +3746,7 @@ items:
             Area Jammer:
                 cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 3F
                 mods:
                     cost:
                         Rating:
@@ -3795,7 +3759,7 @@ items:
             Directional Jammer:
                 cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 2F
                 mods:
                     cost:
                         Rating:
@@ -3808,15 +3772,15 @@ items:
             Micro-Transceiver:
                 cost: 100
                 specifics:
-                    Availability: 
+                    Availability: 2
             Tag Eraser:
                 cost: 450
                 specifics:
-                    Availability: 
+                    Availability: 6R
             White Noise Generator:
                 cost: 50
                 specifics:
-                    Availability: 
+                    Availability: 1
                 mods:
                     cost:
                         Rating:
@@ -3830,7 +3794,7 @@ items:
             Agent:
                 cost: 1000
                 specifics:
-                    Availability: 
+                    Availability: 3
                 mods:
                     cost:
                         Rating:
@@ -3843,7 +3807,7 @@ items:
             Autosoft:
                 cost: 500
                 specifics:
-                    Availability: 
+                    Availability: 2
                 mods:
                     cost:
                         Rating:
@@ -3855,28 +3819,26 @@ items:
                             6: "*6"
             Common Use Cyberprogram:
                 cost: 80
-                specifics:
-                    Availability: 
             Hacking Cyberprogram:
                 cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 6R
             Datasoft:
                 cost: 120
                 specifics:
-                    Availability: 
+                    Availability: 4
             Mapsoft:
                 cost: 100
                 specifics:
-                    Availability: 
+                    Availability: 4
             Shopsoft:
                 cost: 150
                 specifics:
-                    Availability: 
+                    Availability: 4
             Tutorsoft:
                 cost: 400
                 specifics:
-                    Availability: 
+                    Availability: 1
                 mods:
                     cost:
                         Rating:
@@ -3890,7 +3852,7 @@ items:
             Activesofts:
                 cost: 5000
                 specifics:
-                    Availability: 
+                    Availability: 8
                 mods:
                     cost:
                         Rating:
@@ -3903,7 +3865,7 @@ items:
             Knowsofts:
                 cost: 2000
                 specifics:
-                    Availability: 
+                    Availability: 4
                 mods:
                     cost:
                         Rating:
@@ -3916,7 +3878,7 @@ items:
             Linguasofts:
                 cost: 1000
                 specifics:
-                    Availability: 
+                    Availability: 2
                 mods:
                     cost:
                         Rating:
@@ -3931,35 +3893,41 @@ items:
             Standard:
                 cost: 5
                 specifics:
-                    Max Value: 
-                    Availability: 
+                    Max Value: 5000
             Silver:
                 cost: 20
                 specifics:
-                    Max Value: 
-                    Availability: 
+                    Max Value: 20000
             Gold:
                 cost: 100
                 specifics:
-                    Max Value: 
-                    Availability: 
+                    Max Value: 100000
+                    Availability: 5
             Platinum:
                 cost: 500
                 specifics:
-                    Max Value: 
-                    Availability: 
+                    Max Value: 500000
+                    Availability: 10
             Ebony:
                 cost: 1000
                 specifics:
-                    Max Value: 
-                    Availability: 
+                    Max Value: 1000000
+                    Availability: 20
         Identification:
             Fake SIN:
                 cost: 2500
                 specifics:
-                    Availability: 
+                    Availability: 3F
                 mods:
                     cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
                         Rating:
                             1: "*1"
                             2: "*2"
@@ -3970,9 +3938,17 @@ items:
             Fake License:
                 cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 3F
                 mods:
                     cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                    Availability:
                         Rating:
                             1: "*1"
                             2: "*2"
@@ -3984,22 +3960,18 @@ items:
         Tools:
             Kit:
                 cost: 500
-                specifics:
-                    Availability: 
             Shop:
                 cost: 5000
                 specifics:
-                    Availability: 
+                    Availability: 8
             Facility:
                 cost: 50000
                 specifics:
-                    Availability: 
+                    Availability: 12
     Optical and Imaging Devices:
         Imaging:
             Electronic Binoculars:
                 cost: 50
-                specifics:
-                    Availability: 
                 mods:
                     cost:
                         Capacity:
@@ -4008,12 +3980,8 @@ items:
                             3: "*3"
             Optical Binoculars:
                 cost: 50
-                specifics:
-                    Availability: 
             Camera:
                 cost: 100
-                specifics:
-                    Availability: 
                 mods:
                     cost:
                         Capacity:
@@ -4026,11 +3994,11 @@ items:
             Micro-Camera:
                 cost: 100
                 specifics:
-                    Availability: 
+                    Capacity: 1
             Contacts:
                 cost: 200
                 specifics:
-                    Availability: 
+                    Availability: 6
                 mods:
                     cost:
                         Capacity:
@@ -4039,8 +4007,6 @@ items:
                             3: "*3"
             Glasses:
                 cost: 100
-                specifics:
-                    Availability: 
                 mods:
                     cost:
                         Capacity:
@@ -4050,8 +4016,6 @@ items:
                             4: "*4"
             Goggles:
                 cost: 50
-                specifics:
-                    Availability: 
                 mods:
                     cost:
                         Capacity:
@@ -4064,11 +4028,10 @@ items:
             Imaging Scopes:
                 cost: 300
                 specifics:
-                    Availability: 
+                    Capacity: 3
+                    Availability: 2
             Monocle:
                 cost: 120
-                specifics:
-                    Availability: 
                 mods:
                     cost:
                         Capacity:
@@ -4080,47 +4043,46 @@ items:
             Endoscope:
                 cost: 250
                 specifics:
-                    Availability: 
+                    Availability: 8
             Mage Sight Goggles:
                 cost: 3000
                 specifics:
-                    Availability: 
+                    Availability: 12R
             Periscope:
                 cost: 50
                 specifics:
-                    Availability: 
+                    Availability: 3
     Vision:
         Enhancements:
             Low-Light Vision:
                 cost: 500
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 4
             Flare Compensation:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 1
             Image Link:
                 cost: 25
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
             Smartlink:
                 cost: 2000
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 4R
             Thermographic Vision:
                 cost: 500
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 6
             Vision Enhancement:
                 cost: 500
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 2
                 mods:
                     cost:
                         Rating:
@@ -4133,8 +4095,8 @@ items:
             Vision Magnification:
                 cost: 250
                 specifics:
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 2
     Audio:
         Devices:
             Directional Mic:
@@ -5222,6 +5184,7 @@ items:
                             4: "*4"
                             5: "*5"
                             6: "*6"
+# TODO: Ratings here and on
         Eyeware:
             Cybereyes Basic System:
                 cost: 0
@@ -5274,9 +5237,9 @@ items:
             Flare Compensation:
                 cost: 1000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5300,10 +5263,10 @@ items:
                             Used: "*0.75"
             Image Link:
                 cost: 1000
+                require: Augmentations > Eyeware > Cybereyes Basic System
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5328,9 +5291,9 @@ items:
             Low-Light Vision:
                 cost: 1500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 2
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5355,9 +5318,8 @@ items:
             Ocular Drone:
                 cost: 6000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 6
+                    Availability: 6
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5382,9 +5344,9 @@ items:
             Retinal Duplication:
                 cost: 20000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 16F
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5409,9 +5371,9 @@ items:
             Smartlink:
                 cost: 4000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Capacity: 3
+                    Availability: 8R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5436,9 +5398,9 @@ items:
             Thermographic Vision:
                 cost: 1500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 2
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5463,9 +5425,9 @@ items:
             Vision Enhancement:
                 cost: 4000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5490,9 +5452,9 @@ items:
             Vision Magnification:
                 cost: 2000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 2
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5518,9 +5480,9 @@ items:
             Cyberears:
                 cost: 0
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 4
+                    Availability: 3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5545,9 +5507,9 @@ items:
             Audio Enhancement:
                 cost: 4000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5572,9 +5534,9 @@ items:
             Balance Augmenter:
                 cost: 8000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 4
+                    Availability: 8
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5599,9 +5561,9 @@ items:
             Damper:
                 cost: 2250
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 6
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5626,9 +5588,9 @@ items:
             Select Sound Filter:
                 cost: 3500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5652,10 +5614,10 @@ items:
                             Used: "*0.75"
             Sound Link:
                 cost: 1000
+                require: Augmentations > Earware > Cyberears
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5680,9 +5642,9 @@ items:
             Spatial Recognizer:
                 cost: 4000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 2
+                    Availability: 8
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5708,12 +5670,11 @@ items:
             Plastic Bone Lacing:
                 cost: 8000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Body Boost: 
-                    Armor: 
-                    Unarmed Damage: 
+                    ESSENCE Cost: 0.5
+                    Availability: 8R
+                    Body Boost: 1
+                    Armor: 1
+                    Unarmed Damage: (STRENGTH+1)P
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5738,12 +5699,11 @@ items:
             Aluminum Bone Lacing:
                 cost: 18000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Body Boost: 
-                    Armor: 
-                    Unarmed Damage: 
+                    ESSENCE Cost: 1
+                    Availability: 12R
+                    Body Boost: 2
+                    Armor: 2
+                    Unarmed Damage: (STRENGTH+2)P
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5768,12 +5728,11 @@ items:
             Titanium Bone Lacing:
                 cost: 30000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Body Boost: 
-                    Armor: 
-                    Unarmed Damage: 
+                    ESSENCE Cost: 1.5
+                    Availability: 16R
+                    Body Boost: 3
+                    Armor: 3
+                    Unarmed Damage: (STRENGTH+3)P
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5800,9 +5759,8 @@ items:
                 exclude:
                     archetype: Troll
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.5
+                    Availability: 4R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5827,9 +5785,9 @@ items:
             Fingertip Compartment:
                 cost: 3000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5854,9 +5812,9 @@ items:
             Grapple Gun:
                 cost: 5000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.5
+                    Capacity: 4
+                    Availability: 8
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5881,9 +5839,9 @@ items:
             Internal Air Tank:
                 cost: 4500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.25
+                    Capacity: 3
+                    Availability: 1
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5908,9 +5866,8 @@ items:
             Muscle Replacement:
                 cost: 25000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1
+                    Availability: 5R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5935,9 +5892,8 @@ items:
             Reaction Enhancers:
                 cost: 13000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.3
+                    Availability: 5R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5962,9 +5918,8 @@ items:
             Skillwires:
                 cost: 20000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -5989,9 +5944,9 @@ items:
             Smuggling Compartment:
                 cost: 7500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Capacity: 2
+                    Availability: 6
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6016,9 +5971,8 @@ items:
             Wired Reflexes:
                 cost: 0
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0
+                    Availability: 0
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6045,9 +5999,9 @@ items:
             Full Arm:
                 cost: 15000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1
+                    Capacity: 15
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6072,9 +6026,9 @@ items:
             Full Leg:
                 cost: 15000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1
+                    Capacity: 20
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6099,9 +6053,9 @@ items:
             Hand/Foot:
                 cost: 5000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.25
+                    Capacity: 4
+                    Availability: 2
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6126,9 +6080,9 @@ items:
             Lower Arm:
                 cost: 10000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.45
+                    Capacity: 10
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6153,9 +6107,9 @@ items:
             Lower Leg:
                 cost: 10000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.45
+                    Capacity: 12
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6180,9 +6134,9 @@ items:
             Torso:
                 cost: 20000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1.5
+                    Capacity: 10
+                    Availability: 12
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6207,9 +6161,9 @@ items:
             Skull:
                 cost: 10000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.75
+                    Capacity: 4
+                    Availability: 16
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6235,9 +6189,9 @@ items:
             Full Arm:
                 cost: 20000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1
+                    Capacity: 8
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6262,9 +6216,9 @@ items:
             Full Leg:
                 cost: 20000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1
+                    Capacity: 10
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6289,9 +6243,9 @@ items:
             Hand/Foot:
                 cost: 6000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.25
+                    Capacity: 2
+                    Availability: 2
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6316,9 +6270,9 @@ items:
             Lower Arm:
                 cost: 12000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.45
+                    Capacity: 5
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6343,9 +6297,9 @@ items:
             Lower Leg:
                 cost: 12000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.45
+                    Capacity: 6
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6370,9 +6324,9 @@ items:
             Torso:
                 cost: 25000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 1.5
+                    Capacity: 5
+                    Availability: 12
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6397,9 +6351,9 @@ items:
             Skull:
                 cost: 15000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.75
+                    Capacity: 2
+                    Availability: 16
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6425,9 +6379,8 @@ items:
             Agility:
                 cost: 6500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 3R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6452,9 +6405,8 @@ items:
             Armor:
                 cost: 3000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 5
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6479,9 +6431,8 @@ items:
             Strength:
                 cost: 6500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 3R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6507,9 +6458,8 @@ items:
             Cyberarm Gyromount:
                 cost: 6000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 8
+                    Availability: 12F
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6534,9 +6484,8 @@ items:
             Cyberarm Slide:
                 cost: 3000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 3
+                    Availability: 12R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6561,9 +6510,8 @@ items:
             Cyber Holster:
                 cost: 2000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 5
+                    Availability: 8R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6588,10 +6536,11 @@ items:
             Hydraulic Jacks:
                 cost: 2500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
+                    Availability: 9
                 mods:
+                    Capacity:
+                        Rating:
                     ESSENCE Cost:
                         Ware Grades:
                             Standard: "*1.0"
@@ -6615,9 +6564,8 @@ items:
             Large Smuggling Compartment:
                 cost: 8000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 5
+                    Availability: 6
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6644,15 +6592,13 @@ items:
             Hold-Out Pistol:
                 cost: 2000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 2
+                    Availability: 8R
+                    Accuracy: 4 (6)
+                    Damage: 6P
+                    Mode: SA
+                    Ammo: 2(m)/6(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6677,15 +6623,13 @@ items:
             Light Pistol:
                 cost: 3900
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 0.25
+                    Capacity: 4
+                    Availability: 10R
+                    Accuracy: 6 (8)
+                    Damage: 7P
+                    Mode: SA
+                    Ammo: 10(m)/15(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6710,15 +6654,14 @@ items:
             Machine Pistol:
                 cost: 3500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 0.5
+                    Capacity: 6
+                    Availability: 12R
+                    Accuracy: 4 (6)
+                    Damage: 6P
+                    Mode: SA/BF
+                    RC: 1
+                    Ammo: 18(m)/32(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6743,15 +6686,14 @@ items:
             Heavy Pistol:
                 cost: 4300
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 0.5
+                    Capacity: 6
+                    Availability: 12R
+                    Accuracy: 4 (6)
+                    Damage: 7P
+                    AP: -1
+                    Mode: SA
+                    Ammo: 8(m)/12(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6776,15 +6718,15 @@ items:
             Submachine Gun:
                 cost: 4800
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 1
+                    Capacity: 8
+                    Availability: 12R
+                    Accuracy: 4 (6)
+                    Damage: 7P
+                    AP: -1
+                    Mode: SA/BF
+                    RC: 2
+                    Ammo: 18(m)/32(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6809,15 +6751,14 @@ items:
             Shotgun:
                 cost: 8500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 1.25
+                    Capacity: 10
+                    Availability: 12R
+                    Accuracy: 4 (6)
+                    Damage: 10P
+                    AP: -1
+                    Mode: SS
+                    Ammo: 4(m)/10(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6842,15 +6783,14 @@ items:
             Grenade Launcher:
                 cost: 30000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Accuracy: 
-                    Damage: 
-                    AP: 
-                    Mode: 
-                    RC: 
-                    Ammo: 
+                    ESSENCE Cost: 1.5
+                    Capacity: 15
+                    Availability: 20F
+                    Accuracy: 4 (6)
+                    Damage: as Grenade
+                    AP: as Grenade
+                    Mode: SS
+                    Ammo: 2(m)/6(c)
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6877,9 +6817,8 @@ items:
                 cost: 1000
                 require: Implant Weapons > Cyberguns
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Capacity: 1
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6905,9 +6844,7 @@ items:
                 cost: 1000
                 require: Implant Weapons > Cyberguns
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 1
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6933,9 +6870,7 @@ items:
                 cost: 1000
                 require: Implant Weapons > Cyberguns
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
+                    Capacity: 2
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6961,12 +6896,11 @@ items:
             Hand Blade (retractable):
                 cost: 2500
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    ESSENCE Cost: 0.25
+                    Capacity: 2
+                    Availability: 10F
+                    Damage: (STRENGTH+2)P
+                    AP: -2
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -6991,12 +6925,11 @@ items:
             Hand Razors (retractable):
                 cost: 1250
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    ESSENCE Cost: 0.2
+                    Capacity: 2
+                    Availability: 8F
+                    Damage: (STRENGTH+1)P
+                    AP: -3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7021,12 +6954,11 @@ items:
             Spurs (retractable):
                 cost: 5000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    ESSENCE Cost: 0.3
+                    Capacity: 3
+                    Availability: 12F
+                    Damage: (STRENGTH+3)P
+                    AP: -2
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7051,12 +6983,11 @@ items:
             Shock Hand:
                 cost: 5000
                 specifics:
-                    ESSENCE Cost: 
-                    Capacity: 
-                    Availability: 
-                    Reach: 
-                    Damage: 
-                    AP: 
+                    ESSENCE Cost: 0.25
+                    Capacity: 4
+                    Availability: 8R
+                    Damage: 9S(e)
+                    AP: -5
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7083,8 +7014,8 @@ items:
             Adrenaline Pump:
                 cost: 55000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.75
+                    Availability: 6F
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7109,8 +7040,8 @@ items:
             Bone Density Augmentation:
                 cost: 5000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.3
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7141,8 +7072,8 @@ items:
             Cat's Eye:
                 cost: 4000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7167,8 +7098,8 @@ items:
             Enhanced Articulation:
                 cost: 24000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.3
+                    Availability: 12
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7193,8 +7124,8 @@ items:
             Muscle Augmentation:
                 cost: 31000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 5R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7219,8 +7150,8 @@ items:
             Muscle Toner:
                 cost: 32000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 5R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7229,7 +7160,7 @@ items:
                             Betaware: "*0.7"
                             Deltaware: "*0.5"
                             Used: "*1.25"
-                    Availability: 
+                    Availability:
                         Ware Grades:
                             Alphaware: "+2"
                             Betaware: "+4"
@@ -7245,8 +7176,8 @@ items:
             Orthoskin:
                 cost: 6000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.25
+                    Availability: 4R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7271,8 +7202,8 @@ items:
             Pathogenic Defense:
                 cost: 4500
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 2
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7297,8 +7228,8 @@ items:
             Platelet Factories:
                 cost: 17000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 12
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7323,8 +7254,8 @@ items:
             Skin Pocket:
                 cost: 12000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7349,8 +7280,8 @@ items:
             Suprathyroid Gland:
                 cost: 140000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.7
+                    Availability: 20R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7375,8 +7306,8 @@ items:
             Symbiotes:
                 cost: 3500
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 5
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7401,8 +7332,8 @@ items:
             Synthacardium:
                 cost: 30000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 4
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7427,8 +7358,8 @@ items:
             Tailored Pheromones:
                 cost: 31000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 4R
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7453,8 +7384,8 @@ items:
             Toxin Extractor:
                 cost: 4800
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7479,8 +7410,8 @@ items:
             Tracheal Filter:
                 cost: 4500
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 3
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7506,10 +7437,14 @@ items:
             Cerebral Booster:
                 cost: 31500
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.2
+                    Availability: 6
                 mods:
                     ESSENCE Cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*0.8"
@@ -7517,12 +7452,20 @@ items:
                             Deltaware: "*0.5"
                             Used: "*1.25"
                     Availability: 
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Alphaware: "+2"
                             Betaware: "+4"
                             Deltaware: "+8"
                             Used: "-4"
                     cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*1.2"
@@ -7532,10 +7475,23 @@ items:
             Damage Compensators:
                 cost: 2000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 3F
                 mods:
                     ESSENCE Cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                            7: "*7"
+                            8: "*8"
+                            9: "*9"
+                            10: "*10"
+                            11: "*11"
+                            12: "*12"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*0.8"
@@ -7543,12 +7499,38 @@ items:
                             Deltaware: "*0.5"
                             Used: "*1.25"
                     Availability: 
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                            7: "*7"
+                            8: "*8"
+                            9: "*9"
+                            10: "*10"
+                            11: "*11"
+                            12: "*12"
                         Ware Grades:
                             Alphaware: "+2"
                             Betaware: "+4"
                             Deltaware: "+8"
                             Used: "-4"
                     cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
+                            7: "*7"
+                            8: "*8"
+                            9: "*9"
+                            10: "*10"
+                            11: "*11"
+                            12: "*12"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*1.2"
@@ -7558,10 +7540,14 @@ items:
             Mnemonic Enhancer:
                 cost: 9000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 5
                 mods:
                     ESSENCE Cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*0.8"
@@ -7569,12 +7555,20 @@ items:
                             Deltaware: "*0.5"
                             Used: "*1.25"
                     Availability: 
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Alphaware: "+2"
                             Betaware: "+4"
                             Deltaware: "+8"
                             Used: "-4"
                     cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*1.2"
@@ -7584,8 +7578,8 @@ items:
             Pain Editor:
                 cost: 48000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.3
+                    Availability: 18F
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7610,8 +7604,8 @@ items:
             Reflex Recorder (Skill):
                 cost: 14000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 10
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7636,8 +7630,8 @@ items:
             Sleep Regulator:
                 cost: 12000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.1
+                    Availability: 6
                 mods:
                     ESSENCE Cost:
                         Ware Grades:
@@ -7662,10 +7656,14 @@ items:
             Synaptic Booster:
                 cost: 95000
                 specifics:
-                    ESSENCE Cost: 
-                    Availability: 
+                    ESSENCE Cost: 0.5
+                    Availability: 6R
                 mods:
                     ESSENCE Cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*0.8"
@@ -7673,12 +7671,20 @@ items:
                             Deltaware: "*0.5"
                             Used: "*1.25"
                     Availability: 
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Alphaware: "+2"
                             Betaware: "+4"
                             Deltaware: "+8"
                             Used: "-4"
                     cost:
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
                         Ware Grades:
                             Standard: "*1.0"
                             Alphaware: "*1.2"
