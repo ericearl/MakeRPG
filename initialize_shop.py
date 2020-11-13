@@ -74,6 +74,47 @@ class ItemImporter(CatalogueImporter):
 
                             description += '  |  '.join(specifics)
 
+                        if 'specifics' in item_dict and 'mods' in item_dict:
+                            description += '  |  '
+
+                        if 'mods' in item_dict:
+                            modifiers = []
+                            levelly = {}
+
+                            for being_modified in item_dict['mods']:
+                                modifier_dict = item_dict['mods'][being_modified]
+
+                                for modifier in modifier_dict:
+                                    modifiers.append(modifier)
+                                    levelly[modifier] = []
+                                    for level in modifier_dict[modifier]:
+                                        levelly[modifier].append(level)
+
+                                modifiers = list(set(modifiers))
+
+                            if modifiers:
+                                description += 'MODIFIERS --> '
+
+                            for modifier in modifiers:
+
+                                for lev in levelly[modifier]:
+                                    mods = []
+                                    first_appearance = True
+
+                                    for being_modified in item_dict['mods']:
+                                        modifier_dict = item_dict['mods'][being_modified]
+
+                                        for moddy in  modifier_dict:
+                                            for level in modifier_dict[moddy]:
+                                                if modifier == moddy and level == lev:
+                                                    if first_appearance:
+                                                        description += modifier + '(' + str(lev) + '): '
+                                                        first_appearance = False
+
+                                                    mods.append(being_modified + str(modifier_dict[modifier][level]))
+
+                                    description += ' ; '.join(mods) + ' ; '
+
                         line = ','.join([
                             product_type,
                             category,

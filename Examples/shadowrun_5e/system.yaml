@@ -3225,13 +3225,12 @@ items:
                     AP: -2
                     Blast: -2/m
                     Availability: 11F
-# TODO: Gas cost
             Gas:
-                cost: Special
+                cost: 40
                 specifics:
-                    Damage: 
+                    Damage: Special
                     Blast: 10m Radius
-                    Availability: 
+                    Availability: 2
             Smoke:
                 cost: 40
                 specifics:
@@ -3492,7 +3491,7 @@ items:
                     Availability: 6
                 mods:
                     cost:
-                        Rating:1:
+                        Rating:
                             1: "*1"
                             2: "*2"
                             3: "*3"
@@ -6541,6 +6540,12 @@ items:
                 mods:
                     Capacity:
                         Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
                     ESSENCE Cost:
                         Ware Grades:
                             Standard: "*1.0"
@@ -6561,6 +6566,13 @@ items:
                             Betaware: "*1.5"
                             Deltaware: "*2.5"
                             Used: "*0.75"
+                        Rating:
+                            1: "*1"
+                            2: "*2"
+                            3: "*3"
+                            4: "*4"
+                            5: "*5"
+                            6: "*6"
             Large Smuggling Compartment:
                 cost: 8000
                 specifics:
