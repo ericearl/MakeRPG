@@ -1,11 +1,16 @@
+# local files
 *.sqlite*
 *.pyc
+*.pdf
 .vscode/
 # CharacterCreator/migrations/*.py
 MakeRPG/settings.py
 db.json
 ignore.txt
+
+# excess goodies
 FNFF/
+Shop/
 MakeRPG/static/
 CharacterCreator/migrations/
 
@@ -14,3 +19,6 @@ CharacterCreator/migrations/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+static/
+media/
+Examples/*/*.csv
