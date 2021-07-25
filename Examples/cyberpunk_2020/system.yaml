@@ -1,0 +1,1179 @@
+options:
+    Random:
+        points:
+            Character:
+                set: 9d10
+        defaults:
+            stats:
+                set: 1
+    Fast:
+        points:
+            Character:
+                set: 0
+        defaults:
+            stats:
+                set: 1d10 > 2 # 1 or 2 are re-rolled
+    Cinematic:
+        points:
+            Character:
+                set: 50
+        defaults:
+            stats:
+                set: 1
+
+
+defaults:
+    stats:
+        set: 3                # base level without rolling or purchasing, what you have
+        min: 3                # low end of range
+        max: 10               # high end of range
+        direction: increasing # direction to start from in range
+        points: Character     # default points pool to purchase from
+        cost: 1               # cost per point
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # skill is special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+    skills:
+        set: 0                # base level without rolling or purchasing, what you have
+        min: 0                # low end of range
+        max: 10               # high end of range
+        direction: increasing # direction to start from in range
+        points: Pickup        # default points pool to purchase from
+        cost: 1               # cost per point
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # skill is special to a role, and if so what role
+        type: independent     # independent (stands alone), dependent (result of something else)
+        stat: none            # associated statistic for each skill
+
+
+points:
+    Character:
+        set: 9d10
+    Career:
+        set: 40
+    Pickup:
+        set: 0
+
+
+stats:
+    ATTR: default
+    BODY: default
+    COOL: default
+    EMP: default
+    INT: default
+    LUCK: default
+    MA: default
+    REF: default
+    TECH: default
+    Humanity:
+        set: 0
+        min: 0
+        max: 100
+        type: dependent
+    Run:
+        set: 0
+        min: 0
+        max: 30
+        type: dependent
+    Leap:
+        set: 0
+        min: 0
+        max: 250
+        type: dependent
+    Save:
+        set: 0
+        min: 0
+        max: 10
+        type: dependent
+    BTM:
+        set: 0
+        min: -5
+        max: 0
+        type: dependent
+
+
+skills:
+    Personal grooming:
+        stat: ATTR
+    Wardrobe & style:
+        stat: ATTR
+    Endurance:
+        stat: BODY
+    Strength Feat:
+        stat: BODY
+    Swimming:
+        stat: BODY
+    Interrogation:
+        stat: COOL
+    Intimidate:
+        stat: COOL
+    Oratory:
+        stat: COOL
+    Resist torture/drugs:
+        stat: COOL
+    Streetwise:
+        stat: COOL
+    Human perception:
+        stat: EMP
+    Interview:
+        stat: EMP
+    Leadership:
+        stat: EMP
+    Seduction:
+        stat: EMP
+    Social:
+        stat: EMP
+    Persuasion:
+        stat: EMP
+    Perform:
+        stat: EMP
+    Accounting:
+        stat: INT
+    Anthropology:
+        stat: INT
+    Awareness/Notice:
+        stat: INT
+    Biology:
+        stat: INT
+    Botany:
+        stat: INT
+    Chemistry:
+        stat: INT
+    Composition:
+        stat: INT
+    Diagnose illness:
+        stat: INT
+    Education:
+        stat: INT
+    Expert:
+        stat: INT
+    Gamble:
+        stat: INT
+    Geology:
+        stat: INT
+    Hide/Evade:
+        stat: INT
+    History:
+        stat: INT
+    Know language:
+        stat: INT
+    Library search:
+        stat: INT
+    Mathematics:
+        stat: INT
+    Physics:
+        stat: INT
+    Programming:
+        stat: INT
+    Shadow/track:
+        stat: INT
+    Stock market:
+        stat: INT
+    System knowledge:
+        stat: INT
+    Teaching:
+        stat: INT
+    Wilderness survival:
+        stat: INT
+    Zoology:
+        stat: INT
+    Archery:
+        stat: REF
+    Athletics:
+        stat: REF
+    Brawling:
+        stat: REF
+    Dance:
+        stat: REF
+    Dodge & escape:
+        stat: REF
+    Driving:
+        stat: REF
+    Fencing:
+        stat: REF
+    Handgun:
+        stat: REF
+    Heavy Weapons:
+        stat: REF
+    Martial arts (aikido):
+        cost: 3
+        stat: REF
+    Martial arts (animal kung fu):
+        cost: 3
+        stat: REF
+    Martial arts (boxing):
+        stat: REF
+    Martial arts (capoeria):
+        cost: 3
+        stat: REF
+    Martial arts (choi li fut):
+        cost: 3
+        stat: REF
+    Martial arts (judo):
+        stat: REF
+    Martial arts (karate):
+        cost: 2
+        stat: REF
+    Martial arts (tae kwon do):
+        cost: 3
+        stat: REF
+    Martial arts (thai kick boxing):
+        cost: 4
+        stat: REF
+    Martial arts (wrestling):
+        stat: REF
+    Melee:
+        stat: REF
+    Motorcycle:
+        stat: REF
+    Operate heavy machinery:
+        stat: REF
+    Piloting (gyro):
+        cost: 3
+        stat: REF
+    Piloting (fixed wing):
+        cost: 2
+        stat: REF
+    Piloting (dirigible):
+        cost: 2
+        stat: REF
+    Piloting (vectored thrust vehicle):
+        cost: 3
+        stat: REF
+    Rifle:
+        stat: REF
+    Stealth:
+        cost: 2
+        stat: REF
+    Submachinegun:
+        stat: REF
+    Aero tech:
+        cost: 2
+        stat: TECH
+    AV tech:
+        cost: 3
+        stat: TECH
+    Basic tech:
+        cost: 2
+        stat: TECH
+    Cryotank operation:
+        stat: TECH
+    Cyberdeck design:
+        cost: 2
+        stat: TECH
+    Cybertech:
+        cost: 2
+        stat: TECH
+    Demolitions:
+        cost: 2
+        stat: TECH
+    Disguise:
+        stat: TECH
+    Electronics:
+        stat: TECH
+    Electronic security:
+        cost: 2
+        stat: TECH
+    First aid:
+        stat: TECH
+    Forgery:
+        stat: TECH
+    Gyro tech:
+        cost: 3
+        stat: TECH
+    Paint or draw:
+        stat: TECH
+    Photography & film:
+        stat: TECH
+    Pharmaceuticals:
+        cost: 2
+        stat: TECH
+    Pick lock:
+        stat: TECH
+    Pick pocket:
+        stat: TECH
+    Play instrument:
+        stat: TECH
+    Weaponsmith:
+        cost: 2
+        stat: TECH
+    Combat sense:
+        min: 1
+        max: 10
+        points: Career
+        role: Solo
+    Resources:
+        min: 1
+        max: 10
+        points: Career
+        role: Corporate
+    Credibility:
+        min: 1
+        max: 10
+        points: Career
+        role: Media
+    Family:
+        min: 1
+        max: 10
+        points: Career
+        role: Nomad
+    Jury Rig:
+        min: 1
+        max: 10
+        points: Career
+        role: Techie
+    Authority:
+        min: 1
+        max: 10
+        points: Career
+        role: Cop
+    Charismatic Leadership:
+        min: 1
+        max: 10
+        points: Career
+        role: Rockerboy
+    Medical Tech:
+        min: 1
+        max: 10
+        points: Career
+        role: Medtechie
+    Streetdeal:
+        min: 1
+        max: 10
+        points: Career
+        role: Fixer
+    Interface:
+        min: 1
+        max: 10
+        points: Career
+        role: Netrunner
+
+
+roles:
+    Solo:
+        skillpoints: Career
+        skills:
+            - Combat sense
+            - Awareness/Notice
+            - Handgun
+            - Brawling
+            - Melee
+            - Weaponsmith
+            - Rifle
+            - Athletics
+            - Submachinegun
+            - Stealth
+    Corporate:
+        skillpoints: Career
+        skills:
+            - Resources
+            - Awareness/Notice
+            - Human perception
+            - Education
+            - Library search
+            - Social
+            - Persuasion
+            - Stock market
+            - Wardrobe & style
+            - Personal grooming
+    Media:
+        skillpoints: Career
+        skills:
+            - Credibility
+            - Awareness/Notice
+            - Composition
+            - Education
+            - Persuasion
+            - Human perception
+            - Social
+            - Streetwise
+            - Photography & film
+            - Interview
+    Nomad:
+        skillpoints: Career
+        skills:
+            - Family
+            - Awareness/Notice
+            - Endurance
+            - Melee
+            - Rifle
+            - Driving
+            - Basic tech
+            - Wilderness survival
+            - Brawling
+            - Athletics
+    Techie:
+        skillpoints: Career
+        skills:
+            - Jury Rig
+            - Awareness/Notice
+            - Basic tech
+            - Cybertech
+            - Teaching
+            - Education
+            - Electronics
+            - Gyro tech
+            - Aero tech
+            - Weaponsmith
+            - Electronic security
+    Cop:
+        skillpoints: Career
+        skills:
+            - Authority
+            - Awareness/Notice
+            - Handgun
+            - Human perception
+            - Athletics
+            - Education
+            - Brawling
+            - Melee
+            - Interrogation
+            - Streetwise
+    Rockerboy:
+        skillpoints: Career
+        skills:
+            - Charismatic Leadership
+            - Awareness/Notice
+            - Perform
+            - Wardrobe & style
+            - Composition
+            - Brawling
+            - Play instrument
+            - Streetwise
+            - Persuasion
+            - Seduction
+    Medtechie:
+        skillpoints: Career
+        skills:
+            - Medical Tech
+            - Awareness/Notice
+            - Basic tech
+            - Diagnose illness
+            - Education
+            - Cryotank operation
+            - Library search
+            - Pharmaceuticals
+            - Zoology
+            - Human perception
+    Fixer:
+        skillpoints: Career
+        skills:
+            - Streetdeal
+            - Awareness/Notice
+            - Forgery
+            - Handgun
+            - Brawling
+            - Melee
+            - Pick lock
+            - Pick pocket
+            - Intimidate
+            - Persuasion
+    Netrunner:
+        skillpoints: Career
+        skills:
+            - Interface
+            - Awareness/Notice
+            - Basic tech
+            - Education
+            - System knowledge
+            - Cybertech
+            - Cyberdeck design
+            - Composition
+            - Electronics
+            - Programming
+
+
+modifiers:
+    points:
+        Pickup:
+            stats:
+                INT:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+                REF:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+    stats:
+        BTM:
+            stats:
+                BODY:
+                    1-2: 0
+                    3-4: -1
+                    5-7: -2
+                    8-9: -3
+                    10: -4
+                    11-20: -5
+        Humanity:
+            stats:
+                EMP:
+                    1: 10
+                    2: 20
+                    3: 30
+                    4: 40
+                    5: 50
+                    6: 60
+                    7: 70
+                    8: 80
+                    9: 90
+                    10: 100
+        Run:
+            stats:
+                MA:
+                    1: 3
+                    2: 6
+                    3: 9
+                    4: 12
+                    5: 15
+                    6: 18
+                    7: 21
+                    8: 24
+                    9: 27
+                    10: 30
+        Leap:
+            stats:
+                MA:
+                    1: 25
+                    2: 50
+                    3: 75
+                    4: 100
+                    5: 125
+                    6: 150
+                    7: 175
+                    8: 200
+                    9: 225
+                    10: 250
+        Save:
+            stats:
+                BODY:
+                    1: 1
+                    2: 2
+                    3: 3
+                    4: 4
+                    5: 5
+                    6: 6
+                    7: 7
+                    8: 8
+                    9: 9
+                    10: 10
+
+
+history:
+    START: Clothes
+    Clothes:
+        dice: 1d10
+        roll:
+            1: Biker leathers
+            2: Blue jeans
+            3: Corporate suits
+            4: Jumpsuits
+            5: Miniskirts
+            6: High fashion
+            7: Camouflage
+            8: Normal clothes
+            9: Nude
+            10: Bag lady chic
+        next: Hairstyle
+    Hairstyle:
+        dice: 1d10
+        roll:
+            1: Mohawk
+            2: Long & ratty
+            3: Short & spiked
+            4: Wild & all over
+            5: Bald
+            6: Striped
+            7: Tinted
+            8: Neat, short
+            9: Short, curly
+            10: Long, straight
+        next: Affectations
+    Affectations:
+        dice: 1d10
+        roll:
+            1: Tattoos
+            2: Mirrorshades
+            3: Ritual scars
+            4: Spiked gloves
+            5: Nose rings
+            6: Earrings
+            7: Long fingernails
+            8: Spike heeled boots
+            9: Weird contact lenses
+            10: Fingerless gloves
+        next: Ethnic origins
+    Ethnic origins:
+        dice: 1d10
+        roll:
+            1: Anglo-American
+            2: African
+            3: Japanese/Korean
+            4: Central European/Soviet
+            5: Pacific Islander
+            6: Chinese/Southeast Asian
+            7: Black American
+            8: Hispanic American
+            9: Central/South American
+            10: European
+        next: Family Ranking
+    Family Ranking:
+        dice: 1d10
+        roll:
+            1: Corporate executive
+            2: Corporate manager
+            3: Corporate technician
+            4: Nomad pack
+            5: Pirate fleet
+            6: Gang family
+            7: Crime lord
+            8: Combat zone poor
+            9: Urban homeless
+            10: Arcology family
+        next: Parents
+    Parents:
+        dice: 1d10
+        roll:
+            1-6:
+                next: Family Status
+            7-10:
+                next: Something happened to your parents
+    Something happened to your parents:
+        dice: 1d10
+        roll:
+            1: Your parent(s) died in warfare
+            2: Your parent(s) died in an accident
+            3: Your parent(s) were murdered
+            4: Your parent(s) have amnesia and don't remember you
+            5: You never knew your parent(s)
+            6: Your parent(s) are in hiding to protect you
+            7: You were left with relatives for safekeeping
+            8: You grew up on the street and never had parents
+            9: Your parent(s) gave you up for adoption
+            10: Your parent(s) sold you for money
+        next: Family Status
+    Family Status:
+        dice: 1d10
+        roll:
+            1-6:
+                next: Family tragedy
+            7-10:
+                next: Childhood environment
+    Family tragedy:
+        dice: 1d10
+        roll:
+            1: Family lost everything through betrayal
+            2: Family lost everything through bad management
+            3: Family exiled or otherwise driven from their original home/nation/corporation
+            4: Family is imprisoned and you alone escaped
+            5: Family vanished, you are the only remaining member
+            6: Family was murdered/killed and you were the only survivor
+            7: Family is involved in a longterm conspiracy, organization, or association such as a crime family or revolutionary group
+            8: Your family was scattered to the winds due to misfortune
+            9: Your family is cursed with a hereditary feud that has lasted for generations
+            10: You are the inheritor of a family debt and you must honor this debt before moving on with your life
+        next: Childhood environment
+    Childhood environment:
+        dice: 1d10
+        roll:
+            1: Spent on the street, with no adult supervision
+            2: Spent in a safe corporate suburbia
+            3: In a nomad pack moving from town to town
+            4: In a decaying, once upscale neighborhood
+            5: In a defended corporate zone in the central city
+            6: In the heart of the combat zone
+            7: In a small village or town far from the city
+            8: In a large arcology city
+            9: In an aquatic pirate pack
+            10: On a corporate controlled farm or research facility
+        next: Siblings
+    Siblings:
+        dice: 1d10
+        roll:
+            1:
+                next: <NPC sibling> Sibling gender
+            2:
+                next: <ROLL X2> <NPC sibling> Sibling gender
+            3:
+                next: <ROLL X3> <NPC sibling> Sibling gender
+            4:
+                next: <ROLL X4> <NPC sibling> Sibling gender
+            5:
+                next: <ROLL X5> <NPC sibling> Sibling gender
+            6:
+                next: <ROLL X6> <NPC sibling> Sibling gender
+            7:
+                next: <ROLL X7> <NPC sibling> Sibling gender
+            8-10: Only child
+        next: Personality traits
+    Sibling gender:
+        dice: 1d10
+        roll:
+            ODD: Female
+            EVEN: Male
+        next: Sibling relative age
+    Sibling relative age:
+        dice: 1d10
+        roll:
+            1-5: Older
+            6-9: Younger
+            10: Twin
+        next: Sibling feelings about you
+    Sibling feelings about you:
+        dice: 1d10
+        roll:
+            1-2: Dislikes you
+            3-4: Likes you
+            5-6: Neutral
+            7-8: Hero worship you
+            9-10: Hate you
+        reroll: Sibling gender
+    Personality traits:
+        dice: 1d10
+        roll:
+            1: Shy and secretive
+            2: Rebellious, antisocial, violent
+            3: Arrogant, proud, and aloof
+            4: Moody, rash, and headstrong
+            5: Picky, fussy, and nervous
+            6: Stable and serious
+            7: Silly and fluffheaded
+            8: Sneaky and deceptive
+            9: Intellectual and detached
+            10: Friendly and outgoing
+        next: Person you value most
+    Person you value most:
+        dice: 1d10
+        roll:
+            1: A parent
+            2: Brother or sister
+            3: Lover
+            4: Friend
+            5: Yourself
+            6: A pet
+            7: Teacher or mentor
+            8: Public figure
+            9: A personal hero
+            10: No one
+        next: What do you value most?
+    What do you value most?:
+        dice: 1d10
+        roll:
+            1: Money
+            2: Honor
+            3: Your word
+            4: Honesty
+            5: Knowledge
+            6: Vengeance
+            7: Love
+            8: Power
+            9: Having a good time
+            10: Friendship
+        next: How do you feel about most people?
+    How do you feel about most people?:
+        dice: 1d10
+        roll:
+            1-2: Neutral
+            3: I like almost everyone
+            4: I hate almost everyone
+            5: People are tools.  Use them for your own goals and discard them
+            6: Every person is a valuable individual
+            7: People are obstacles to be destroyed if they cross me
+            8: People are untrustworthy.  Don't depend on anyone
+            9: Wipe 'em all out and give the place to the cockroaches
+            10: People are wonderful
+        next: Your most valued posession
+    Your most valued posession:
+        dice: 1d10
+        roll:
+            1: A weapon
+            2: A tool
+            3: A piece of clothing
+            4: A photograph
+            5: A book or diary
+            6: A recording
+            7: A musical instrument
+            8: A piece of jewelry
+            9: A toy
+            10: A letter
+        next: Age
+    Age:
+        dice: 2d6 + 16
+        roll:
+            18:
+                next: <ROLL X2> Life events
+            19:
+                next: <ROLL X3> Life events
+            20:
+                next: <ROLL X4> Life events
+            21:
+                next: <ROLL X5> Life events
+            22:
+                next: <ROLL X6> Life events
+            23:
+                next: <ROLL X7> Life events
+            24:
+                next: <ROLL X8> Life events
+            25:
+                next: <ROLL X9> Life events
+            26:
+                next: <ROLL X10> Life events
+            27:
+                next: <ROLL X11> Life events
+            28:
+                next: <ROLL X12> Life events
+    Life events:
+        dice: 1d10
+        roll:
+            1-3:
+                next: Big problems, big wins
+            4-6:
+                next: Friends & enemies
+            7-8:
+                next: Romantic involvement
+            9-10: Nothing happened that year
+        reroll: Life events
+    Big problems, big wins:
+        dice: 1d10
+        roll:
+            EVEN:
+                next: You get lucky
+            ODD:
+                next: Disaster strikes!
+    You get lucky:
+        dice: 1d10
+        roll:
+            1:
+                next: Make a powerful connection in city government
+            2:
+                next: Score some eurodollars
+            3:
+                next: Score some eurodollars
+            4: <NPC sensei> Find a sensei (teacher) <Begin at +2 or add +1 to a martial arts skill of your choice>
+            5: <NPC teacher> Find a teacher <Add +1 to any INT based skill or begin a new INT based skill at +2>
+            6: <NPC corporate exec> Powerful corporate exec owes you one favor
+            7: Local nomad pack befriends you <Call upon a local nomad pack for one favor a month, equivalent to a family special ability at +2>
+            8: <NPC police force friend> Make a friend on the police force <Use a friend on the police force for inside information at a level of +2 streetwise on any police related situation>
+            9: Local boostergang likes you <Call upon a local boostergang for one favor a month, equivalent to a family special ability at +2>
+            10: <NPC combat teacher> Find a combat teacher <Add +1 to any weapon skill with the exception of martial arts or brawling or begin a new combat skill at +2>
+    Make a powerful connection in city government:
+        dice: 1d10
+        roll:
+            1-4: <NPC powerful police dept. connection> <Powerful connection in police dept.>
+            5-7: <NPC powerful DA's office connection> <Powerful connection in district attorney's office>
+            8-10: <NPC powerful mayors office connection> <Powerful connection in  mayor's office>
+    Score some eurodollars:
+        dice: 1d10
+        roll:
+            1: <Score 100 eurodollars>
+            2: <Score 200 eurodollars>
+            3: <Score 300 eurodollars>
+            4: <Score 400 eurodollars>
+            5: <Score 500 eurodollars>
+            6: <Score 600 eurodollars>
+            7: <Score 700 eurodollars>
+            8: <Score 800 eurodollars>
+            9: <Score 900 eurodollars>
+            10: <Score 1000 eurodollars>
+    Disaster strikes!:
+        dice: 1d10
+        roll:
+            1:
+                next: Lose some eurodollars
+            2:
+                next: Imprisonment
+            3: Illness or addiction <Lose 1 point of REF permanently and gain an illness or drug habit>
+            4:
+                next: Betrayal
+            5:
+                next: Accident
+            6:
+                next: Lover, friend, or relative killed
+            7:
+                next: False accusation
+            8:
+                next: Hunted by the law
+            9:
+                next: Hunted by a corporation
+            10:
+                next: Mental or physical incapacitation
+        next: What are you gonna do about it?
+    Lose some eurodollars:
+        dice: 1d10
+        roll:
+            1: <Lose 100 eurodollars>
+            2: <Lose 200 eurodollars>
+            3: <Lose 300 eurodollars>
+            4: <Lose 400 eurodollars>
+            5: <Lose 500 eurodollars>
+            6: <Lose 600 eurodollars>
+            7: <Lose 700 eurodollars>
+            8: <Lose 800 eurodollars>
+            9: <Lose 900 eurodollars>
+            10: <Lose 1000 eurodollars>
+    Imprisonment:
+        dice: 1d10
+        roll:
+            1: Imprisoned for 1 month
+            2: Imprisoned for 2 months
+            3: Imprisoned for 3 months
+            4: Imprisoned for 4 months
+            5: Imprisoned for 5 months
+            6: Imprisoned for 6 months
+            7: Imprisoned for 7 months
+            8: Imprisoned for 8 months
+            9: Imprisoned for 9 months
+            10: Imprisoned for 10 months
+    Betrayal:
+        dice: 1d10
+        roll:
+            1-3: <You are being blackmailed>
+            4-7: <A secret of yours was exposed>
+            8-10: <Betrayed by a close friend in either romance or career (you choose)>
+    Accident:
+        dice: 1d10
+        roll:
+            1-4: Terribly disfigured <Subtract 5 from Attractiveness>
+            5-6:
+                next: Hospitalized
+            7-8:
+                next: Lost memory
+            9-10: Constantly relive nightmares <8 in 10 chance each night of nightmares and waking up screaming>
+    Hospitalized:
+        dice: 1d10
+        roll:
+            1: Hospitalized for 1 month
+            2: Hospitalized for 2 months
+            3: Hospitalized for 3 months
+            4: Hospitalized for 4 months
+            5: Hospitalized for 5 months
+            6: Hospitalized for 6 months
+            7: Hospitalized for 7 months
+            8: Hospitalized for 8 months
+            9: Hospitalized for 9 months
+            10: Hospitalized for 10 months
+    Lost memory:
+        dice: 1d10
+        roll:
+            1: Lost memory of 1 month
+            2: Lost memory of 2 months
+            3: Lost memory of 3 months
+            4: Lost memory of 4 months
+            5: Lost memory of 5 months
+            6: Lost memory of 6 months
+            7: Lost memory of 7 months
+            8: Lost memory of 8 months
+            9: Lost memory of 9 months
+            10: Lost memory of 10 months
+    Lover, friend, or relative killed:
+        dice: 1d10
+        roll:
+            1-5: They died accisentally
+            6-8: Murdered by unknown parties
+            9-10: Murdered and you know who did it, but you need proof.
+    False accusation:
+        dice: 1d10
+        roll:
+            1-3: Theft
+            4-5: Cowardice
+            6-8: Murder
+            9: Rape
+            10: Lying or betrayal
+    Hunted by the law:
+        dice: 1d10
+        roll:
+            1-3: Only a couple local cops want you
+            4-6: It's the entire local force
+            7-8: It's the state police or militia
+            9-10: It's the FBI or equivalent natural police force
+    Hunted by a corporation:
+        dice: 1d10
+        roll:
+            1-3: It's a small, local firm
+            4-6: It's a larger corp with offices statewide
+            7-8: It's a big, national corp with agents in major cities nationwide
+            9-10: It's a huge, multinational with armies, ninja, and spies everywhere
+    Mental or physical incapacitation:
+        dice: 1d10
+        roll:
+            1-3: A <Lose 1 point of REF>
+            4-7: B <Suffer anxiety attacks and phobias, lose 1 point of COOL>
+            8-10: Major psychosis <You hear voices and are violent, irrational, and depressive. Lose 1 COOL and lose 1 REF>
+    What are you gonna do about it?:
+        dice: 1d10
+        roll:
+            1-2: Clear your name
+            3-4: Live it down and try to forget it
+            5-6: Hunt down those responsible and make them pay
+            7-8: Get what's rightfully yours
+            9-10: Save, if possible, anyone else involved in the situation
+    Friends & enemies:
+        dice: 1d10
+        roll:
+            1-5:
+                next: <NPC friend> Make a friend
+            6-10:
+                next: <NPC enemy> Make an enemy
+    Make a friend:
+        dice: 1d10
+        roll:
+            EVEN: Male
+            ODD: Female
+        next: Relationship to friend
+    Relationship to friend:
+        dice: 1d10
+        roll:
+            1: Like a big brother/sister to you
+            2: Like a kid sister/brother to you
+            3: A teacher or mentor
+            4: A partner or co-worker
+            5: An old lover (choose which one)
+            6: An old enemy (choose which one)
+            7: Like a foster parent to you
+            8: A relative
+            9: Reconnect with an old childhood friend
+            10: Met through a common interest
+    Make an enemy:
+        dice: 1d10
+        roll:
+            EVEN: Male
+            ODD: Female
+        next: Relationship to enemy
+    Relationship to enemy:
+        dice: 1d10
+        roll:
+            1: Ex friend
+            2: Ex lover
+            3: Relative
+            4: Childhood enemy
+            5: Person working for you
+            6: Person you work for
+            7: Partner or co-worker
+            8: Booster gang member
+            9: Corporate exec
+            10: Government official
+        next: The cause
+    The cause:
+        dice: 1d10
+        roll:
+            1: Caused the other to lose face or status
+            2: Caused the loss of a lover, friend, or relative
+            3: Caused a major humiliation
+            4: Accused the other of cowardice or some other personal flaw
+            5:
+                next: Physical disability
+            6: Deserted or betrayed the other
+            7: Turned down other's offer of job or romantic involvement
+            8: You just didn't like each other
+            9: Was a rommantic rival
+            10: Foiled a plan of the other's
+        next: Who's fracked off?
+    Physical disability:
+        dice: 1d6
+        roll:
+            1-2: Lose eye
+            3-4: Lose arm
+            5-6: Badly scarred
+    Who's fracked off?:
+        dice: 1d10
+        roll:
+            1-4: They hate you
+            5-7: You hate them
+            8-10: The feeling's mutual
+        next: Whatcha' gonna do about it?
+    Whatcha' gonna do about it?:
+        dice: 1d10
+        roll:
+            1-2: Go into a murderous, killing rage and rip their face off!
+            3-4: Avoid the scum
+            5-6: Backstab them indirectly
+            7-8: Ignore the scum
+            9-10: Rip into him verbally
+        next: What can they throw against you?
+    What can they throw against you?:
+        dice: 1d10
+        roll:
+            1-3: Just themselves
+            4-5: Themselves and a few friends
+            6-7: An entire gang
+            8: A small corporation
+            9: A large corporation
+            10: An entire governmental agency
+    Romantic involvement:
+        dice: 1d10
+        roll:
+            1-4: <NPC happy love> Happy love affair
+            5:
+                next: <NPC tragic love> Tragic love affair
+            6-7:
+                next: <NPC problematic love> Love affair with problems
+            8-10: <NPC fast love> Fast affairs and hot dates
+    Tragic love affair:
+        dice: 1d10
+        roll:
+            1: Lover died in accident
+            2: Lover mysteriously vanished
+            3: It didn't work out
+            4: A personal goal or vendetta came between you
+            5: Lover kidnapped
+            6: Lover went insnae
+            7: Lover committed suicide
+            8: Lover killed in a fight
+            9: Rival cut you out of the action
+            10: Lover imprisoned or exiled
+        next: Mutual feelings
+    Love affair with problems:
+        dice: 1d10
+        roll:
+            1: Your lover's friends/family hate you
+            2: Your lover's friends/family would use any means to get rid of you
+            3: Your friends/family hate your lover
+            4: One of you has a romantic rival
+            5: You are separated in some way
+            6: You fight constantly
+            7: You're professional rivals
+            8: One of you is insanely jealous
+            9: One of you is "messing around"
+            10: You have conflicting backgrounds and families
+        next: Mutual feelings
+    Mutual feelings:
+        dice: 1d10
+        roll:
+            1: They still love you
+            2: You still lvoe them
+            3: You still love each other
+            4: You hate them
+            5: They hate you
+            6: You hate each other
+            7: You're friends
+            8: No feelings either way, it's over
+            9: You like them, they hate you
+            10: They like you, you hate them
+    NPC:
+        - Clothes
+        - Hairstyle
+        - Affectations
+        - Ethnic origins
+        - Personality traits
+        - Person you value most
+        - What do you value most?
+        - How do you feel about most people?
+        - Your most valued posession

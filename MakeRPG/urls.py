@@ -18,5 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     # path('cc/', include('CharacterCreator.urls')),
+    # path('fnff/', include('FNFF.urls')),
     path('admin/', admin.site.urls),
 ]

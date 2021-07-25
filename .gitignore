@@ -5,6 +5,7 @@
 MakeRPG/settings.py
 db.json
 ignore.txt
+FNFF/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

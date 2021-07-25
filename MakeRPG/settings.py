@@ -27,10 +27,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'makerpg.herokuapp.com',
     'localhost',
-    '127.0.0.1',
-    'makerpg2.us-west-2.elasticbeanstalk.com',
+    '127.0.0.1'
     ]
 
 
@@ -38,6 +36,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'CharacterCreator.apps.CharacterCreatorConfig',
+    'FNFF.apps.FnffConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,7 +138,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'shadowrun',
+            'NAME': 'cyberpunk',
             'USER': 'postgres',
             'PASSWORD': 'postgres',
             'HOST': 'localhost',
