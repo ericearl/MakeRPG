@@ -1,7 +1,16 @@
 *.sqlite*
 *.pyc
 .vscode/
-CharacterCreator/migrations/*.py
+# CharacterCreator/migrations/*.py
 MakeRPG/settings.py
 db.json
 ignore.txt
+FNFF/
+MakeRPG/static/
+CharacterCreator/migrations/
+
+# Elastic Beanstalk Files
+.ebextensions/*
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
