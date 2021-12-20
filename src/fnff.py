@@ -2,7 +2,7 @@ import argparse
 import math
 import random
 import re
-from cli2gui import Cli2Gui
+from gooey import Gooey
 
 def roll(dice_str):
     search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *(stat|[0-9]*)', dice_str)
@@ -82,6 +82,64 @@ def btm_lookup(body):
     elif body > 10:
         return 5
 
+def dv(args):
+    DV = 0
+
+    if args.target_moving == 'REF 11-12':
+        DV += -3
+    elif args.target_moving == 'REF 13-14':
+        DV += -4
+    elif args.target_moving == 'REF>15':
+        DV += -5
+
+    DV += args.target_immobile
+    DV += args.shooter_fastdraw
+    DV += args.ambush
+    DV += args.called_shot
+    DV += args.ricochet
+    DV += args.blinded
+    DV += args.target_silhouetted
+    DV += args.shooter_turning
+    DV += args.akimbo
+    DV += args.shooter_moving
+    DV += args.hipfire
+    DV += args.turret
+    DV += args.vehicle_mounted
+    DV += args.target_large
+    DV += args.target_small
+    DV += args.target_tiny
+    DV += args.weapon_laser
+    DV += args.telescopic_extreme
+    DV += args.telescopic_far
+    DV += args.targeting_scope
+    DV += args.smartgun
+    DV += args.smartgoggles
+    DV += args.burst_short_range
+
+    if args.full_auto_close:
+        DV += int(math.floor( float(args.full_auto_close)/10.0 ))
+    if args.full_auto_far:
+        DV -= int(math.floor( float(args.full_auto_far)/10.0 ))
+
+    if args.distance <= 1:
+        DV += 10
+        print('DV (Point Blank): ' + str(DV))
+    elif float(args.distance) <= float(args.range)/4.0:
+        DV += 15
+        print('DV (Close Range): ' + str(DV))
+    elif float(args.distance) <= float(args.range)/2.0:
+        DV += 20
+        print('DV (Medium Range): ' + str(DV))
+    elif float(args.distance) <= float(args.range):
+        DV += 25
+        print('DV (Long Range): ' + str(DV))
+    elif float(args.distance) <= float(args.range)*2.0:
+        DV += 30
+        print('DV (Extreme Range): ' + str(DV))
+    else:
+        DV += 40
+        print('DV (Beyond Extreme Range): ' + str(DV))
+
 def semiauto(args):
     # character stuff
     atk_stat_skill_base = args.a_base
@@ -98,21 +156,21 @@ def semiauto(args):
     # sp_cover = args.r_cover
 
     # btm = btm_lookup(dfd_body)
-    d10_roll = roll('1d10')
-    hit = d10_roll
-
-    if hit == 1:
-        f_message = semiauto_fumble()
-        print( 'Semi-Auto: FUMBLE.  ' + f_message )
-        return
-
-    while d10_roll == 10:
+    for i in range(shots):
         d10_roll = roll('1d10')
-        hit += d10_roll
+        hit = d10_roll
 
-    hit += atk_stat_skill_base
-    if hit >= dv:
-        for i in range(shots):
+        if hit == 1:
+            f_message = semiauto_fumble()
+            print( 'Semi-Auto: FUMBLE.  ' + f_message )
+            return
+
+        while d10_roll == 10:
+            d10_roll = roll('1d10')
+            hit += d10_roll
+
+        hit += atk_stat_skill_base
+        if hit >= dv:
             base_damage = roll(weapon_damage)
             location = locate()
 
@@ -299,45 +357,127 @@ def damage(args):
     else:
         print('NO DAMAGE taken because Armor & Cover (' + str(sp) + ' SP) was stronger than the base (' + str(base_damage) + '): [0 damage]')
 
-parser = argparse.ArgumentParser()
-subparser = parser.add_subparsers()
+@Gooey
+def main():
+    parser = argparse.ArgumentParser()
+    subparser = parser.add_subparsers()
 
-p_semiauto = subparser.add_parser('semiauto')
-p_semiauto.add_argument('-dv','--ref-dv', type=int, metavar='DV', dest='r_dv', required=True)
-p_semiauto.add_argument('-b','--atk-base', type=int, metavar='BASE', dest='a_base', required=True)
-p_semiauto.add_argument('-dmg','--wpn-damage', type=str, metavar='DAMAGE', dest='w_damage')
-p_semiauto.add_argument('-sh','--wpn-shots', type=int, metavar='SHOTS', dest='w_shots')
-p_semiauto.set_defaults(func=semiauto)
+    p_dv = subparser.add_parser('dv')
+    p_dv.add_argument('-d','--distance', type=int, metavar='DISTANCE', dest='distance', required=True,
+                      help='Distance to target in meters.')
+    p_dv.add_argument('-r','--range', type=int, metavar='RANGE', dest='range', required=True,
+                      help='Long range of weapon in meters.')
+    p_dv.add_argument('-immobile','--target-immobile', action='store_const', const=4, default=0, dest='target_immobile',
+                      help='Target immobile')
+    p_dv.add_argument('-tm','--target-moving', choices=['REF 11-12','REF 13-14','REF>15'], default=None, dest='target_moving',
+                      help='Moving Target REF > 10')
+    p_dv.add_argument('-fastdraw','-snapshot','--shooter-fastdraw','--shooter-snapshot', action='store_const', const=-3, default=0, dest='shooter_fastdraw',
+                      help='Fast draw/Snapshot')
+    p_dv.add_argument('-ambush','--shooter-ambush', action='store_const', const=5, default=0, dest='ambush',
+                      help='Ambush')
+    p_dv.add_argument('-call','--shooter-called-shot', action='store_const', const=-4, default=0, dest='called_shot',
+                      help='Aimed/called shot at body location')
+    p_dv.add_argument('-ricochet','--shooter-ricochet', action='store_const', const=-5, default=0, dest='ricochet',
+                      help='Ricochet or indirect fire')
+    p_dv.add_argument('-blind','--shooter-blinded', action='store_const', const=-3, default=0, dest='blinded',
+                      help='Blinded by light or dust')
+    p_dv.add_argument('-silhouette','--target-silhouetted', action='store_const', const=2, default=0, dest='target_silhouetted',
+                      help='Target Silhouetted')
+    p_dv.add_argument('-turning','--shooter-turning', action='store_const', const=-2, default=0, dest='shooter_turning',
+                      help='Turning to face target')
+    p_dv.add_argument('-akimbo','--weapons-akimbo', action='store_const', const=-3, default=0, dest='akimbo',
+                      help='Using two weapons')
+    p_dv.add_argument('-sm','--shooter-moving', action='store_const', const=-3, default=0, dest='shooter_moving',
+                      help='Firing while running')
+    p_dv.add_argument('-hip','--shooter-hipfire', action='store_const', const=-2, default=0, dest='hipfire',
+                      help='Firing shoulder arm from hip')
+    p_dv.add_argument('-turret','--turret-mounted', action='store_const', const=2, default=0, dest='turret',
+                      help='Turret mounted weapon')
+    p_dv.add_argument('-vm','--vehicle-mounted', action='store_const', const=-4, default=0, dest='vehicle_mounted',
+                      help='Vehicle mounted, no turret')
+    p_dv.add_argument('-large','--target-large', action='store_const', const=4, default=0, dest='target_large',
+                      help='Large target')
+    p_dv.add_argument('-small','--small-target', action='store_const', const=-4, default=0, dest='target_small',
+                      help='Small target')
+    p_dv.add_argument('-tiny','--target-tiny', action='store_const', const=-6, default=0, dest='target_tiny',
+                      help='Tiny target')
+    p_dv.add_argument('-aim','--aiming-rounds', type=int, choices=[0,1,2,3], default=0, dest='aiming',
+                      help='Aiming combat rounds (+1 each round, up to 3 rounds)')
+    p_dv.add_argument('-laser','--weapon-laser', action='store_const', const=1, default=0, dest='weapon_laser',
+                      help='Laser sight')
+    p_dv.add_argument('-textreme','--telescopic-extreme', action='store_const', const=2, default=0, dest='telescopic_extreme',
+                      help='Telescopic sight (Extreme range)')
+    p_dv.add_argument('-tfar','--telescopic-far', action='store_const', const=1, default=0, dest='telescopic_far',
+                      help='Telescopic sight (Medium or Long range)')
+    p_dv.add_argument('-scope','--targeting-scope', action='store_const', const=1, default=0, dest='targeting_scope',
+                      help='Targeting scope')
+    p_dv.add_argument('-sg','--smartgun', action='store_const', const=2, default=0, dest='smartgun',
+                      help='Smartgun')
+    p_dv.add_argument('-goggles','--smartgoggles', action='store_const', const=2, default=0, dest='smartgoggles',
+                      help='Smartgoggles')
+    p_dv.add_argument('-trb','--burst-short-range', action='store_const', const=3, default=0, dest='burst_short_range',
+                      help='Three round burst (Close/Medium range only)')
+    p_dv.add_argument('-fac','--full-auto-close', type=int, default=0, dest='full_auto_close',
+                      help='Full auto, Close (number of rounds fired)')
+    p_dv.add_argument('-faf','--full-auto-far', type=int, default=0, dest='full_auto_far',
+                      help='Full auto, not Close (number of rounds fired)')
+    p_dv.set_defaults(func=dv)
 
-p_auto = subparser.add_parser('auto')
-p_auto.add_argument('-dv','--ref-dv', type=int, metavar='DV', dest='r_dv', required=True)
-p_auto.add_argument('-b','--atk-base', type=int, metavar='BASE', dest='a_base', required=True)
-p_auto.add_argument('-dmg','--wpn-damage', type=str, metavar='DAMAGE', dest='w_damage')
-p_auto.add_argument('-sh','--wpn-shots', type=int, metavar='SHOTS', dest='w_shots')
-p_auto.set_defaults(func=auto)
+    p_semiauto = subparser.add_parser('semiauto')
+    p_semiauto.add_argument('-dv','--ref-dv', type=int, metavar='DV', dest='r_dv', required=True,
+                            help='Difficulty Value (DV) To Hit.')
+    p_semiauto.add_argument('-b','--atk-base', type=int, metavar='BASE', dest='a_base', required=True,
+                            help='Stat + Skill + Weapon Accuracy (WA) in the weapon being used.')
+    p_semiauto.add_argument('-dmg','--wpn-damage', type=str, metavar='DAMAGE', dest='w_damage',
+                            help='Damage Dice in weapon being used.')
+    p_semiauto.add_argument('-sh','--wpn-shots', type=int, metavar='SHOTS', dest='w_shots',
+                            help='Number of semi-auto shots being fired.')
+    p_semiauto.set_defaults(func=semiauto)
 
-p_suppress = subparser.add_parser('suppress')
-p_suppress.add_argument('','', type=, metavar=, dest=, required=)
-p_suppress.set_defaults(func=suppress)
+    p_auto = subparser.add_parser('auto')
+    p_auto.add_argument('-dv','--ref-dv', type=int, metavar='DV', dest='r_dv', required=True,
+                        help='Difficulty Value (DV) To Hit.')
+    p_auto.add_argument('-b','--atk-base', type=int, metavar='BASE', dest='a_base', required=True,
+                        help='Stat + Skill + Weapon Accuracy (WA) in the weapon being used.')
+    p_auto.add_argument('-dmg','--wpn-damage', type=str, metavar='DAMAGE', dest='w_damage',
+                        help='Damage Dice in weapon being used.')
+    p_auto.add_argument('-sh','--wpn-shots', type=int, metavar='SHOTS', dest='w_shots',
+                        help='Rate-of-fire of weapong or remainder of clip being fired.')
+    p_auto.set_defaults(func=auto)
 
-p_burst = subparser.add_parser('burst')
-p_burst.add_argument('-dv','--ref-dv', type=int, metavar='DV', dest='r_dv', required=True)
-p_burst.add_argument('-b','--atk-base', type=int, metavar='BASE', dest='a_base', required=True)
-p_burst.add_argument('-dmg','--wpn-damage', type=str, metavar='DAMAGE', dest='w_damage')
-p_burst.set_defaults(func=burst)
+    # p_suppress = subparser.add_parser('suppress')
+    # p_suppress.add_argument('','', type=, metavar=, dest=, required=)
+    # p_suppress.set_defaults(func=suppress)
 
-p_damage = subparser.add_parser('damage')
-p_damage.add_argument('-d','--damage-base', type=int, metavar='DAMAGE', dest='base_damage', required=True)
-p_damage.add_argument('-b','--body', type=int, metavar='BODY', dest='body', required=True)
-p_damage.add_argument('-arm','--armor', type=int, metavar='SP', dest='armor', nargs='+', default=[],
-                        help='Space-separated SP list of armors, from inner to outer layer.  Skip this option if no armor.')
-p_damage.add_argument('-ap','--ap-rounds', action='store_true', default=False, dest='ap')
-p_damage.add_argument('-hd','--headshot', action='store_true', default=False, dest='headshot')
-p_damage.add_argument('-c','--cover', type=int, metavar='SP', dest='cover', nargs=1, default=[],
-                        help='SP of cover.  Skip this option if no cover.')
-p_damage.set_defaults(func=damage)
+    p_burst = subparser.add_parser('burst')
+    p_burst.add_argument('-dv','--ref-dv', type=int, metavar='DV', dest='r_dv', required=True,
+                         help='Difficulty Value (DV) To Hit.')
+    p_burst.add_argument('-b','--atk-base', type=int, metavar='BASE', dest='a_base', required=True,
+                         help='REF Stat + Weapon Skill + Weapon Accuracy (WA) in the weapon being used.')
+    p_burst.add_argument('-dmg','--wpn-damage', type=str, metavar='DAMAGE', dest='w_damage',
+                         help='Damage Dice in weapon being used.')
+    p_burst.set_defaults(func=burst)
 
-args = parser.parse_args()
+    p_damage = subparser.add_parser('damage')
+    p_damage.add_argument('-d','--damage-base', type=int, metavar='DAMAGE', dest='base_damage', required=True,
+                          help='Base damage provided by attacking weapon bullet.')
+    p_damage.add_argument('-b','--body', type=int, metavar='BODY', dest='body', required=True,
+                          help='BODY Stat of character receiving damage.')
+    p_damage.add_argument('-arm','--armor', type=int, metavar='ARMOR_SP', dest='armor', nargs='+', default=[],
+                          help='Space-separated SP list of armors, from inner to outer layer.  Skip this option if no armor.')
+    p_damage.add_argument('-ap','--ap-rounds', action='store_true', default=False, dest='ap',
+                          help='Flag for Armor Piercing (AP) round.')
+    p_damage.add_argument('-hd','--headshot', action='store_true', default=False, dest='headshot',
+                          help='Flag for damage to the head.')
+    p_damage.add_argument('-c','--cover', type=int, metavar='COVER_SP', dest='cover', nargs=1, default=[],
+                          help='SP of cover.  Skip this option if no cover.')
+    p_damage.set_defaults(func=damage)
 
-args.func(args)
+    args = parser.parse_args()
 
+    args.func(args)
+
+    # TO HIT (DV): Weapon Range vs Distance to target + Cyberware Modifiers + WA + Difficulty Modifiers
+    # DAMAGE: Location ( + AP Rounds ) vs Armor SP & Cover SP & soaked up by SDP
+
+main()
