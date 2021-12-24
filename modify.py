@@ -1,5 +1,19 @@
 from CharacterCreator.models import *
 
+# modifier function string application
+def modify_equation(current, equation_string):
+    # only works for integer 'modify' values
+    if equation_string[0] == '+':
+        current += int(equation_string[1:])
+    elif equation_string[0] == '-':
+        current -= int(equation_string[1:])
+    elif equation_string[0] == '*':
+        current *= int(equation_string[1:])
+    elif equation_string[0] == '/':
+        current /= int(equation_string[1:])
+
+    return current
+
 # apply modifiers
 def modify(c, tree, modifier):
     for being_modified in tree['modifiers'][modifier]:
@@ -23,41 +37,46 @@ def modify(c, tree, modifier):
 
                 lookup = tree['modifiers'][modifier][being_modified][modifier_key][modifier_lookup]
 
-                possible_rolls = []
-                # a dictionary of roll value lists whose keys are roll strings
-                roll_dict = {}
-                for element in lookup.keys():
-                    roll_str = str(element)
+                if 'modify' in lookup:
+                    cx.current = modify_equation(cx.current, lookup['modify'])
+                    cx.save()
 
-                    if '-' not in roll_str and ',' not in roll_str:
-                        # a single value
-                        values = int(roll_str)
-                        roll_dict[roll_str] = [values]
-                        possible_rolls.append(values)
-                    elif ',' in roll_str:
-                        # multiple values
-                        for partial in roll_str.split(','):
-                            if '-' in partial:
-                                # a span of comma-separated values
-                                minimum,maximum = (int(number) for number in partial.split('-'))
-                                values = list(range(minimum,maximum+1))
-                                roll_dict[roll_str] = values
-                                possible_rolls += values
-                            else:
-                                # a single comma-separated value
-                                values = int(partial)
-                                roll_dict[roll_str] = [values]
-                                possible_rolls.append(values)
-                    elif '-' in roll_str:
-                        # a span of values
-                        minimum,maximum = (int(number) for number in roll_str.split('-'))
-                        values = list(range(minimum,maximum+1))
-                        roll_dict[roll_str] = values
-                        possible_rolls += values
+                elif type(lookup) is dict:
+                    possible_rolls = []
+                    # a dictionary of roll value lists whose keys are roll strings
+                    roll_dict = {}
+                    for element in lookup.keys():
+                        roll_str = str(element)
 
-                for key in lookup.keys():
-                    if cs.current in roll_dict[str(key)]:
-                        outcome = lookup[key]
-                        cx.current += outcome
-                        cx.save()
-                        break
+                        if '-' not in roll_str and ',' not in roll_str:
+                            # a single value
+                            values = int(roll_str)
+                            roll_dict[roll_str] = [values]
+                            possible_rolls.append(values)
+                        elif ',' in roll_str:
+                            # multiple values
+                            for partial in roll_str.split(','):
+                                if '-' in partial:
+                                    # a span of comma-separated values
+                                    minimum,maximum = (int(number) for number in partial.split('-'))
+                                    values = list(range(minimum,maximum+1))
+                                    roll_dict[roll_str] = values
+                                    possible_rolls += values
+                                else:
+                                    # a single comma-separated value
+                                    values = int(partial)
+                                    roll_dict[roll_str] = [values]
+                                    possible_rolls.append(values)
+                        elif '-' in roll_str:
+                            # a span of values
+                            minimum,maximum = (int(number) for number in roll_str.split('-'))
+                            values = list(range(minimum,maximum+1))
+                            roll_dict[roll_str] = values
+                            possible_rolls += values
+
+                    for key in lookup.keys():
+                        if cs.current in roll_dict[str(key)]:
+                            outcome = lookup[key]
+                            cx.current += outcome
+                            cx.save()
+                            break

@@ -2,6 +2,17 @@ import random
 
 from CharacterCreator.models import *
 
+# def check_prereq(tree, c, prereq, prereq_level):
+#     if prereq == 'none':
+#         return True
+#     else:
+#         cskill = CharacterSkill.objects.filter(character=c, skill__name=prereq)
+#         if cskill.current >= prereq_level:
+#             return True
+#         else:
+#             return False
+
+
 # roll all character statistics until their sum is "points"
 def spend_stats(tree, c):
 
@@ -87,6 +98,23 @@ def spend_skills(tree, c):
                     break
 
             cskill = random.choices(cskills, weights=weights).pop()
+            unlocks = tree['skills'][cskill.skill.name]['unlocks']
+            # rule for unlocking skills
+            while cskill.current == cskill.maximum:
+                if unlocks != 'none':
+                    possibles = []
+                    skill_threshes = unlocks.split(' OR ')
+                    for skill_thresh in skill_threshes:
+                        skill_name, thresh_string = skill_thresh.split('@')
+                        skill_thresh = int(thresh_string)
+                        # if statement to check the skill threshold
+                        if cskill.current >= skill_thresh:
+                            # if so, add it to the list of possible skill choices
+                            possibles.append(skill_name)
+                else:
+                    break
+
+                cskill = random.choices(possibles, weights=weights).pop()
 
             if cskill.skill.pointpool.name == cp.pointpool.name:
 

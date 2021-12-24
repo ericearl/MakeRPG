@@ -1,0 +1,301 @@
+defaults:
+    stats:
+        set: 6                # base level without rolling or purchasing, what you have
+        min: 6                # low end of range
+        max: 70               # high end of range
+        direction: increasing # direction to start from in range
+        points: roll          # default points pool to purchase from
+        cost: 0               # cost per point, negative cost is a refund
+        purchase: 0           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+      # prereq: none          # prerequisites, keywords <AND> and <OR>, > and <, <trait>
+        unlocks: none         # stats unlocked by this stat@threshold
+        role: none            # special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
+        type: independent     # independent (stands alone), dependent (result of something else)
+    skills:
+        set: 0                # base level without rolling or purchasing, what you have
+        min: 0                # low end of range
+        max: 1               # high end of range
+        direction: increasing # direction to start from in range
+        points: Skill         # default points pool to purchase from
+        cost: 1               # cost per point, negative cost is a refund
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+      # prereq: none          # prerequisites, keywords <AND> and <OR>, > and <, <trait>
+        unlocks: none         # skills unlocked by this skill@threshold
+        role: none            # special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
+        type: independent     # independent (stands alone), dependent (result of something else)
+        stat: none            # associated statistic for each skill
+
+
+points:
+    Skill:
+        set: 0
+
+
+roles:
+    - Teamster
+    - Android
+    - Scientist
+    - Marine
+
+
+stats:
+    Strength: default
+    Speed: default
+    Intellect: default
+    Combat: default
+    Sanity Save:
+        set: 0
+        min: 0
+        max: 40
+    Fear Save:
+        set: 0
+        min: 0
+        max: 40
+    Body Save:
+        set: 0
+        min: 0
+        max: 85
+    Armor Save:
+        set: 0
+        min: 0
+        max: 40
+    Max Health:
+        set: 12
+        min: 12
+        max: 130
+        type: dependent
+
+
+skills:
+    Linguistics:
+        unlocks: Sophontology@1
+    Biology:
+        unlocks: Psychology@1 OR Genetics@1
+    First Aid:
+        unlocks: Pathology@1
+    Hydroponics:
+        unlocks: Botany@1
+    Geology:
+        unlocks: Planetology@1 OR Asteroid Mining@1
+    Zero-G:
+        unlocks: Asteroid Mining@1
+    Scavenging:
+        unlocks: Jury Rigging@1 OR Asteroid Mining@1
+    Heavy Machinery:
+        unlocks: Engineering@1 OR Asteroid Mining@1
+    Computers:
+        unlocks: Hacking@1 OR Engineering@1
+    Mechanical Repair:
+        unlocks: Vehicle Specialization@1 OR Engineering@1 OR Jury Rigging@1
+    Driving:
+        unlocks: Vehicle Specialization@1
+    Piloting:
+        unlocks: Vehicle Specialization@1 OR Astrogation@1
+    Mathematics:
+        unlocks: Physics@1
+    Art:
+        unlocks: Mysticism@1
+    Archaeology:
+        unlocks: Mysticism@1
+    Theology:
+        unlocks: Mysticism@1
+    Military Training:
+        unlocks: Gunnery@1 OR Tactics@1 OR Firearms@1 OR Close-Quarters Combat@1 OR Explosives@1
+    Rimwise:
+        unlocks: Firearms@1 OR Close-Quarters Combat@1
+    Athletics:
+        unlocks: Close-Quarters Combat@1
+    Chemistry:
+        unlocks: Explosives@1
+    Psychology:
+        unlocks: Sophontology@1
+    Genetics:
+        unlocks: Xenobiology@1
+    Pathology:
+        unlocks: Surgery@1 OR Xenobiology@1
+    Botany:
+        unlocks: Xenobiology@1
+    Planetology: default
+    Asteroid Mining: default
+    Jury Rigging:
+        unlocks: Cybernetics@1
+    Engineering:
+        unlocks: Cybernetics@1 OR Robotics@1 OR Artificial Intelligence@1
+    Hacking:
+        unlocks: Artificial Intelligence@1
+    Vehicle Specialization:
+        unlocks: Command@1
+    Astrogation:
+        unlocks: Hyperspace@1
+    Physics:
+        unlocks: Hyperspace@1
+    Mysticism:
+        unlocks: Hyperspace@1 OR Xenoesotericism@1
+    Tactics:
+        unlocks: Command@1
+    Gunnery:
+        unlocks: Weapon Specialization@1
+    Firearms:
+        unlocks: Weapon Specialization@1
+    Close-Quarters Combat:
+        unlocks: Weapon Specialization@1
+    Explosives:
+        unlocks: Weapon Specialization@1
+    Sophontology: default
+    Xenobiology: default
+    Surgery: default
+    Cybernetics: default
+    Robotics: default
+    Artificial Intelligence: default
+    Command: default
+    Hyperspace: default
+    Xenoesotericism: default
+    Weapon Specialization: default
+
+
+modifiers:
+    stats:
+        Max Health:
+            stats:
+                Strength:
+                    modify: "*2"
+
+
+history:
+    START: Class
+    Class:
+        dice: 1d4
+        roll:
+            1:
+                role: Teamster
+                stats:
+                    Sanity Save: "+30"
+                    Fear Save: "+35"
+                    Body Save: "+30"
+                    Armor: "+35"
+                    Strength: "+5"
+                    Speed: "+5"
+                skills:
+                    Zero-G: "+1"
+                    Mechanical Repair: "+1"
+                points:
+                    skill: "+4"
+                next: Teamster
+            2:
+                role: Android
+                stats:
+                    Sanity Save: "+20"
+                    Fear Save: "+85"
+                    Body Save: "+40"
+                    Armor: "+25"
+                    Speed: "+5"
+                    Intellect: "+5"
+                skills:
+                    Linguistics: "+1"
+                    Computers: "+1"
+                    Mathematics: "+1"
+                points:
+                    skill: "+2"
+                next: Android
+            3:
+                role: Scientist
+                stats:
+                    Sanity Save: "+40"
+                    Fear Save: "+25"
+                    Body Save: "+25"
+                    Armor: "+30"
+                    Intellect:
+                        modify: "+10"
+                points:
+                    skill: "+3"
+                next: Scientist
+            4:
+                role: Marine
+                stats:
+                    Sanity Save: "+25"
+                    Fear Save: "+30"
+                    Body Save: "+35"
+                    Armor: "+40"
+                    Combat:
+                        modify: "+5"
+                skills:
+                    Military Training: "+1"
+                points:
+                    skill: "+3"
+                next: Marine
+    Teamster:
+        dice: 1d2
+        roll:
+            1:
+                skills:
+                    Heavy Machinery: "+1"
+            2:
+                skills:
+                    Piloting: "+1"
+    Scientist:
+        dice: 1d15
+        roll:
+            1:
+                skills:
+                    Biology: "+1"
+                    Hydroponics: "+1"
+            2:
+                skills:
+                    Biology: "+1"
+                    Geology: "+1"
+            3:
+                skills:
+                    Biology: "+1"
+                    Computers: "+1"
+            4:
+                skills:
+                    Biology: "+1"
+                    Mathematics: "+1"
+            5:
+                skills:
+                    Biology: "+1"
+                    Chemistry: "+1"
+            6:
+                skills:
+                    Hydroponics: "+1"
+                    Geology: "+1"
+            7:
+                skills:
+                    Hydroponics: "+1"
+                    Computers: "+1"
+            8:
+                skills:
+                    Hydroponics: "+1"
+                    Mathematics: "+1"
+            9:
+                skills:
+                    Hydroponics: "+1"
+                    Chemistry: "+1"
+            10:
+                skills:
+                    Geology: "+1"
+                    Computers: "+1"
+            11:
+                skills:
+                    Geology: "+1"
+                    Mathematics: "+1"
+            12:
+                skills:
+                    Geology: "+1"
+                    Chemistry: "+1"
+            13:
+                skills:
+                    Computers: "+1"
+                    Mathematics: "+1"
+            14:
+                skills:
+                    Computers: "+1"
+                    Chemistry: "+1"
+            15:
+                skills:
+                    Mathematics: "+1"
+                    Chemistry: "+1"

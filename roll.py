@@ -50,41 +50,43 @@ def get_history_starts(history_tree):
 
 
 def history_modify(tree, c, histmod_dict):
+    # "being_modified" might be 'stats' or 'skills' or 'traits' or 'points', etc.
     for being_modified in histmod_dict:
         mod_dict = histmod_dict[being_modified]
 
         if type(mod_dict) is not dict:
-            if being_modified == 'archetypes':
+            if being_modified == 'archetype':
                 c.archetype = Archetype.objects.get(name=mod_dict)
                 c.save()
 
-            elif being_modified == 'roles':
+            elif being_modified == 'role':
                 c.role = Role.objects.get(name=mod_dict)
                 c.save()
 
             continue
 
+        # mod_dict is a dictionary of stats, for instance
         for modifier_key in mod_dict:
 
-            for modifier_lookup in mod_dict[modifier_key]:
+            equation = mod_dict[modifier_key]
 
-                value = mod_dict[modifier_key][modifier_lookup]
+            if being_modified == 'points':
+                cx = CharacterPointpool.objects.filter(character=c).get(pointpool__name=modifier_key)
+                cx.total = modify_equation(cx.total, equation)
 
-                if being_modified == 'points':
-                    cx = CharacterPointpool.objects.filter(character=c).get(pointpool__name=modifier_key)
-                    cx.total += value
+            elif being_modified == 'stats':
+                cx = CharacterStatistic.objects.filter(character=c).get(statistic__name=modifier_key)
+                cx.current = modify_equation(cx.current, equation)
 
-                elif being_modified == 'stats':
-                    cx = CharacterStatistic.objects.filter(character=c).get(statistic__name=modifier_key)
+            elif being_modified == 'skills':
+                cx = CharacterSkill.objects.filter(character=c).get(skill__name=modifier_key)
+                cx.current = modify_equation(cx.current, equation)
 
-                elif being_modified == 'skills':
-                    cx = CharacterSkill.objects.filter(character=c).get(skill__name=modifier_key)
+            elif being_modified == 'traits':
+                cx = CharacterTrait.objects.filter(character=c).get(trait__name=modifier_key)
+                cx.current = modify_equation(cx.current, equation)
 
-                elif being_modified == 'traits':
-                    cx = CharacterTrait.objects.filter(character=c).get(trait__name=modifier_key)
-
-                cx.current += value
-                cx.save()
+            cx.save()
 
     return
 
@@ -135,11 +137,17 @@ def make_selection(tree, character, eventroll):
 
 def character_initialize(tree, c):
 
-    defstat = tree['defaults']['stats']
-    defskill = tree['defaults']['skills']
-    deftrait = tree['defaults']['traits']
+    flavors = []
+    if 'stats' in tree:
+        defstat = tree['defaults']['stats']
+        flavors.append('stats')
+    if 'skills' in tree:
+        defskill = tree['defaults']['skills']
+        flavors.append('skills')
+    if 'traits' in tree:
+        deftrait = tree['defaults']['traits']
 
-    for flavor in ['stats', 'skills', 'traits']:
+    for flavor in flavors:
         for kind in tree[flavor].keys():
             definition = tree[flavor][kind]
             kinds = {}
@@ -156,60 +164,89 @@ def character_initialize(tree, c):
                 'role',
                 'points',
                 'archetype',
-                'category'
+                'category',
+                'unlocks'
                 ]:
                 if type(definition) is dict and key in definition:
                     kinds[key] = definition[key]
-                elif flavor == 'stats' and key in defstat:
+                elif 'stats' in tree and flavor == 'stats' and key in defstat:
                     kinds[key] = defstat[key]
-                elif flavor == 'skills' and key in defskill:
+                elif 'skills' in tree and flavor == 'skills' and key in defskill:
                     kinds[key] = defskill[key]
-                elif flavor == 'traits' and key in deftrait:
+                elif 'traits' in tree and flavor == 'traits' and key in deftrait:
                     kinds[key] = deftrait[key]
 
             tree[flavor][kind] = kinds
 
     # initialize all character stats
-    for stat_name in tree['stats'].keys():
-        stat_min = int(tree['stats'][stat_name]['min'])
-        stat_max = int(tree['stats'][stat_name]['max'])
-        stat = Statistic.objects.get(name=stat_name)
-        cstat = CharacterStatistic()
-        cstat.character = c
-        cstat.statistic = stat
+    if 'stats' in tree:
+        for stat_name in tree['stats'].keys():
+            stat_min = int(tree['stats'][stat_name]['min'])
+            stat_max = int(tree['stats'][stat_name]['max'])
+            stat = Statistic.objects.get(name=stat_name)
+            cstat = CharacterStatistic()
+            cstat.character = c
+            cstat.statistic = stat
 
-        # if type(stat_min) is str:
-        #     if stat_min[0] == '-':
-        #         pos_minimum, cstat.maximum = (int(number) for number in stat_min[1:].split('-'))
-        #         cstat.minimum = pos_minimum * (-1)
-        #     else:
-        #         cstat.minimum, cstat.maximum = (int(number) for number in stat_range.split('-'))
-        # elif type(stat_min) is int:
+            # if type(stat_min) is str:
+            #     if stat_min[0] == '-':
+            #         pos_minimum, cstat.maximum = (int(number) for number in stat_min[1:].split('-'))
+            #         cstat.minimum = pos_minimum * (-1)
+            #     else:
+            #         cstat.minimum, cstat.maximum = (int(number) for number in stat_range.split('-'))
+            # elif type(stat_min) is int:
 
-        cstat.minimum = stat_min
-        cstat.maximum = stat_max
+            cstat.minimum = stat_min
+            cstat.maximum = stat_max
 
-        if stat.type == IND:
-            if tree['stats'][stat_name]['points'] == 'roll':
-                quantity, sides, offset, dice_span = parse_dice(tree['stats'][stat_name]['set'])
-                cstat.current = random.choice(dice_span)
-            if stat.direction == 'increasing':
-                cstat.current = cstat.minimum
-            elif stat.direction == 'decreasing':
-                cstat.current = cstat.maximum
-        elif stat.type == DEP:
-            cstat.current = tree['stats'][stat_name]['set']
+            if stat.type == IND:
+                if tree['stats'][stat_name]['points'] == 'roll':
+                    quantity, sides, offset, dice_span = parse_dice(tree['stats'][stat_name]['set'])
+                    cstat.current = random.choice(dice_span)
+                if stat.direction == 'increasing':
+                    cstat.current = cstat.minimum
+                elif stat.direction == 'decreasing':
+                    cstat.current = cstat.maximum
+            elif stat.type == DEP:
+                cstat.current = tree['stats'][stat_name]['set']
 
-        cstat.save()
+            cstat.save()
 
     # initialize all character skills
-    for skill in Skill.objects.all():
-        if skill.role.name == 'none' or skill.role.name == c.role.name:
-            skill_min = tree['skills'][skill.name]['min']
-            skill_max = tree['skills'][skill.name]['max']
-            cskill = CharacterSkill()
-            cskill.character = c
-            cskill.skill = skill
+    if 'skills' in tree:
+        for skill in Skill.objects.all():
+            if skill.role.name == 'none' or skill.role.name == c.role.name:
+                skill_min = tree['skills'][skill.name]['min']
+                skill_max = tree['skills'][skill.name]['max']
+                cskill = CharacterSkill()
+                cskill.character = c
+                cskill.skill = skill
+
+                # if type(skill_range) is str:
+                #     if skill_range[0] == '-':
+                #         pos_minimum, cskill.maximum = (int(number) for number in skill_range[1:].split('-'))
+                #         cskill.minimum = pos_minimum * (-1)
+                #     else:
+                #         cskill.minimum, cskill.maximum = (int(number) for number in skill_range.split('-'))
+                # elif type(skill_range) is int:
+                cskill.minimum = skill_min
+                cskill.maximum = skill_max
+
+                if skill.direction == 'increasing':
+                    cskill.current = cskill.minimum
+                elif skill.direction == 'decreasing':
+                    cskill.current = cskill.maximum
+
+                cskill.save()
+
+    # initialize all character skills
+    if 'traits' in tree:
+        for trait in Trait.objects.all():
+            trait_min = tree['traits'][trait.name]['min']
+            trait_max = tree['traits'][trait.name]['max']
+            ctrait = CharacterTrait()
+            ctrait.character = c
+            ctrait.trait = trait
 
             # if type(skill_range) is str:
             #     if skill_range[0] == '-':
@@ -218,40 +255,15 @@ def character_initialize(tree, c):
             #     else:
             #         cskill.minimum, cskill.maximum = (int(number) for number in skill_range.split('-'))
             # elif type(skill_range) is int:
-            cskill.minimum = skill_min
-            cskill.maximum = skill_max
+            ctrait.minimum = trait_min
+            ctrait.maximum = trait_max
 
-            if skill.direction == 'increasing':
-                cskill.current = cskill.minimum
-            elif skill.direction == 'decreasing':
-                cskill.current = cskill.maximum
+            if trait.direction == 'increasing':
+                ctrait.current = ctrait.minimum
+            elif trait.direction == 'decreasing':
+                ctrait.current = ctrait.maximum
 
-            cskill.save()
-
-    # initialize all character skills
-    for trait in Trait.objects.all():
-        trait_min = tree['traits'][trait.name]['min']
-        trait_max = tree['traits'][trait.name]['max']
-        ctrait = CharacterTrait()
-        ctrait.character = c
-        ctrait.trait = trait
-
-        # if type(skill_range) is str:
-        #     if skill_range[0] == '-':
-        #         pos_minimum, cskill.maximum = (int(number) for number in skill_range[1:].split('-'))
-        #         cskill.minimum = pos_minimum * (-1)
-        #     else:
-        #         cskill.minimum, cskill.maximum = (int(number) for number in skill_range.split('-'))
-        # elif type(skill_range) is int:
-        ctrait.minimum = trait_min
-        ctrait.maximum = trait_max
-
-        if trait.direction == 'increasing':
-            ctrait.current = ctrait.minimum
-        elif trait.direction == 'decreasing':
-            ctrait.current = ctrait.maximum
-
-        ctrait.save()
+            ctrait.save()
 
     # initialize all character pointpools
     for p in Pointpool.objects.all():
