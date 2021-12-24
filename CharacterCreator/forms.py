@@ -306,11 +306,11 @@ class RoleForm(forms.Form):
         queryset = roles
         )
 
-class ArchetypeForm(forms.Form):
-    archetypes = Archetype.objects.exclude(name='none')
-    archetype = forms.ModelMultipleChoiceField(
-        queryset = archetypes
-        )
+# class ArchetypeForm(forms.Form):
+#     archetypes = Archetype.objects.exclude(name='none')
+#     archetype = forms.ModelMultipleChoiceField(
+#         queryset = archetypes
+#         )
 
 class StatisticNameForm(forms.Form):
     name = forms.CharField(

@@ -65,7 +65,7 @@ def search(request):
     stat_list = Statistic.objects.exclude(type='D').exclude(name='none').order_by('name')
     skill_list = Skill.objects.filter(role__name='none').order_by('statistic__name', 'name')
 
-    archetypeform = ArchetypeForm()
+    # archetypeform = ArchetypeForm()
     roleform = RoleForm()
 
     pointforms = [
@@ -155,7 +155,7 @@ def search(request):
 
     return render(request, 'CharacterCreator/search.html', {
         'characters': character_list,
-        'archetypeform': archetypeform,
+        # 'archetypeform': archetypeform,
         'roleform': roleform,
         'pointforms': pointforms,
         'statforms': statforms,
