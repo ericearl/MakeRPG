@@ -183,7 +183,7 @@ history:
                     Zero-G: "+1"
                     Mechanical Repair: "+1"
                 points:
-                    skill: "+4"
+                    Skill: "+4"
                 next: Teamster
             2:
                 role: Android
@@ -199,7 +199,7 @@ history:
                     Computers: "+1"
                     Mathematics: "+1"
                 points:
-                    skill: "+2"
+                    Skill: "+2"
             3:
                 role: Scientist
                 stats:
@@ -210,7 +210,7 @@ history:
                     Intellect:
                         modify: "+10"
                 points:
-                    skill: "+3"
+                    Skill: "+3"
                 next: Scientist
             4:
                 role: Marine
@@ -224,7 +224,7 @@ history:
                 skills:
                     Military Training: "+1"
                 points:
-                    skill: "+3"
+                    Skill: "+3"
     Teamster:
         dice: 1d2
         roll:
