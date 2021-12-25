@@ -207,8 +207,7 @@ history:
                     Fear Save: "+25"
                     Body Save: "+25"
                     Armor Save: "+30"
-                    Intellect:
-                        modify: "+10"
+                    Intellect: "+10"
                 points:
                     Skill: "+3"
                 next: Scientist
@@ -219,8 +218,7 @@ history:
                     Fear Save: "+30"
                     Body Save: "+35"
                     Armor Save: "+40"
-                    Combat:
-                        modify: "+5"
+                    Combat: "+5"
                 skills:
                     Military Training: "+1"
                 points:
