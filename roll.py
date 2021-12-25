@@ -201,15 +201,19 @@ def character_initialize(tree, c):
             cstat.maximum = stat_max
 
             if stat.type == IND:
+                stat_set = tree['stats'][stat_name]['set']
                 if tree['stats'][stat_name]['points'] == 'roll':
-                    quantity, sides, offset, dice_span = parse_dice(tree['stats'][stat_name]['set'])
-                    cstat.current = random.choice(dice_span)
+                    if type(stat_set) is str and 'd' in stat_set:
+                        quantity, sides, offset, dice_span = parse_dice(stat_set)
+                        cstat.current = random.choice(dice_span)
+                    elif type(stat_set) is int:
+                        cstat.current = stat_set
                 if stat.direction == 'increasing':
                     cstat.current = cstat.minimum
                 elif stat.direction == 'decreasing':
                     cstat.current = cstat.maximum
             elif stat.type == DEP:
-                cstat.current = tree['stats'][stat_name]['set']
+                cstat.current = stat_set
 
             cstat.save()
 
