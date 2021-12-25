@@ -200,7 +200,6 @@ history:
                     Mathematics: "+1"
                 points:
                     skill: "+2"
-                next: Android
             3:
                 role: Scientist
                 stats:
@@ -226,7 +225,6 @@ history:
                     Military Training: "+1"
                 points:
                     skill: "+3"
-                next: Marine
     Teamster:
         dice: 1d2
         roll:
