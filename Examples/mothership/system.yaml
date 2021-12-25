@@ -176,7 +176,7 @@ history:
                     Sanity Save: "+30"
                     Fear Save: "+35"
                     Body Save: "+30"
-                    Armor: "+35"
+                    Armor Save: "+35"
                     Strength: "+5"
                     Speed: "+5"
                 skills:
@@ -191,7 +191,7 @@ history:
                     Sanity Save: "+20"
                     Fear Save: "+85"
                     Body Save: "+40"
-                    Armor: "+25"
+                    Armor Save: "+25"
                     Speed: "+5"
                     Intellect: "+5"
                 skills:
@@ -206,7 +206,7 @@ history:
                     Sanity Save: "+40"
                     Fear Save: "+25"
                     Body Save: "+25"
-                    Armor: "+30"
+                    Armor Save: "+30"
                     Intellect:
                         modify: "+10"
                 points:
@@ -218,7 +218,7 @@ history:
                     Sanity Save: "+25"
                     Fear Save: "+30"
                     Body Save: "+35"
-                    Armor: "+40"
+                    Armor Save: "+40"
                     Combat:
                         modify: "+5"
                 skills:
