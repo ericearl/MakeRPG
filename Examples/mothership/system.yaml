@@ -48,24 +48,24 @@ stats:
     Intellect: default
     Combat: default
     Sanity Save:
-        set: 0
+        set: 0d0
         min: 0
         max: 40
     Fear Save:
-        set: 0
+        set: 0d0
         min: 0
         max: 40
     Body Save:
-        set: 0
+        set: 0d0
         min: 0
         max: 85
     Armor Save:
-        set: 0
+        set: 0d0
         min: 0
         max: 40
     Max Health:
-        set: 12
-        min: 12
+        set: 0d0
+        min: 0
         max: 130
         type: dependent
 
