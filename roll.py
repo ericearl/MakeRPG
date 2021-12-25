@@ -146,6 +146,7 @@ def character_initialize(tree, c):
         flavors.append('skills')
     if 'traits' in tree:
         deftrait = tree['defaults']['traits']
+        flavors.append('traits')
 
     for flavor in flavors:
         for kind in tree[flavor].keys():

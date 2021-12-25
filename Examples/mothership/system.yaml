@@ -1,6 +1,6 @@
 defaults:
     stats:
-        set: 6                # base level without rolling or purchasing, what you have
+        set: 6d10             # base level without rolling or purchasing, what you have
         min: 6                # low end of range
         max: 70               # high end of range
         direction: increasing # direction to start from in range

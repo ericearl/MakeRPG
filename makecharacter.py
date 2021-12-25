@@ -304,7 +304,7 @@ def roll(c, tree):
 if __name__ == '__main__':
     # character count to make per run
     character_count = 3
-    system_yaml = 'Examples/cyberpunk_2020/system.yaml'
+    system_yaml = 'Examples/mothership/system.yaml'
 
     # needs error handling
     with open(system_yaml, 'r') as yamlfile:
