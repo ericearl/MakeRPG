@@ -96,11 +96,18 @@ def system(tree):
         p.points = tree['points'][pointpool]['set']
         p.save()
 
-    defstat = tree['defaults']['stats']
-    defskill = tree['defaults']['skills']
-    deftrait = tree['defaults']['traits']
+    flavors = []
+    if 'stats' in tree:
+        defstat = tree['defaults']['stats']
+        flavors.append('stats')
+    if 'skills' in tree:
+        defskill = tree['defaults']['skills']
+        flavors.append('skills')
+    if 'traits' in tree:
+        deftrait = tree['defaults']['traits']
+        flavors.append('traits')
 
-    for flavor in ['stats','skills','traits']:
+    for flavor in flavors:
         for kind in tree[flavor].keys():
             definition = tree[flavor][kind]
             kinds = {}
@@ -363,7 +370,7 @@ def history(tree):
 
 
 if __name__ == '__main__':
-    system_yaml = 'Examples/shadowrun_5e/system.yaml'
+    system_yaml = 'Examples/mothership/system.yaml'
 
     # needs error handling
     with open(system_yaml,'r') as yamlfile:
