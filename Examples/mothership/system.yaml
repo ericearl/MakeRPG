@@ -1,7 +1,7 @@
 defaults:
     stats:
         set: 6d10             # base level without rolling or purchasing, what you have
-        min: 6                # low end of range
+        min: 0                # low end of range
         max: 70               # high end of range
         direction: increasing # direction to start from in range
         points: roll          # default points pool to purchase from
@@ -51,27 +51,22 @@ stats:
         set: 0
         min: 0
         max: 40
-        points: none
     Fear Save:
         set: 0
         min: 0
         max: 40
-        points: none
     Body Save:
         set: 0
         min: 0
         max: 85
-        points: none
     Armor Save:
         set: 0
         min: 0
         max: 40
-        points: none
     Max Health:
         set: 12
         min: 12
         max: 130
-        points: none
         type: dependent
 
 

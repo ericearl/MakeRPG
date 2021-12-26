@@ -32,6 +32,23 @@ def parse_dice(dice_str):
     return quantity, sides, offset, dice_span
 
 
+def setter(dice_str):
+    quantity, sides, offset, dice_span = parse_dice(dice_str)
+    dice = Dice.objects.filter(quantity=quantity).filter(sides=sides).filter(offset=offset)
+
+    if dice:
+        d = dice.get()
+    else:
+        d = Dice()
+        d.string = dice_str
+        d.quantity = quantity
+        d.sides = sides
+        d.offset = offset
+        d.save()
+    
+    return d
+
+
 def random_name(firstnames,lastnames):
     return ' '.join([
         firstnames[random.randint(0, len(firstnames))] ,
@@ -201,17 +218,22 @@ def character_initialize(tree, c):
             cstat.maximum = stat_max
 
             if stat.type == IND:
+
                 stat_set = tree['stats'][stat_name]['set']
                 if tree['stats'][stat_name]['points'] == 'roll':
+
                     if type(stat_set) is str and 'd' in stat_set:
-                        quantity, sides, offset, dice_span = parse_dice(stat_set)
-                        cstat.current = random.choice(dice_span)
+                        d = setter(stat_set)
+                        cstat.current = d.roll()
+
                     elif type(stat_set) is int:
                         cstat.current = stat_set
+
                 if stat.direction == 'increasing':
                     cstat.current = cstat.minimum
                 elif stat.direction == 'decreasing':
                     cstat.current = cstat.maximum
+
             elif stat.type == DEP:
                 cstat.current = stat_set
 
@@ -282,19 +304,7 @@ def character_initialize(tree, c):
                 cpoints.current = points_set
                 cpoints.total = points_set
             elif type(points_set) is str:
-                quantity, sides, offset, dice_span = parse_dice(points_set)
-                dice = Dice.objects.filter(quantity=quantity).filter(sides=sides).filter(offset=offset)
-
-                if dice:
-                    d = dice.get()
-                else:
-                    d = Dice()
-                    d.string = points_set
-                    d.quantity = quantity
-                    d.sides = sides
-                    d.offset = offset
-                    d.save()
-
+                d = setter(points_set)
                 cpoints.current = d.roll()
                 cpoints.total = cpoints.current
 
