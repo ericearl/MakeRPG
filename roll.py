@@ -90,6 +90,7 @@ def history_modify(tree, c, histmod_dict):
             if being_modified == 'points':
                 cx = CharacterPointpool.objects.filter(character=c).get(pointpool__name=modifier_key)
                 cx.total = modify_equation(cx.total, equation)
+                cx.current = modify_equation(cx.current, equation)
 
             elif being_modified == 'stats':
                 cx = CharacterStatistic.objects.filter(character=c).get(statistic__name=modifier_key)
