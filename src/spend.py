@@ -114,7 +114,12 @@ def spend_skills(tree, c):
                 else:
                     break
 
-                cskill = random.choices(possibles, weights=weights).pop()
+                if len(possibles) > 0:
+                    unlock_skills = CharacterSkill.objects.filter(character=c, name__in=possibles)
+                else:
+                    break
+
+                cskill = random.choices(possibles, weights=[unlock_skill.current+1 for unlock_skill in unlock_skills]).pop()
 
             if cskill.skill.pointpool.name == cp.pointpool.name:
 
