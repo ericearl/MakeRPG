@@ -24,108 +24,108 @@ from .models import *
 #         super(PointForm, self).__init__(*args, **kwargs)
 
 
-class ActiveSkillPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Active Skill').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Active Skill').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Active Skill').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class ActiveSkillPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Active Skill').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Active Skill').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Active Skill').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class AttributePointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Attribute').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Attribute').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Attribute').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class ComplexFormPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Complex Form').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Complex Form').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Complex Form').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class AttributePointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Attribute').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Attribute').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Attribute').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class KarmaPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Karma').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Karma').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Karma').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class MagicalSkillPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Magical Skill').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Magical Skill').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Magical Skill').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class ComplexFormPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Complex Form').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Complex Form').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Complex Form').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class MagicalSkillGroupPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Magical Skill Group').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Magical Skill Group').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Magical Skill Group').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class NuyenPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Nuyen').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Nuyen').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Nuyen').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class KarmaPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Karma').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Karma').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Karma').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class ResonanceSkillPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Resonance Skill').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Resonance Skill').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Resonance Skill').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class MagicalSkillPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Magical Skill').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Magical Skill').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Magical Skill').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class MagicalSkillGroupPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Magical Skill Group').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Magical Skill Group').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Magical Skill Group').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class NuyenPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Nuyen').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Nuyen').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Nuyen').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class ResonanceSkillPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Resonance Skill').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Resonance Skill').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Resonance Skill').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
 class SkillPointForm(forms.Form):
@@ -141,153 +141,153 @@ class SkillPointForm(forms.Form):
             )
 
 
-class SkillGroupPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Skill Group').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Skill Group').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Skill Group').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class SkillGroupPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Skill Group').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Skill Group').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Skill Group').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class SpecialAttributePointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Special Attribute').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Special Attribute').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Special Attribute').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class SpellPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Spell').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Spell').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Spell').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class SpecialAttributePointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Special Attribute').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Special Attribute').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Special Attribute').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class AGILITYStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='AGILITY').values_list('current', flat=True).distinct())
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class BODYStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='BODY').values_list('current', flat=True).distinct())
+# class SpellPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Spell').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Spell').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Spell').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class CHARISMAStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='CHARISMA').values_list('current', flat=True).distinct())
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class EDGEStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='EDGE').values_list('current', flat=True).distinct())
+# class AGILITYStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='AGILITY').values_list('current', flat=True).distinct())
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class ESSENCEStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='ESSENCE').values_list('current', flat=True).distinct())
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class INTUITIONStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='INTUITION').values_list('current', flat=True).distinct())
+# class BODYStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='BODY').values_list('current', flat=True).distinct())
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class LOGICStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='LOGIC').values_list('current', flat=True).distinct())
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class REACTIONStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='REACTION').values_list('current', flat=True).distinct())
+# class CHARISMAStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='CHARISMA').values_list('current', flat=True).distinct())
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
-
-
-class RESONANCEStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='RESONANCE').values_list('current', flat=True).distinct())
-
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class STRENGTHStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='STRENGTH').values_list('current', flat=True).distinct())
+# class EDGEStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='EDGE').values_list('current', flat=True).distinct())
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
-class WILLPOWERStatForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name='WILLPOWER').values_list('current', flat=True).distinct())
+# class ESSENCEStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='ESSENCE').values_list('current', flat=True).distinct())
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class INTUITIONStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='INTUITION').values_list('current', flat=True).distinct())
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class LOGICStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='LOGIC').values_list('current', flat=True).distinct())
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class REACTIONStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='REACTION').values_list('current', flat=True).distinct())
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class RESONANCEStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='RESONANCE').values_list('current', flat=True).distinct())
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class STRENGTHStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='STRENGTH').values_list('current', flat=True).distinct())
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
+
+
+# class WILLPOWERStatForm(forms.Form):
+#     span = sorted(CharacterStatistic.objects.filter(statistic__name='WILLPOWER').values_list('current', flat=True).distinct())
+
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
 class SkillForm(forms.Form):

@@ -387,4 +387,4 @@ if __name__ == '__main__':
     # This should only be run once
     # If it fails somehow, you should empty your database, adjust your YAML's, and try again
     history(tree) # comment this out when you're done with it
-    print('Successfully completed setup.py!  Proceed to makecharacter.py...')
+    print('Successfully completed setup.py!  Proceed to roll.py...')
