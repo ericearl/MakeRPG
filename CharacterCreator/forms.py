@@ -128,17 +128,17 @@ from .models import *
 #             )
 
 
-class SkillPointForm(forms.Form):
-    span = sorted(CharacterPointpool.objects.filter(pointpool__name='Skill').values_list('current', flat=True).distinct())
-    # bottom = CharacterPointpool.objects.filter(pointpool__name='Skill').aggregate(Min('current'))
-    # top = CharacterPointpool.objects.filter(pointpool__name='Skill').aggregate(Max('total'))
-    # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
+# class SkillPointForm(forms.Form):
+#     span = sorted(CharacterPointpool.objects.filter(pointpool__name='Skill').values_list('current', flat=True).distinct())
+#     # bottom = CharacterPointpool.objects.filter(pointpool__name='Skill').aggregate(Min('current'))
+#     # top = CharacterPointpool.objects.filter(pointpool__name='Skill').aggregate(Max('total'))
+#     # span = [x for x in range(bottom['current__min'], top['total__max']+1)]
 
-    minimum = forms.TypedChoiceField(
-            choices = zip(span, span),
-            coerce = int,
-            empty_value = min(list(span))
-            )
+#     minimum = forms.TypedChoiceField(
+#             choices = zip(span, span),
+#             coerce = int,
+#             empty_value = min(list(span))
+#             )
 
 
 # class SkillGroupPointForm(forms.Form):
