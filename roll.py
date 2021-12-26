@@ -222,17 +222,15 @@ def character_initialize(tree, c):
                 stat_set = tree['stats'][stat_name]['set']
                 if tree['stats'][stat_name]['points'] == 'roll':
 
-                    if type(stat_set) is str and 'd' in stat_set:
+                    if type(stat_set) is str:
                         d = setter(stat_set)
-                        cstat.current = d.roll()
+                        if stat.direction == 'increasing':
+                            cstat.current = cstat.minimum + d.roll()
+                        elif stat.direction == 'decreasing':
+                            cstat.current = cstat.maximum - d.roll()
 
                     elif type(stat_set) is int:
                         cstat.current = stat_set
-
-                if stat.direction == 'increasing':
-                    cstat.current = cstat.minimum
-                elif stat.direction == 'decreasing':
-                    cstat.current = cstat.maximum
 
             elif stat.type == DEP:
                 cstat.current = stat_set
