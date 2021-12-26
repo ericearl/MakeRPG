@@ -16,7 +16,7 @@ from modify import *
 def parse_dice(dice_str):
     search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *(stat|[0-9]*)', dice_str)
     if search.group(1) == None and search.group(2) == None:
-        print('ERROR: Invalid dice (' + dice_str + ') for event ' + event)
+        print('ERROR: Invalid dice (' + dice_str + ') for dice_str ' + dice_str)
 
     quantity = int(search.group(1))
     sides = int(search.group(2))

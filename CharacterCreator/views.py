@@ -68,34 +68,34 @@ def search(request):
     # archetypeform = ArchetypeForm()
     roleform = RoleForm()
 
-    pointforms = [
-        ActiveSkillPointForm(),
-        AttributePointForm(),
-        ComplexFormPointForm(),
-        KarmaPointForm(),
-        MagicalSkillPointForm(),
-        MagicalSkillGroupPointForm(),
-        NuyenPointForm(),
-        ResonanceSkillPointForm(),
-        SkillPointForm(),
-        SkillGroupPointForm(),
-        SpecialAttributePointForm(),
-        SpellPointForm()
-        ]
+    # pointforms = [
+    #     ActiveSkillPointForm(),
+    #     AttributePointForm(),
+    #     ComplexFormPointForm(),
+    #     KarmaPointForm(),
+    #     MagicalSkillPointForm(),
+    #     MagicalSkillGroupPointForm(),
+    #     NuyenPointForm(),
+    #     ResonanceSkillPointForm(),
+    #     SkillPointForm(),
+    #     SkillGroupPointForm(),
+    #     SpecialAttributePointForm(),
+    #     SpellPointForm()
+    #     ]
 
-    statforms = [
-        AGILITYStatForm(),
-        BODYStatForm(),
-        CHARISMAStatForm(),
-        EDGEStatForm(),
-        ESSENCEStatForm(),
-        INTUITIONStatForm(),
-        LOGICStatForm(),
-        REACTIONStatForm(),
-        RESONANCEStatForm(),
-        STRENGTHStatForm(),
-        WILLPOWERStatForm()
-    ]
+    # statforms = [
+    #     AGILITYStatForm(),
+    #     BODYStatForm(),
+    #     CHARISMAStatForm(),
+    #     EDGEStatForm(),
+    #     ESSENCEStatForm(),
+    #     INTUITIONStatForm(),
+    #     LOGICStatForm(),
+    #     REACTIONStatForm(),
+    #     RESONANCEStatForm(),
+    #     STRENGTHStatForm(),
+    #     WILLPOWERStatForm()
+    # ]
 
     skillforms = [SkillForm() for s in skill_list]
 
@@ -153,17 +153,28 @@ def search(request):
     # print(pointforms)
     # print(pointforms[0])
 
-    return render(request, 'CharacterCreator/search.html', {
+    data = {
         'characters': character_list,
-        # 'archetypeform': archetypeform,
         'roleform': roleform,
-        'pointforms': pointforms,
-        'statforms': statforms,
         'skillforms': skillforms,
         'stats': stat_list,
         'skills': skill_list,
         'points': point_list
-        })
+        }
+
+    # data = {
+    #     'characters': character_list,
+    #     'archetypeform': archetypeform,
+    #     'roleform': roleform,
+    #     'pointforms': pointforms,
+    #     'statforms': statforms,
+    #     'skillforms': skillforms,
+    #     'stats': stat_list,
+    #     'skills': skill_list,
+    #     'points': point_list
+    #     }
+
+    return render(request, 'CharacterCreator/search.html', data)
 
 
 def get_default_statistic(request):

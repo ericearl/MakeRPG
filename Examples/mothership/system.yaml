@@ -51,22 +51,27 @@ stats:
         set: 0
         min: 0
         max: 40
+        points: none
     Fear Save:
         set: 0
         min: 0
         max: 40
+        points: none
     Body Save:
         set: 0
         min: 0
         max: 85
+        points: none
     Armor Save:
         set: 0
         min: 0
         max: 40
+        points: none
     Max Health:
         set: 12
         min: 12
         max: 130
+        points: none
         type: dependent
 
 
