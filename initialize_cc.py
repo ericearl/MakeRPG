@@ -337,6 +337,10 @@ def history(tree):
                                     er.rollevent = Event.objects.get(name=outcome)
                                     er.save()
 
+                                elif type(outcome) is dict and 'next' not in outcome:
+                                    er.outcome = 'END'
+                                    er.save()
+
                                 elif type(outcome) is str:
                                     if '<NPC' in outcome:
                                         npc_match = re.match(r'(.*)<NPC\ *(.+)>\ *(.+)',outcome)
