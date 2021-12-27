@@ -238,12 +238,14 @@ def history(tree):
             dice_max = d.quantity * d.sides + d.offset
             dice_span = list(range(dice_min,dice_max+1))
 
-            if 'next' in history_tree[event]:
+            if 'next' in history_tree[event] and history_tree[event]['next'] != 'END':
                 e.nextevent = Event.objects.get(name=history_tree[event]['next'])
                 e.save()
             elif 'reroll' in history_tree[event]:
                 e.rerollevent = Event.objects.get(name=history_tree[event]['reroll'])
                 e.save()
+            elif history_tree[event]['next'] == 'END':
+                outcome = 'END'
 
             rolls = history_tree[event]['roll']
             if 'EVEN' in rolls and 'ODD' in rolls and len(rolls) == 2:
@@ -272,6 +274,12 @@ def history(tree):
                 possible_rolls = []
                 # a dictionary of roll value lists whose keys are roll strings
                 roll_dict = {}
+
+                if outcome == 'END':
+                    er.outcome = outcome
+                    er.save()
+                    continue
+
                 for element in rolls.keys():
                     roll_str = str(element)
 
@@ -335,20 +343,6 @@ def history(tree):
                                         outcome = roll_x.group(1) + roll_x.group(3)
 
                                     er.rollevent = Event.objects.get(name=outcome)
-                                    er.save()
-
-                                elif outcome == 'END':
-                                    if '<NPC' in outcome:
-                                        npc_match = re.match(r'(.*)<NPC\ *(.+)>\ *(.+)',outcome)
-                                        er.npc = npc_match.group(2)
-                                        outcome = npc_match.group(1) + npc_match.group(3)
-
-                                    if '<ROLL X' in outcome:
-                                        roll_x = re.match(r'(.*)<ROLL\ *X([0-9]+)>\ *(.+)',outcome)
-                                        er.rerollcount = int(roll_x.group(2))
-                                        outcome = roll_x.group(1) + roll_x.group(3)
-
-                                    er.outcome = outcome
                                     er.save()
 
                                 break
