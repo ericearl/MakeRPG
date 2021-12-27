@@ -244,7 +244,7 @@ def history(tree):
             elif 'reroll' in history_tree[event]:
                 e.rerollevent = Event.objects.get(name=history_tree[event]['reroll'])
                 e.save()
-            elif history_tree[event]['next'] == 'END':
+            elif 'next' in history_tree[event] and history_tree[event]['next'] == 'END':
                 outcome = 'END'
 
             rolls = history_tree[event]['roll']
