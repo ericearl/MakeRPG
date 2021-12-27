@@ -68,11 +68,22 @@ def spend_stats(tree, c):
 # roll all character skills until their sum is "points"
 def spend_skills(tree, c):
 
-    cskills = CharacterSkill.objects.filter(character=c)
     cpoints = CharacterPointpool.objects.filter(character=c)
+    all_skills = CharacterSkill.objects.filter(character=c)
 
-    if len(cskills) == 0:
+    if len(all_skills) == 0:
         return
+
+    unlocks = []
+    for cskill in all_skills:
+        skill_name = cskill.skill.name
+        if tree['skills'][skill_name]['unlocks'] != 'none':
+            unlocks.append(skill_name)
+
+    if unlocks:
+        cskills = all_skills.exclude(skill__name__in=unlocks)
+    else:
+        cskills = all_skills
 
     reject_names = []
     for i, cp in enumerate(cpoints):
@@ -115,11 +126,11 @@ def spend_skills(tree, c):
                     break
 
                 if len(possibles) > 0:
-                    unlock_skills = CharacterSkill.objects.filter(character=c, name__in=possibles)
+                    unlock_skills = CharacterSkill.objects.filter(character=c, skill__name__in=possibles)
                 else:
                     break
 
-                cskill = random.choices(possibles, weights=[unlock_skill.current+1 for unlock_skill in unlock_skills]).pop()
+                cskill = random.choices(unlock_skills, weights=[unlock_skill.current+1 for unlock_skill in unlock_skills]).pop()
 
             if cskill.skill.pointpool.name == cp.pointpool.name:
 
