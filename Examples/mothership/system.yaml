@@ -113,48 +113,76 @@ skills:
         unlocks: Explosives@1
     Psychology:
         unlocks: Sophontology@1
+        cost: 2
     Genetics:
         unlocks: Xenobiology@1
+        cost: 2
     Pathology:
         unlocks: Surgery@1 OR Xenobiology@1
+        cost: 2
     Botany:
         unlocks: Xenobiology@1
-    Planetology: default
-    Asteroid Mining: default
+        cost: 2
+    Planetology:
+        cost: 2
+    Asteroid Mining:
+        cost: 2
     Jury Rigging:
         unlocks: Cybernetics@1
+        cost: 2
     Engineering:
         unlocks: Cybernetics@1 OR Robotics@1 OR Artificial Intelligence@1
+        cost: 2
     Hacking:
         unlocks: Artificial Intelligence@1
+        cost: 2
     Vehicle Specialization:
         unlocks: Command@1
+        cost: 2
     Astrogation:
         unlocks: Hyperspace@1
+        cost: 2
     Physics:
         unlocks: Hyperspace@1
+        cost: 2
     Mysticism:
         unlocks: Hyperspace@1 OR Xenoesotericism@1
+        cost: 2
     Tactics:
         unlocks: Command@1
+        cost: 2
     Gunnery:
         unlocks: Weapon Specialization@1
+        cost: 2
     Firearms:
         unlocks: Weapon Specialization@1
+        cost: 2
     Close-Quarters Combat:
         unlocks: Weapon Specialization@1
+        cost: 2
     Explosives:
         unlocks: Weapon Specialization@1
-    Sophontology: default
-    Xenobiology: default
-    Surgery: default
-    Cybernetics: default
-    Robotics: default
-    Artificial Intelligence: default
-    Command: default
-    Hyperspace: default
-    Xenoesotericism: default
-    Weapon Specialization: default
+        cost: 2
+    Sophontology:
+        cost: 3
+    Xenobiology:
+        cost: 3
+    Surgery:
+        cost: 3
+    Cybernetics:
+        cost: 3
+    Robotics:
+        cost: 3
+    Artificial Intelligence:
+        cost: 3
+    Command:
+        cost: 3
+    Hyperspace:
+        cost: 3
+    Xenoesotericism:
+        cost: 3
+    Weapon Specialization:
+        cost: 3
 
 
 modifiers:
