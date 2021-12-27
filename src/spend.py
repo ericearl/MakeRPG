@@ -77,11 +77,15 @@ def spend_skills(tree, c):
     unlocks = []
     for cskill in all_skills:
         skill_name = cskill.skill.name
-        if tree['skills'][skill_name]['unlocks'] != 'none':
-            unlocks.append(skill_name)
+        unlockables = tree['skills'][skill_name]['unlocks']
+        if unlockables != 'none':
+            skill_threshes = unlockables.split(' OR ')
+            for skill_thresh in skill_threshes:
+                unlock_name, thresh_string = skill_thresh.split('@')
+                unlocks.append(unlock_name)
 
     if unlocks:
-        cskills = all_skills.exclude(skill__name__in=unlocks)
+        cskills = all_skills.exclude(skill__name__in=list(set(unlocks)))
     else:
         cskills = all_skills
 
