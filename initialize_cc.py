@@ -275,11 +275,6 @@ def history(tree):
                 # a dictionary of roll value lists whose keys are roll strings
                 roll_dict = {}
 
-                if outcome == 'END':
-                    er.outcome = outcome
-                    er.save()
-                    continue
-
                 for element in rolls.keys():
                     roll_str = str(element)
 
@@ -325,6 +320,11 @@ def history(tree):
                         for key in rolls.keys():
                             if roll in roll_dict[str(key)]:
                                 outcome = rolls[key]
+
+                                if type(outcome) is dict and 'next' in outcome and outcome['next'] == 'END':
+                                    er.outcome = 'END'
+                                    er.save()
+                                    continue
 
                                 if type(outcome) is dict and len(outcome) > 1:
                                     er.selection = True
