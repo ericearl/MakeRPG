@@ -238,14 +238,12 @@ def history(tree):
             dice_max = d.quantity * d.sides + d.offset
             dice_span = list(range(dice_min,dice_max+1))
 
-            if 'next' in history_tree[event] and history_tree[event]['next'] != 'END':
+            if 'next' in history_tree[event]:
                 e.nextevent = Event.objects.get(name=history_tree[event]['next'])
                 e.save()
             elif 'reroll' in history_tree[event]:
                 e.rerollevent = Event.objects.get(name=history_tree[event]['reroll'])
                 e.save()
-            elif 'next' in history_tree[event] and history_tree[event]['next'] == 'END':
-                outcome = 'END'
 
             rolls = history_tree[event]['roll']
             if 'EVEN' in rolls and 'ODD' in rolls and len(rolls) == 2:
@@ -337,8 +335,8 @@ def history(tree):
                                         er.rerollcount = int(roll_x.group(2))
                                         outcome = roll_x.group(1) + roll_x.group(3)
 
-                                    if outcome == 'END':
-                                        er.outcome = 'END'
+                                    if er.rerollcount == 1:
+                                        er.nextevent = Event.objects.get(name=outcome)
                                     else:
                                         er.rollevent = Event.objects.get(name=outcome)
                                     er.save()

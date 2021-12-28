@@ -251,7 +251,6 @@ history:
                     Military Training: "+1"
                 points:
                     Skill: "+3"
-        next: END
     Teamster:
         dice: 1d2
         roll:
@@ -261,7 +260,6 @@ history:
             2:
                 skills:
                     Piloting: "+1"
-        next: END
     Scientist:
         dice: 1d15
         roll:
@@ -325,8 +323,3 @@ history:
                 skills:
                     Mathematics: "+1"
                     Chemistry: "+1"
-        next: END
-    END:
-        dice: 1d1
-        roll:
-            1: Complete
