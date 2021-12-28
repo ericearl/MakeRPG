@@ -135,6 +135,7 @@ def spend_skills(tree, c):
                     break
 
                 cskill = random.choices(unlock_skills, weights=[unlock_skill.current+1 for unlock_skill in unlock_skills]).pop()
+                unlocks = tree['skills'][cskill.skill.name]['unlocks']
 
             if cskill.skill.pointpool.name == cp.pointpool.name:
 
