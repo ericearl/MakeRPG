@@ -319,7 +319,7 @@ def history(tree):
                             if roll in roll_dict[str(key)]:
                                 outcome = rolls[key]
 
-                                if type(outcome) is dict and len(outcome) > 1:
+                                if type(outcome) is dict:
                                     er.selection = True
                                     er.save()
 
@@ -335,10 +335,7 @@ def history(tree):
                                         er.rerollcount = int(roll_x.group(2))
                                         outcome = roll_x.group(1) + roll_x.group(3)
 
-                                    if er.rerollcount == 1:
-                                        er.nextevent = Event.objects.get(name=outcome)
-                                    else:
-                                        er.rollevent = Event.objects.get(name=outcome)
+                                    er.rollevent = Event.objects.get(name=outcome)
                                     er.save()
 
                                 break
