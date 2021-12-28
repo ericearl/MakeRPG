@@ -228,7 +228,6 @@ history:
                     Mathematics: "+1"
                 points:
                     Skill: "+2"
-                next: END
             3:
                 role: Scientist
                 stats:
@@ -252,7 +251,7 @@ history:
                     Military Training: "+1"
                 points:
                     Skill: "+3"
-                next: END
+        next: END
     Teamster:
         dice: 1d2
         roll:
@@ -327,3 +326,7 @@ history:
                     Mathematics: "+1"
                     Chemistry: "+1"
         next: END
+    END:
+        dice: 1d1
+        roll:
+            1: Complete
