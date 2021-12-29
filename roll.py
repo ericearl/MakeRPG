@@ -352,6 +352,8 @@ def history(tree, character):
                 reroll_q.put(er.rollevent)
         elif er.rollevent:
             next_q.put(er.rollevent)
+        elif er.nextevent:
+            next_q.put(er.nextevent)
 
     while not reroll_q.empty():
         current = reroll_q.get()
