@@ -321,7 +321,6 @@ def history(tree):
 
                                 if type(outcome) is dict:
                                     er.selection = True
-                                    er.save()
 
                                 if type(outcome) is dict and 'next' in outcome:
                                     outcome = outcome['next']
@@ -336,7 +335,8 @@ def history(tree):
                                         outcome = roll_x.group(1) + roll_x.group(3)
 
                                     er.rollevent = Event.objects.get(name=outcome)
-                                    er.save()
+
+                                er.save()
 
                                 break
 
