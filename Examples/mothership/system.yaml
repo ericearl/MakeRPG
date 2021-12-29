@@ -251,6 +251,7 @@ history:
                     Military Training: "+1"
                 points:
                     Skill: "+3"
+        next: Trinket
     Teamster:
         dice: 1d2
         roll:
@@ -323,3 +324,268 @@ history:
                 skills:
                     Mathematics: "+1"
                     Chemistry: "+1"
+    Trinket:
+        dice: 1d100
+        roll:
+            1: Faded Green Poker Chip
+            2: Antique Company Script (Asteroid Mine)
+            3: Dessicated Husk Doll
+            4: Alien Pressed Flower (common)
+            5: Necklace of Shell Casings
+            6: Corroded Android Logic Core
+            7: "Pamphlet: Signs of Parasitical Infection"
+            8: "Manual: Treat Your Rifle Like a Lady"
+            9: Bone Knife
+            10: "Calendar: Alien Pin-Up Art"
+            11: Dog Tags (Heirloom)
+            12: Holographic Serpentine Dancer
+            13: Snake Whiskey
+            14: Medical Container, Purple Powder
+            15: "Pills: Male Enhancement, Shoddy"
+            16: Casino Playing Cards
+            17: Lagomorph Foot
+            18: Moonstone Ring
+            19: "Manual: Mining Safety and You"
+            20: "Pamphlet: Against Human Simulacrum"
+            21: Animal Skull, 3 Eyes, Curled Horn
+            22: Bartender's Certification (Expired)
+            23: Bent Wrench
+            24: Prospecting Mug, Dented
+            25: Eerie Mask
+            26: Vantablack Marble
+            27: Ivory Dice
+            28: Tarot Cards, Worn, Pyrite Gilded Edges
+            29: Bag of Assorted Teeth
+            30: Ashes (A Relative)
+            31: DNR Beacon Necklace
+            32: Cigarettes (Grinning Skull)
+            33: "Pills: Areca Nut"
+            34: Rejected Application (Colony Ship)
+            35: "Pamphlet: Android Overlords"
+            36: "Smut (Seditious): The Captain, Ordered"
+            37: Key (Childhood Home)
+            38: "Manual: Panic: Harbinger of Catastrophe"
+            39: "Token: Is Your Morale Improving?"
+            40: Phosphorescent Sticks, Neon
+            41: "Pamphlet: The Indifferent Stars"
+            42: "Calendar: Military Battles"
+            43: "Manual: Rich Captain, Poor Captain"
+            44: Campaign Poster (Home Planet)
+            45: "Pendant: Shell Fragments Suspended in Plastic"
+            46: Titanium Toothpick
+            47: Gloves, Leather (Xenomorph Hide)
+            48: "Pamphlet: Zen and the Art of Cargo Arrangement"
+            49: Pictorial Pornography, Dogeared, Well Thumbed
+            50: Brass Knuckles
+            51: Fuzzy Handcuffs
+            52: Journal of Grudges
+            53: Stylized Cigarette Case
+            54: Ball of Assorted Gauge Wire
+            55: Spanner
+            56: Switchblade, Ornamental
+            57: Powdered Xenomorph Horn
+            58: Bonsai Tree
+            59: Golf Club (Putter)
+            60: Trilobite Fossil
+            61: "Pamphlet: A Girl in Every Port"
+            62: Patched Overalls, Personalized
+            63: Fleshy Thing Sealed in a Murky Jar
+            64: Spiked Bracelet
+            65: Harmonica
+            66: "Manual: Spacefarer's Almanac (Out of Date)"
+            67: Faded Photograph, A Windswept Heath
+            68: "Stress Ball reads: Zero Stress in Zero G"
+            69: "Manual: Moonshining With Gun Oil & Fuel"
+            70: Gyroscope, Bent, Tin
+            71: Coffee Cup, Chipped, HAPPINESS IS MANDATORY
+            72: Darts, Magnetic
+            73: Spray Paint
+            74: Wanted Poster, Weathered
+            75: "Locket: Hair Braid"
+            76: Pick, Miniature
+            77: "Blanket: Fire Retardant"
+            78: Hooded Parka, Fleece-Lined
+            79: BB Gun
+            80: Flint Hatchet
+            81: "Pendant: Two Astronauts form a Skull"
+            82: Rubik's Cube
+            83: "Manual: Survival: Eat Soup With a Knife"
+            84: Sputnik Pin
+            85: Ushanka
+            86: Trucker Cap, Mesh, Grey Alien Logo
+            87: Menthol Balm
+            88: Pith Helmet
+            89: 10x10 Tarp
+            90: I Ching, Missing Sticks
+            91: Kukri
+            92: Trench Shovel
+            93: Shiv, Sharpened Butter Knife
+            94: Taxidermied Cat
+            95: "Pamphlet: Interpreting Sheep Dreams"
+            96: Pair of Shot Glasses, Spent Shotgun Shells
+            97: Opera Glasses
+            98: "Pamphlet: The Relic of Flesh"
+            99: Miniature Chess Set, Bone, Pieces Missing
+            100: Preserved Insectile Aberration
+        next: Patch
+    Patch:
+        dice: 1d100
+        roll:
+            1: Security Guard Patch
+            2: Blood Type (Reference Patch)
+            3: Red Shirt Logo
+            4: Don't Run You'll Only Die Tired (Backpatch)
+            5: "Poker Hand: Dead Man's Hand (Aces full of 8s)"
+            6: Biohazard Symbol
+            7: Mr. Yuck
+            8: Nuclear Symbol
+            9: Eat The Rich
+            10: "Be Sure: Doubletap"
+            11: Flame Emoji
+            12: Smiley Face (Glow in the Dark)
+            13: "Smile: Big Brother is Watching"
+            14: Jolly Roger
+            15: Viking Skull
+            16: APEX PREDATOR (Sabertooth Skull)
+            17: Pin-Up (Ace of Spades)
+            18: Queen of Hearts
+            19: Pin-Up (Mechanic)
+            20: BOHICA (Bend Over Here It Comes Again)
+            21: Front Towards Ememy (Claymore Mine)
+            22: Pin-Up (Riding Missile)
+            23: FUBAR
+            24: I'm A (Love) Machine
+            25: Medic Patch (Skull and Crossbones on Logo)
+            26: "HELLO MY NAME IS:"
+            27: Powered By Coffee
+            28: Take Me To Your Leader (UFO)
+            29: DO YOUR JOB
+            30: Take My Life (Please)
+            31: All Out of Fucks To Give (Astronaut with Turned Out Pockets)
+            32: Allergic To Bullshit (Medical Style Patch)
+            33: Fix Me First (Caduceus)
+            34: Upstanding Citizen
+            35: NASA Logo
+            36: Cowboy Up (Crossed Revolvers)
+            37: Dove in Crosshairs
+            38: Chibi Cthulhu
+            39: Welcome to the DANGER ZONE
+            40: Skull and Crossed Wrenches
+            41: Pin-Up (Succubus)
+            42: DILLIGAF?
+            43: DRINK / FIGHT / FUCK
+            44: Work Hard / Party Harder
+            45: Mudflap Girl
+            46: "Fun Meter (reading: Bad Time)"
+            47: GAME OVER (Bride & Groom)
+            48: Heart
+            49: IMPROVE / ADAPT / OVERCOME
+            50: SUCK IT UP
+            51: HMFIC (Head Mother Fucker in Charge)
+            52: Troubleshooter
+            53: IF I'M RUNNING KEEP UP (Backpatch)
+            54: Crossed Hammers with Wings
+            55: Keep Well Lubricated
+            56: Soviet Hammer & Sickle
+            57: Plays Well With Others
+            58: Live Free and Die
+            59: "Pin-Up (Nurse): The Louder You Scream the Faster I Come"
+            60: Meat Bag
+            61: I Am Not A Robot
+            62: Red Gear
+            63: I Can't Fix Stupid
+            64: Space IS My Home (Sad Astronaut)
+            65: All Seeing Eye
+            66: Do I LOOK Like An Expert?
+            67: NOMAD
+            68: I'm Not A Rocket Scientist / But You're An Idiot
+            69: LONER
+            70: I Am My Brother's Keeper
+            71: Mama Tried
+            72: Black Widow Spider
+            73: My Other Ride Married You
+            74: One Size Fits All (Grenade)
+            75: Grim Reaper Backpatch
+            76: oтъe6иcь (Get Fucked, Russian)
+            77: Smooth Operator
+            78: Atom Symbol
+            79: For Science!
+            80: Actually, I AM A Rocket Scientist
+            81: Help Wanted
+            82: Princess
+            83: I Like My Tools Clean / And My Lovers Dirty
+            84: GOOD BOY
+            85: Dice (Snake Eyes)
+            86: Travel To Distant Exotic Places / Meet Unusual Things / Get Eaten
+            87: Good (Brain)
+            88: Bad Bitch
+            89: Too Pretty To Die
+            90: Fuck Forever (Roses)
+            91: Icarus
+            92: Girl's Best Friend (Diamond)
+            93: Rick of Electrocution Symbol
+            94: Inverted Cross
+            95: Do You Sign My Paychecks? (Backpatch)
+            96: I (Heart) Myself
+            97: Double Cherry
+            98: Volunteer
+            99: Solve Et Coagula (Baphomet)
+            100: "#1 Worker"
+        next: Loadout
+    Loadout:
+        dice: 1d4
+        roll:
+            1: Excavation
+            2: Exploration
+            3: Extermination
+            4: Examination
+        next: Credits
+    Credits:
+        dice: 5d10
+        roll:
+            5: 50
+            6: 60
+            7: 70
+            8: 80
+            9: 90
+            10: 100
+            11: 110
+            12: 120
+            13: 130
+            14: 140
+            15: 150
+            16: 160
+            17: 170
+            18: 180
+            19: 190
+            20: 200
+            21: 210
+            22: 220
+            23: 230
+            24: 240
+            25: 250
+            26: 260
+            27: 270
+            28: 280
+            29: 290
+            30: 300
+            31: 310
+            32: 320
+            33: 330
+            34: 340
+            35: 350
+            36: 360
+            37: 370
+            38: 380
+            39: 390
+            40: 400
+            41: 410
+            42: 420
+            43: 430
+            44: 440
+            45: 450
+            46: 460
+            47: 470
+            48: 480
+            49: 490
+            50: 500
