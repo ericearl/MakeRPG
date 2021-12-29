@@ -321,6 +321,8 @@ def history(tree):
 
                                 if type(outcome) is dict:
                                     er.selection = True
+                                elif type(outcome) is str:
+                                    er.outcome = outcome
 
                                 if type(outcome) is dict and 'next' in outcome:
                                     outcome = outcome['next']
