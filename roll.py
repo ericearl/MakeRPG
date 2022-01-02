@@ -400,8 +400,8 @@ def history(tree, character):
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 40
-    system_yaml = 'Examples/mothership/system.yaml'
+    character_count = 50
+    system_yaml = 'Examples/mothership_1e_WIP/system.yaml'
 
     # needs error handling
     with open(system_yaml, 'r') as yamlfile:

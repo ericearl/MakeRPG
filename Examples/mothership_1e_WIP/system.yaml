@@ -1,0 +1,691 @@
+defaults:
+    stats:
+        set: 2d10 + 20        # base level without rolling or purchasing, what you have
+        min: 0                # low end of range
+        max: 50               # high end of range
+        direction: increasing # direction to start from in range
+        points: roll          # default points pool to purchase from
+        cost: 0               # cost per point, negative cost is a refund
+        purchase: 0           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        unlocks: none         # stats unlocked by this stat@threshold
+        role: none            # special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
+        type: independent     # independent (stands alone), dependent (result of something else)
+    skills:
+        set: 0                # base level without rolling or purchasing, what you have
+        min: 0                # low end of range
+        max: 1                # high end of range
+        direction: increasing # direction to start from in range
+        points: Trained Skill # default points pool to purchase from
+        cost: 1               # cost per point, negative cost is a refund
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        unlocks: none         # skills unlocked by this skill@threshold
+        role: none            # special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
+        type: independent     # independent (stands alone), dependent (result of something else)
+        stat: none            # associated statistic for each skill
+
+
+points:
+    Trained Skill:
+        set: 0
+    Expert Skill:
+        set: 0
+    Master Skill:
+        set: 0
+
+
+roles:
+    - Teamster
+    - Android
+    - Scientist
+    - Marine
+
+
+stats:
+    Strength: default
+    Speed: default
+    Intellect:
+        max: 70
+    Combat: default
+    Sanity Save:
+        set: 2d10 + 10
+        max: 60
+    Fear Save:
+        set: 2d10 + 10
+        max: 90
+    Body Save:
+        set: 2d10 + 10
+        max: 40
+    Health:
+        set: 1d10 + 10
+        max: 20
+    Wounds:
+        set: 2
+        min: 2
+        max: 3
+    Stress:
+        set: 2
+        min: 2
+        max: 2
+
+skills:
+    Linguistics:
+        unlocks: Sophontology@1
+    Zoology:
+        unlocks: Psychology@1 OR Pathology@1 OR Field Medicine@1
+    Botany:
+        unlocks: Psychology@1 OR Pathology@1 OR Field Medicine@1 OR Ecology@1 OR Wilderness Survival@1
+    Geology:
+        unlocks: Ecology@1 OR Asteroid Mining@1
+    Industrial Equipment:
+        unlocks: Mechanical Repair@1 OR Asteroid Mining@1
+    Jury-Rigging:
+        unlocks: Explosives@1 OR Mechanical Repair@1
+    Chemistry:
+        unlocks: Pharmacology@1 OR Explosives@1
+    Computers:
+        unlocks: Hacking@1
+    Zero-G:
+        unlocks: Piloting@1
+    Mathematics:
+        unlocks: Physics@1
+    Art:
+        unlocks: Mysticism@1
+    Archaeology:
+        unlocks: Mysticism@1
+    Theology:
+        unlocks: Mysticism@1
+    Military Training:
+        unlocks: Explosives@1 OR Mechanical Repair@1 OR Tactics@1 OR Wilderness Survival@1 OR Firearms@1
+    Rimwise:
+        unlocks: Firearms@1 OR Hand-to-Hand Combat@1
+    Athletics:
+        unlocks: Hand-to-Hand Combat@1
+    Psychology:
+        points: Expert Skill
+        unlocks: Sophontology@1
+    Pathology:
+        points: Expert Skill
+        unlocks: Exobiology@1 OR Surgery@1
+    Field Medicine:
+        points: Expert Skill
+        unlocks: Surgery@1
+    Ecology:
+        points: Expert Skill
+        unlocks: Planetology@1
+    Asteroid Mining:
+        points: Expert Skill
+        unlocks: Planetology@1
+    Mechanical Repair:
+        points: Expert Skill
+        unlocks: Robotics@1 OR Engineering@1 OR Cybernetics@1
+    Explosives:
+        points: Expert Skill
+    Pharmacology:
+        points: Expert Skill
+    Hacking:
+        points: Expert Skill
+        unlocks: Artificial Intelligence@1
+    Piloting:
+        points: Expert Skill
+        unlocks: Hyperspace@1 OR Command@1
+    Physics:
+        points: Expert Skill
+        unlocks: Hyperspace@1
+    Mysticism:
+        points: Expert Skill
+        unlocks: Xenoesotericism@1 OR Hyperspace@1
+    Tactics:
+        points: Expert Skill
+        unlocks: Command@1
+    Wilderness Survival:
+        points: Expert Skill
+    Firearms:
+        points: Expert Skill
+    Hand-to-Hand Combat:
+        points: Expert Skill
+    Sophontology:
+        points: Master Skill
+    Exobiology:
+        points: Master Skill
+    Surgery:
+        points: Master Skill
+    Planetology:
+        points: Master Skill
+    Robotics:
+        points: Master Skill
+    Engineering:
+        points: Master Skill
+    Cybernetics:
+        points: Master Skill
+    Artificial Intelligence:
+        points: Master Skill
+    Hyperspace:
+        points: Master Skill
+    Xenoesotericism:
+        points: Master Skill
+    Command:
+        points: Master Skill
+
+
+history:
+    START: Class
+    Class:
+        dice: 1d4
+        roll:
+            1:
+                role: Marine
+                stats:
+                    Combat: "+10"
+                    Body Save: "+10"
+                    Fear Save: "+20"
+                    Wounds: "+1"
+                skills:
+                    Military Training: "+1"
+                    Athletics: "+1"
+                next: Marine Loadout
+            2:
+                role: Android
+                stats:
+                    Intellect: "+20"
+                    Fear Save: "+60"
+                    Wounds: "+1"
+                skills:
+                    Linguistics: "+1"
+                    Computers: "+1"
+                    Mathematics: "+1"
+                next: Android Loadout
+            3:
+                role: Scientist
+                stats:
+                    Intellect: "+10"
+                    Sanity Save: "+30"
+                points:
+                    Trained Skill: "+1"
+                next: Scientist Loadout
+            4:
+                role: Teamster
+                stats:
+                    Strength: "+5"
+                    Speed: "+5"
+                    Intellect: "+5"
+                    Combat: "+5"
+                    Sanity Save: "+10"
+                    Fear Save: "+10"
+                    Body Save: "+10"
+                skills:
+                    Industrial Equipment: "+1"
+                    Zero-G: "+1"
+                points:
+                    Trained Skill: "+1"
+                    Expert Skill: "+1"
+                next: Teamster Loadout
+        next: Trinket
+    Marine Loadout:
+        dice: 1d10
+        roll:
+            1: Advanced Battle Dress (AP 10), Flame Thrower, Boarding Axe
+            2: Standard Battle Dress (AP 7), Combat Shotgun (4 rnds), Rucksack, Camping Gear
+            3: Standard Battle Dress (AP 7), Pulse Rifle (3 mags), Infrared Goggles
+            4: Standard Battle Dress (AP 7), Smart Rifle (3 mags), Binoculars, Personal Locator
+            5: Standard Battle Dress (AP 7), SMG (3 mags), MRE x7
+            6: Fatigues (AP 2), Combat Shotgun (2 rnds), Dog, Leash, Tennis Ball
+            7: Fatigues (AP 2), Revolver (12 rnds), Single Frag Grenade
+            8: Dress Uniform (AP 1), Revolver (1 rnd), Challenge Coin
+            9: Advanced Battle Dress (AP 10), Heavy Machine Gun (1 can of ammo), HUD
+            10: Tank Top and Camp Pants (AP 1), Combat Knife (as Scalpel), Stimpak x1
+        next: Marine/Android Bonus Skills
+    Android Loadout:
+        dice: 1d10
+        roll:
+            1: Vaccsuit (AP 3), Revolver (12 rnds), Long-range Comms, Satchel
+            2: Hazard Suit (AP 5), Revolver (6 rnds), Defibrillator, First Aid Kit, Flashlight
+            3: Hazard Suit (AP 5), Foam Gun (2 charges), Sample Collection Kit, Screwdriver
+            4: Standard Battle Dress (AP 7),  Tranq Pistol (3 shots), Paracord (100m)
+            5: Standard Crew Attire (AP 1), Stun Baton, Small Pet
+            6: Standard Crew Attire (AP 1), Scalpel, Bioscanner
+            7: Standard Crew Attire (AP 1), Frag Grenade, Pen Knife
+            8: Manufacturer Supplied Attire (AP 1), 1 Jump-9 Ticket (blank)
+            9: Corporate Attire (AP 1), VIP Corporate Key Card
+            10: Vaccsuit (AP 3), Smart Rifle (2 mags), Infrared Goggles, Mylar Blanket
+        next: Android Stat Penalty
+    Scientist Loadout:
+        dice: 1d10
+        roll:
+            1: Hazard Suit (AP 5), Flamethrower (1 charge), Pain Pills, Electronic Tool Set
+            2: Vaccsuit (AP 3), Rigging Gun, Sample Collection Kit, Flashlight, Lab Rat
+            3: Vaccsuit (AP 3), Foam Gun (2 charges), Foldable Stretcher, First Aid Kit, Radiation Pills
+            4: Lab Coat (AP 1), Screwdriver, Medscanner, Vaccine (1 dose)
+            5: Lab Coat (AP 1), Cybernetic Diagnostic Scanner, Portable Computer Terminal
+            6: Scrubs (AP 1), Scalpel, Automed x6, Oxygen Tank with Filter Mask
+            7: Scrubs (AP 1), Vial of Acid, Mylar Blanket, First Aid Kit
+            8: Standard Crew Attire (AP 1), Utility Knife, Cybernetic Diagnostic Scanner, Duct Tape
+            9: Civilian Clothes (AP 1), Briefcase, Prescription Pad, Fountain Pen (Poison Injector)
+            10: Hazard Suit (AP 5), Tranq Pistol (3 charges), Bioscanner, Sample Collection Kit
+        next: Scientist Stat Bonus
+    Teamster Loadout:
+        dice: 1d10
+        roll:
+            1: Vaccsuit (AP 3), Revolver (6 rnds), Crowbar, Flashlight
+            2: Vaccsuit (AP 3), Rigging Gun, Shovel, Salvage Drone
+            3: Hazard Suit (AP 5), Vibechete, Spanner, Camping Gear, Water Filter
+            4: Heavy Duty Work Clothes (AP 2), Charge, Detonator, Cigarettes
+            5: Heavy Duty Work Clothes (AP 2), Drill, Paracord (100m), Drone
+            6: Standard Crew Attire (AP 1), Combat Shotgun (4 rnds), Extension Cord (20m), Cat
+            7: Standard Crew Attire (AP 1), Nail Gun (32 rnds), Head Lamp, Satchel
+            8: Standard Crew Attire (AP 1), Flare Gun (2 rnds), Water Filter, Personal Locator, Subsurface Scanner
+            9: Lounge Wear (AP 1), Crowbar, Pain Pills, Six Pack of Beer
+            10: Vaccsuit (AP 3), Laser Cutter (charged), Patch Kit, Extra Battery
+    Android Stat Penalty:
+        dice: 1d4
+        roll:
+            1:
+                stats:
+                    Strength: "-10"
+            2:
+                stats:
+                    Speed: "-10"
+            3:
+                stats:
+                    Intellect: "-10"
+            4:
+                stats:
+                    Combat: "-10"
+        next: Marine/Android Bonus Skills
+    Marine/Android Bonus Skills:
+        dice: 1d2
+        roll:
+            1:
+                points:
+                    Expert Skill: "+1"
+            2:
+                points:
+                    Trained Skill: "+2"
+    Scientist Stat Bonus:
+        dice: 1d4
+        roll:
+            1:
+                stats:
+                    Strength: "+5"
+            2:
+                stats:
+                    Speed: "+5"
+            3:
+                stats:
+                    Intellect: "+5"
+            4:
+                stats:
+                    Combat: "+5"
+        next: Scientist Master Skill
+    Scientist Master Skill:
+        dice: 1d10
+        roll:
+            1:
+                skills:
+                    Sophontology: "+1"
+                next: Sophontology Prereqs
+            2:
+                skills:
+                    Zoology: "+1"
+                    Pathology: "+1"
+                    Exobiology: "+1"
+            3:
+                skills:
+                    Zoology: "+1"
+                    Surgery: "+1"
+                next: Surgery Prereqs
+            4:
+                skills:
+                    Planetology: "+1"
+                next: Planetology Prereqs
+            5:
+                skills:
+                    Mechanical Repair: "+1"
+                    Robotics: "+1"
+                next: Mechanical Repair Prereqs
+            6:
+                skills:
+                    Mechanical Repair: "+1"
+                    Engineering: "+1"
+                next: Mechanical Repair Prereqs
+            7:
+                skills:
+                    Mechanical Repair: "+1"
+                    Cybernetics: "+1"
+                next: Mechanical Repair Prereqs
+            8:
+                skills:
+                    Computers: "+1"
+                    Hacking: "+1"
+                    Artificial Intelligence: "+1"
+            9:
+                skills:
+                    Hyperspace: "+1"
+                next: Hyperspace Prereqs
+            10:
+                skills:
+                    Mysticism: "+1"
+                    Xenoesotericism: "+1"
+                next: Mysticism Prereqs
+    Sophontology Prereqs:
+        dice: 1d2
+        roll:
+            1:
+                skills:
+                    Linguistics: "+1"
+            2:
+                skills:
+                    Psychology: "+1"
+    Surgery Prereqs:
+        dice: 1d2
+        roll:
+            1:
+                skills:
+                    Field Medicine: "+1"
+            2:
+                skills:
+                    Pathology: "+1"
+    Planetology Prereqs:
+        dice: 1d2
+        roll:
+            1:
+                skills:
+                    Ecology: "+1"
+                next: Ecology Prereqs
+            2:
+                skills:
+                    Asteroid Mining: "+1"
+                next: Asteroid Mining Prereqs
+    Ecology Prereqs:
+        dice: 1d2
+        roll:
+            1:
+                skills:
+                    Botany: "+1"
+            2:
+                skills:
+                    Geology: "+1"
+    Asteroid Mining Prereqs:
+        dice: 1d2
+        roll:
+            1:
+                skills:
+                    Geology: "+1"
+            2:
+                skills:
+                    Industrial Equipment: "+1"
+    Mechanical Repair Prereqs:
+        dice: 1d4
+        roll:
+            1:
+                skills:
+                    Industrial Equipment: "+1"
+            2:
+                skills:
+                    Jury-Rigging: "+1"
+            3:
+                skills:
+                    Chemistry: "+1"
+            4:
+                skills:
+                    Military Training: "+1"
+    Hyperspace Prereqs:
+        dice: 1d3
+        roll:
+            1:
+                skills:
+                    Zero-G: "+1"
+                    Piloting: "+1"
+            2:
+                skills:
+                    Mathematics: "+1"
+                    Physics: "+1"
+            3:
+                skills:
+                    Mysticism: "+1"
+                next: Mysticism Prereqs
+    Mysticism Prereqs:
+        dice: 1d3
+        roll:
+            1:
+                skills:
+                    Art: "+1"
+            2:
+                skills:
+                    Archaeology: "+1"
+            3:
+                skills:
+                    Theology: "+1"
+    Trinket:
+        dice: 1d100
+        roll:
+            1: Antique Company Script (Asteroid Mine)
+            2: "Manual: SURVIVAL: Eat Soup With a Knife"
+            3: Dessicated Husk Doll
+            4: Alien Pressed Flower (common)
+            5: Necklace of Shell Casings
+            6: Corroded Android Logic Core
+            7: "Pamphlet: Signs of Parasitical Infection"
+            8: "Manual: Treat Your Rifle Like a Lady"
+            9: Bone Knife
+            10: "Calendar: Alien Pin-Up Art"
+            11: Rejected Application (Colony Ship)
+            12: Holographic Serpentine Dancer
+            13: Snake Whiskey
+            14: Medical Container, Purple Powder
+            15: "Pills: Male Enhancement, Shoddy"
+            16: Casino Playing Cards
+            17: Lagomorph Foot
+            18: Moonstone Ring
+            19: "Manual: Mining Safety and You"
+            20: "Pamphlet: Against Human Simulacrum"
+            21: Animal Skull, 3 Eyes, Curled Horn
+            22: Bartender's Certification (Expired)
+            23: Bent Wrench
+            24: Prospecting Mug, Dented
+            25: Eerie Mask
+            26: Ultrablack Marble
+            27: Ivory Dice
+            28: Tarot Cards, Worn, Pyrite Gilded Edges
+            29: Bag of Assorted Teeth
+            30: Ashes (A Relative)
+            31: DNR Beacon Necklace
+            32: Cigarettes (Grinning Skull)
+            33: "Pills: Areca Nut"
+            34: "Pendant: Shell Fragments Suspended in Plastic"
+            35: "Pamphlet: Zen and the Art of Cargo Arrangement"
+            36: Pair of Shot Glasses, Spent Shotgun Shells
+            37: Key (Childhood Home)
+            38: Dog Tags (Heirloom)
+            39: "Token: Is Your Morale Improving?"
+            40: Phosphorescent Sticks, Neon
+            41: "Pamphlet: The Indifferent Stars"
+            42: "Calendar: Military Battles"
+            43: "Manual: Rich Captain, Poor Captain"
+            44: Campaign Poster (Home Planet)
+            45: Preserved Insectile Aberration
+            46: Titanium Toothpick
+            47: Gloves, Leather (Xenomorph Hide)
+            48: "Smut (Seditious): The Captain, Ordered"
+            49: Towel, Slightly Frayed
+            50: Brass Knuckles
+            51: Fuzzy Handcuffs
+            52: Journal of Grudges
+            53: Stylized Cigarette Case
+            54: Ball of Assorted Gauge Wire
+            55: Spanner
+            56: Switchblade, Ornamental
+            57: Powdered Xenomorph Horn
+            58: Bonsai Tree, Potted
+            59: Golf Club (Putter)
+            60: Trilobite Fossil
+            61: "Pamphlet: A Lover in Every Port"
+            62: Patched Overalls, Personalized
+            63: Fleshy Thing Sealed in a Murky Jar
+            64: Spiked Bracelet
+            65: Harmonica
+            66: Pictorial Pornography, Dogeared, Well Thumbed
+            67: "Coffee Cup, Chipped, reads: HAPPINESS IS MANDATORY"
+            68: "Manual: Moonshining With Gun Oil & Fuel"
+            69: Miniature Chess Set, Bone, Pieces Missing
+            70: Gyroscope, Bent, Tin
+            71: Faded Green Poker Chip
+            72: Ukulele
+            73: Spray Paint
+            74: Wanted Poster, Weathered
+            75: "Locket: Hair Braid"
+            76: Sculpture of a Rat (Gold)
+            77: Blanket, Fire Retardant
+            78: Hooded Parka, Fleece-Lined
+            79: BB Gun
+            80: Flint Hatchet
+            81: "Pendant: Two Astronauts form a Skull"
+            82: Rubik's Cube
+            83: "Stress Ball, reads: Zero Stress in Zero G"
+            84: Sputnik Pin
+            85: Ushanka
+            86: Trucker Cap, Mesh, Grey Alien Logo
+            87: Menthol Balm
+            88: Pith Helmet
+            89: 10m x 10m Tarp
+            90: I Ching, Missing Sticks
+            91: Kukri
+            92: Trench Shovel
+            93: Shiv, Sharpened Butter Knife
+            94: Taxidermied Cat
+            95: "Pamphlet: Interpreting Sheep Dreams"
+            96: Faded Photograph, A Windswept Heath
+            97: Opera Glasses
+            98: "Pamphlet: Android Overlords"
+            99: "Pamphlet: The Relic of Flesh"
+            100: "Manual: PANIC: Harbinger of Catastrophe"
+        next: Patch
+    Patch:
+        dice: 1d100
+        roll:
+            1: Medic Patch (Skull and Crossbones over Cross)
+            2: Don't Run You'll Only Die Tired (Backpatch)
+            3: Red Shirt Logo
+            4: Blood Type (Reference Patch)
+            5: "Poker Hand: Dead Man's Hand (Aces full of 8s)"
+            6: Biohazard Symbol
+            7: Mr. Yuck
+            8: Nuclear Symbol
+            9: Eat The Rich
+            10: "Be Sure: Doubletap"
+            11: Flame Emoji
+            12: Smiley Face (Glow in the Dark)
+            13: "Smile: Big Brother is Watching"
+            14: Jolly Roger
+            15: Viking Skull
+            16: APEX PREDATOR (Sabertooth Skull)
+            17: Pin-Up (Ace of Spades)
+            18: Queen of Hearts
+            19: Security Guard
+            20: LONER
+            21: Front Towards Ememy (Claymore Mine)
+            22: Pin-Up (Riding Missile)
+            23: FUBAR
+            24: I'm A (Love) Machine
+            25: Pin-Up (Mechanic)
+            26: "HELLO MY NAME IS:"
+            27: Powered By Coffee
+            28: Take Me To Your Leader (UFO)
+            29: DO YOUR JOB
+            30: Take My Life (Please)
+            31: Upstanding Citizen
+            32: Allergic To Bullshit (Medical Style Patch)
+            33: Fix Me First (Caduceus)
+            34: I Like My Tools Clean / And My Lovers Dirty
+            35: "Pin-Up (Nurse): The Louder You Scream the Faster I Come"
+            36: HMFIC (Head Mother Fucker in Charge)
+            37: Dove in Crosshairs
+            38: Chibi Cthulhu
+            39: Welcome to the DANGER ZONE
+            40: Skull and Crossed Wrenches
+            41: Pin-Up (Succubus)
+            42: DILLIGAF?
+            43: DRINK / FIGHT / FUCK
+            44: Work Hard / Party Harder
+            45: Mudflap Girl
+            46: "Fun Meter (reads: Bad Time)"
+            47: GAME OVER (Bride & Groom)
+            48: Heart
+            49: IMPROVE / ADAPT / OVERCOME
+            50: SUCK IT UP
+            51: Cowboy Up (Crossed Revolvers)
+            52: Troubleshooter
+            53: NASA Logo
+            54: Crossed Hammers with Wings
+            55: Keep Well Lubricated
+            56: Soviet Hammer & Sickle
+            57: Plays Well With Others
+            58: Live Free and Die
+            59: IF I'M RUNNING KEEP UP (Backpatch)
+            60: Meat Bag
+            61: I Am Not A Robot
+            62: Red Gear
+            63: I Can't Fix Stupid
+            64: Space IS My Home (Sad Astronaut)
+            65: All Seeing Eye
+            66: Do I LOOK Like An Expert?
+            67: All Out of Fucks To Give (Astronaut with Turned Out Pockets)
+            68: Travel To Distant Places / Meet Unusual Things / Get Eaten
+            69: BOHICA (Bend Over Here It Comes Again)
+            70: I Am My Brother's Keeper
+            71: Mama Tried
+            72: Black Widow Spider
+            73: My Other Ride Married You
+            74: One Size Fits All (Grenade)
+            75: Grim Reaper Backpatch
+            76: oтъe6иcь (Get Fucked, Russian)
+            77: Smooth Operator
+            78: Atom Symbol
+            79: For Science!
+            80: Actually, I AM A Rocket Scientist
+            81: Help Wanted
+            82: Princess
+            83: NOMAD
+            84: GOOD BOY
+            85: Dice (Snake Eyes)
+            86: "#1 Worker"
+            87: Good (Brain)
+            88: Bad Bitch
+            89: Too Pretty To Die
+            90: Fuck Forever (Roses)
+            91: Icarus
+            92: Girl's Best Friend (Diamond)
+            93: Rick of Electrocution Symbol
+            94: Inverted Cross
+            95: Do You Sign My Paychecks? (Backpatch)
+            96: I (Heart) Myself
+            97: Double Cherry
+            98: Volunteer
+            99: Solve Et Coagula (Baphomet)
+            100: I'm Not A Rocket Scientist / But You're An Idiot
+        next: Credits
+    Credits:
+        dice: 2d10
+        roll:
+            2: "20cr"
+            3: "30cr"
+            4: "40cr"
+            5: "50cr"
+            6: "60cr"
+            7: "70cr"
+            8: "80cr"
+            9: "90cr"
+            10: "100cr"
+            11: "110cr"
+            12: "120cr"
+            13: "130cr"
+            14: "140cr"
+            15: "150cr"
+            16: "160cr"
+            17: "170cr"
+            18: "180cr"
+            19: "190cr"
+            20: "200cr"
