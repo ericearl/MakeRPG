@@ -97,17 +97,19 @@ def search(request):
     #     WILLPOWERStatForm()
     # ]
 
+    statforms = [StatisticForm() for s in stat_list]
     skillforms = [SkillForm() for s in skill_list]
 
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         q = request.POST
 
-        archetypes = q.getlist('archetype')
+        # archetypes = q.getlist('archetype')
         roles = q.getlist('role')
         mins = q.getlist('minimum')
 
-        characters = characters.filter(archetype__in=archetypes).filter(role__in=roles)
+        # characters = characters.filter(archetype__in=archetypes).filter(role__in=roles)
+        characters = characters.filter(role__in=roles)
         for one_char in characters:
             for idx, val in enumerate(point_list):
                 check = CharacterPointpool.objects.filter(
@@ -144,18 +146,13 @@ def search(request):
                         characters = characters.exclude(pk=one_char.pk)
                         break
 
-        # table = CharacterTableView(characters)
-
-    # # if a GET (or any other method) we'll create a blank form
-    # else:
-    character_list = characters.order_by('archetype', 'role')
-
-    # print(pointforms)
-    # print(pointforms[0])
+    # character_list = characters.order_by('archetype', 'role')
+    character_list = characters.order_by('role', 'name')
 
     data = {
         'characters': character_list,
         'roleform': roleform,
+        'statforms': statforms,
         'skillforms': skillforms,
         'stats': stat_list,
         'skills': skill_list,
