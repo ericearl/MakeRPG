@@ -62,7 +62,7 @@ def npc(request, npc_id):
 def search(request):
     characters = Character.objects.exclude(name__contains='[NPC')
     point_list = Pointpool.objects.exclude(name='roll').order_by('name')
-    stat_list = Statistic.objects.exclude(type='D').exclude(name='none').order_by('name')
+    stat_list = Statistic.objects.filter(name__in=['Body Save','Combat','Fear Save','Health','Intellect','Sanity Save','Speed','Strength']).order_by('name')
     skill_list = Skill.objects.filter(role__name='none').order_by('statistic__name', 'name')
 
     # archetypeform = ArchetypeForm() # shadowrun 5e
@@ -110,11 +110,23 @@ def search(request):
         # characters = characters.filter(archetype__in=archetypes).filter(role__in=roles)
         characters = characters.filter(role__in=roles)
         for one_char in characters:
-            for idx, val in enumerate(point_list):
-                check = CharacterPointpool.objects.filter(
+            # for idx, val in enumerate(point_list):
+            #     check = CharacterPointpool.objects.filter(
+            #         character__pk=one_char.pk,
+            #         pointpool__name=val.name,
+            #         total__gte=mins[idx]
+            #     )
+
+            #     if not check:
+            #         characters = characters.exclude(pk=one_char.pk)
+            #         break
+
+            # if check:
+            for idx, val in enumerate(stat_list):
+                check = CharacterStatistic.objects.filter(
                     character__pk=one_char.pk,
-                    pointpool__name=val.name,
-                    total__gte=mins[idx]
+                    statistic__name=val.name,
+                    current__gte=mins[idx]
                 )
 
                 if not check:
@@ -122,23 +134,11 @@ def search(request):
                     break
 
             if check:
-                for idx, val in enumerate(stat_list):
-                    check = CharacterStatistic.objects.filter(
-                        character__pk=one_char.pk,
-                        statistic__name=val.name,
-                        current__gte=mins[idx+len(point_list)]
-                    )
-
-                    if not check:
-                        characters = characters.exclude(pk=one_char.pk)
-                        break
-
-            if check:
                 for idx, val in enumerate(skill_list):
                     check = CharacterSkill.objects.filter(
                         character__pk=one_char.pk,
                         skill__name=val.name,
-                        current__gte=mins[idx+len(point_list)+len(stat_list)]
+                        current__gte=mins[idx+len(stat_list)]
                     )
 
                     if not check:
