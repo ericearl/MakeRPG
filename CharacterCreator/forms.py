@@ -10,17 +10,17 @@ class RoleForm(forms.Form):
         )
 
 class StatisticForm(forms.Form):
-    def __init__(self, statistic):
-        super().__init__()
-        self.statistic = statistic
-
-    span = sorted(CharacterStatistic.objects.filter(statistic__name=self.statistic).values_list('current', flat=True).distinct())
+    span = sorted(CharacterStatistic.objects.filter(statistic__name=self.fields['statname']).values_list('current', flat=True).distinct())
 
     minimum = forms.TypedChoiceField(
         choices = zip(span, span),
         coerce = int,
         empty_value = min(list(span))
         )
+
+    def __init__(self, statname, *args, **kwargs):
+        super(StatisticForm, self).__init__(*args, **kwargs)
+        self.fields['statname'] = statname
 
 class SkillForm(forms.Form):
     span = sorted(CharacterSkill.objects.all().values_list('current', flat=True).distinct())
