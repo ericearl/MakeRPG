@@ -3,7 +3,7 @@
 *.pyc
 *.pdf
 .vscode/
-# CharacterCreator/migrations/*.py
+CharacterCreator/migrations/*.py
 MakeRPG/settings.py
 db.json
 ignore.txt

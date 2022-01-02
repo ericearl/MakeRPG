@@ -11,7 +11,7 @@ django.setup()
 
 from CharacterCreator.models import *
 from src.spend import *
-from modify import *
+from src.modify import *
 
 def parse_dice(dice_str):
     search = re.match(r'([0-9]+)d([0-9]+)\ *(\+|-)*\ *(stat|[0-9]*)', dice_str)
