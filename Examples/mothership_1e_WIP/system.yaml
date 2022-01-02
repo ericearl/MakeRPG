@@ -236,7 +236,7 @@ history:
             7: Fatigues (AP 2), Revolver (12 rnds), Single Frag Grenade
             8: Dress Uniform (AP 1), Revolver (1 rnd), Challenge Coin
             9: Advanced Battle Dress (AP 10), Heavy Machine Gun (1 can of ammo), HUD
-            10: Tank Top and Camp Pants (AP 1), Combat Knife (as Scalpel), Stimpak x1
+            10: Tank Top and Camo Pants (AP 1), Combat Knife (as Scalpel), Stimpak x1
         next: Marine/Android Bonus Skills
     Android Loadout:
         dice: 1d10
