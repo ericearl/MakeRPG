@@ -9,8 +9,9 @@ class RoleForm(forms.Form):
         queryset = roles
         )
 
-class StatisticForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.filter(statistic__name=self.fields['statname']).values_list('current', flat=True).distinct())
+
+class SkillForm(forms.Form):
+    span = sorted(CharacterSkill.objects.all().values_list('current', flat=True).distinct())
 
     minimum = forms.TypedChoiceField(
         choices = zip(span, span),
@@ -18,12 +19,72 @@ class StatisticForm(forms.Form):
         empty_value = min(list(span))
         )
 
-    def __init__(self, statname, *args, **kwargs):
-        super(StatisticForm, self).__init__(*args, **kwargs)
-        self.fields['statname'] = statname
 
-class SkillForm(forms.Form):
-    span = sorted(CharacterSkill.objects.all().values_list('current', flat=True).distinct())
+class BodyStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Body Save').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class CombatStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Combat').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class FearStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Fear Save').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class HealthStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Health').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class IntellectStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Intellect').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class SanityStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Sanity Save').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class SpeedStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Speed').values_list('current', flat=True).distinct())
+
+    minimum = forms.TypedChoiceField(
+        choices = zip(span, span),
+        coerce = int,
+        empty_value = min(list(span))
+        )
+
+class StrengthStatForm(forms.Form):
+    span = sorted(CharacterStatistic.objects.filter(statistic__name='Strength').values_list('current', flat=True).distinct())
 
     minimum = forms.TypedChoiceField(
         choices = zip(span, span),

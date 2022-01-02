@@ -14,17 +14,16 @@
 
     <form method="post">
         {% csrf_token %}
-<!-- <h2 class="mt-2">Archetype (choose one or more)</h2>
+        <!-- <h2 class="mt-2">Archetype (choose one or more)</h2>
         <div class="col">
             {{ archetypeform }}
-        </div>
- -->
+        </div> -->
         <h2 class="mt-2">Role (choose one or more)</h2>
         <div class="col">
             {{ roleform }}
         </div>
 
-        <h2 class="mt-2">Points (choose minimum)</h2>
+        <!-- <h2 class="mt-2">Points (choose minimum)</h2>
         <div class="row">
             {% for point in points %}
                 {% for pointform in pointforms %}
@@ -36,7 +35,7 @@
                     {% endif %}
                 {% endfor %}
             {% endfor %}
-        </div>
+        </div> -->
 
         <h2 class="mt-2">Statistics (choose minimum)</h2>
         <div class="row">

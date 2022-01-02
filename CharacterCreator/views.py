@@ -65,9 +65,10 @@ def search(request):
     stat_list = Statistic.objects.exclude(type='D').exclude(name='none').order_by('name')
     skill_list = Skill.objects.filter(role__name='none').order_by('statistic__name', 'name')
 
-    # archetypeform = ArchetypeForm()
+    # archetypeform = ArchetypeForm() # shadowrun 5e
     roleform = RoleForm()
 
+    # # shadowrun 5e
     # pointforms = [
     #     ActiveSkillPointForm(),
     #     AttributePointForm(),
@@ -83,21 +84,19 @@ def search(request):
     #     SpellPointForm()
     #     ]
 
-    # statforms = [
-    #     AGILITYStatForm(),
-    #     BODYStatForm(),
-    #     CHARISMAStatForm(),
-    #     EDGEStatForm(),
-    #     ESSENCEStatForm(),
-    #     INTUITIONStatForm(),
-    #     LOGICStatForm(),
-    #     REACTIONStatForm(),
-    #     RESONANCEStatForm(),
-    #     STRENGTHStatForm(),
-    #     WILLPOWERStatForm()
-    # ]
+    # mothership 1e WIP
+    statforms = [
+        BodyStatForm(),
+        CombatStatForm(),
+        FearStatForm(),
+        HealthStatForm(),
+        IntellectStatForm(),
+        SanityStatForm(),
+        SpeedStatForm(),
+        StrengthStatForm()
+    ]
 
-    statforms = [StatisticForm(s.name) for s in stat_list]
+    # statforms = [StatisticForm() for s in stat_list]
     skillforms = [SkillForm() for s in skill_list]
 
     # if this is a POST request we need to process the form data
