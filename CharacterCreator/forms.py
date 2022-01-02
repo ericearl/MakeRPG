@@ -10,7 +10,11 @@ class RoleForm(forms.Form):
         )
 
 class StatisticForm(forms.Form):
-    span = sorted(CharacterStatistic.objects.all().values_list('current', flat=True).distinct())
+    def __init__(self, statistic):
+        super().__init__()
+        self.statistic = statistic
+
+    span = sorted(CharacterStatistic.objects.filter(statistic__name=self.statistic).values_list('current', flat=True).distinct())
 
     minimum = forms.TypedChoiceField(
         choices = zip(span, span),

@@ -97,7 +97,7 @@ def search(request):
     #     WILLPOWERStatForm()
     # ]
 
-    statforms = [StatisticForm() for s in stat_list]
+    statforms = [StatisticForm(s.name) for s in stat_list]
     skillforms = [SkillForm() for s in skill_list]
 
     # if this is a POST request we need to process the form data
