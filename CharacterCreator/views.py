@@ -65,26 +65,8 @@ def search(request):
     stat_list = Statistic.objects.filter(name__in=['Body Save','Combat','Fear Save','Health','Intellect','Sanity Save','Speed','Strength']).order_by('name')
     skill_list = Skill.objects.filter(role__name='none').order_by('statistic__name', 'name')
 
-    # archetypeform = ArchetypeForm() # shadowrun 5e
     roleform = RoleForm()
 
-    # # shadowrun 5e
-    # pointforms = [
-    #     ActiveSkillPointForm(),
-    #     AttributePointForm(),
-    #     ComplexFormPointForm(),
-    #     KarmaPointForm(),
-    #     MagicalSkillPointForm(),
-    #     MagicalSkillGroupPointForm(),
-    #     NuyenPointForm(),
-    #     ResonanceSkillPointForm(),
-    #     SkillPointForm(),
-    #     SkillGroupPointForm(),
-    #     SpecialAttributePointForm(),
-    #     SpellPointForm()
-    #     ]
-
-    # mothership 1e WIP
     statforms = [
         BodyStatForm(),
         CombatStatForm(),
@@ -103,25 +85,11 @@ def search(request):
     if request.method == 'POST':
         q = request.POST
 
-        # archetypes = q.getlist('archetype')
         roles = q.getlist('role')
         mins = q.getlist('minimum')
 
-        # characters = characters.filter(archetype__in=archetypes).filter(role__in=roles)
         characters = characters.filter(role__in=roles)
         for one_char in characters:
-            # for idx, val in enumerate(point_list):
-            #     check = CharacterPointpool.objects.filter(
-            #         character__pk=one_char.pk,
-            #         pointpool__name=val.name,
-            #         total__gte=mins[idx]
-            #     )
-
-            #     if not check:
-            #         characters = characters.exclude(pk=one_char.pk)
-            #         break
-
-            # if check:
             for idx, val in enumerate(stat_list):
                 check = CharacterStatistic.objects.filter(
                     character__pk=one_char.pk,
@@ -145,7 +113,6 @@ def search(request):
                         characters = characters.exclude(pk=one_char.pk)
                         break
 
-    # character_list = characters.order_by('archetype', 'role')
     character_list = characters.order_by('role', 'name')
 
     data = {
