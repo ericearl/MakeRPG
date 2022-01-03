@@ -89,29 +89,20 @@ def search(request):
         mins = q.getlist('minimum')
 
         characters = characters.filter(role__in=roles)
-        for one_char in characters:
-            for idx, val in enumerate(stat_list):
-                check = CharacterStatistic.objects.filter(
-                    character__pk=one_char.pk,
-                    statistic__name=val.name,
-                    current__gte=mins[idx]
-                )
+        for idx, val in enumerate(stat_list):
+            check = CharacterStatistic.objects.filter(
+                statistic__name=val.name,
+                current__gte=mins[idx]
+            )
+            characters = characters.intersection(check)
 
-                if not check:
-                    characters = characters.exclude(pk=one_char.pk)
-                    break
+        for idx, val in enumerate(skill_list):
+            check = CharacterSkill.objects.filter(
+                skill__name=val.name,
+                current__gte=mins[idx+len(stat_list)]
+            )
 
-            if check:
-                for idx, val in enumerate(skill_list):
-                    check = CharacterSkill.objects.filter(
-                        character__pk=one_char.pk,
-                        skill__name=val.name,
-                        current__gte=mins[idx+len(stat_list)]
-                    )
-
-                    if not check:
-                        characters = characters.exclude(pk=one_char.pk)
-                        break
+            characters = characters.intersection(check)
 
     character_list = characters.order_by('role', 'name')
 
