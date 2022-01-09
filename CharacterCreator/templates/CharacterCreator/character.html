@@ -1,83 +1,96 @@
-<h1>{{ character }}</h1>
+{% extends "base.html" %}
+{% block heading %}
 
-{% if character.role.name %}
-    <li>Role: {{ character.role.name }}</li>
-{% endif %}
+    <title>{{ character }}</title>
 
-<h2>Points</h2>
-{% if points %}
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>{{ character }}</h1>
+
     <ul>
-    {% for p in points %}
-        {% if p.total > 0 %}
-            <li>{{ p }}</li>
+        {% if character.role.name %}
+            <li>Role: {{ character.role.name }}</li>
         {% endif %}
-    {% endfor %}
     </ul>
-{% else %}
-    <p>No character points are available.</p>
-{% endif %}
 
-<h2>Traits</h2>
-{% if traits %}
-    <ul>
-    {% for t in traits %}
-        {% if t.current > 0 %}
-            <li>{{ t }}</li>
-        {% endif %}
-    {% endfor %}
+    <h2>Points</h2>
+    {% if points %}
+        <ul>
+        {% for p in points %}
+            {% if p.total > 0 %}
+                <li>{{ p }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No character points are available.</p>
+    {% endif %}
+
+    <h2>Traits</h2>
+    {% if traits %}
+        <ul>
+        {% for t in traits %}
+            {% if t.current > 0 %}
+                <li>{{ t }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No character traits are available.</p>
+    {% endif %}
+
+    <h2>Statistics</h2>
+    {% if stats %}
+        <ul>
+        {% for s in stats %}
+            {% if s.current > 0 %}
+                <li>{{ s }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No character statistics are available.</p>
+    {% endif %}
+
+    <h2>Skills</h2>
+    {% if skills %}
+        <ul>
+        {% for s in skills %}
+            {% if s.current > 0 %}
+                <li>{{ s }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No character skills are available.</p>
+    {% endif %}
+
+    <h2>History</h2>
+    {% if history %}
+        <ul>
+        {% for h in history %}
+            <li>{{ h }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No character history available.</p>
+    {% endif %}
+
+    <h2>Related NPC's</h2>
+    {% if npcs %}
+        <ul>
+        {% for n in npcs %}
+            {% ifchanged n.npc %}
+                <h3><a href="{% url 'npc' n.npc.id %}">{{ n.npc }}</a></h3>
+            {% endifchanged %}
+            <li>{{ n }}</li>
+        {% endfor %}
     </ul>
-{% else %}
-    <p>No character traits are available.</p>
-{% endif %}
+    {% else %}
+        <p>No NPC's available.</p>
+    {% endif %}
 
-<h2>Statistics</h2>
-{% if stats %}
-    <ul>
-    {% for s in stats %}
-        {% if s.current > 0 %}
-            <li>{{ s }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No character statistics are available.</p>
-{% endif %}
-
-<h2>Skills</h2>
-{% if skills %}
-    <ul>
-    {% for s in skills %}
-        {% if s.current > 0 %}
-            <li>{{ s }}</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No character skills are available.</p>
-{% endif %}
-
-<h2>History</h2>
-{% if history %}
-    <ul>
-    {% for h in history %}
-        <li>{{ h }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No character history available.</p>
-{% endif %}
-
-<h2>Related NPC's</h2>
-{% if npcs %}
-    <ul>
-    {% for n in npcs %}
-        {% ifchanged n.npc %}
-            <h3><a href="{% url 'npc' n.npc.id %}">{{ n.npc }}</a></h3>
-        {% endifchanged %}
-        <li>{{ n }}</li>
-    {% endfor %}
-</ul>
-{% else %}
-    <p>No NPC's available.</p>
-{% endif %}
-
+{% endblock %}
