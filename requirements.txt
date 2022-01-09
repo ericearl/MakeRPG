@@ -8,3 +8,4 @@ sorl-thumbnail
 django-tables2
 django-oscar
 django-haystack
+django-crispy-forms

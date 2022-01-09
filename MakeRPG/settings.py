@@ -85,7 +85,11 @@ INSTALLED_APPS = [
     # 'treebeard',
     # 'sorl.thumbnail',   # Default thumbnail backend, can be replaced
     # 'django_tables2',
+
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
 

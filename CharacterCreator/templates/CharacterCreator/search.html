@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 
 {% block heading %}
@@ -20,7 +21,7 @@
         </div> -->
         <h2 class="mt-2">Role (choose one or more)</h2>
         <div class="col">
-            {{ roleform }}
+            {{ roleform | crispy }}
         </div>
 
         <!-- <h2 class="mt-2">Points (choose minimum)</h2>
@@ -44,7 +45,7 @@
                     {% if forloop.counter == forloop.parentloop.counter %}
                         <div class="col">
                             {{ stat }}
-                            {{ statform.as_p }}
+                            {{ statform | crispy }}
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -58,7 +59,7 @@
                     {% if forloop.counter == forloop.parentloop.counter %}
                         <div class="col">
                             {{ skill }}
-                            {{ skillform.as_p }}
+                            {{ skillform | crispy }}
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -69,14 +70,19 @@
 
     <h2 class="mt-2">Results</h2>
 
-    <div class="row">
-        <ul>
-            {% for c in characters %}
-            <li>
-                <a href="{% url 'character' c.id %}">{{ c }}</a>
-            </li>
-            {% endfor %}
-        <ul>
-    </div>
+    <table class='table'>
+        <thead>
+            <tr>
+            <th>Role</th>
+            <th>Name</th>
+            </tr>
+        </thead>
+        {% for c in characters %}
+        <tr>
+            <td>{{ c.role }}</td>
+            <td><a href="{% url 'character' c.id %}">{{ c.name }}</a></td>
+        </tr>
+        {% endfor %}
+        </table>
 
 {% endblock %}

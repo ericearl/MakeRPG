@@ -145,9 +145,9 @@ class Skill(models.Model):
     statistic = models.ForeignKey(Statistic, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        if self.statistic:
+        if self.statistic and self.statistic.name != 'none':
             return '[' + self.statistic.name + '] ' + self.name
-        elif self.role:
+        elif self.role and self.role.name != 'none':
             return '[' + self.role.name + '] ' + self.name
         else:
             return self.name

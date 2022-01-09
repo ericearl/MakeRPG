@@ -455,6 +455,12 @@ if __name__ == '__main__':
             if 'traits' in tree['modifiers']:
                 modify(c, tree, 'traits')
 
+        if 'stats' in tree:
+            spend_stats(tree, c)
+        if 'skills' in tree:
+            spend_skills(tree, c)
+        if 'traits' in tree:
+            spend_traits(tree, c)
 
         char_tstop = time.time()
         print('%s made in %0.1f seconds' % (c, char_tstop-char_tstart))
