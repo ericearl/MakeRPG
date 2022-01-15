@@ -1,29 +1,18 @@
-from django import forms
-from django.shortcuts import get_object_or_404, get_list_or_404, render
+from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404
+from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView
+# from django.views.generic import ListView
 # from django_tables2 import SingleTableView
-from django.db.models import Q, Min, Max
+# from django.db.models import Q, Min, Max
 
 from .models import *
 from .forms import *
 
-
-# class CharacterTableView(SingleTableView):
-#     model = Character
-#     table_class = CharacterTable
-#     template_name = 'CharacterCreator/results.html'
-
-
-def index(request):
-    character_list = Character.objects.exclude(name__contains='[NPC').order_by('role__name', 'name')
-    role_list = Role.objects.all().exclude(name='none').order_by('name')
-
-    return render(request, 'CharacterCreator/index.html',
-        {'character_list': character_list,
-        'role_list': role_list}
-        )
-
+from urllib.parse import parse_qs
+from urllib.parse import urlencode
+import json
 
 def character(request, character_id):
     character = Character.objects.get(pk=character_id)
@@ -59,6 +48,14 @@ def npc(request, npc_id):
         })
 
 
+def redirect_params(url, param_dict=None):
+    response = redirect(url)
+    if param_dict:
+        query_string = urlencode(param_dict)
+        response['Location'] += '?' + query_string
+    return response
+
+
 def search(request):
     characters = Character.objects.exclude(name__contains='[NPC')
     point_list = Pointpool.objects.exclude(name='roll').order_by('name')
@@ -88,30 +85,40 @@ def search(request):
         roles = q.getlist('role')
         mins = q.getlist('minimum')
 
-        characters = characters.filter(role__in=roles)
-        for one_char in characters:
-            for idx, val in enumerate(stat_list):
-                check = CharacterStatistic.objects.filter(
-                    character__pk=one_char.pk,
-                    statistic__name=val.name,
-                    current__gte=mins[idx]
-                )
+        filters = {'statistic': {}, 'skill': {}}
+        for s, m in zip(stat_list, mins[:len(stat_list)]):
+            span = sorted(CharacterStatistic.objects.filter(statistic=s).values_list('current', flat=True).distinct())
+            minimum = min(list(span))
+            if int(m) > minimum:
+                filters['statistic'][s.name] = int(m)
+        for s, m in zip(skill_list, mins[len(stat_list):]):
+            span = sorted(CharacterSkill.objects.filter(skill=s).values_list('current', flat=True).distinct())
+            minimum = min(list(span))
+            if int(m) > minimum:
+                filters['skill'][s.name] = int(m)
 
-                if not check:
-                    characters = characters.exclude(pk=one_char.pk)
-                    break
+        qs = urlencode(filters)
+        parsed = parse_qs(qs)
+        qs_filters = json.loads(parsed['statistic'][0].replace("'",'"'))
 
-            if check:
-                for idx, val in enumerate(skill_list):
-                    check = CharacterSkill.objects.filter(
-                        character__pk=one_char.pk,
-                        skill__name=val.name,
-                        current__gte=mins[idx+len(stat_list)]
-                    )
+        # characters = characters.filter(role__in=roles)
 
-                    if not check:
-                        characters = characters.exclude(pk=one_char.pk)
-                        break
+        cstats = CharacterStatistic.objects.filter(character__role__in=roles)
+        stat_filter = set([c.character.pk for c in cstats])
+        for stat in filters['statistic']:
+            minimum = filters['statistic'][stat]
+            cstats = CharacterStatistic.objects.filter(character__role__in=roles, statistic__name=stat, current__gte=minimum)
+            stat_filter = stat_filter & set([c.character.pk for c in cstats])
+
+        cskills = CharacterSkill.objects.filter(character__role__in=roles)
+        skill_filter = set([c.character.pk for c in cskills])
+        for skill in filters['skill']:
+            minimum = filters['skill'][skill]
+            cskills = CharacterSkill.objects.filter(character__role__in=roles, skill__name=skill, current__gte=minimum)
+            skill_filter = skill_filter & set([c.character.pk for c in cstats])
+
+        pks = list(stat_filter & skill_filter)
+        characters = characters.filter(pk__in=pks)
 
     character_list = characters.order_by('role', 'name')
 
