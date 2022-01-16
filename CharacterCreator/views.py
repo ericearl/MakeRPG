@@ -114,7 +114,7 @@ def search(request):
         for skill in filters['skill']:
             minimum = filters['skill'][skill]
             cskills = CharacterSkill.objects.filter(character__role__in=roles, skill__name=skill, current__gte=minimum)
-            skill_filter = skill_filter & set([c.character.pk for c in cstats])
+            skill_filter = skill_filter & set([c.character.pk for c in cskills])
 
         pks = list(stat_filter & skill_filter)
         characters = characters.filter(pk__in=pks)
