@@ -19,11 +19,6 @@
         <div class="col">
             {{ archetypeform }}
         </div> -->
-        <h2 class="mt-2">Role (choose one or more)</h2>
-        <div class="col">
-            {{ roleform | crispy }}
-        </div>
-
         <!-- <h2 class="mt-2">Points (choose minimum)</h2>
         <div class="row">
             {% for point in points %}
@@ -38,33 +33,65 @@
             {% endfor %}
         </div> -->
 
-        <h2 class="mt-2">Statistics (choose minimum)</h2>
-        <div class="row">
-            {% for stat in stats %}
-                {% for statform in statforms %}
-                    {% if forloop.counter == forloop.parentloop.counter %}
+        <div class="accordion" id="Accordion"></div>
+            <div class="accordion-item"></div>
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
+                        <strong>Role (choose one or more)</strong>
+                    </button>
+                </h2>
+                <div id="collapseRoles" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                    <div class="accordion-body">
                         <div class="col">
-                            {{ stat }}
-                            {{ statform | crispy }}
+                            {{ roleform | crispy }}
                         </div>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </div>
-
-        <h2 class="mt-2">Skills (choose minimum)</h2>
-        <div class="form-group row">
-            {% for skill in skills %}
-                {% for skillform in skillforms %}
-                    {% if forloop.counter == forloop.parentloop.counter %}
-                        <div class="col">
-                            {{ skill }}
-                            {{ skillform | crispy }}
+                    </div>
+                </div>
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStatistics" aria-expanded="false" aria-controls="collapseStatistics">
+                        <strong>Statistics (choose minimum)</strong>
+                    </button>
+                </h2>
+                <div id="collapseStatistics" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                    <div class="accordion-body">
+                        <div class="row">
+                            {% for stat in stats %}
+                                {% for statform in statforms %}
+                                    {% if forloop.counter == forloop.parentloop.counter %}
+                                        <div class="col">
+                                            {{ stat }}
+                                            {{ statform | crispy }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
                         </div>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item"></div>
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills" aria-expanded="false" aria-controls="collapseSkills">
+                        <strong>Skills (choose minimum)</strong>
+                    </button>
+                </h2>
+                <div id="collapseSkills" class="accordion-collapse collapse" aria-labelledby="headingThree">
+                    <div class="accordion-body">
+                        <div class="form-group row">
+                            {% for skill in skills %}
+                                {% for skillform in skillforms %}
+                                    {% if forloop.counter == forloop.parentloop.counter %}
+                                        <div class="col">
+                                            {{ skill }}
+                                            {{ skillform | crispy }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         <button type="submit" class="btn btn-primary">Filter Results</button>
     </form>
 

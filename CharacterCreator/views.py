@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 # from django.views.generic import ListView
-# from django_tables2 import SingleTableView
 # from django.db.models import Q, Min, Max
 
 from .models import *
