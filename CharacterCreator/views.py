@@ -62,20 +62,8 @@ def search(request):
     skill_list = Skill.objects.filter(role__name='none').order_by('statistic__name', 'name')
 
     roleform = RoleForm()
-
-    statforms = [
-        BodyStatForm(),
-        CombatStatForm(),
-        FearStatForm(),
-        HealthStatForm(),
-        IntellectStatForm(),
-        SanityStatForm(),
-        SpeedStatForm(),
-        StrengthStatForm()
-    ]
-
-    # statforms = [StatisticForm() for s in stat_list]
-    skillforms = [SkillForm() for s in skill_list]
+    statforms = [StatisticForm(statistic=s.name) for s in stat_list]
+    skillforms = [SkillForm(skill=s.name) for s in skill_list]
 
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
