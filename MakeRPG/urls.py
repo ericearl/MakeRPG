@@ -20,5 +20,5 @@ urlpatterns = [
     path('', include('CharacterCreator.urls')),
     # path('fnff/', include('FNFF.urls')),
     # path('shop/', include('Shop.urls')),
-#    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]

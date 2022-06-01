@@ -34,6 +34,7 @@ defaults:
         tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
         prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
         role: none            # skill is special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
         type: independent     # independent (stands alone), dependent (result of something else)
     skills:
         set: 0                # base level without rolling or purchasing, what you have
@@ -45,7 +46,9 @@ defaults:
         purchase: 1           # result of a purchase
         tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
         prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        unlocks: none         # skills unlocked by this skill@threshold
         role: none            # skill is special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
         type: independent     # independent (stands alone), dependent (result of something else)
         stat: none            # associated statistic for each skill
 
@@ -355,7 +358,7 @@ skills:
 
 roles:
     Solo:
-        skillpoints: Career
+        points: Career
         skills:
             - Combat sense
             - Awareness/Notice
@@ -368,7 +371,7 @@ roles:
             - Submachinegun
             - Stealth
     Corporate:
-        skillpoints: Career
+        points: Career
         skills:
             - Resources
             - Awareness/Notice
@@ -381,7 +384,7 @@ roles:
             - Wardrobe & style
             - Personal grooming
     Media:
-        skillpoints: Career
+        points: Career
         skills:
             - Credibility
             - Awareness/Notice
@@ -394,7 +397,7 @@ roles:
             - Photography & film
             - Interview
     Nomad:
-        skillpoints: Career
+        points: Career
         skills:
             - Family
             - Awareness/Notice
@@ -407,7 +410,7 @@ roles:
             - Brawling
             - Athletics
     Techie:
-        skillpoints: Career
+        points: Career
         skills:
             - Jury Rig
             - Awareness/Notice
@@ -421,7 +424,7 @@ roles:
             - Weaponsmith
             - Electronic security
     Cop:
-        skillpoints: Career
+        points: Career
         skills:
             - Authority
             - Awareness/Notice
@@ -434,7 +437,7 @@ roles:
             - Interrogation
             - Streetwise
     Rockerboy:
-        skillpoints: Career
+        points: Career
         skills:
             - Charismatic Leadership
             - Awareness/Notice
@@ -447,7 +450,7 @@ roles:
             - Persuasion
             - Seduction
     Medtechie:
-        skillpoints: Career
+        points: Career
         skills:
             - Medical Tech
             - Awareness/Notice
@@ -460,7 +463,7 @@ roles:
             - Zoology
             - Human perception
     Fixer:
-        skillpoints: Career
+        points: Career
         skills:
             - Streetdeal
             - Awareness/Notice
@@ -473,7 +476,7 @@ roles:
             - Intimidate
             - Persuasion
     Netrunner:
-        skillpoints: Career
+        points: Career
         skills:
             - Interface
             - Awareness/Notice

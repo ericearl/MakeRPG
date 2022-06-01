@@ -359,7 +359,7 @@ def history(tree):
 
 
 if __name__ == '__main__':
-    system_yaml = 'Examples/mothership_1e_WIP/system.yaml'
+    system_yaml = 'Examples/cyberpunk_2020/system.yaml'
 
     # needs error handling
     with open(system_yaml,'r') as yamlfile:

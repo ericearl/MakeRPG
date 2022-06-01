@@ -148,7 +148,8 @@ def make_selection(tree, character, eventroll):
                 selection_dict = roll_dict[roll]
                 break
 
-    history_modify(tree, character, selection_dict)
+    if type(selection_dict) is dict:
+        history_modify(tree, character, selection_dict)
 
     return
 
@@ -401,7 +402,7 @@ def history(tree, character):
 if __name__ == '__main__':
     # character count to make per run
     character_count = 50
-    system_yaml = 'Examples/mothership_1e_WIP/system.yaml'
+    system_yaml = 'Examples/cyberpunk_2020/system.yaml'
 
     # needs error handling
     with open(system_yaml, 'r') as yamlfile:
@@ -416,6 +417,8 @@ if __name__ == '__main__':
     with open('MakeRPG/lastnames.txt', 'r') as lasts:
         lastnames = [name.strip('\n') for name in lasts.readlines()]
 
+    roles = Role.objects.exclude(name='none')
+
     tstart = time.time()
 
     for _ in range(character_count):
@@ -423,6 +426,7 @@ if __name__ == '__main__':
 
         c = Character()
         c.name = random_name(firstnames, lastnames)
+        c.role = random.choice(roles)
         c.save()
 
         character_initialize(tree, c)

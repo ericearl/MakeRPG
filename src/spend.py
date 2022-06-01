@@ -74,6 +74,13 @@ def spend_skills(tree, c):
     if len(all_skills) == 0:
         return
 
+    if 'roles' in tree and 'points' in tree['roles'][c.role.name] and 'skills' in tree['roles'][c.role.name]:
+        rskills = CharacterSkill.objects.filter(character=c, skill__name__in=tree['roles'][c.role.name]['skills'])
+        rpoints = CharacterPointpool.objects.filter(character=c, pointpool__name=tree['roles'][c.role.name]['points'])
+    else:
+        rskills = []
+        rpoints = CharacterPointpool.objects.filter(character=c, pointpool__name='none')
+
     unlocks = []
     for cskill in all_skills:
         skill_name = cskill.skill.name
@@ -89,70 +96,74 @@ def spend_skills(tree, c):
     else:
         cskills = all_skills
 
-    reject_names = []
-    for i, cp in enumerate(cpoints):
-        cp_in = False
-        for cskill in cskills:
-            if cskill.skill.pointpool.name == cp.pointpool.name:
-                cp_in = True
-                break
-        if not cp_in:
-            reject_names.append(cp.pointpool.name)
+    for points, skills in [(rpoints, rskills), (cpoints, cskills)]:
 
-    for reject in reject_names:
-        cpoints = cpoints.exclude(pointpool__name=reject)
+        # reject_names = []
+        # for cp in points:
+        #     cp_in = False
+        #     for cskill in skills:
+        #         if cskill.skill.pointpool.name == cp.pointpool.name:
+        #             cp_in = True
+        #             break
+        #     if not cp_in:
+        #         reject_names.append(cp.pointpool.name)
 
-    for cp in cpoints:
-        cx_not_all_max = True
-        while cp.current > 0 and cx_not_all_max:
-            cx_not_all_max = False
-            weights = [cskill.current+1 for cskill in cskills]
-            for cskill in cskills:
-                if cskill.current < cskill.maximum and cskill.skill.pointpool.name == cp.pointpool.name:
-                    cx_not_all_max = True
-                    break
+        # for reject in reject_names:
+        #     points = points.exclude(pointpool__name=reject)
 
-            cskill = random.choices(cskills, weights=weights).pop()
-            unlocks = tree['skills'][cskill.skill.name]['unlocks']
-            # rule for unlocking skills
-            while cskill.current == cskill.maximum:
-                if unlocks != 'none':
-                    possibles = []
-                    skill_threshes = unlocks.split(' OR ')
-                    for skill_thresh in skill_threshes:
-                        skill_name, thresh_string = skill_thresh.split('@')
-                        skill_thresh = int(thresh_string)
-                        # if statement to check the skill threshold
-                        if cskill.current >= skill_thresh:
-                            # if so, add it to the list of possible skill choices
-                            possibles.append(skill_name)
-                else:
-                    break
+        for cp in points:
+            cx_not_all_max = True
+            while cp.current > 0 and cx_not_all_max:
+                cx_not_all_max = False
+                weights = [cskill.current+1 for cskill in skills]
+                for cskill in skills:
+                    if cskill.current < cskill.maximum and cskill.skill.pointpool.name == cp.pointpool.name:
+                        cx_not_all_max = True
+                        break
 
-                if len(possibles) > 0:
-                    unlock_skills = CharacterSkill.objects.filter(character=c, skill__name__in=possibles)
-                else:
-                    break
-
-                cskill = random.choices(unlock_skills, weights=[unlock_skill.current+1 for unlock_skill in unlock_skills]).pop()
+                cskill = random.choices(skills, weights=weights).pop()
                 unlocks = tree['skills'][cskill.skill.name]['unlocks']
+                # rule for unlocking skills
+                while cskill.current == cskill.maximum:
+                    if unlocks != 'none':
+                        possibles = []
+                        skill_threshes = unlocks.split(' OR ')
+                        for skill_thresh in skill_threshes:
+                            skill_name, thresh_string = skill_thresh.split('@')
+                            skill_thresh = int(thresh_string)
+                            # if statement to check the skill threshold
+                            if cskill.current >= skill_thresh:
+                                # if so, add it to the list of possible skill choices
+                                possibles.append(skill_name)
+                    else:
+                        break
 
-            if cskill.skill.pointpool.name == cp.pointpool.name:
+                    if len(possibles) > 0:
+                        unlock_skills = CharacterSkill.objects.filter(character=c, skill__name__in=possibles)
+                    else:
+                        break
 
-                if cskill.skill.direction == 'increasing' and cskill.current < cskill.maximum:
-                    cost = cskill.skill.cost * ( (cskill.current+1) ** cskill.skill.tier )
-                    if cp.current >= cost:
-                        cp.current -= cost
-                        cskill.current += cskill.skill.purchase
-                        cskill.save()
-                        cp.save()
-                elif cskill.skill.direction == 'decreasing' and cskill.current > cskill.minimum:
-                    cost = cskill.skill.cost * ( (cskill.maximum - cskill.current + 1) ** cskill.skill.tier )
-                    if cp.current >= cost:
-                        cp.current -= cost
-                        cskill.current -= cskill.skill.purchase
-                        cskill.save()
-                        cp.save()
+                    cskill = random.choices(unlock_skills, weights=[unlock_skill.current+1 for unlock_skill in unlock_skills]).pop()
+                    unlocks = tree['skills'][cskill.skill.name]['unlocks']
+
+                if cskill.skill.pointpool.name == cp.pointpool.name or (
+                    'roles' in tree and 'points' in tree['roles'][c.role.name] and 'skills' in tree['roles'][c.role.name]
+                    ):
+
+                    if cskill.skill.direction == 'increasing' and cskill.current < cskill.maximum:
+                        cost = cskill.skill.cost * ( (cskill.current+1) ** cskill.skill.tier )
+                        if cp.current >= cost:
+                            cp.current -= cost
+                            cskill.current += cskill.skill.purchase
+                            cskill.save()
+                            cp.save()
+                    elif cskill.skill.direction == 'decreasing' and cskill.current > cskill.minimum:
+                        cost = cskill.skill.cost * ( (cskill.maximum - cskill.current + 1) ** cskill.skill.tier )
+                        if cp.current >= cost:
+                            cp.current -= cost
+                            cskill.current -= cskill.skill.purchase
+                            cskill.save()
+                            cp.save()
 
 
 # traits

@@ -47,10 +47,10 @@ def npc(request, npc_id):
         })
 
 
-def redirect_params(url, param_dict=None):
+def redirect_params(url, params=None):
     response = redirect(url)
-    if param_dict:
-        query_string = urlencode(param_dict)
+    if params:
+        query_string = urlencode(params)
         response['Location'] += '?' + query_string
     return response
 
@@ -87,8 +87,6 @@ def search(request):
         qs = urlencode(filters)
         parsed = parse_qs(qs)
         qs_filters = json.loads(parsed['statistic'][0].replace("'",'"'))
-
-        # characters = characters.filter(role__in=roles)
 
         cstats = CharacterStatistic.objects.filter(character__role__in=roles)
         stat_filter = set([c.character.pk for c in cstats])
