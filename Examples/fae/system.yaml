@@ -1,0 +1,77 @@
+defaults:
+    stats:
+        set: 0                # base level without rolling or purchasing, what you have
+        min: 0                # low end of range
+        max: 3                # high end of range
+        direction: increasing # direction to start from in range
+        points: Approach      # default points pool to purchase from
+        cost: 1               # cost per point
+        purchase: 1           # result of a purchase
+        tier: add             # values are "add" (1x,1x,1x), "multiply" (1x,2x,3x), or "double" (1x,2x,4x) where "x" is cost
+        prereq: none          # prerequisite skills, keywords <AND> and <OR>, > and <, <trait>
+        role: none            # skill is special to a role, and if so what role
+        archetype: none       # special to an archetype, and if so what archetype
+        type: independent     # independent (stands alone), dependent (result of something else)
+
+
+points:
+    Approach:
+        set: 0
+
+
+stats:
+    Careful: default
+    Clever: default
+    Flashy: default
+    Forceful: default
+    Quick: default
+    Sneaky: default
+
+
+history:
+    START: Approaches
+
+    Approaches:
+        assign:
+            these:
+                - "+3"
+                - "+2"
+                - "+2"
+                - "+1"
+                - "+1"
+                - "+0"
+            those:
+                - Careful
+                - Clever
+                - Flashy
+                - Forceful
+                - Quick
+                - Sneaky
+            action:
+                stats:
+                    those: these
+
+# perms = list(itertools.permutations(approaches, len(approaches)))
+#
+# d = []
+# for i, p in enumerate(qr):
+#     d.append(dict(zip(p, ['+3', '+2', '+2', '+1', '+1', '+0'])))
+#
+# stats = random.choice(d)
+
+    # Priority:
+    #     assign:
+    #         these:
+    #             - A
+    #             - B
+    #             - C
+    #             - D
+    #             - E
+    #         those:
+    #             - Metatype
+    #             - Attributes
+    #             - Magic or Resonance
+    #             - Skills
+    #             - Resources
+    #         history:
+    #             next: Priority these those

@@ -219,9 +219,9 @@ def character_initialize(tree, c):
             cstat.minimum = stat_min
             cstat.maximum = stat_max
 
-            if stat.type == IND:
+            stat_set = tree['stats'][stat_name]['set']
 
-                stat_set = tree['stats'][stat_name]['set']
+            if stat.type == IND:
                 if tree['stats'][stat_name]['points'] == 'roll':
 
                     if type(stat_set) is str:
@@ -401,7 +401,7 @@ def history(tree, character):
 
 if __name__ == '__main__':
     # character count to make per run
-    character_count = 50
+    character_count = 450
     system_yaml = 'Examples/cyberpunk_2020/system.yaml'
 
     # needs error handling

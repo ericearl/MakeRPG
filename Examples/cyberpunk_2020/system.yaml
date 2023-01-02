@@ -1,3 +1,17 @@
+about:
+    name: Cyberpunk 2020
+    edition: 2
+
+
+order:
+    - name: Handle
+    - role: Role
+    - points: Character
+    - history: Lifepath
+    - points: Career
+    - points: Pickup
+
+
 options:
     Random:
         points:
@@ -305,53 +319,53 @@ skills:
         cost: 2
         stat: TECH
     Combat sense:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Solo
     Resources:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Corporate
     Credibility:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Media
     Family:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Nomad
     Jury Rig:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Techie
     Authority:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Cop
     Charismatic Leadership:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Rockerboy
     Medical Tech:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Medtechie
     Streetdeal:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Fixer
     Interface:
+        set: 1
         min: 1
-        max: 10
         points: Career
         role: Netrunner
 
